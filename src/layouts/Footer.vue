@@ -1,13 +1,40 @@
 <template>
-   <footer>
-      <ul class="footer__rrss">
-         <li>Facebook</li>
-         <li>Twitter</li>
-         <li>Instagram</li>
-      </ul>
-      <p class="footer__legal">Derechos reservados 2021</p>
-      <p class="footer__autor">Realizado por:</p>
-   </footer>
+  <footer class="footer">
+    <ul class="footer__rrss">
+      <li class="footer__link">
+        <img
+          class="footer__fb"
+          alt="Facebook logo"
+          src="../assets/images/facebook.svg"
+        />
+      </li>
+      <li class="footer__link">
+        <img
+          class="footer__icon"
+          alt="Twitter logo"
+          src="../assets/images/twitter.svg"
+        />
+      </li>
+      <li class="footer__link">
+        <img
+          class="footer__icon"
+          alt="Instagram logo"
+          src="../assets/images/instagram.svg"
+        />
+      </li>
+    </ul>
+    <p class="footer__legal">Derechos reservados 2021</p>
+    <div class="footer__autor">
+      <p class="footer__autor__text">Realizado por:</p>
+      <a href="https://novanet.studio" target="_blank">
+        <img
+          class="footer__autor__logo"
+          alt="Novanet logo"
+          src="../assets/images/novanet-logo.svg"
+        />
+      </a>
+    </div>
+  </footer>
 </template>
 
 <script lang="scss">
