@@ -1,25 +1,49 @@
 body {
-   font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-   margin:0;
-   padding:0;
-   line-height: 1.5;
- }
- 
- .layout {
-   max-width: 760px;
-   margin: 0 auto;
-   padding-left: 20px;
-   padding-right: 20px;
- }
- 
- .header {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   margin-bottom: 20px;
-   height: 80px;
- }
- 
- .nav__link {
-   margin-left: 20px;
- }
+  font-family: 'Sarabun', 'Trebuchet MS', sans-serif;
+  font-weight: 300;
+  line-height: 1.4rem;
+}
+
+.layout {
+  width: 75em;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 2fr);
+  grid-template-rows: auto;
+  grid-template-areas:
+    'header header header header header header header header header header header header'
+    '. contenedor contenedor contenedor contenedor contenedor contenedor contenedor contenedor contenedor contenedor .'
+    'footer footer footer footer footer footer footer footer footer footer footer footer ';
+}
+
+/*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+@include responsive(20em) {
+}
+
+/*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
+@include responsive(35.5em) {
+}
+
+/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
+@include responsive(48em) {
+}
+
+/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+@include responsive(64em) {
+}
+
+/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
+@include responsive(80em) {
+}
+
+/*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
+@include responsive(90em) {
+}
+
+/*--------------------------------- Medium Large Desktop (1600px) -------------------------------*/
+@include responsive(100em) {
+}
+
+/*------------------------------------- Large Desktop (1920px) ---------------------------------*/
+@include responsive(120em) {
+}

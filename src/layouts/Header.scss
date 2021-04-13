@@ -1,0 +1,39 @@
+.header {
+  display: grid;
+  grid-area: header;
+  align-items: center;
+  height: 7.5em;
+  grid-template-columns: repeat(10, 2fr);
+  grid-template-areas: 'logo logo . nav nav nav nav nav nav nav';
+
+  &__logo {
+    grid-area: logo;
+    justify-self: center;
+    align-self: center;
+    img {
+      width: 11.5em;
+    }
+  }
+
+  &__nav {
+    display: grid;
+    grid-area: nav;
+    grid-template-columns: repeat(5, 2fr);
+  }
+
+  &__link {
+    width: fit-content;
+    height: fit-content;
+    font-weight: 800;
+    color: $azul;
+    border: 2px;
+    text-decoration: none;
+  }
+  .active--exact {
+    border: 2px;
+    border-style: solid none solid none;
+    border-color: $verde;
+    box-sizing: border-box;
+    margin-top: -2px;
+  }
+}
