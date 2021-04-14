@@ -1,0 +1,91 @@
+.hero {
+  display: grid;
+  grid-area: hero;
+  grid-template-columns: repeat(12, 2fr);
+  grid-template-rows: auto;
+  grid-template-areas: 'tv tv tv tv tv tv internet internet internet internet internet internet';
+
+  & > div {
+    height: 27em;
+    display: grid;
+    grid-template-columns: repeat(6, 2fr);
+    grid-template-rows: auto;
+    & > div {
+      display: grid;
+      grid-template-columns: repeat(4, 2fr);
+      grid-template-rows: auto;
+      grid-template-areas: 'icon info info info';
+      border-radius: 1em;
+      min-height: 8em;
+      margin-bottom: 2em;
+      padding: 1em;
+      box-sizing: border-box;
+    }
+  }
+
+  &__tv {
+    grid-area: tv;
+    grid-template-areas: '. box-tv box-tv box-tv box-tv .';
+    @include hero-section-image($image: 'latinamericancable-tv.jpg');
+    border: 3px;
+    border-style: none solid none none;
+    border-color: white;
+    box-sizing: border-box;
+    &__box {
+      height: fit-content;
+      grid-area: box-tv;
+      background-color: $azul;
+    }
+    &__icon {
+      @include icon-box(
+        $image: 'latinamerican-control-icon.svg',
+        $fillColor: $verde,
+        $width: 5em
+      );
+    }
+    &__info {
+      @include icon-box-info();
+    }
+    &__title {
+      grid-area: title;
+      color: $verde;
+    }
+    &__text {
+      grid-area: text;
+      color: white;
+    }
+  }
+
+  &__internet {
+    grid-area: internet;
+    grid-template-areas: '. box-internet box-internet box-internet box-internet .';
+    @include hero-section-image($image: 'latinamericancable-internet.jpg');
+    border: 3px;
+    border-style: none none none solid;
+    border-color: white;
+    box-sizing: border-box;
+    &__box {
+      height: fit-content;
+      grid-area: box-internet;
+      background-color: $verde;
+    }
+    &__icon {
+      @include icon-box(
+        $image: 'latinamerican-wifi-icon.svg',
+        $fillColor: $azul,
+        $width: 4em
+      );
+    }
+    &__info {
+      @include icon-box-info();
+    }
+    &__title {
+      grid-area: title;
+      color: $azul;
+    }
+    &__text {
+      grid-area: text;
+      color: $gris;
+    }
+  }
+}

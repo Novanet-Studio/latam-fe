@@ -34,7 +34,7 @@
 
   &__legal {
     grid-area: legal;
-    margin: 0;
+    text-align: center;
   }
 
   &__autor {
@@ -42,10 +42,9 @@
     grid-area: autor;
     grid-template-columns: repeat(2, 2fr);
     grid-template-areas: 'text logo';
-    
+
     &__text {
       grid-area: text;
-      margin: 0;
     }
 
     &__logo {

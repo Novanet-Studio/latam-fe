@@ -1,0 +1,7 @@
+.principal {
+   display: grid;
+   grid-template-columns: repeat(12, 2fr);
+   grid-template-rows: auto;
+   grid-template-areas: 'hero hero hero hero hero hero hero hero hero hero hero hero ' ;
+
+}

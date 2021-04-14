@@ -1,11 +1,18 @@
 body {
   font-family: 'Sarabun', 'Trebuchet MS', sans-serif;
   font-weight: 300;
-  line-height: 1.4rem;
+  line-height: 1.3rem;
 }
 
 p {
   color: $gris;
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.7em;
+  font-style: italic;
+  margin: 0 0 0.3em 0;
 }
 
 .layout {
@@ -16,8 +23,14 @@ p {
   grid-template-rows: auto;
   grid-template-areas:
     'header header header header header header header header header header header header'
-    '. contenedor contenedor contenedor contenedor contenedor contenedor contenedor contenedor contenedor contenedor .'
+    'main main main main main main main main main main main main'
     'footer footer footer footer footer footer footer footer footer footer footer footer ';
+}
+
+.principal {
+  display: grid;
+  grid-area: main;
+  grid-template-columns: repeat(12, 2fr);
 }
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/

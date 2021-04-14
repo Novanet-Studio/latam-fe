@@ -2,13 +2,38 @@
 
 //Font configuration
 @mixin font-set($color) {
-   color: #{$color};
-   font-family: 'Sarabun', 'Helvetica', sans-serif;
- }
+  color: #{$color};
+  font-family: 'Sarabun', 'Helvetica', sans-serif;
+}
 
- // Responsive
- @mixin responsive($size) {
-   @media all and  (min-width: #{$size}) and (-webkit-min-device-pixel-ratio: 1) {
-     @content;
-   }
- }
+@mixin hero-section-image($image) {
+  background-image: url('../../assets/images/#{$image}');
+  background-repeat: no-repeat;
+  background-position: center center;
+  align-content: flex-end;
+}
+
+@mixin icon-box($image, $width, $fillColor) {
+  grid-area: icon;
+  background-image: url('../../assets/images/#{$image}');
+  background-color: #{$fillColor};
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: #{$width};
+  border-radius: 50%;
+  left: -2em;
+  position: relative;
+}
+
+@mixin icon-box-info() {
+  grid-area: info;
+  left: -1em;
+  position: relative;
+}
+
+// Responsive
+@mixin responsive($size) {
+  @media all and  (min-width: #{$size}) and (-webkit-min-device-pixel-ratio: 1) {
+    @content;
+  }
+}
