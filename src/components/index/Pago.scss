@@ -1,0 +1,50 @@
+.pago {
+  height: 16em;
+  display: grid;
+  align-content: space-around;
+  grid-area: pago;
+  grid-template-columns: repeat(12, 2fr);
+  grid-template-areas:
+    '. . . . icon icon icon icon . . . .'
+    '. . . . boton boton boton boton . . . .';
+  padding: 1.5em 0 1.5em;
+  position: relative;
+
+  &::before {
+    content: '';
+    background-image: url('../../assets/images/latinamericancable-pago.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.35;
+    z-index: -1;
+  }
+
+  &__icon {
+    display: grid;
+    grid-area: icon;
+    justify-content: center;
+
+    &__imagen {
+      width: 7em;
+    }
+  }
+
+  &__boton {
+    grid-area: boton;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: $azul;
+    background-color: $verde;
+    border: 0;
+    border-radius: 1em;
+    padding: 0.75em;
+  }
+}

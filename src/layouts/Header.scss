@@ -2,7 +2,7 @@
   display: grid;
   grid-area: header;
   align-items: center;
-  height: 7.5em;
+  height: 8.5em;
   grid-template-columns: repeat(12, 2fr);
   grid-template-areas: 'logo logo . nav nav nav nav nav nav nav nav nav';
 
