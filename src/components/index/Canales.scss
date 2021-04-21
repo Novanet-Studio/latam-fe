@@ -1,0 +1,25 @@
+.canales {
+  display: grid;
+  grid-area: canales;
+  grid-template-columns: repeat(12, 2fr);
+  grid-template-areas: '. categoria categoria categoria categoria categoria categoria categoria categoria categoria categoria   .';
+
+  &__categoria {
+    display: grid;
+    grid-template-columns: repeat(10, 2fr);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    &__item {
+    }
+    &__imagen {
+      max-width: 3.5em;
+    }
+  }
+
+  .vsa-list {
+    grid-area: categoria;
+    --vsa-max-width: 100%;
+  }
+}

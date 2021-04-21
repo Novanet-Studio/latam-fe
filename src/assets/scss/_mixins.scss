@@ -6,11 +6,22 @@
   font-family: 'Sarabun', 'Helvetica', sans-serif;
 }
 
-@mixin hero-section-image($image) {
+@mixin boton {
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: $azul;
+  background-color: $verde;
+  border: 0;
+  border-radius: 1em;
+  padding: 0.75em;  
+}
+
+@mixin section-background($image) {
   background-image: url('../../assets/images/#{$image}');
   background-repeat: no-repeat;
-  background-position: center center;
-  align-content: flex-end;
+  background-position: center center;  
 }
 
 @mixin icon-box($image, $width, $fillColor) {

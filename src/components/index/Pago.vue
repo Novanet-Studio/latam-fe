@@ -18,4 +18,4 @@ export default {
 
 import './Pago.scss'
 </script>
-</script>
+

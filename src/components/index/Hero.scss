@@ -10,6 +10,7 @@
     display: grid;
     grid-template-columns: repeat(6, 2fr);
     grid-template-rows: auto;
+    align-content: flex-end;
     & > div {
       display: grid;
       grid-template-columns: repeat(4, 2fr);
@@ -26,7 +27,7 @@
   &__tv {
     grid-area: tv;
     grid-template-areas: '. box-tv box-tv box-tv box-tv .';
-    @include hero-section-image($image: 'latinamericancable-tv.jpg');
+    @include section-background($image: 'latinamericancable-tv.jpg');    
     border: 3px;
     border-style: none solid none none;
     border-color: white;
@@ -59,7 +60,7 @@
   &__internet {
     grid-area: internet;
     grid-template-areas: '. box-internet box-internet box-internet box-internet .';
-    @include hero-section-image($image: 'latinamericancable-internet.jpg');
+    @include section-background($image: 'latinamericancable-internet.jpg');
     border: 3px;
     border-style: none none none solid;
     border-color: white;

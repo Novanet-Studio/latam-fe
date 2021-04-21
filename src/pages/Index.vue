@@ -2,12 +2,16 @@
   <Layout>
     <Hero />
     <Pago />
+    <Canales />
+    <PlanTv />
   </Layout>
 </template>
 
 <script>
 import Hero from '../components/index/Hero'
 import Pago from '../components/index/Pago'
+import Canales from '../components/index/Canales'
+import PlanTv from '../components/index/PlanTv'
 
 export default {
   name: 'Inicio',
@@ -20,6 +24,8 @@ export default {
   components: {
     Hero,
     Pago,
+    Canales,
+    PlanTv,
   },
 }
 
