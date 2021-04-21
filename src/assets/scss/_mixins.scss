@@ -15,13 +15,13 @@
   background-color: $verde;
   border: 0;
   border-radius: 1em;
-  padding: 0.75em;  
+  padding: 0.75em;
 }
 
 @mixin section-background($image) {
   background-image: url('../../assets/images/#{$image}');
   background-repeat: no-repeat;
-  background-position: center center;  
+  background-position: center center;
 }
 
 @mixin icon-box($image, $width, $fillColor) {
@@ -40,6 +40,14 @@
   grid-area: info;
   left: -1em;
   position: relative;
+}
+
+@mixin heading-before-content($image, $color) {
+  color: #{$color};
+  &::before {
+    z-index: -1;
+    background-image: url('../../assets/images/#{$image}');
+  }
 }
 
 // Responsive

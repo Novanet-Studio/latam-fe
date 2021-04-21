@@ -10,8 +10,26 @@ p {
 }
 
 h1 {
-  font-size: 1.7em;
-  font-style: italic;
+  font-size: 2rem;
+  margin: 0 0 0.3em 0;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5em;
+}
+h3 {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+h5 {
+  font-size: 0.9rem;
+  margin: 0;
 }
 
 h1,
@@ -19,7 +37,7 @@ h2,
 h3,
 h4,
 h5 {
-  margin: 0 0 0.3em 0;
+  font-style: italic;
 }
 
 .layout {

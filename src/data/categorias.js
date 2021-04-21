@@ -17,6 +17,20 @@ import fam5 from '../assets/images/canales/familiares/telemundo_logo.png'
 import fam6 from '../assets/images/canales/familiares/telenovelas_logo.png'
 import fam7 from '../assets/images/canales/familiares/tru_tv_logo.png'
 import fam8 from '../assets/images/canales/familiares/venevision_plus_logo.png'
+import fam9 from '../assets/images/canales/internacionales/antena3_logo.png'
+import fam10 from '../assets/images/canales/internacionales/cctv_logo.png'
+import fam11 from '../assets/images/canales/internacionales/ewtn_logo.png'
+import fam12 from '../assets/images/canales/internacionales/migente_logo.png'
+import fam13 from '../assets/images/canales/internacionales/momento24_logo.png'
+import fam14 from '../assets/images/canales/internacionales/rtp_logo.png'
+import fam15 from '../assets/images/canales/internacionales/telemicro_logo.png'
+import fam16 from '../assets/images/canales/internacionales/telesistema_logo.png'
+import fam17 from '../assets/images/canales/internacionales/televisión_de_galicia_logo.png'
+import fam18 from '../assets/images/canales/internacionales/tv_isla_logo.png'
+import fam19 from '../assets/images/canales/internacionales/tv_peru_logo.png'
+import fam20 from '../assets/images/canales/internacionales/tve_24h_logo.png'
+import fam21 from '../assets/images/canales/internacionales/tve_logo.png'
+import fam22 from '../assets/images/canales/internacionales/xtime_channel_logo.png'
 
 import inf1 from '../assets/images/canales/infantiles/baby_tv_logo.png'
 import inf2 from '../assets/images/canales/infantiles/boomerang_logo.png'
@@ -27,25 +41,6 @@ import inf6 from '../assets/images/canales/infantiles/disney_junior_logo.png'
 import inf7 from '../assets/images/canales/infantiles/disney_xd_logo.png'
 import inf8 from '../assets/images/canales/infantiles/nickelodeon_logo.png'
 import inf9 from '../assets/images/canales/infantiles/tooncast_logo.png'
-
-import int1 from '../assets/images/canales/internacionales/antena3_logo.png'
-import int2 from '../assets/images/canales/internacionales/cctv_logo.png'
-import int3 from '../assets/images/canales/internacionales/ewtn_logo.png'
-import int4 from '../assets/images/canales/internacionales/migente_logo.png'
-import int5 from '../assets/images/canales/internacionales/momento24_logo.png'
-import int6 from '../assets/images/canales/internacionales/rtp_logo.png'
-import int7 from '../assets/images/canales/internacionales/telemicro_logo.png'
-import int8 from '../assets/images/canales/internacionales/telesistema_logo.png'
-import int9 from '../assets/images/canales/internacionales/televisión_de_galicia_logo.png'
-import int10 from '../assets/images/canales/internacionales/tv_isla_logo.png'
-import int11 from '../assets/images/canales/internacionales/tv_peru_logo.png'
-import int12 from '../assets/images/canales/internacionales/tve_24h_logo.png'
-import int13 from '../assets/images/canales/internacionales/tve_logo.png'
-import int14 from '../assets/images/canales/internacionales/xtime_channel_logo.png'
-
-import mus1 from '../assets/images/canales/musicales/htv_logo.png'
-import mus2 from '../assets/images/canales/musicales/mtv_logo.png'
-import mus3 from '../assets/images/canales/musicales/telehit_logo.png'
 
 import nac1 from '../assets/images/canales/nacionales/antv_logo.png'
 import nac2 from '../assets/images/canales/nacionales/colombeia_tv_logo.png'
@@ -95,6 +90,10 @@ import var6 from '../assets/images/canales/variedades/nat_geo_wild_logo.png'
 import var7 from '../assets/images/canales/variedades/natgeo_kids_logo.png'
 import var8 from '../assets/images/canales/variedades/national_geographic_logo.png'
 import var9 from '../assets/images/canales/variedades/tlc_logo.png'
+import var10 from '../assets/images/canales/musicales/htv_logo.png'
+import var11 from '../assets/images/canales/musicales/mtv_logo.png'
+import var12 from '../assets/images/canales/musicales/telehit_logo.png'
+
 
 export const deportivos = [
   { image: dep1 },
@@ -109,7 +108,7 @@ export const deportivos = [
   { image: dep10 },
 ]
 
-export const familiares = [
+export const internacionales = [
   { image: fam1 },
   { image: fam2 },
   { image: fam3 },
@@ -118,6 +117,20 @@ export const familiares = [
   { image: fam6 },
   { image: fam7 },
   { image: fam8 },
+  { image: fam9 },
+  { image: fam10 },
+  { image: fam11 },
+  { image: fam12 },
+  { image: fam13 },
+  { image: fam14 },
+  { image: fam15 },
+  { image: fam16 },
+  { image: fam17 },
+  { image: fam18 },
+  { image: fam19 },
+  { image: fam20 },
+  { image: fam21 },
+  { image: fam22 },
 ]
 
 export const infantiles = [
@@ -132,24 +145,7 @@ export const infantiles = [
   { image: inf9 },
 ]
 
-export const internacionales = [
-  { image: int1 },
-  { image: int2 },
-  { image: int3 },
-  { image: int4 },
-  { image: int5 },
-  { image: int6 },
-  { image: int7 },
-  { image: int8 },
-  { image: int9 },
-  { image: int10 },
-  { image: int11 },
-  { image: int12 },
-  { image: int13 },
-  { image: int14 },
-]
-
-export const musicales = [{ image: mus1 }, { image: mus2 }, { image: mus3 }]
+export const musicales = []
 
 export const nacionales = [
   { image: nac1 },
@@ -168,42 +164,51 @@ export const nacionales = [
 ]
 
 export const syp = [
-    { image: syp1 },
-    { image: syp2 },
-    { image: syp3 },
-    { image: syp4 },
-    { image: syp5 },
-    { image: syp6 },
-    { image: syp7 },
-    { image: syp8 },
-    { image: syp9 },
-    { image: syp10 },
-    { image: syp11 },
-    { image: syp12 },
-    { image: syp13 },
-    { image: syp14 },
-    { image: syp15 },
-    { image: syp16 },
-    { image: syp17 },
-    { image: syp18 },
-    { image: syp19 },
-    { image: syp20 },
-    { image: syp21 },
-    { image: syp22 },
-    { image: syp23 },
-    { image: syp24 },
-  ]
+  { image: syp1 },
+  { image: syp2 },
+  { image: syp3 },
+  { image: syp4 },
+  { image: syp5 },
+  { image: syp6 },
+  { image: syp7 },
+  { image: syp8 },
+  { image: syp9 },
+  { image: syp10 },
+  { image: syp11 },
+  { image: syp12 },
+  { image: syp13 },
+  { image: syp14 },
+  { image: syp15 },
+  { image: syp16 },
+  { image: syp17 },
+  { image: syp18 },
+  { image: syp19 },
+  { image: syp20 },
+  { image: syp21 },
+  { image: syp22 },
+  { image: syp23 },
+  { image: syp24 },
+]
 
-  export const variedades = [
-    { image: var1 },
-    { image: var2 },
-    { image: var3 },
-    { image: var4 },
-    { image: var5 },
-    { image: var6 },
-    { image: var7 },
-    { image: var8 },
-    { image: var9 },
-  ]
+export const variedades = [
+  { image: var1 },
+  { image: var2 },
+  { image: var3 },
+  { image: var4 },
+  { image: var5 },
+  { image: var6 },
+  { image: var7 },
+  { image: var8 },
+  { image: var9 },
+  { image: var10 },
+  { image: var11 },
+  { image: var12 },
+]
 
-export default (deportivos, familiares, infantiles, internacionales, musicales, nacionales, syp, variedades)
+export default (deportivos,
+internacionales,
+infantiles,
+musicales,
+nacionales,
+syp,
+variedades)

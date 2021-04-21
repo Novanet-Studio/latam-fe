@@ -2,24 +2,65 @@
   display: grid;
   grid-area: canales;
   grid-template-columns: repeat(12, 2fr);
-  grid-template-areas: '. categoria categoria categoria categoria categoria categoria categoria categoria categoria categoria   .';
+  padding: 1.5em 0 3em;
+
+  &__titulo {
+    grid-column: 1 / 13;
+    &::before {
+      position: absolute;
+      float: left;
+      background-repeat: no-repeat;
+      content: '';
+      background-size: 1em 1em;
+      width: 1em;
+      height: 1em;
+      margin-right: 1em;
+    }
+    @include heading-before-content($color: $azul, $image: 'punto.svg');
+  }
+
+  &__lista {
+    display: grid;
+    grid-column: 2 / 12;
+    grid-template-columns: repeat(10, 2fr);
+  }
+
+  .vsa-list {
+    grid-column: 1 / 6;
+    border-radius: 1em 1em 1em 1em;
+    overflow: hidden;
+    --vsa-max-width: 100%;
+    --vsa-heading-padding: 0.2em 0.5em;
+    --vsa-border-color: rgba(0, 0, 0, 0.2);
+    --vsa-border-width: 1px;
+    --vsa-border-style: solid;
+    --vsa-highlight-color: #1b4686;
+    --vsa-bg-color: rgba(255, 255, 255, 1);
+    --vsa-text-color: #1b4686;
+    --vsa-default-icon-size: 0.5;
+    margin-bottom: 0.75em;
+
+    .vsa-item__trigger {
+      border-radius: 1em 1em 0 0;
+      &:hover {
+        border-radius: 1em;
+      }
+    }
+
+    .vsa-item__content {
+      background-color: rgba(128, 128, 128, 0.15);
+    }
+  }
 
   &__categoria {
     display: grid;
-    grid-template-columns: repeat(10, 2fr);
+    grid-template-columns: repeat(4, 2fr);
     list-style: none;
     margin: 0;
     padding: 0;
 
-    &__item {
-    }
     &__imagen {
       max-width: 3.5em;
     }
-  }
-
-  .vsa-list {
-    grid-area: categoria;
-    --vsa-max-width: 100%;
   }
 }
