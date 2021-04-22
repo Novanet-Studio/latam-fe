@@ -1,43 +1,43 @@
 .tv {
-  height: 15em;
   display: grid;
   grid-area: plan-tv;
-  grid-template-columns: repeat(12, 2fr);
+  grid-column: 7 / 13;
+  grid-template-columns: repeat(8, 2fr);
   grid-template-rows: auto;
-  grid-template-areas:
-    '. . . titulo titulo titulo titulo titulo titulo  . . .'
-    '. . . texto texto texto texto texto texto . . .'
-    '. . . . . tv-boton tv-boton . . . . .';
-  @include section-background($image: 'latinamericancable-tv-plan.jpg');
-  border-radius: 1em;
-  align-content: center;
 
-  &__left {
-    grid-area: titulo;
-  }
+  &__banner {
+    padding: 1.5em 0 3em;
+    display: flex;
+    flex-direction: column;
+    grid-column: 2 / 8;
+    grid-row: 2 / 5;
+    border-radius: 1em;
+    justify-content: space-around;
+    align-content: center;
+   
+    
+    /* @include section-background($image: 'latinamericancable-tv-plan.jpg'); */
+    background-color: $azul;
 
-  &__right {
-    grid-area: texto;
-  }
+    &__titulo {
+      font-size: 1.7rem;
+      line-height: 1.9rem;
+      text-align: center;
+      color: white;
+    }
 
-  &__titulo {
-    font-size: 1.7rem;
-    line-height: 1.9rem;
-    text-align: center;
-    color: white;
-  }
+    &__texto {
+      font-size: 1.4rem;
+      line-height: 1.6rem;
+      text-align: center;
+      color: white;
+      padding-left: 0.5em;
+      margin-bottom: 1.5em;
+    }
 
-  &__texto {
-    font-size: 1.4rem;
-    line-height: 1.6rem;
-    text-align: center;
-    color: white;
-    padding-left: 0.5em;
-    margin-bottom: 1.5em;
-  }
-
-  &__boton {
-    grid-area: tv-boton;
-    @include boton();
+    &__boton {
+      margin:0 5em;
+      @include boton();
+    }
   }
 }
