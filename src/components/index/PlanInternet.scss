@@ -1,0 +1,73 @@
+.internet {
+  display: grid;
+  grid-area: plan-internet;
+  grid-template-columns: repeat(12, 2fr);
+  grid-template-rows: auto;
+
+  &__titulo {
+    grid-column: 1 / 13;
+    @include heading-before-content($color: $azul, $image: 'punto.svg');
+  }
+  &__texto {
+    grid-column: 1 / 13;
+  }
+  &__planes {
+    display: grid;
+    grid-column: 1 / 13;
+    margin-top: 1em;
+
+    &__item {
+      margin: 1.5em;
+      padding: 1.5em 1.5em 2em;
+      position: relative;
+      background-color: $verde;
+      border-radius: 1em;
+      overflow: hidden;
+      z-index: -2;
+
+      &:nth-child(odd) {
+        grid-column: 1 / 7;
+        &::before {
+          @include section-background-opacity(
+            $image: 'latinamericancable-internet-corporativo.jpg'
+          );
+        }
+      }
+
+      &:nth-child(even) {
+        grid-column: 7 / 13;
+        &:before {
+          @include section-background-opacity(
+            $image: 'latinamericancable-internet-residencial.jpg'
+          );
+        }
+      }
+    }
+
+    &__titulo {
+      font-style: normal;
+      color: $azul;
+    }
+
+    &__texto {
+      font-size: 1.1rem;
+    }
+
+    &__velocidades {
+      display: grid;
+      grid-template-columns: repeat(6, 2fr);
+      margin: 1.5em 0 2.5em;
+    }
+
+    &__boton {
+      font-size: 0.9rem;
+      padding: 0.6em;
+      @include boton-a($color: $verde, $bg: $azul-2);
+    }
+
+    &__suscripcion {
+      padding: 0.6em;
+      @include boton-a($color: white, $bg: $azul);
+    }
+  }
+}

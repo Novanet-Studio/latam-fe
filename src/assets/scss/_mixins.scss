@@ -6,22 +6,46 @@
   font-family: 'Sarabun', 'Helvetica', sans-serif;
 }
 
-@mixin boton {
+@mixin boton-a($color: $color, $bg: $bg) {
   text-decoration: none;
   text-align: center;
-  font-size: 1.2rem;
   font-weight: 800;
-  color: $azul;
-  background-color: $verde;
+  color: #{$color};
+  background-color: #{$bg};
   border: 0;
   border-radius: 1em;
-  padding: 0.75em;
+  box-shadow: 0.1em 0.1em 0.25em #222;
+}
+
+@mixin boton-b($color: $color, $outline: $outline) {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #{$color};
+  text-decoration: none;
+  border-style: solid;
+  border-color: #{$outline};
+  border-width: 0.15em;
+  border-radius: 1em;
+  padding: 0.4em;
 }
 
 @mixin section-background($image) {
   background-image: url('../../assets/images/#{$image}');
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+@mixin section-background-opacity($image) {
+  content: '';
+  background-image: url('../../assets/images/#{$image}');
+  background-size: 101%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0.15;
+  z-index: -1;
 }
 
 @mixin icon-box($image, $width, $fillColor) {
@@ -45,8 +69,17 @@
 @mixin heading-before-content($image, $color) {
   color: #{$color};
   &::before {
+    position: absolute;
+    float: left;
+    background-repeat: no-repeat;
+    content: '';
+    background-size: 1em 1em;
+    width: 1em;
+    height: 1em;
+    margin-right: 1em;
     z-index: -1;
     background-image: url('../../assets/images/#{$image}');
+    margin-left: -0.3em;
   }
 }
 

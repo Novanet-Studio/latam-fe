@@ -5,17 +5,7 @@
   padding: 1.5em 0 3em;
 
   &__titulo {
-    grid-column: 1 / 9;
-    &::before {
-      position: absolute;
-      float: left;
-      background-repeat: no-repeat;
-      content: '';
-      background-size: 1em 1em;
-      width: 1em;
-      height: 1em;
-      margin-right: 1em;
-    }
+    grid-column: 1 / 9;  
     @include heading-before-content($color: $azul, $image: 'punto.svg');
   }
 }

@@ -5,9 +5,8 @@
         <div class="hero__tv__icon"></div>
         <div class="hero__tv__info">
           <h1 class="hero__tv__title">TV por cable</h1>
-          <p class="hero__tv__text">¡Son ms de 100 canales!</p>
-          <p class="hero__tv__text">
-            Tenemos nuevos canales para disfrutar en familia.
+          <p class="hero__tv__text">¡Son más de 100 canales!.<br />
+             Tenemos nuevos canales para disfrutar en familia.
           </p>
         </div>
       </div>
@@ -18,11 +17,7 @@
         <div class="hero__internet__info">
           <h1 class="hero__internet__title">Internet por fibra</h1>
           <p class="hero__internet__text">
-            Internet corporativo de alta velocidad
-          </p>
-          <p class="hero__internet__text">
-            Conexión en fibra óptica para uso corporativo y residencial de alta
-            gama.
+            Conexión en fibra óptica de alta velocidad para uso corporativo y residencial.
           </p>
         </div>
       </div>

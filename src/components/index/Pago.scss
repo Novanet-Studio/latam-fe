@@ -21,8 +21,13 @@
     right: 0;
     bottom: 0;
     left: 0;
-    opacity: 0.35;
+    opacity: 0.5;
     z-index: -1;
+    border-radius: 0 0 1em 1em;
+    border: 6px;
+    border-style: solid none none none;
+    border-color: white;
+    box-sizing: border-box;
   }
 
   &__icon {
@@ -37,6 +42,8 @@
 
   &__boton {
     grid-area: boton;
-   @include boton();
+    font-size: 1.2rem;
+    padding: 0.75em;
+    @include boton-a($color: $azul, $bg: $verde);
   }
 }

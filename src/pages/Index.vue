@@ -4,6 +4,7 @@
     <Pago />
     <Canales />
     <PlanTv />
+    <PlanInternet />
   </Layout>
 </template>
 
@@ -12,6 +13,7 @@ import Hero from '../components/index/Hero'
 import Pago from '../components/index/Pago'
 import Canales from '../components/index/Canales'
 import PlanTv from '../components/index/PlanTv'
+import PlanInternet from '../components/index/PlanInternet'
 
 export default {
   name: 'Inicio',
@@ -26,6 +28,7 @@ export default {
     Pago,
     Canales,
     PlanTv,
+    PlanInternet,
   },
 }
 
