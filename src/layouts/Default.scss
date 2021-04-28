@@ -1,13 +1,13 @@
 body {
   font-family: 'Sarabun', 'Trebuchet MS', sans-serif;
   font-weight: 300;
-  line-height: 1.3rem;
+  line-height: 1.5rem;
 }
 
 p {
   font-size: 1.3rem;
   color: $gris;
-  margin:0 0 0.5em 0;
+  margin: 0 0 0.5em 0;
 }
 
 ul {
@@ -17,26 +17,26 @@ ul {
 }
 
 h1 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin: 0 0 0.3em 0;
 }
 
 h2 {
-  font-size: 1.8rem;  
+  font-size: 1.8rem;
 }
 
 h3 {
   font-size: 1.6rem;
-  margin:0 0 0.5em 0;
+  margin: 0 0 0.5em 0;
 }
 
 h4 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin: 0;
 }
 
 h5 {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   margin: 0;
 }
 
@@ -45,7 +45,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-style: italic;  
+  font-style: italic;
 }
 
 .layout {
@@ -76,14 +76,75 @@ h5 {
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
+  body {
+    line-height: 1.9rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+  }
+
+  h4 {
+    font-size: 1.6rem;
+  }
+
+  h5 {
+    font-size: 1.3rem;
+  }
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
+  body {
+    line-height: 1.5rem;
+  }
+
+  .layout {
+    width: auto;
+  }
+
+  p {
+    font-size: 1.3rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+  }
+
+  h4 {
+    font-size: 1.4rem;
+  }
+
+  h5 {
+    font-size: 1.2rem;
+  }
 }
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
+  .layout {
+    width: 75em;
+  }
 }
 
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/

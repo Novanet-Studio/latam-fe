@@ -51,23 +51,122 @@
 
     &__texto {
       font-size: 1.1rem;
+      line-height: 1.4rem;
+      color: $azul-2;
     }
 
     &__velocidades {
       display: grid;
       grid-template-columns: repeat(6, 2fr);
-      margin: 1.5em 0 2.5em;
+      margin: 1.5em 0 2.2em;
     }
 
     &__boton {
       font-size: 0.9rem;
       padding: 0.6em;
+      margin-right: 1em;
       @include boton-a($color: $verde, $bg: $azul-2);
+      cursor: pointer;
     }
 
     &__suscripcion {
       padding: 0.6em;
       @include boton-a($color: white, $bg: $azul);
+      cursor: pointer;
     }
   }
+}
+
+/*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+@include responsive(20em) {
+}
+
+/*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
+@include responsive(35.5em) {
+}
+
+/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
+@include responsive(48em) {
+  .internet {
+    &__planes {
+      margin-top: 0;
+      &__item {
+        &:nth-child(odd) {
+          &::before {
+            background-size: 145%;
+          }
+        }
+
+        &:nth-child(even) {
+          &:before {
+            background-size: 145%;
+          }
+        }
+      }
+
+      &__texto {
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+      }
+
+      &__boton {
+        font-size: 1.2rem;
+      }
+
+      &__suscripcion {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+@include responsive(64em) {
+  .internet {
+    &__planes {
+      &__texto {
+        font-size: 1.1rem;
+        line-height: 1.4rem;
+      }
+
+      &__boton,
+      &__suscripcion {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
+@include responsive(80em) {
+  .internet {
+    &__planes {
+      margin-top: 1em;
+      &__item {
+        &:nth-child(odd) {
+          &::before {
+            background-size: 106%;
+          }
+        }
+
+        &:nth-child(even) {
+          &:before {
+            background-size: 106%;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
+@include responsive(90em) {
+}
+
+/*--------------------------------- Medium Large Desktop (1600px) -------------------------------*/
+@include responsive(100em) {
+}
+
+/*------------------------------------- Large Desktop (1920px) ---------------------------------*/
+@include responsive(120em) {
 }

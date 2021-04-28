@@ -38,7 +38,7 @@
 @mixin section-background-opacity($image) {
   content: '';
   background-image: url('../../assets/images/#{$image}');
-  background-size: 101%;
+  background-size: 106%;
   position: absolute;
   top: 0;
   right: 0;

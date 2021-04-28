@@ -3,10 +3,11 @@
   grid-area: footer;
   grid-template-columns: repeat(12, 2fr);
   grid-template-areas: 'rrss rrss legal legal legal legal legal legal legal legal autor autor';
-  margin: 3em 0 1.5em;
+  margin-top: 2em;
+  margin-bottom: 1.5em;
 
   p {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   &__rrss {
@@ -50,12 +51,109 @@
 
     &__text {
       grid-area: text;
+      text-align: right;
     }
 
     &__logo {
       grid-area: logo;
       width: 4.75em;
-      margin-top: 0.1em;
+      margin-top: 0.25em;
+      margin-left: 0.2em;
     }
   }
+}
+
+/*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+@include responsive(20em) {
+}
+
+/*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
+@include responsive(35.5em) {
+}
+
+/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
+@include responsive(48em) {
+  .footer {
+    grid-template-columns: repeat(10, 2fr);
+    grid-template-areas: 'rrss rrss legal legal legal legal legal legal autor autor';
+    margin-left: 2em;
+    margin-right: 1em;
+
+    p {
+      font-size: 1.1rem;
+    }
+
+    &__link {
+      width: 2em;
+      height: 2em;
+    }
+
+    &__fb {
+      width: 0.8em;
+    }
+
+    &__icon {
+      width: 1.1em;
+    }
+
+    &__autor {
+      &__logo {
+        width: 6em;
+        margin-top:0;
+        margin-left:0.5em;
+      }
+    }
+  }
+}
+
+/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+@include responsive(64em) {
+  .footer {
+    p {
+      font-size:0.9rem;
+    }
+
+    &__link {
+      width: 1.65em;
+    height: 1.65em;
+    }
+
+    &__fb {
+      width: 0.68em;
+    }
+
+    &__icon {
+      width: 1em;
+    }
+
+    &__autor {
+      &__logo {
+        width: 4.75em;
+        margin-top: 0.25em;
+        margin-left: 0.2em;
+      }
+    }
+  }
+}
+
+/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
+@include responsive(80em) {
+  .footer {
+    grid-template-columns: repeat(12, 2fr);
+    grid-template-areas: 'rrss rrss legal legal legal legal legal legal legal legal autor autor';
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
+@include responsive(90em) {
+}
+
+/*--------------------------------- Medium Large Desktop (1600px) -------------------------------*/
+@include responsive(100em) {
+}
+
+/*------------------------------------- Large Desktop (1920px) ---------------------------------*/
+@include responsive(120em) {
 }
