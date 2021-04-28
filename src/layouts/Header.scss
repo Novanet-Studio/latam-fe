@@ -18,6 +18,7 @@
   &__nav {
     display: grid;
     grid-area: nav;
+    justify-items: center;
     grid-template-columns: repeat(6, 2fr);
     .active--exact {
       border: 2px;
@@ -25,7 +26,6 @@
       border-color: $verde;
       box-sizing: border-box;
       margin-top: -2px;
-      padding: 0.15em 0;
     }
   }
 
@@ -42,9 +42,15 @@
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
   .header {
-    /*  height: 9.5em; */
+    height: 7.5em; 
     grid-template-columns: repeat(6, 2fr);
     grid-template-areas: 'logo logo nav nav nav nav';
+
+    &__logo {
+      img {
+        width: 10em;
+      }
+    }
 
     &__nav {
       grid-template-columns: repeat(4, 2fr);
@@ -58,57 +64,27 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
-  .header {
-    /*  height: 11.5em;
-    margin: 0 0 0 3em;
-    &__logo {
-      img {
-        width: 14em;
-      }
-    }
-
-    &__nav {
-      grid-template-columns: repeat(4, 2fr);
-    }
-
-    &__link {
-      font-size: 1.4rem;
-    } */
-  }
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
   .header {
-    /* height: 9.5em;
     &__logo {
       img {
         width: 11.5em;
       }
     }
-
-    &__nav {
-      grid-template-columns: repeat(6, 2fr);
-    }
-
-    &__link {
-      font-size: 1rem;
-    } */
   }
 }
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
   .header {
-    margin: 0;
-
-    &__link {
-      width: fit-content;
-      height: fit-content;
-      font-weight: 800;
-      color: $azul;
-      border: 2px;
-      text-decoration: none;
+    grid-template-columns: repeat(12, 2fr);
+    grid-template-areas: 'logo logo . nav nav nav nav nav nav nav nav nav';
+  
+    &__nav {
+      grid-template-columns: repeat(6, 2fr);
     }
   }
 }

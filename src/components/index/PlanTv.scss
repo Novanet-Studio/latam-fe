@@ -6,7 +6,7 @@
   grid-template-rows: auto;
 
   &__banner {
-    padding: 2.5em 3em 3em;
+    padding: 2.5em 4em 3em;
     display: flex;
     flex-direction: column;
     grid-column: 2 / 9;
@@ -47,19 +47,19 @@
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
   .tv {
+    padding-right: 2em;
+    grid-column: 3/7;
+    grid-template-columns: repeat(3, 2fr);
+
     &__banner {
-      padding: 1.5em 2em 2em;
-  
+      padding: 2em;
+
       &__titulo {
-        line-height: 2rem;
+        line-height:2rem;
       }
-  
-      &__texto {
-        margin-bottom: 1em;
-      }
-  
+
       &__boton {
-        font-size: 1.4rem;
+        margin: 0;
       }
     }
   }
@@ -68,10 +68,12 @@
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
   .tv {
+    grid-column: 7 / 13;
+    grid-template-columns: repeat(8, 2fr);
+
     &__banner {
-      padding: 2.5em 3em 3em;
       &__boton {
-        font-size: 1.2rem;
+        margin: 0 3em;
       }
     }
   }
@@ -79,6 +81,12 @@
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
+  .tv {
+    padding-right: 0;
+    &__banner {
+      padding: 2.5em 4em 3em;
+    }
+  }
 }
 
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/

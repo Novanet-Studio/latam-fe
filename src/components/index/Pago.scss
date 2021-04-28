@@ -42,7 +42,7 @@
 
   &__boton {
     grid-area: boton;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     padding: 0.75em;
     @include boton-a($color: $azul, $bg: $verde);
   }
@@ -58,38 +58,10 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
-  .pago {
-    height:21em;
-
-    &__icon {
-      &__imagen {
-        width:10em;
-      }
-    }
-
-    &__boton {
-      font-size:1.45em;
-      border-radius: 0.7em;
-    }
-  }
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
-  .pago {
-    height: 16em;
-  
-    &__icon {
-      &__imagen {
-        width: 7em;
-      }
-    }
-  
-    &__boton {
-      font-size: 1.2rem;
-      border-radius: 1em;
-    }
-  }
 }
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/

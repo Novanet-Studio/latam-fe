@@ -20,14 +20,24 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
+  .canales {
+    grid-template-columns: repeat(3, 2fr);
+    padding: 1.5em 0 3em 1.5em;
+  }
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
+  .canales {
+    grid-template-columns: repeat(8, 2fr);
+  }
 }
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
+  .canales {
+    padding: 1.5em 0 3em;
+  }
 }
 
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/

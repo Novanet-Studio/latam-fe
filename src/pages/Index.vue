@@ -1,11 +1,10 @@
 <template>
   <Layout>
     <Hero />
-    <!-- 
     <Pago />
     <Canales />
     <PlanTv />
-    <PlanInternet /> -->
+    <PlanInternet />
   </Layout>
 </template>
 

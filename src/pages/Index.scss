@@ -27,20 +27,22 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
-  .principal {
-    margin: 0 2em;
-  }
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
+  .principal {
+    grid-template-columns: repeat(12, 2fr);
+    grid-template-areas:
+      'hero hero hero hero hero hero hero hero hero hero hero hero'
+      'pago pago pago pago pago pago pago pago pago pago pago pago'
+      'canales canales canales canales canales canales  plan-tv plan-tv plan-tv plan-tv plan-tv plan-tv'
+      'plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet ';
+  }
 }
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
-  .principal {
-    margin: 0;
-  }
 }
 
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/

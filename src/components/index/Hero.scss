@@ -20,7 +20,7 @@
       border-radius: 1em;
       min-height: 8em;
       margin-bottom: 2em;
-      padding: 1em;
+      padding: 1em 0 1em 1em;
       box-sizing: border-box;
       box-shadow: 0.1em 0.1em 0.25em #222;
     }
@@ -46,7 +46,7 @@
         $fillColor: $verde,
         $width: 5em
       );
-      margin: 0.69vh 0;
+      margin: 0.59em 0;
     }
     &__info {
       @include icon-box-info();
@@ -83,7 +83,7 @@
         $fillColor: $azul,
         $width: 4em
       );
-      margin: 0.69vh 0;
+      margin: 0.59em 0;
     }
     &__info {
       @include icon-box-info();
@@ -111,71 +111,46 @@
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
   .hero {
-    /* & > div {
-      height: 43em;
+    grid-template-columns: repeat(6, 2fr);
+    grid-template-areas: 'tv tv tv internet internet internet';
+    & > div {
       grid-template-columns: repeat(10, 2fr);
-      & > div {
-        margin-bottom: 3em;
-      }
     }
 
     &__tv {
       grid-template-areas: '. box-tv box-tv box-tv box-tv box-tv box-tv box-tv box-tv .';
+      &__icon {
+        margin: 1.02em 0;
+        background-size: 4em;
+      }
     }
 
     &__internet {
       grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet box-internet box-internet .';
-    }
-
-    &__tv {
       &__icon {
-        margin: 1.23vh 0;
-      }
-      &__text {
-        font-size: 1.4rem;
-        line-height: 1.7rem;
+        margin: 1.02em 0;
+        background-size: 3em;
       }
     }
-
-    &__internet {
-      &__icon {
-        margin: 1.23vh 0;
-      }
-      &__text {
-        font-size: 1.4rem;
-        line-height: 1.7rem;
-      }
-    } */
   }
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
   .hero {
-  /*   & > div {
-      height: 27em;
-    }
-
     &__tv {
       &__icon {
-        margin: 0.69vh 0;
-      }
-      &__text {
-        font-size: 1.1rem;
-        line-height: 1.3rem;
+        margin: 0.59em 0;
+        background-size: 5em;
       }
     }
 
     &__internet {
       &__icon {
-        margin: 0.69vh 0;
+        margin: 0.59em 0;
+        background-size: 4em;
       }
-      &__text {
-        font-size: 1.1rem;
-        line-height: 1.3rem;
-      }
-    } */
-    
+    }
   }
 }
 
@@ -184,7 +159,9 @@
   .hero {
     & > div {
       grid-template-columns: repeat(6, 2fr);
-      & > div {margin-bottom:2em;}
+      & > div {
+        margin-bottom: 2em;
+      }
     }
 
     &__tv {

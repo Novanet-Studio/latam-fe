@@ -85,31 +85,31 @@ h5 {
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
   body {
-    line-height: 1.9rem;
+    line-height: 1.5rem;
   }
-
+  
   p {
+    font-size: 1.1rem;
+  }
+  
+  h1 {
+    font-size: 1.68rem;
+  }
+  
+  h2 {
     font-size: 1.5rem;
   }
-
-  h1 {
-    font-size: 2.3rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
+  
   h3 {
-    font-size: 1.8rem;
+    font-size: 1.45rem;
   }
-
+  
   h4 {
-    font-size: 1.6rem;
-  }
-
-  h5 {
     font-size: 1.3rem;
+  }
+  
+  h5 {
+    font-size: 1rem;
   }
 }
 
@@ -118,31 +118,27 @@ h5 {
   body {
     line-height: 1.5rem;
   }
-
-  .layout {
-    width: auto;
-  }
-
+  
   p {
     font-size: 1.3rem;
   }
-
+  
   h1 {
     font-size: 2rem;
   }
-
+  
   h2 {
     font-size: 1.8rem;
   }
-
+  
   h3 {
     font-size: 1.6rem;
   }
-
+  
   h4 {
     font-size: 1.4rem;
   }
-
+  
   h5 {
     font-size: 1.2rem;
   }
