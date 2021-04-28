@@ -11,6 +11,14 @@
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
+  .principal {
+    grid-template-columns: repeat(6, 2fr);
+    grid-template-areas:
+      'hero hero hero hero hero hero'
+      'pago pago pago pago pago pago '
+      'canales canales canales plan-tv plan-tv plan-tv'
+      'plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet';
+  }
 }
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/

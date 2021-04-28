@@ -111,7 +111,7 @@
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
   .hero {
-    & > div {
+    /* & > div {
       height: 43em;
       grid-template-columns: repeat(10, 2fr);
       & > div {
@@ -145,14 +145,14 @@
         font-size: 1.4rem;
         line-height: 1.7rem;
       }
-    }
+    } */
   }
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
   .hero {
-    & > div {
+  /*   & > div {
       height: 27em;
     }
 
@@ -174,7 +174,7 @@
         font-size: 1.1rem;
         line-height: 1.3rem;
       }
-    }
+    } */
     
   }
 }

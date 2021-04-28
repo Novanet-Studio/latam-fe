@@ -25,7 +25,7 @@
       border-color: $verde;
       box-sizing: border-box;
       margin-top: -2px;
-      padding:0.15em 0;
+      padding: 0.15em 0;
     }
   }
 
@@ -41,6 +41,15 @@
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
+  .header {
+    /*  height: 9.5em; */
+    grid-template-columns: repeat(6, 2fr);
+    grid-template-areas: 'logo logo nav nav nav nav';
+
+    &__nav {
+      grid-template-columns: repeat(4, 2fr);
+    }
+  }
 }
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
@@ -50,7 +59,7 @@
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
   .header {
-    height: 11.5em;
+    /*  height: 11.5em;
     margin: 0 0 0 3em;
     &__logo {
       img {
@@ -64,14 +73,14 @@
 
     &__link {
       font-size: 1.4rem;
-    }
+    } */
   }
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
   .header {
-    height: 9.5em;
+    /* height: 9.5em;
     &__logo {
       img {
         width: 11.5em;
@@ -84,7 +93,7 @@
 
     &__link {
       font-size: 1rem;
-    }
+    } */
   }
 }
 

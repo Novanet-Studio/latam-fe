@@ -68,6 +68,14 @@ h5 {
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
+  .layout {
+    width: 100%;
+    grid-template-columns: repeat(6, 2fr);
+    grid-template-areas:
+      'header header header header header header'
+      'main main main main main main'
+      'footer footer footer footer footer footer';
+  }
 }
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
