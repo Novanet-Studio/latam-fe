@@ -42,33 +42,53 @@
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
   .header {
-    height: 7.5em; 
+    height: 7.5em;
     grid-template-columns: repeat(6, 2fr);
-    grid-template-areas: 'logo logo nav nav nav nav';
+    grid-template-areas:
+      'logo logo logo logo logo logo'
+      'nav nav nav nav nav nav';
 
     &__logo {
       img {
-        width: 10em;
+        width: 8em;
       }
     }
 
     &__nav {
       grid-template-columns: repeat(4, 2fr);
+      font-size: 0.75rem;
     }
   }
 }
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
 @include responsive(35.5em) {
+  .header {
+    height: 5.5em;
+    grid-template-areas: 'logo logo nav nav nav nav';
+  }
 }
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
+  .header {
+    height: 7.5em;
+    &__logo {
+      img {
+        width: 9.5em;
+      }
+    }
+
+    &__nav {
+      font-size: 1rem;
+    }
+  }
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
   .header {
+    height: 9.5em;
     &__logo {
       img {
         width: 11.5em;
@@ -82,7 +102,7 @@
   .header {
     grid-template-columns: repeat(12, 2fr);
     grid-template-areas: 'logo logo . nav nav nav nav nav nav nav nav nav';
-  
+
     &__nav {
       grid-template-columns: repeat(6, 2fr);
     }

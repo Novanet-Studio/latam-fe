@@ -33,12 +33,13 @@
   background-image: url('../../assets/images/#{$image}');
   background-repeat: no-repeat;
   background-position: center center;
+  background-size: cover;
 }
 
 @mixin section-background-opacity($image) {
   content: '';
   background-image: url('../../assets/images/#{$image}');
-  background-size: 106%;
+  background-size: cover;
   position: absolute;
   top: 0;
   right: 0;
@@ -57,6 +58,9 @@
   background-size: #{$width};
   border-radius: 50%;
   left: -2em;
+  bottom: -0.5em;
+  width: 6em;
+  height: 6em;
   position: relative;
 }
 

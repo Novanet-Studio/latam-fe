@@ -14,9 +14,9 @@
     background-size: cover;
     & > div {
       display: grid;
-      grid-template-columns: repeat(4, 2fr);
+      grid-template-columns: repeat(5, 2fr);
       grid-template-rows: auto;
-      grid-template-areas: 'icon info info info';
+      grid-template-areas: 'icon info info info info';
       border-radius: 1em;
       min-height: 8em;
       margin-bottom: 2em;
@@ -46,7 +46,6 @@
         $fillColor: $verde,
         $width: 5em
       );
-      margin: 0.59em 0;
     }
     &__info {
       @include icon-box-info();
@@ -83,7 +82,6 @@
         $fillColor: $azul,
         $width: 4em
       );
-      margin: 0.59em 0;
     }
     &__info {
       @include icon-box-info();
@@ -102,6 +100,43 @@
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
+  .hero {
+    grid-template-columns: repeat(6, 2fr);
+    grid-template-areas:
+      'tv tv tv tv tv tv'
+      'internet internet internet internet internet internet';
+
+    & > div {
+      height: 20em;
+    }
+
+    &__tv {
+      margin: 0 0 0.4em 0;
+      border-radius: 1em 1em 0 0;
+      grid-template-areas: '. box-tv box-tv box-tv box-tv .';
+      &__icon {
+        width: 4.5em;
+        height: 4.5em;
+        background-size: 4em;
+      }
+      &__text {
+        font-size: 0.95rem;
+      }
+    }
+
+    &__internet {
+      border-radius: 0 0 0 0;
+      grid-template-areas: '. box-internet box-internet box-internet box-internet .';
+      &__icon {
+        width: 4.5em;
+        height: 4.5em;
+        background-size: 3em;
+      }
+      &__text {
+        font-size: 0.95rem;
+      }
+    }
+  }
 }
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
@@ -111,25 +146,26 @@
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
   .hero {
-    grid-template-columns: repeat(6, 2fr);
     grid-template-areas: 'tv tv tv internet internet internet';
+
     & > div {
-      grid-template-columns: repeat(10, 2fr);
+      height: 27em;
     }
 
     &__tv {
-      grid-template-areas: '. box-tv box-tv box-tv box-tv box-tv box-tv box-tv box-tv .';
-      &__icon {
-        margin: 1.02em 0;
-        background-size: 4em;
+      border-radius: 1em 0 0 0;
+      margin: 0;
+
+      &__text {
+        font-size: 1.1rem;
       }
     }
 
     &__internet {
-      grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet box-internet box-internet .';
-      &__icon {
-        margin: 1.02em 0;
-        background-size: 3em;
+      border-radius: 0 1em 0 0;
+
+      &__text {
+        font-size: 1.1rem;
       }
     }
   }
@@ -140,14 +176,16 @@
   .hero {
     &__tv {
       &__icon {
-        margin: 0.59em 0;
+        width: 6em;
+        height: 6em;
         background-size: 5em;
       }
     }
 
     &__internet {
       &__icon {
-        margin: 0.59em 0;
+        width: 6em;
+        height: 6em;
         background-size: 4em;
       }
     }
@@ -157,20 +195,8 @@
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
   .hero {
-    & > div {
-      grid-template-columns: repeat(6, 2fr);
-      & > div {
-        margin-bottom: 2em;
-      }
-    }
-
-    &__tv {
-      grid-template-areas: '. box-tv box-tv box-tv box-tv .';
-    }
-
-    &__internet {
-      grid-template-areas: '. box-internet box-internet box-internet box-internet .';
-    }
+    grid-template-columns: repeat(12, 2fr);
+    grid-template-areas: 'tv tv tv tv tv tv internet internet internet internet internet internet';
   }
 }
 

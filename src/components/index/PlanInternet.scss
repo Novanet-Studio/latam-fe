@@ -3,6 +3,7 @@
   grid-area: plan-internet;
   grid-template-columns: repeat(12, 2fr);
   grid-template-rows: auto;
+  margin-top: 1em;
 
   &__titulo {
     grid-column: 1 / 13;
@@ -14,6 +15,7 @@
   &__planes {
     display: grid;
     grid-column: 1 / 13;
+    margin-top: 0.5em;
 
     &__item {
       margin: 1.5em;
@@ -78,6 +80,21 @@
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
+  .internet {
+    grid-template-columns: repeat(6, 2fr);
+    padding: 0 1em;
+
+    &__planes {
+      &__item {
+        margin: 0.5em 0;
+        padding: 1em 1em 2em;
+        &:nth-child(odd),
+        &:nth-child(even) {
+          grid-column: 1/13;
+        }
+      }
+    }
+  }
 }
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
@@ -87,23 +104,16 @@
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
   .internet {
-    grid-template-columns: repeat(6, 2fr);
-    padding: 0 1em;
-
     &__planes {
       &__item {
         margin: 1em 1em 0;
         padding: 1em 1em 2em;
         &:nth-child(odd) {
-          &::before {
-            background-size: 185%;
-          }
+          grid-column: 1/7;
         }
 
         &:nth-child(even) {
-          &:before {
-            background-size: 185%;
-          }
+          grid-column: 7/13;
         }
       }
     }
@@ -128,26 +138,6 @@
 @include responsive(80em) {
   .internet {
     padding: 0;
-
-    &__planes {
-      &__item {
-        &:nth-child(odd) {
-          &::before {
-            @include section-background-opacity(
-              $image: 'latinamericancable-internet-corporativo.jpg'
-            );
-          }
-        }
-
-        &:nth-child(even) {
-          &:before {
-            @include section-background-opacity(
-              $image: 'latinamericancable-internet-residencial.jpg'
-            );
-          }
-        }
-      }
-    }
   }
 }
 

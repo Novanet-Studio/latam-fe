@@ -50,6 +50,16 @@
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
+  .pago {
+    grid-template-columns: repeat(6, 2fr);
+    grid-template-areas:
+      '. icon icon icon icon .'
+      '. boton boton boton boton .';
+
+    &__boton {
+      font-size: 1.05rem;
+    }
+  }
 }
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
@@ -58,6 +68,16 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
+  .pago {
+    grid-template-columns: repeat(12, 2fr);
+    grid-template-areas:
+      '. . . . icon icon icon icon . . . .'
+      '. . . . boton boton boton boton . . . .';
+
+    &__boton {
+      font-size: 1.25rem;
+    }
+  }
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/

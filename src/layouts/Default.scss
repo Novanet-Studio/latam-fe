@@ -68,6 +68,10 @@ h5 {
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
+  body {
+    line-height: 1.4rem;
+  }
+
   .layout {
     width: 100%;
     grid-template-columns: repeat(6, 2fr);
@@ -75,6 +79,31 @@ h5 {
       'header header header header header header'
       'main main main main main main'
       'footer footer footer footer footer footer';
+  }
+
+  p {
+    font-size: 1.1rem;
+  }
+
+  h1 {
+    font-size: 1.68rem;
+    line-height: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.45rem;
+  }
+
+  h4 {
+    font-size: 1.3rem;
+  }
+
+  h5 {
+    font-size: 1rem;
   }
 }
 
@@ -84,61 +113,34 @@ h5 {
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
-  body {
-    line-height: 1.5rem;
-  }
-  
-  p {
-    font-size: 1.1rem;
-  }
-  
-  h1 {
-    font-size: 1.68rem;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-  }
-  
-  h3 {
-    font-size: 1.45rem;
-  }
-  
-  h4 {
-    font-size: 1.3rem;
-  }
-  
-  h5 {
-    font-size: 1rem;
-  }
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
   body {
-    line-height: 1.5rem;
+    line-height: 1.6em;
   }
-  
+
   p {
     font-size: 1.3rem;
   }
-  
+
   h1 {
     font-size: 2rem;
   }
-  
+
   h2 {
     font-size: 1.8rem;
   }
-  
+
   h3 {
     font-size: 1.6rem;
   }
-  
+
   h4 {
     font-size: 1.4rem;
   }
-  
+
   h5 {
     font-size: 1.2rem;
   }

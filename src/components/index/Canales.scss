@@ -5,13 +5,17 @@
   padding: 1.5em 0 3em;
 
   &__titulo {
-    grid-column: 1 / 9;  
+    grid-column: 1 / 9;
     @include heading-before-content($color: $azul, $image: 'punto.svg');
   }
 }
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
+  .canales {
+    grid-template-columns: repeat(6, 2fr);
+    padding: 1.5em 1em;
+  }
 }
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
@@ -22,7 +26,6 @@
 @include responsive(48em) {
   .canales {
     grid-template-columns: repeat(3, 2fr);
-    padding: 1.5em 0 3em 1.5em;
   }
 }
 
@@ -30,6 +33,7 @@
 @include responsive(64em) {
   .canales {
     grid-template-columns: repeat(8, 2fr);
+    padding-right: 0;
   }
 }
 
