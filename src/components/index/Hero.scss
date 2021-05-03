@@ -6,7 +6,7 @@
   grid-template-areas: 'tv tv tv tv tv tv internet internet internet internet internet internet';
 
   & > div {
-    height: 27em;
+    height: 28em;
     display: grid;
     grid-template-columns: repeat(6, 2fr);
     grid-template-rows: auto;
@@ -14,9 +14,9 @@
     background-size: cover;
     & > div {
       display: grid;
-      grid-template-columns: repeat(5, 2fr);
+      grid-template-columns: repeat(4, 2fr);
       grid-template-rows: auto;
-      grid-template-areas: 'icon info info info info';
+      grid-template-areas: 'icon info info info';
       border-radius: 1em;
       min-height: 8em;
       margin-bottom: 2em;
@@ -58,6 +58,7 @@
       font-size: 1.1rem;
       grid-area: text;
       color: white;
+      margin-bottom: 0.3em;
     }
   }
 
@@ -94,6 +95,7 @@
       font-size: 1.1rem;
       grid-area: text;
       color: $gris;
+      margin-bottom: 0.3em;
     }
   }
 }
@@ -101,39 +103,44 @@
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
   .hero {
-    grid-template-columns: repeat(6, 2fr);
+    grid-template-columns: repeat(8, 2fr);
     grid-template-areas:
-      'tv tv tv tv tv tv'
-      'internet internet internet internet internet internet';
+      'tv tv tv tv tv tv tv tv'
+      'internet internet internet internet internet internet internet internet';
 
     & > div {
-      height: 20em;
+      height: 24em;
+      grid-template-columns: repeat(8, 2fr);
+      & > div {
+        margin-bottom: 1em;
+        padding: 0.75em 0 0.75em 0.75em;
+      }
     }
 
     &__tv {
       margin: 0 0 0.4em 0;
       border-radius: 1em 1em 0 0;
-      grid-template-areas: '. box-tv box-tv box-tv box-tv .';
+      grid-template-areas: '. box-tv box-tv box-tv box-tv box-tv box-tv .';
       &__icon {
         width: 4.5em;
         height: 4.5em;
         background-size: 4em;
       }
       &__text {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
       }
     }
 
     &__internet {
       border-radius: 0 0 0 0;
-      grid-template-areas: '. box-internet box-internet box-internet box-internet .';
+      grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
       &__icon {
         width: 4.5em;
         height: 4.5em;
         background-size: 3em;
       }
       &__text {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
       }
     }
   }
@@ -141,33 +148,29 @@
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
 @include responsive(35.5em) {
+  .hero {
+    grid-template-columns: repeat(6, 2fr);
+    grid-template-areas: 'tv tv tv internet internet internet';
+    &__tv {
+      border-radius: 1em 0 0 0;
+      margin: 0;
+    }
+
+    &__internet {
+      border-radius: 0 1em 0 0;
+    }
+  }
 }
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
   .hero {
-    grid-template-areas: 'tv tv tv internet internet internet';
-
     & > div {
-      height: 27em;
+      height: 28em;
+    & > div {
+      margin-bottom: 2em;
     }
-
-    &__tv {
-      border-radius: 1em 0 0 0;
-      margin: 0;
-
-      &__text {
-        font-size: 1.1rem;
-      }
-    }
-
-    &__internet {
-      border-radius: 0 1em 0 0;
-
-      &__text {
-        font-size: 1.1rem;
-      }
-    }
+  }
   }
 }
 
@@ -180,6 +183,9 @@
         height: 6em;
         background-size: 5em;
       }
+      &__text {
+        font-size: 1.1rem;
+      }
     }
 
     &__internet {
@@ -187,6 +193,9 @@
         width: 6em;
         height: 6em;
         background-size: 4em;
+      }
+      &__text {
+        font-size: 1.1rem;
       }
     }
   }

@@ -51,8 +51,8 @@
     }
 
     &__texto {
-      font-size: 1.1rem;
-      line-height: 1.4rem;
+      font-size: 1.2rem;
+      line-height: 1.5rem;
       color: $azul-2;
     }
 
@@ -93,6 +93,10 @@
           grid-column: 1/13;
         }
       }
+
+      &__texto {
+        font-size: 1rem;
+      }
     }
   }
 }
@@ -129,6 +133,10 @@
       &__item {
         margin: 1.5em;
         padding: 1.5em 1.5em 2em;
+      }
+
+      &__texto {
+        font-size: 1.2rem;
       }
     }
   }
