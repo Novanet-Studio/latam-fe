@@ -64,6 +64,20 @@
   position: relative;
 }
 
+@mixin icon-int-box($image, $width, $fillColor) {
+  grid-area: icon;
+  background-image: url('../../assets/images/#{$image}');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: #{$width};
+  border-radius: 50%;
+  left: -0.5em;
+  bottom: -0.5em;
+  width: 6em;
+  height: 6em;
+  position: relative;
+}
+
 @mixin icon-box-info() {
   grid-area: info;
   left: -1em;

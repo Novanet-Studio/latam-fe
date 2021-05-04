@@ -3,83 +3,45 @@
   grid-area: hero;
   grid-template-columns: repeat(12, 2fr);
   grid-template-rows: auto;
-  grid-template-areas: 'tv tv tv tv tv tv internet internet internet internet internet internet';
+  grid-template-areas: 'vacio vacio vacio vacio vacio vacio internet internet internet internet internet internet';
+  border-radius: 1em;
+  @include section-background($image: 'latinamericancable-internet.jpg');
 
   & > div {
-    height: 28em;
     display: grid;
     grid-template-columns: repeat(8, 2fr);
     grid-template-rows: auto;
     align-content: flex-end;
-    background-size: cover;
-    & > div {
+  }
+
+  &__tv {
+    grid-area: vacio;
+  }
+
+  &__internet {
+    height: 28em;
+    grid-area: internet;
+    grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
+    box-sizing: border-box;
+
+    &__box {
       display: grid;
+      height: fit-content;
+      grid-area: box-internet;
       grid-template-columns: repeat(4, 2fr);
       grid-template-rows: auto;
       grid-template-areas: 'icon info info info';
       border-radius: 1em;
       min-height: 8em;
-      margin-bottom: 2em;
       padding: 1em 0 1em 1em;
+      margin-bottom: 8em;
       box-sizing: border-box;
+      background-color: #fff;
       box-shadow: 0.1em 0.1em 0.25em #222;
     }
-  }
-
-  &__tv {
-    grid-area: tv;
-    grid-template-areas: '. box-tv box-tv box-tv box-tv box-tv box-tv .';
-    @include section-background($image: 'latinamericancable-tv.jpg');
-    border: 3px;
-    border-style: none solid none none;
-    border-color: white;
-    box-sizing: border-box;
-    border-radius: 1em 0 0 0;
-    &__box {
-      height: fit-content;
-      grid-area: box-tv;
-      background-color: $azul;
-    }
     &__icon {
-      @include icon-box(
-        $image: 'latinamerican-control-icon.svg',
-        $fillColor: $verde,
-        $width: 5em
-      );
-    }
-    &__info {
-      @include icon-box-info();
-    }
-    &__title {
-      grid-area: title;
-      color: $verde;
-    }
-    &__text {
-      font-size: 1.2rem;
-      grid-area: text;
-      color: white;
-      margin-bottom: 0.3em;
-    }
-  }
-
-  &__internet {
-    grid-area: internet;
-    grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
-    @include section-background($image: 'latinamericancable-internet.jpg');
-    border: 3px;
-    border-style: none none none solid;
-    border-color: white;
-    box-sizing: border-box;
-    border-radius: 0 1em 0 0;
-
-    &__box {
-      height: fit-content;
-      grid-area: box-internet;
-      background-color: $verde;
-    }
-    &__icon {
-      @include icon-box(
-        $image: 'latinamerican-wifi-icon.svg',
+      @include icon-int-box(
+        $image: 'latam-icon-hero_pc.svg',
         $fillColor: $azul,
         $width: 4em
       );
@@ -94,7 +56,7 @@
     &__text {
       font-size: 1.2rem;
       grid-area: text;
-      color: $gris;
+      color: $azul-2;
       margin-bottom: 0.3em;
     }
   }
@@ -108,38 +70,18 @@
       'tv tv tv tv tv tv tv tv'
       'internet internet internet internet internet internet internet internet';
 
-    & > div {
-      height: 24em;
-      grid-template-columns: repeat(8, 2fr);
-      & > div {
-        padding: 0.75em 0 0.75em 0.75em;
-      }
-    }
-
-    &__tv {
-      margin: 0 0 0.4em 0;
-      border-radius: 1em 1em 0 0;
-      grid-template-areas: '. box-tv box-tv box-tv box-tv box-tv box-tv .';
-      border-style: none;
-      &__icon {
-        width: 4.5em;
-        height: 4.5em;
-        background-size: 4em;
-      }
-      &__text {
-        font-size: 0.9rem;
-      }
-    }
-
     &__internet {
+      height: 24em;
       border-radius: 0 0 0 0;
       grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
-      border-style: none;
+      &__box {
+        margin-bottom: 6em;
+        padding: 0.75em 0 0.75em 0.75em;
+      }
       &__icon {
         width: 4.5em;
         height: 4.5em;
         background-size: 3em;
-        
       }
       &__text {
         font-size: 0.9rem;
@@ -152,16 +94,12 @@
 @include responsive(35.5em) {
   .hero {
     grid-template-columns: repeat(6, 2fr);
-    grid-template-areas: 'tv tv tv internet internet internet';
-    &__tv {
-      border-radius: 1em 0 0 0;
-      margin: 0;
-      border-style: none solid none none;
-    }
+    grid-template-areas: '. internet internet internet internet .';
 
     &__internet {
-      border-radius: 0 1em 0 0;
-      border-style: none none none solid;
+      &__box {
+        margin-bottom: 4.5em;
+      }
     }
   }
 }
@@ -169,8 +107,14 @@
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
   .hero {
-    & > div {
+    grid-template-columns: repeat(6, 2fr);
+    grid-template-areas: 'vacio vacio vacio internet internet internet';
+
+    &__internet {
       height: 28em;
+      &__box {
+        margin-bottom: 8em;
+      }
     }
   }
 }
@@ -178,17 +122,6 @@
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
   .hero {
-    &__tv {
-      &__icon {
-        width: 6em;
-        height: 6em;
-        background-size: 5em;
-      }
-      &__text {
-        font-size: 1.1rem;
-      }
-    }
-
     &__internet {
       &__icon {
         width: 6em;
@@ -206,13 +139,7 @@
 @include responsive(80em) {
   .hero {
     grid-template-columns: repeat(12, 2fr);
-    grid-template-areas: 'tv tv tv tv tv tv internet internet internet internet internet internet';
-
-    &__tv {
-      &__text {
-        font-size: 1.2rem;
-      }
-    }
+    grid-template-areas: 'vacio vacio vacio vacio vacio vacio internet internet internet internet internet internet';
 
     &__internet {
       &__text {

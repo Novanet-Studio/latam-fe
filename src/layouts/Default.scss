@@ -105,6 +105,10 @@ h5 {
   h5 {
     font-size: 1rem;
   }
+
+  .principal {
+    margin-top: 0.7em;
+  }
 }
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
@@ -112,22 +116,34 @@ h5 {
   body {
     line-height: 1.6em;
   }
-  
+
   h1 {
     font-size: 1.9rem;
     line-height: 2.2rem;
+  }
+
+  .principal {
+    margin-top: 0;
   }
 }
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
+  h1 {
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+  }
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
-
   p {
     font-size: 1.2rem;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+    line-height: 2.2rem;
   }
 
   h2 {

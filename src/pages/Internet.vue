@@ -1,14 +1,28 @@
 <template>
   <Layout>
-    <h1>Internet</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error doloremque omnis animi, eligendi magni a voluptatum, vitae, consequuntur rerum illum odit fugit assumenda rem dolores inventore iste reprehenderit maxime! Iusto.</p>
+    <Hero />
+    <!--
+    <PlanInternet />
+    <Formulario />-->
   </Layout>
 </template>
 
 <script>
+import Hero from '../components/internet/Hero'
+import PlanInternet from '../components/internet/PlanInternet'
+import Formulario from '../components/internet/Formulario'
+
 export default {
+  name: 'Internet',
   metaInfo: {
-    title: 'Internet'
-  }
+    title: 'Internet',
+  },
+  components: {
+    Hero,
+    PlanInternet,
+    Formulario,
+  },
 }
+
+import './Internet.scss'
 </script>
