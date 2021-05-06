@@ -1,86 +1,89 @@
-.hero {
-  display: grid;
-  grid-area: hero;
-  grid-template-columns: repeat(12, 2fr);
-  grid-template-rows: auto;
-  grid-template-areas: 'internet internet internet internet internet internet internet internet internet internet internet internet';
-  border-radius: 1em;
-  @include section-background($image: 'latinamericancable-internet.jpg');
-
-  & > div {
+.int {
+  &-hero {
     display: grid;
-    grid-template-columns: repeat(8, 2fr);
+    grid-area: hero;
+    grid-template-columns: repeat(12, 2fr);
     grid-template-rows: auto;
-    align-content: flex-end;
-  }
+    grid-template-areas: '. . . . . . internet internet internet internet internet internet';
+    border-radius: 1em;
+    @include section-background($image: 'latinamericancable-internet.jpg');
+    z-index: 2;
 
-  &__internet-vista {
-    height: 28em;
-    grid-area: internet;
-    grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
-    box-sizing: border-box;
-
-    &__box {
+    & > div {
       display: grid;
-      height: fit-content;
-      grid-area: box-internet;
-      grid-template-columns: repeat(4, 2fr);
+      grid-template-columns: repeat(8, 2fr);
       grid-template-rows: auto;
-      grid-template-areas: 'icon info info info';
-      border-radius: 1em;
-      min-height: 8em;
-      padding: 1em;
-      margin-bottom: 8em;
+      align-content: flex-end;
+    }
+
+    &__internet {
+      height: 28em;
+      grid-area: internet;
+      grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
       box-sizing: border-box;
-      background-color: #fff;
-      box-shadow: 0.1em 0.1em 0.25em #222;
-    }
-    &__icon {
-      @include icon-int-box(
-        $image: 'latam-icon-hero_pc.svg',
-        $fillColor: $azul,
-        $width: 4em
-      );
-    }
-    &__info {
-      @include icon-box-info();
-    }
-    &__title {
-      grid-area: title;
-      color: $azul;
-    }
-    &__text {
-      font-size: 1rem;
-      grid-area: text;
-      color: $azul-2;
-      margin-bottom: 0.3em;
+
+      &__box {
+        display: grid;
+        height: fit-content;
+        grid-area: box-internet;
+        grid-template-columns: repeat(4, 2fr);
+        grid-template-rows: auto;
+        grid-template-areas: 'icon info info info';
+        border-radius: 1em;
+        min-height: 8em;
+        padding: 1em;
+        margin-bottom: 8em;
+        box-sizing: border-box;
+        background-color: #fff;
+        box-shadow: 0.1em 0.1em 0.25em #222;
+      }
+      &__icon {
+        @include icon-int-box(
+          $image: 'latam-icon-hero_pc.svg',
+          $fillColor: $azul,
+          $width: 4em
+        );
+      }
+      &__info {
+        @include icon-box-info();
+      }
+      &__title {
+        grid-area: title;
+        color: $azul;
+      }
+      &__text {
+        font-size: 1rem;
+        grid-area: text;
+        color: $azul-2;
+        margin-bottom: 0.3em;
+      }
     }
   }
 }
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
-  .hero {
-    grid-template-columns: repeat(8, 2fr);
-    grid-template-areas:
-      'tv tv tv tv tv tv tv tv'
-      'internet internet internet internet internet internet internet internet';
+  .int {
+    &-hero {
+      grid-template-columns: repeat(8, 2fr);
+      grid-template-areas: 'internet internet internet internet internet internet internet internet';
 
-    &__internet {
-      border-radius: 0 0 0 0;
-      grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
-      &__box {
-        margin-bottom: 6em;
-        padding: 0.75em 0 0.75em 0.75em;
-      }
-      &__icon {
-        width: 4.5em;
-        height: 4.5em;
-        background-size: 3em;
-      }
-      &__text {
-        font-size: 0.85rem;
-        line-height: 1.3rem;
+      &__internet {
+        border-radius: 0 0 0 0;
+        grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
+        &__box {
+          margin-bottom: 6em;
+          padding: 0.75em 1.2em 0.75em 0.75em;
+        }
+        &__icon {
+          width: 4.5em;
+          height: 4.5em;
+          background-size: 3em;
+        }
+        &__text {
+          font-size: 1rem;
+          line-height: 1.2rem;
+        }
       }
     }
   }
@@ -88,17 +91,19 @@
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
 @include responsive(35.5em) {
-  .hero {
-    grid-template-columns: repeat(6, 2fr);
-    grid-template-areas: 'vacio vacio internet internet internet internet';
+  .int {
+    &-hero {
+      grid-template-columns: repeat(6, 2fr);
+      grid-template-areas: '. . internet internet internet internet';
 
-    &__internet {
-      &__box {
-        margin-bottom: 4.5em;
-      }
-      &__text {
-        font-size: 1rem;
-        line-height: 1.5rem;
+      &__internet {
+        &__box {
+          margin-bottom: 8.5em;
+        }
+        &__text {
+          font-size: 0.8rem;
+          line-height: 1rem;
+        }
       }
     }
   }
@@ -106,13 +111,14 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
-  .hero {
-    &__internet {
-      &__box {
-        margin-bottom: 8em;
-      }
-      &__icon {
-        left: -0.5em;
+  .int {
+    &-hero {
+      grid-template-areas: '. . . internet internet internet';
+
+      &__internet {
+        &__box {
+          padding: 1em 0 1em 0.75em;
+        }
       }
     }
   }
@@ -120,18 +126,21 @@
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
-  .hero {
-    grid-template-areas: 'vacio vacio vacio internet internet internet';
-
-    &__internet {
-      &__box {
-        padding: 1em;
-      }
-      &__icon {
-        width: 6em;
-        height: 6em;
-        background-size: 4em;
-        left: -0.8em;
+  .int {
+    &-hero {
+      &__internet {
+        &__box {
+          padding: 1em;
+        }
+        &__icon {
+          width: 6em;
+          height: 6em;
+          background-size: 4em;
+        }
+        &__text {
+          font-size: 1rem;
+          line-height: 1.3rem;
+        }
       }
     }
   }
@@ -139,14 +148,12 @@
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
-  .hero {
-    grid-template-columns: repeat(12, 2fr);
-    grid-template-areas: 'vacio vacio vacio vacio vacio vacio internet internet internet internet internet internet';
-
-    &__internet {
-      &__text {
-        font-size: 1.1rem;
-        line-height: 1.7rem;
+  .int {
+    &-hero {
+      grid-template-columns: repeat(12, 2fr);
+      grid-template-areas: '. . . . . . internet internet internet internet internet internet';
+      &__internet {
+        &__text {padding-top: 0.25em;}
       }
     }
   }
@@ -160,6 +167,6 @@
 @include responsive(100em) {
 }
 
-/*------------------------------------- Large Desktop (1920px) ---------------------------------*/
+/*------------------------------------- Large Desktop (1920px) --------------------------------*/
 @include responsive(120em) {
 }
