@@ -29,9 +29,9 @@
     }
 
     &__boton {
-      font-size: 1.2rem;
       margin: 0 3em;
       padding: 0.75em;
+      font-size: 1.2rem;
       @include boton-a($color: $azul, $bg: $verde);
     }
   }
@@ -47,7 +47,12 @@
       padding: 2em;
       grid-column: 1/9;
 
+      &__titulo {
+        line-height: 1.8rem;
+      }
+
       &__boton {
+        font-size: 1rem;
         margin: 0;
       }
     }
@@ -75,6 +80,7 @@
     &__banner {
       grid-column: 2/9;
       &__boton {
+        font-size: 1.2rem;
         margin: 0em;
       }
     }

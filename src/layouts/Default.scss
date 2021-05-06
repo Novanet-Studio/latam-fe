@@ -1,11 +1,11 @@
 body {
   font-family: 'Sarabun', 'Trebuchet MS', sans-serif;
   font-weight: 300;
-  line-height: 1.5rem;
+  line-height: 1.6rem;
 }
 
 p {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: $gris;
   margin: 0 0 0.5em 0;
 }
@@ -17,12 +17,12 @@ ul {
 }
 
 h1 {
-  font-size: 1.95em;
+  font-size: 1.8rem;
   margin: 0 0 0.1em 0;
 }
 
 h2 {
-  font-size: 1.8rem;
+  font-size: 1.8rem;  
 }
 
 h3 {
@@ -31,12 +31,12 @@ h3 {
 }
 
 h4 {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   margin: 0;
 }
 
 h5 {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   margin: 0;
 }
 
@@ -68,10 +68,6 @@ h5 {
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
-  body {
-    line-height: 1.4rem;
-  }
-
   .layout {
     width: 100%;
     grid-template-columns: repeat(6, 2fr);
@@ -82,28 +78,20 @@ h5 {
   }
 
   p {
-    font-size: 1rem;
+    font-size:1.05rem;
   }
 
   h1 {
-    font-size: 1.5rem;
+    font-size:1.6rem;
     line-height: 1.8rem;
   }
 
   h2 {
-    font-size: 1.4rem;
+    font-size:1.6rem;
   }
 
   h3 {
-    font-size: 1.35rem;
-  }
-
-  h4 {
-    font-size: 1.2rem;
-  }
-
-  h5 {
-    font-size: 1rem;
+    font-size:1.4rem;
   }
 
   .principal {
@@ -114,12 +102,7 @@ h5 {
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
 @include responsive(35.5em) {
   body {
-    line-height: 1.6em;
-  }
-
-  h1 {
-    font-size: 1.9rem;
-    line-height: 2.2rem;
+    line-height: 1.7em;
   }
 
   .principal {
@@ -129,37 +112,21 @@ h5 {
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
-  h1 {
-    font-size: 1.5rem;
-    line-height: 1.8rem;
-  }
+  p {font-size: 1.3rem;}
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
-  p {
-    font-size: 1.2rem;
-  }
-
   h1 {
-    font-size: 1.9rem;
-    line-height: 2.2rem;
-  }
-
-  h2 {
     font-size: 1.8rem;
   }
-
+  
+  h2 {
+    font-size: 1.8rem;  
+  }
+  
   h3 {
     font-size: 1.6rem;
-  }
-
-  h4 {
-    font-size: 1.4rem;
-  }
-
-  h5 {
-    font-size: 1.2rem;
   }
 }
 

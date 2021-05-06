@@ -33,7 +33,7 @@
       grid-template-areas: 'icon info info info';
       border-radius: 1em;
       min-height: 8em;
-      padding: 1em 0 1em 1em;
+      padding: 1em;
       margin-bottom: 8em;
       box-sizing: border-box;
       background-color: #fff;
@@ -54,7 +54,7 @@
       color: $azul;
     }
     &__text {
-      font-size: 1.2rem;
+      font-size: 1rem;
       grid-area: text;
       color: $azul-2;
       margin-bottom: 0.3em;
@@ -71,7 +71,6 @@
       'internet internet internet internet internet internet internet internet';
 
     &__internet {
-      height: 24em;
       border-radius: 0 0 0 0;
       grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
       &__box {
@@ -84,7 +83,8 @@
         background-size: 3em;
       }
       &__text {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        line-height: 1.3rem;
       }
     }
   }
@@ -94,11 +94,15 @@
 @include responsive(35.5em) {
   .hero {
     grid-template-columns: repeat(6, 2fr);
-    grid-template-areas: '. internet internet internet internet .';
+    grid-template-areas: 'vacio vacio internet internet internet internet';
 
     &__internet {
       &__box {
         margin-bottom: 4.5em;
+      }
+      &__text {
+        font-size: 1rem;
+        line-height: 1.5rem;
       }
     }
   }
@@ -107,13 +111,12 @@
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
   .hero {
-    grid-template-columns: repeat(6, 2fr);
-    grid-template-areas: 'vacio vacio vacio internet internet internet';
-
     &__internet {
-      height: 28em;
       &__box {
         margin-bottom: 8em;
+      }
+      &__icon {
+        left: -0.5em;
       }
     }
   }
@@ -122,14 +125,17 @@
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
   .hero {
+    grid-template-areas: 'vacio vacio vacio internet internet internet';
+
     &__internet {
+      &__box {
+        padding: 1em;
+      }
       &__icon {
         width: 6em;
         height: 6em;
         background-size: 4em;
-      }
-      &__text {
-        font-size: 1.1rem;
+        left: -0.8em;
       }
     }
   }
@@ -143,7 +149,8 @@
 
     &__internet {
       &__text {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        line-height: 1.7rem;
       }
     }
   }

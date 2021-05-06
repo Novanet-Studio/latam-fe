@@ -41,8 +41,8 @@
   }
 
   &__boton {
+    font-size: 1.2rem;
     grid-area: boton;
-    font-size: 1.25rem;
     padding: 0.75em;
     @include boton-a($color: $azul, $bg: $verde);
   }
@@ -57,7 +57,7 @@
       '. boton boton boton boton .';
 
     &__boton {
-      font-size: 1.05rem;
+      font-size: 1rem;
     }
   }
 }
@@ -75,7 +75,7 @@
       '. . . . boton boton boton boton . . . .';
 
     &__boton {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
     }
   }
 }

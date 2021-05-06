@@ -51,7 +51,7 @@
     }
 
     &__texto {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       line-height: 1.5rem;
       color: $azul-2;
     }
@@ -63,7 +63,7 @@
     }
 
     &__boton {
-      font-size: 0.9rem;
+      font-size: 1rem;
       padding: 0.6em;
       margin-right: 1em;
       @include boton-a($color: $verde, $bg: $azul-2);
@@ -71,6 +71,7 @@
     }
 
     &__suscripcion {
+      font-size: 1rem;
       padding: 0.6em;
       @include boton-a($color: white, $bg: $azul);
       cursor: pointer;
@@ -97,6 +98,10 @@
       &__texto {
         font-size: 1rem;
       }
+
+      &__boton {
+        font-size: 0.9rem;
+      }
     }
   }
 }
@@ -120,6 +125,13 @@
           grid-column: 7/13;
         }
       }
+      &__texto {
+        font-size: 1.1rem;
+      }
+
+      &__boton {
+        font-size: 1rem;
+      }
     }
   }
 }
@@ -133,10 +145,6 @@
       &__item {
         margin: 1.5em;
         padding: 1.5em 1.5em 2em;
-      }
-
-      &__texto {
-        font-size: 1.2rem;
       }
     }
   }

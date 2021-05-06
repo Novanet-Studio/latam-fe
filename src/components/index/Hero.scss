@@ -20,7 +20,7 @@
       border-radius: 1em;
       min-height: 8em;
       margin-bottom: 2em;
-      padding: 1em 0 1em 1em;
+      padding: 1em;
       box-sizing: border-box;
       box-shadow: 0.1em 0.1em 0.25em #222;
     }
@@ -55,7 +55,7 @@
       color: $verde;
     }
     &__text {
-      font-size: 1.2rem;
+      font-size: 1rem;
       grid-area: text;
       color: white;
       margin-bottom: 0.3em;
@@ -92,7 +92,7 @@
       color: $azul;
     }
     &__text {
-      font-size: 1.2rem;
+      font-size: 1rem;
       grid-area: text;
       color: $gris;
       margin-bottom: 0.3em;
@@ -109,10 +109,10 @@
       'internet internet internet internet internet internet internet internet';
 
     & > div {
-      height: 24em;
       grid-template-columns: repeat(8, 2fr);
       & > div {
-        padding: 0.75em 0 0.75em 0.75em;
+        padding: 0.75em 1.2em 0.75em 0.75em;
+        min-height: 7em;
       }
     }
 
@@ -127,7 +127,8 @@
         background-size: 4em;
       }
       &__text {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        line-height: 1.3rem;
       }
     }
 
@@ -139,10 +140,10 @@
         width: 4.5em;
         height: 4.5em;
         background-size: 3em;
-        
       }
       &__text {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        line-height: 1.3rem;
       }
     }
   }
@@ -153,15 +154,30 @@
   .hero {
     grid-template-columns: repeat(6, 2fr);
     grid-template-areas: 'tv tv tv internet internet internet';
+
+    & > div {
+      & > div {
+        min-height: 8em;
+      }
+    }
+
     &__tv {
       border-radius: 1em 0 0 0;
       margin: 0;
       border-style: none solid none none;
+      &__text {
+        font-size: 1rem;
+        line-height: 1.5rem;
+      }
     }
 
     &__internet {
       border-radius: 0 1em 0 0;
       border-style: none none none solid;
+      &__text {
+        font-size: 1rem;
+        line-height: 1.5rem;
+      }
     }
   }
 }
@@ -170,7 +186,9 @@
 @include responsive(48em) {
   .hero {
     & > div {
-      height: 28em;
+      & > div {
+        padding: 1em 0;
+      }
     }
   }
 }
@@ -178,14 +196,17 @@
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
   .hero {
+    & > div {
+      & > div {
+        padding: 1em;
+      }
+    }
+
     &__tv {
       &__icon {
         width: 6em;
         height: 6em;
         background-size: 5em;
-      }
-      &__text {
-        font-size: 1.1rem;
       }
     }
 
@@ -194,9 +215,6 @@
         width: 6em;
         height: 6em;
         background-size: 4em;
-      }
-      &__text {
-        font-size: 1.1rem;
       }
     }
   }
@@ -207,16 +225,17 @@
   .hero {
     grid-template-columns: repeat(12, 2fr);
     grid-template-areas: 'tv tv tv tv tv tv internet internet internet internet internet internet';
-
     &__tv {
       &__text {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        line-height: 1.7rem;
       }
     }
 
     &__internet {
       &__text {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        line-height: 1.7rem;
       }
     }
   }
