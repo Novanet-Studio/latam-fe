@@ -1,5 +1,5 @@
-.int {
-  &-hero {
+.internetvista {
+  .hero {
     display: grid;
     grid-area: hero;
     grid-template-columns: repeat(12, 2fr);
@@ -63,8 +63,8 @@
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
-  .int {
-    &-hero {
+  .internetvista {
+    .hero {
       grid-template-columns: repeat(8, 2fr);
       grid-template-areas: 'internet internet internet internet internet internet internet internet';
 
@@ -91,8 +91,8 @@
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
 @include responsive(35.5em) {
-  .int {
-    &-hero {
+  .internetvista {
+    .hero {
       grid-template-columns: repeat(6, 2fr);
       grid-template-areas: '. . internet internet internet internet';
 
@@ -111,8 +111,8 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
-  .int {
-    &-hero {
+  .internetvista {
+    .hero {
       grid-template-areas: '. . . internet internet internet';
 
       &__internet {
@@ -126,8 +126,8 @@
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
-  .int {
-    &-hero {
+  .internetvista {
+    .hero {
       &__internet {
         &__box {
           padding: 1em;
@@ -148,8 +148,8 @@
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
-  .int {
-    &-hero {
+  .internetvista {
+    .hero {
       grid-template-columns: repeat(12, 2fr);
       grid-template-areas: '. . . . . . internet internet internet internet internet internet';
       &__internet {

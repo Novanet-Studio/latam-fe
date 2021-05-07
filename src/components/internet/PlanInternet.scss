@@ -1,5 +1,5 @@
-.int {
-  &-internet {
+.internetvista {
+  .internet {
     display: grid;
     grid-area: plan-internet;
     grid-template-columns: repeat(12, 2fr);
@@ -93,8 +93,8 @@
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
-  .int {
-    &-internet {
+  .internetvista {
+    .internet {
       grid-template-columns: repeat(6, 2fr);
       padding: 5em 1em 3em;
 
@@ -136,8 +136,8 @@
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
 @include responsive(35.5em) {
-  .int {
-    &-internet {
+  .internetvista {
+    .internet {
       &__planes {
         &__lista {
           grid-template-columns: repeat(2, 2fr);
@@ -158,8 +158,8 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
-  .int {
-    &-internet {
+  .internetvista {
+    .internet {
       &__planes {
         &__item {
           margin: 1em 1em 0;
@@ -185,8 +185,8 @@
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
-  .int {
-    &-internet {
+  .internetvista {
+    .internet {
       grid-template-columns: repeat(12, 2fr);
       padding: 8em 0 7em 0;
       &__planes {

@@ -1,4 +1,4 @@
-.principal {
+main {
   display: grid;
   grid-template-columns: repeat(12, 2fr);
   grid-template-rows: auto;
@@ -11,7 +11,7 @@
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
-  .principal {
+  main {
     grid-template-columns: repeat(6, 2fr);
     grid-template-areas:
       'hero hero hero hero hero hero'
@@ -28,7 +28,7 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
-  .principal {
+  main {
     grid-template-areas:
       'hero hero hero hero hero hero'
       'pago pago pago pago pago pago '
@@ -39,7 +39,7 @@
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
-  .principal {
+  main {
     grid-template-columns: repeat(12, 2fr);
     grid-template-areas:
       'hero hero hero hero hero hero hero hero hero hero hero hero'

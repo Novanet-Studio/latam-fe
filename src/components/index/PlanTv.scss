@@ -1,115 +1,121 @@
-.tv {
-  display: grid;
-  grid-area: plan-tv;
-  grid-column: 7 / 13;
-  grid-template-columns: repeat(8, 2fr);
-  grid-template-rows: auto;
+.inicio {
+	.tv {
+		display: grid;
+		grid-area: plan-tv;
+		grid-column: 7 / 13;
+		grid-template-columns: repeat(8, 2fr);
+		grid-template-rows: auto;
 
-  &__banner {
-    padding: 2.5em 4em 3em;
-    display: flex;
-    flex-direction: column;
-    grid-column: 2 / 9;
-    grid-row: 2 / 5;
-    border-radius: 1em;
-    justify-content: space-around;
-    align-content: center;
-    @include section-background($image: 'latinamericancable-tv-plan.jpg');
+		&__banner {
+			padding: 2.5em 4em 3em;
+			display: flex;
+			flex-direction: column;
+			grid-column: 2 / 9;
+			grid-row: 2 / 5;
+			border-radius: 1em;
+			justify-content: space-around;
+			align-content: center;
+			@include section-background($image: 'latinamericancable-tv-plan.jpg');
 
-    &__titulo {
-      text-align: center;
-      color: white;
-      line-height: 2rem;
-    }
+			&__titulo {
+				text-align: center;
+				color: white;
+				line-height: 2rem;
+			}
 
-    &__texto {
-      text-align: center;
-      color: white;
-      margin-bottom: 1em;
-    }
+			&__texto {
+				text-align: center;
+				color: white;
+				margin-bottom: 1em;
+			}
 
-    &__boton {
-      margin: 0 3em;
-      padding: 0.75em;
-      font-size: 1.2rem;
-      @include boton-a($color: $azul, $bg: $verde);
-    }
-  }
+			&__boton {
+				margin: 0 3em;
+				padding: 0.75em;
+				font-size: 1.2rem;
+				@include boton-a($color: $azul, $bg: $verde);
+			}
+		}
+	}
 }
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
-  .tv {
-    grid-column: 1/9;
-    margin: 0 1em;
+	.inicio {
+		.tv {
+			grid-column: 1/9;
+			margin: 0 1em;
 
-    &__banner {
-      padding: 2em;
-      grid-column: 1/9;
+			&__banner {
+				padding: 2em;
+				grid-column: 1/9;
 
-      &__titulo {
-        line-height: 1.8rem;
-      }
+				&__titulo {
+					line-height: 1.8rem;
+				}
 
-      &__boton {
-        font-size: 1rem;
-        margin: 0;
-      }
-    }
-  }
+				&__boton {
+					font-size: 1rem;
+					margin: 0;
+				}
+			}
+		}
+	}
 }
-
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
 @include responsive(35.5em) {
-  .tv {
-    &__banner {
-      &__boton {
-        margin: 0 3em;
-      }
-    }
-  }
+	.inicio {
+		.tv {
+			&__banner {
+				&__boton {
+					margin: 0 3em;
+				}
+			}
+		}
+	}
+
+	/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
+	@include responsive(48em) {
+		.inicio {
+			.tv {
+				margin: 0 1.5em 0 0;
+				grid-column: 3/7;
+				grid-template-columns: repeat(3, 2fr);
+
+				&__banner {
+					grid-column: 2/9;
+					&__boton {
+						font-size: 1.2rem;
+						margin: 0em;
+					}
+				}
+			}
+		}
+	}
+	/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+	@include responsive(64em) {
+		.inicio {
+			.tv {
+				grid-column: 7 / 13;
+				grid-template-columns: repeat(8, 2fr);
+				&__banner {
+					&__boton {
+						margin: 0 3em;
+					}
+				}
+			}
+		}
+	}
+	/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
+	@include responsive(80em) {
+		.tv {
+			margin: 0;
+			&__banner {
+				padding: 2.5em 4em 3em;
+			}
+		}
+	}
 }
-
-/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
-@include responsive(48em) {
-  .tv {
-    margin: 0 1.5em 0 0;
-    grid-column: 3/7;
-    grid-template-columns: repeat(3, 2fr);
-
-    &__banner {
-      grid-column: 2/9;
-      &__boton {
-        font-size: 1.2rem;
-        margin: 0em;
-      }
-    }
-  }
-}
-
-/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
-@include responsive(64em) {
-  .tv {
-    grid-column: 7 / 13;
-    grid-template-columns: repeat(8, 2fr);
-    &__banner {
-      &__boton {
-        margin: 0 3em;
-      }
-    }
-  }
-}
-
-/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
-@include responsive(80em) {
-  .tv {
-    margin: 0;
-    &__banner {
-      padding: 2.5em 4em 3em;
-    }
-  }
-}
-
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
 @include responsive(90em) {
 }

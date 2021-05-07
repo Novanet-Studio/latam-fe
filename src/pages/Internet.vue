@@ -1,9 +1,11 @@
 <template>
   <Layout>
+    <main class="internetvista">
     <Hero />
     <PlanInternet />
     <!--
     <Formulario />-->
+    </main>
   </Layout>
 </template>
 

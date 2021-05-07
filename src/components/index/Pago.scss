@@ -1,65 +1,65 @@
-.pago {
-  height: 16em;
-  display: grid;
-  align-content: space-around;
-  grid-area: pago;
-  grid-template-columns: repeat(12, 2fr);
-  grid-template-areas:
-    '. . . . icon icon icon icon . . . .'
-    '. . . . boton boton boton boton . . . .';
-  padding: 1.5em 0 1.5em;
-  position: relative;
+.inicio {
+	.pago {
+		height: 16em;
+		display: grid;
+		align-content: space-around;
+		grid-area: pago;
+		grid-template-columns: repeat(12, 2fr);
+		grid-template-areas: '. . . . icon icon icon icon . . . .' '. . . . boton boton boton boton . . . .';
+		padding: 1.5em 0 1.5em;
+		position: relative;
 
-  &::before {
-    content: '';
-    background-image: url('../../assets/images/latinamericancable-pago.jpg');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    opacity: 0.5;
-    z-index: -1;
-    border-radius: 0 0 1em 1em;
-    border: 6px;
-    border-style: solid none none none;
-    border-color: white;
-    box-sizing: border-box;
-  }
+		&::before {
+			content: '';
+			background-image: url('../../assets/images/latinamericancable-pago.jpg');
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			opacity: 0.5;
+			z-index: -1;
+			border-radius: 0 0 1em 1em;
+			border: 6px;
+			border-style: solid none none none;
+			border-color: white;
+			box-sizing: border-box;
+		}
 
-  &__icon {
-    display: grid;
-    grid-area: icon;
-    justify-content: center;
+		&__icon {
+			display: grid;
+			grid-area: icon;
+			justify-content: center;
 
-    &__imagen {
-      width: 7em;
-    }
-  }
+			&__imagen {
+				width: 7em;
+			}
+		}
 
-  &__boton {
-    font-size: 1.2rem;
-    grid-area: boton;
-    padding: 0.75em;
-    @include boton-a($color: $azul, $bg: $verde);
-  }
+		&__boton {
+			font-size: 1.2rem;
+			grid-area: boton;
+			padding: 0.75em;
+			@include boton-a($color: $azul, $bg: $verde);
+		}
+	}
 }
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
-  .pago {
-    grid-template-columns: repeat(6, 2fr);
-    grid-template-areas:
-      '. icon icon icon icon .'
-      '. boton boton boton boton .';
+	.inicio {
+		.pago {
+			grid-template-columns: repeat(6, 2fr);
+			grid-template-areas: '. icon icon icon icon .' '. boton boton boton boton .';
 
-    &__boton {
-      font-size: 1rem;
-    }
-  }
+			&__boton {
+				font-size: 1rem;
+			}
+		}
+	}
 }
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
@@ -68,16 +68,16 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
-  .pago {
-    grid-template-columns: repeat(12, 2fr);
-    grid-template-areas:
-      '. . . . icon icon icon icon . . . .'
-      '. . . . boton boton boton boton . . . .';
+	.inicio {
+		.pago {
+			grid-template-columns: repeat(12, 2fr);
+			grid-template-areas: '. . . . icon icon icon icon . . . .' '. . . . boton boton boton boton . . . .';
 
-    &__boton {
-      font-size: 1.2rem;
-    }
-  }
+			&__boton {
+				font-size: 1.2rem;
+			}
+		}
+	}
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
