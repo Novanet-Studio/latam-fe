@@ -4,9 +4,9 @@
     grid-area: plan-internet;
     grid-template-columns: repeat(12, 2fr);
     grid-template-rows: auto;
-    margin-top: -3em;
-    padding: 8em 0 7em 0;
+    padding: 3em 0;
     background-color: $verde;
+    border-top: 6px solid #fff;
 
     &__texto {
       grid-column: 1 / 13;
@@ -28,8 +28,9 @@
           grid-column: 1 / 7;
           &::before {
             @include section-background-opacity(
-              $image: 'latinamericancable-internet-corporativo.jpg'
+              $image: 'latinamericancable-internet-corporativo-v2.jpg'
             );
+            opacity:10;
           }
         }
 
@@ -37,8 +38,9 @@
           grid-column: 7 / 13;
           &:before {
             @include section-background-opacity(
-              $image: 'latinamericancable-internet-residencial.jpg'
+              $image: 'latinamericancable-internet-residencial-v2.jpg'
             );
+            opacity:10;
           }
         }
       }
@@ -46,7 +48,7 @@
       &__cabecera {
         padding: 1.5em;
         min-height: 7em;
-        border-bottom: 7px solid $verde;
+        border-bottom: 5px solid $verde;
       }
 
       &__titulo {
@@ -75,11 +77,11 @@
       &__velocidades {
         padding: 1.5em;
         &:nth-child(odd) {
-          border-right: 7px solid $verde;
+          border-right: 5px solid $verde;
         }
         &:nth-child(1),
         &:nth-child(2) {
-          border-bottom: 7px solid $verde;
+          border-bottom: 5px solid $verde;
         }
       }
 
@@ -96,7 +98,7 @@
   .internetvista {
     .internet {
       grid-template-columns: repeat(6, 2fr);
-      padding: 5em 1em 3em;
+      padding:3em 1em;
 
       &__planes {
         &__item {
@@ -122,7 +124,7 @@
             border-right: none;
           }
           &:nth-child(3) {
-            border-bottom: 7px solid $verde;
+            border-bottom: 5px solid $verde;
           }
         }
 
@@ -145,7 +147,7 @@
 
         &__velocidades {
           &:nth-child(odd) {
-            border-right: 7px solid $verde;
+            border-right: 5px solid $verde;
           }
           &:nth-child(3) {
             border-bottom: none;
@@ -188,10 +190,12 @@
   .internetvista {
     .internet {
       grid-template-columns: repeat(12, 2fr);
-      padding: 8em 0 7em 0;
       &__planes {
+        &__item {
+          margin: 1.5em;
+        }
         &__cabecera {
-          min-height: 7em;
+          min-height: 8.5em;
           padding: 1.5em;
         }
         &__velocidades {
@@ -204,6 +208,15 @@
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
+  .internetvista {
+    .internet {
+      &__planes {
+        &__cabecera {
+          min-height: 7em;
+        }
+      }
+    }
+  }
 }
 
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/

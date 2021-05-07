@@ -1,47 +1,49 @@
 <template>
-  <section class="internet">
-    <h2 class="internet__titulo">Internet por fibra</h2>
-    <p class="internet__texto">
-      Internet corporativo de alta velocidad. Conexión en fibra óptica dirigida
-      a uso corporativo y residencial de alta gama.
-    </p>
-    <ul class="internet__planes">
-      <li class="internet__planes__item">
-        <h3 class="internet__planes__titulo">Corporativo</h3>
-        <p class="internet__planes__texto">
-          Gran velocidad para video conferencias, equipos en red, acceso remoto
-          y transferencia de datos.
-        </p>
-        <ul class="internet__planes__velocidades">
-          <li><a href="#" class="internet__planes__boton">5MB</a></li>
-          <li><a href="#" class="internet__planes__boton">10MB</a></li>
-          <li><a href="#" class="internet__planes__boton">20MB</a></li>
-          <li><a href="#" class="internet__planes__boton">40MB</a></li>
-        </ul>
-        <a href="" class="internet__planes__suscripcion">Suscríbete</a>
-      </li>
-      <li class="internet__planes__item">
-        <h3 class="internet__planes__titulo">Residencial</h3>
-        <p class="internet__planes__texto">
-          Especial para equipos móviles, reproducción de streaming, conexiones
-          simultáneas a altas velocidades.
-        </p>
-        <ul class="internet__planes__velocidades">
-          <li><a href="#" class="internet__planes__boton">5MB</a></li>
-          <li><a href="#" class="internet__planes__boton">10MB</a></li>
-          <li><a href="#" class="internet__planes__boton">20MB</a></li>
-          <li><a href="#" class="internet__planes__boton">40MB</a></li>
-        </ul>
-        <a href="" class="internet__planes__suscripcion">Suscríbete</a>
-      </li>
-    </ul>
+  <section class="formulario">
+    <h2 class="formulario__titulo">¿Quieres conocer más?</h2>
+    <form class="formulario__form">
+      <div class="formulario__form__grupo">
+        <label class="formulario__form__label" for="name">Nombre y Apellido</label>
+        <br>
+        <input
+          class="formulario__form__input"
+          type="text"
+          id="name"
+          name="name"
+          value="John Doe"
+        />
+      </div>
+      <div class="formulario__form__grupo">
+        <label class="formulario__form__label" for="phone">Teléfono</label>
+        <br>
+        <input
+          class="formulario__form__input"
+          type="tel"
+          id="phone"
+          name="phone"
+          value="0000 000 00 00"
+        />
+      </div>
+      <div class="formulario__form__grupo">
+        <label class="formulario__form__label" for="message">Mensaje</label>
+        <textarea
+          class="formulario__form__textarea"
+          id="message"
+          name="message"
+          rows="1"
+        ></textarea>
+      </div>
+      <div class="formulario__form__grupo">
+        <input type="submit" value="Enviar información" class="formulario__form__boton">
+      </div>
+    </form>
   </section>
 </template>
 
 <script>
 export default {
-  name: 'PlanInternet',
+  name: 'Formulario',
 }
 
-import './PlanInternet.scss'
+import './Formulario.scss'
 </script>

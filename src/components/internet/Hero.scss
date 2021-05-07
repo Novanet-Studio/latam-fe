@@ -5,9 +5,8 @@
     grid-template-columns: repeat(12, 2fr);
     grid-template-rows: auto;
     grid-template-areas: '. . . . . . internet internet internet internet internet internet';
-    border-radius: 1em;
+    border-radius: 1em 1em 0 0;
     @include section-background($image: 'latinamericancable-internet.jpg');
-    z-index: 2;
 
     & > div {
       display: grid;
