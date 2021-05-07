@@ -69,6 +69,10 @@
       grid-template-columns: repeat(6, 2fr);
       padding: 3em 2em 3em 1em;
 
+      &::before {
+        background-size: 35%;
+      }
+
       &__form {
         grid-template-columns: repeat(1, 2fr);
         &__grupo {
@@ -85,6 +89,13 @@
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
 @include responsive(35.5em) {
+  .internetvista {
+    .formulario {
+      &::before {
+        background-size: 25%;
+      }
+    }
+  }
 }
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
@@ -92,6 +103,9 @@
   .internetvista {
     .formulario {
       padding: 3em 0em 3em 1em;
+      &::before {
+        background-size: 20%;
+      }
 
       &__form {
         grid-template-columns: repeat(2, 2fr);
@@ -111,6 +125,9 @@
   .internetvista {
     .formulario {
       padding: 5em 0em 5em 2em;
+      &::before {
+        background-size: 12.5%;
+      }
       &__form {
         grid-template-columns: repeat(4, 2fr);
         &__grupo {

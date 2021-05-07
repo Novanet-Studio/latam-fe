@@ -110,6 +110,10 @@
       grid-template-columns: repeat(6, 2fr);
       padding: 2em 1em;
 
+      &::before {
+        background-size: 35%;
+      }
+
       &__planes {
         &__item {
           margin: 1em 0;
@@ -150,6 +154,9 @@
 @include responsive(35.5em) {
   .internetvista {
     .internet {
+      &::before {
+        background-size: 25%;
+      }
       &__planes {
         &__lista {
           grid-template-columns: repeat(2, 2fr);
@@ -172,6 +179,10 @@
 @include responsive(48em) {
   .internetvista {
     .internet {
+      &::before {
+        background-size: 20%;
+      }
+
       &__planes {
         &__item {
           margin: 1em 1em 0;
@@ -200,6 +211,10 @@
   .internetvista {
     .internet {
       grid-template-columns: repeat(12, 2fr);
+
+      &::before {
+        background-size: 12.5%;
+      }
       &__planes {
         &__item {
           margin: 1.5em;
