@@ -13,19 +13,18 @@
     &::before {
       @include section-background-opacity(
         $image: 'latinamericancable-internetvista-patron.svg'
-
       );
-      background-size: 25%;
-      opacity:0.25;
+      background-size: 12.5%;
+      opacity: 0.35;
     }
 
     &__texto {
       grid-column: 1 / 13;
     }
+
     &__planes {
       display: grid;
       grid-column: 1 / 13;
-      margin-top: 0.5em;
 
       &__item {
         margin: 1.5em 1em;
@@ -41,7 +40,7 @@
             @include section-background-opacity(
               $image: 'latinamericancable-internet-corporativo-v2.jpg'
             );
-            opacity:10;
+            opacity: 10;
           }
         }
 
@@ -51,7 +50,7 @@
             @include section-background-opacity(
               $image: 'latinamericancable-internet-residencial-v2.jpg'
             );
-            opacity:10;
+            opacity: 10;
           }
         }
       }
@@ -109,7 +108,7 @@
   .internetvista {
     .internet {
       grid-template-columns: repeat(6, 2fr);
-      padding:3em 1em;
+      padding: 2em 1em;
 
       &__planes {
         &__item {
@@ -221,6 +220,8 @@
 @include responsive(80em) {
   .internetvista {
     .internet {
+      padding: 3em 0;
+
       &__planes {
         &__cabecera {
           min-height: 7em;

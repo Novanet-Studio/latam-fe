@@ -4,26 +4,25 @@
     grid-area: formulario;
     grid-template-columns: repeat(12, 2fr);
     grid-template-rows: auto;
-    padding: 3em 0 3em 2em;
+    padding: 5em 0 5em 2em;
     background-color: $azul-2;
     border-top: 6px solid #fff;
-    border-radius:0 0 1em 1em;
+    border-radius: 0 0 1em 1em;
     position: relative;
-    z-index: -2;
-    
+    z-index: 0;
+
     &::before {
       @include section-background-opacity(
         $image: 'latinamericancable-internetvista-patron.svg'
-
       );
-      background-size: 25%;
-      opacity:0.25;
+      background-size: 12.5%;
+      opacity: 0.35;
     }
 
     &__titulo {
       grid-column: 1 / 13;
       color: $verde;
-      margin-top:0;
+      margin-top: 0;
     }
 
     &__form {
@@ -111,7 +110,7 @@
 @include responsive(64em) {
   .internetvista {
     .formulario {
-      padding: 3em 0em 3em 2em;
+      padding: 5em 0em 5em 2em;
       &__form {
         grid-template-columns: repeat(4, 2fr);
         &__grupo {
@@ -124,7 +123,6 @@
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
-
 }
 
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
