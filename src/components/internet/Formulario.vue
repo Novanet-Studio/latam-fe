@@ -4,7 +4,6 @@
     <form class="formulario__form">
       <div class="formulario__form__grupo">
         <label class="formulario__form__label" for="name">Nombre y Apellido</label>
-        <br>
         <input
           class="formulario__form__input"
           type="text"
@@ -15,7 +14,6 @@
       </div>
       <div class="formulario__form__grupo">
         <label class="formulario__form__label" for="phone">Teléfono</label>
-        <br>
         <input
           class="formulario__form__input"
           type="tel"

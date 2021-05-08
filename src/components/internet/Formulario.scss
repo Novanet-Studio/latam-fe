@@ -4,7 +4,7 @@
     grid-area: formulario;
     grid-template-columns: repeat(12, 2fr);
     grid-template-rows: auto;
-    padding: 5em 0 5em 2em;
+    padding:5em 2em 7em;
     background-color: $azul-2;
     border-top: 6px solid #fff;
     border-radius: 0 0 1em 1em;
@@ -30,26 +30,27 @@
       grid-column: 1/13;
       grid-template-columns: repeat(4, 2fr);
       &__grupo {
+        display: grid;
         margin-right: 2.5em;
         input,
         textarea {
           padding: 0.6em;
           border: 0;
           border-radius: 1em;
-          width: 100%;
         }
+        &:nth-child(4) {margin-right:0;}
       }
       &__label {
         color: $verde;
         font-size: 1.1rem;
+        margin-bottom:0.5em;
       }
       &__input,
       &__textarea {
-        margin-top: 0.5em;
         font-size: 0.9rem;
       }
       &__boton {
-        margin-top: 2.05em;
+        margin-top:1.95em;
         font-size: 1rem;
         text-align: center;
         font-weight: 800;
@@ -67,7 +68,7 @@
   .internetvista {
     .formulario {
       grid-template-columns: repeat(6, 2fr);
-      padding: 3em 2em 3em 1em;
+      padding:3em 1em;
 
       &::before {
         background-size: 35%;
@@ -102,15 +103,17 @@
 @include responsive(48em) {
   .internetvista {
     .formulario {
-      padding: 3em 0em 3em 1em;
+      padding: 3em 0 5em 2em;
       &::before {
         background-size: 20%;
       }
-
       &__form {
         grid-template-columns: repeat(2, 2fr);
         &__grupo {
           margin-right: 2.5em;
+          &:nth-child(4) {
+            margin-right: 2.5em;
+          }
         }
         &__boton {
           margin-top: 2.05em;
@@ -124,7 +127,7 @@
 @include responsive(64em) {
   .internetvista {
     .formulario {
-      padding: 5em 0em 5em 2em;
+      padding: 5em 2em 7em;
       &::before {
         background-size: 12.5%;
       }
@@ -132,6 +135,7 @@
         grid-template-columns: repeat(4, 2fr);
         &__grupo {
           margin-top: 0;
+          &:nth-child(4) {margin-right:0;}
         }
       }
     }
