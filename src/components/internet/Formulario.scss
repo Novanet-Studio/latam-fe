@@ -4,7 +4,7 @@
     grid-area: formulario;
     grid-template-columns: repeat(12, 2fr);
     grid-template-rows: auto;
-    padding:5em 2em 7em;
+    padding: 5em 2em 7em;
     background-color: $azul-2;
     border-top: 6px solid #fff;
     border-radius: 0 0 1em 1em;
@@ -38,19 +38,21 @@
           border: 0;
           border-radius: 1em;
         }
-        &:nth-child(4) {margin-right:0;}
+        &:nth-child(4) {
+          margin-right: 0;
+        }
       }
       &__label {
         color: $verde;
         font-size: 1.1rem;
-        margin-bottom:0.5em;
+        margin-bottom: 0.5em;
       }
       &__input,
       &__textarea {
         font-size: 0.9rem;
       }
       &__boton {
-        margin-top:1.95em;
+        margin-top: 1.95em;
         font-size: 1rem;
         text-align: center;
         font-weight: 800;
@@ -68,7 +70,7 @@
   .internetvista {
     .formulario {
       grid-template-columns: repeat(6, 2fr);
-      padding:3em 1em;
+      padding: 3em 1em;
 
       &::before {
         background-size: 35%;
@@ -135,7 +137,9 @@
         grid-template-columns: repeat(4, 2fr);
         &__grupo {
           margin-top: 0;
-          &:nth-child(4) {margin-right:0;}
+          &:nth-child(4) {
+            margin-right: 0;
+          }
         }
       }
     }

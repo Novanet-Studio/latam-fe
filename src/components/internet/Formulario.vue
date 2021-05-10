@@ -3,7 +3,9 @@
     <h2 class="formulario__titulo">¿Quieres conocer más?</h2>
     <form class="formulario__form">
       <div class="formulario__form__grupo">
-        <label class="formulario__form__label" for="name">Nombre y Apellido</label>
+        <label class="formulario__form__label" for="name">
+          Nombre y Apellido
+        </label>
         <input
           class="formulario__form__input"
           type="text"
@@ -13,7 +15,9 @@
         />
       </div>
       <div class="formulario__form__grupo">
-        <label class="formulario__form__label" for="phone">Teléfono</label>
+        <label class="formulario__form__label" for="phone">
+          Teléfono
+        </label>
         <input
           class="formulario__form__input"
           type="tel"
@@ -23,7 +27,9 @@
         />
       </div>
       <div class="formulario__form__grupo">
-        <label class="formulario__form__label" for="message">Mensaje</label>
+        <label class="formulario__form__label" for="message">
+          Mensaje
+        </label>
         <textarea
           class="formulario__form__textarea"
           id="message"
@@ -32,7 +38,11 @@
         ></textarea>
       </div>
       <div class="formulario__form__grupo">
-        <input type="submit" value="Enviar información" class="formulario__form__boton">
+        <input
+          type="submit"
+          value="Enviar información"
+          class="formulario__form__boton"
+        />
       </div>
     </form>
   </section>
