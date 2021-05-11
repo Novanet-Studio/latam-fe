@@ -10,8 +10,7 @@
           class="formulario__form__input"
           type="text"
           id="name"
-          name="name"
-          value="John Doe"
+          name="name"        
         />
       </div>
       <div class="formulario__form__grupo">
@@ -22,8 +21,7 @@
           class="formulario__form__input"
           type="tel"
           id="phone"
-          name="phone"
-          value="0000 000 00 00"
+          name="phone"     
         />
       </div>
       <div class="formulario__form__grupo">
@@ -40,7 +38,7 @@
       <div class="formulario__form__grupo">
         <input
           type="submit"
-          value="Enviar información"
+          value="Enviar mensaje"
           class="formulario__form__boton"
         />
       </div>

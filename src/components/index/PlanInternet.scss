@@ -1,113 +1,112 @@
 .inicio {
-  .internet {
-    display: grid;
-    grid-area: plan-internet;
-    grid-template-columns: repeat(12, 2fr);
-    grid-template-rows: auto;
-    margin-top: 1em;
+	.internet {
+		display: grid;
+		grid-area: plan-internet;
+		grid-template-columns: repeat(12, 2fr);
+		grid-template-rows: auto;
+		margin-top: 1em;
 
-    &__titulo {
-      grid-column: 1 / 13;
-      @include heading-before-content($color: $azul, $image: 'punto.svg');
-    }
-    &__texto {
-      grid-column: 1 / 13;
-    }
-    &__planes {
-      display: grid;
-      grid-column: 1 / 13;
-      margin-top: 0.5em;
+		&__titulo {
+			grid-column: 1 / 13;
+			@include heading-before-content($color: $azul, $image: 'punto.svg');
+		}
+		&__texto {
+			grid-column: 1 / 13;
+		}
+		&__planes {
+			display: grid;
+			grid-column: 1 / 13;
+			margin-top: 0.5em;
 
-      &__item {
-        margin: 1.5em;
-        padding: 1.5em 1.5em 2em;
-        position: relative;
-        background-color: $verde;
-        border-radius: 1em;
-        overflow: hidden;
-        z-index: 0;
+			&__item {
+				margin: 1.5em;
+				padding: 1.5em 1.5em 2em;
+				position: relative;
+				background-color: $verde;
+				border-radius: 1em;
+				overflow: hidden;
+				z-index: 0;
 
-        &:nth-child(odd) {
-          grid-column: 1 / 7;
-          &::before {
-            @include section-background-opacity(
+				&:nth-child(odd) {
+					grid-column: 1 / 7;
+					&::before {
+						@include section-background-opacity(
               $image: 'latinamericancable-internet-corporativo.jpg'
             );
-          }
-        }
+					}
+				}
 
-        &:nth-child(even) {
-          grid-column: 7 / 13;
-          &:before {
-            @include section-background-opacity(
+				&:nth-child(even) {
+					grid-column: 7 / 13;
+					&:before {
+						@include section-background-opacity(
               $image: 'latinamericancable-internet-residencial.jpg'
             );
-          }
-        }
-      }
+					}
+				}
+			}
 
-      &__titulo {
-        font-style: normal;
-        color: $azul;
-      }
+			&__titulo {
+				font-style: normal;
+				color: $azul;
+			}
 
-      &__texto {
-        font-size: 1.1rem;
-        line-height: 1.5rem;
-        color: $azul-2;
-      }
+			&__texto {
+				font-size: 1.1rem;
+				line-height: 1.5rem;
+				color: $azul-2;
+			}
 
-      &__velocidades {
-        display: grid;
-        grid-template-columns: repeat(6, 2fr);
-        margin: 1.5em 0 2.2em;
-      }
+			&__velocidades {
+				display: grid;
+				grid-template-columns: repeat(6, 2fr);
+				margin: 1.5em 0 2.2em;
+			}
 
-      &__boton {
-        font-size: 1rem;
-        padding: 0.6em;
-        margin-right: 1em;
-        @include boton-a($color: $verde, $bg: $azul-2);
-        cursor: pointer;
-      }
+			&__boton {
+				font-size: 1rem;
+				padding: 0.35em;
+				margin-right: 1em;
+				@include boton-a($color: $verde, $bg: $azul-2);
+				cursor: pointer;
+			}
 
-      &__suscripcion {
-        font-size: 1rem;
-        padding: 0.6em;
-        @include boton-a($color: white, $bg: $azul);
-        cursor: pointer;
-      }
-    }
-  }
+			&__suscripcion {
+				font-size: 1rem;
+				@include boton-a($color: white, $bg: $azul);
+				cursor: pointer;
+			}
+		}
+	}
 }
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
-  .inicio {
-    .internet {
-      grid-template-columns: repeat(6, 2fr);
-      padding: 0 1em;
+	.inicio {
+		.internet {
+			grid-template-columns: repeat(6, 2fr);
+			padding: 0 1em;
 
-      &__planes {
-        &__item {
-          margin: 0.5em 0;
-          padding: 1em 1em 2em;
-          &:nth-child(odd),
-          &:nth-child(even) {
-            grid-column: 1/13;
-          }
-        }
+			&__planes {
+				&__item {
+					margin: 0.5em 0;
+					padding: 1em 1em 2em;
+					&:nth-child(odd),
+					&:nth-child(even) {
+						grid-column: 1/13;
+					}
+				}
 
-        &__texto {
-          font-size: 1rem;
-        }
+				&__texto {
+					font-size: 1rem;
+				}
 
-        &__boton {
-          font-size: 0.9rem;
-        }
-      }
-    }
-  }
+				&__boton {
+					font-size: 0.9rem;
+				}
+			}
+		}
+	}
 }
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
@@ -116,55 +115,55 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
-  .inicio {
-    .internet {
-      &__planes {
-        &__item {
-          margin: 1em 1em 0;
-          padding: 1em 1em 2em;
-          &:nth-child(odd) {
-            grid-column: 1/7;
-          }
+	.inicio {
+		.internet {
+			&__planes {
+				&__item {
+					margin: 1em 1em 0;
+					padding: 1em 1em 2em;
+					&:nth-child(odd) {
+						grid-column: 1/7;
+					}
 
-          &:nth-child(even) {
-            grid-column: 7/13;
-          }
-        }
-        &__texto {
-          font-size: 1.1rem;
-        }
+					&:nth-child(even) {
+						grid-column: 7/13;
+					}
+				}
+				&__texto {
+					font-size: 1.1rem;
+				}
 
-        &__boton {
-          font-size: 1rem;
-        }
-      }
-    }
-  }
+				&__boton {
+					font-size: 1rem;
+				}
+			}
+		}
+	}
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
-  .inicio {
-    .internet {
-      grid-template-columns: repeat(12, 2fr);
+	.inicio {
+		.internet {
+			grid-template-columns: repeat(12, 2fr);
 
-      &__planes {
-        &__item {
-          margin: 1.5em;
-          padding: 1.5em 1.5em 2em;
-        }
-      }
-    }
-  }
+			&__planes {
+				&__item {
+					margin: 1.5em;
+					padding: 1.5em 1.5em 2em;
+				}
+			}
+		}
+	}
 }
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
-  .inicio {
-    .internet {
-      padding: 0;
-    }
-  }
+	.inicio {
+		.internet {
+			padding: 0;
+		}
+	}
 }
 
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/

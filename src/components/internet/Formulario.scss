@@ -52,14 +52,8 @@
         font-size: 0.9rem;
       }
       &__boton {
-        margin-top: 1.95em;
-        font-size: 1rem;
-        text-align: center;
-        font-weight: 800;
-        color: $azul;
-        background-color: $verde;
-        box-shadow: 0.1em 0.1em 0.25em #222;
-        cursor: pointer;
+        @include boton-a($color:$azul, $bg: $verde);
+        margin-top: 1.95em;   
       }
     }
   }

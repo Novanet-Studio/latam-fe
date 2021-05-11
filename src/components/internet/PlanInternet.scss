@@ -15,7 +15,7 @@
         $image: 'latinamericancable-internetvista-patron.svg'
       );
       background-size: 12.5%;
-      opacity: 0.35;
+      opacity: 0.1;
     }
 
     &__texto {
@@ -38,9 +38,8 @@
           grid-column: 1 / 7;
           &::before {
             @include section-background-opacity(
-              $image: 'latinamericancable-internet-corporativo-v2.jpg'
+              $image: 'latinamericancable-internet-corporativo-2.jpg'
             );
-            opacity: 10;
           }
         }
 
@@ -48,9 +47,8 @@
           grid-column: 7 / 13;
           &:before {
             @include section-background-opacity(
-              $image: 'latinamericancable-internet-residencial-v2.jpg'
+              $image: 'latinamericancable-internet-residencial-2.jpg'
             );
-            opacity: 10;
           }
         }
       }
@@ -67,6 +65,7 @@
       }
 
       &__subtitulo {
+        font-size: 1.2rem;
         margin: 0 0 0.3em 0;
         font-style: normal;
         color: $azul;
