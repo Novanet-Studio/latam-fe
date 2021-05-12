@@ -2,109 +2,115 @@
 
 //Font configuration
 @mixin font-set($color) {
-  color: #{$color};
-  font-family: 'Sarabun', 'Helvetica', sans-serif;
+	color: #{$color};
+	font-family: 'Sarabun', 'Helvetica', sans-serif;
 }
 
-@mixin boton-a($color: $color, $bg: $bg) {
-  padding: 0.6em 1.3em 0.6em;
-  text-decoration: none;
-  text-align: center;
-  font-weight: 800;
-  color: #{$color};
-  background-color: #{$bg};
-  border: 0;
-  border-radius: 1em;
-  box-shadow: 0.1em 0.1em 0.25em #222;
-}
-
-@mixin boton-b($color: $color, $outline: $outline) {
-  font-size: 0.9rem;
-  font-weight: 800;
-  color: #{$color};
-  text-decoration: none;
-  border-style: solid;
-  border-color: #{$outline};
-  border-width: 0.15em;
-  border-radius: 1em;
-  padding: 0.4em;
+@mixin grid-structure($columns: $columns) {
+	display: grid;
+	grid-template-columns: repeat(#{$columns}, 2fr);
+	grid-template-rows: auto;
 }
 
 @mixin section-background($image) {
-  background-image: url('../../assets/images/#{$image}');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+	background-image: url('../../assets/images/#{$image}');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+
+@mixin hero-box($bg: $bg, $gridarea: $gridarea) {
+	display: grid;
+	grid-template-columns: repeat(4, 2fr);
+	grid-template-rows: auto;
+	height: fit-content;
+	grid-area: #{$gridarea};
+	grid-template-areas: 'icon info info info';
+	border-radius: 1em;
+	min-height: 8em;
+	padding: 1em;
+	box-sizing: border-box;
+	background-color: #{$bg};
+	box-shadow: 0.1em 0.1em 0.25em #222;
+}
+
+@mixin hero-box-icon($image, $width, $fillColor) {
+	grid-area: icon;
+	background-image: url('../../assets/images/#{$image}');
+	background-color: #{$fillColor};
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: #{$width};
+	border-radius: 50%;
+	left: -2em;
+	bottom: -0.5em;
+	width: 6em;
+	height: 6em;
+	position: relative;
+}
+
+@mixin hero-box-icon-info() {
+	grid-area: info;
+	left: -1em;
+	position: relative;
 }
 
 @mixin section-background-opacity($image) {
-  content: '';
-  background-image: url('../../assets/images/#{$image}');
-  background-size: cover;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  opacity: 0.15;
-  z-index: -1;
-}
-
-@mixin icon-box($image, $width, $fillColor) {
-  grid-area: icon;
-  background-image: url('../../assets/images/#{$image}');
-  background-color: #{$fillColor};
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: #{$width};
-  border-radius: 50%;
-  left: -2em;
-  bottom: -0.5em;
-  width: 6em;
-  height: 6em;
-  position: relative;
-}
-
-@mixin icon-int-box($image, $width, $fillColor) {
-  grid-area: icon;
-  background-image: url('../../assets/images/#{$image}');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: #{$width};
-  border-radius: 50%;
-  left: -0.8em;
-  bottom: -0.2em;
-  width: 6em;
-  height: 6em;
-  position: relative;
-}
-
-@mixin icon-box-info() {
-  grid-area: info;
-  left: -1em;
-  position: relative;
+	content: '';
+	background-image: url('../../assets/images/#{$image}');
+	background-size: cover;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	opacity: 0.15;
+	z-index: -1;
 }
 
 @mixin heading-before-content($image, $color) {
-  color: #{$color};
-  &::before {
-    position: absolute;
-    float: left;
-    background-repeat: no-repeat;
-    content: '';
-    background-size: 1em 1em;
-    width: 1em;
-    height: 1em;
-    margin-right: 1em;
-    z-index: -1;
-    background-image: url('../../assets/images/#{$image}');
-    margin-left: -0.3em;
-  }
+	color: #{$color};
+	&::before {
+		position: absolute;
+		float: left;
+		background-repeat: no-repeat;
+		content: '';
+		background-size: 1em 1em;
+		width: 1em;
+		height: 1em;
+		margin-right: 1em;
+		z-index: -1;
+		background-image: url('../../assets/images/#{$image}');
+		margin-left: -0.3em;
+	}
+}
+
+@mixin boton-a($color: $color, $bg: $bg) {
+	text-decoration: none;
+	text-align: center;
+	font-weight: 800;
+	color: #{$color};
+	background-color: #{$bg};
+	border: 0;
+	border-radius: 1em;
+	box-shadow: 0.1em 0.1em 0.25em #222;
+}
+
+@mixin boton-b($color: $color, $outline: $outline) {
+	font-size: 0.9rem;
+	font-weight: 800;
+	color: #{$color};
+	text-decoration: none;
+	border-style: solid;
+	border-color: #{$outline};
+	border-width: 0.15em;
+	border-radius: 1em;
+	padding: 0.4em;
 }
 
 // Responsive
 @mixin responsive($size) {
-  @media all and  (min-width: #{$size}) and (-webkit-min-device-pixel-ratio: 1) {
-    @content;
-  }
+	@media all and (min-width: #{$size}) and (-webkit-min-device-pixel-ratio: 1) {
+		@content;
+	}
 }

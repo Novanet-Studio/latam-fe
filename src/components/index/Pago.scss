@@ -1,11 +1,10 @@
 .inicio {
 	.pago {
 		height: 16em;
-		display: grid;
-		align-content: space-around;
+		@include grid-structure($columns: 12);
 		grid-area: pago;
-		grid-template-columns: repeat(12, 2fr);
 		grid-template-areas: '. . . . icon icon icon icon . . . .' '. . . . boton boton boton boton . . . .';
+		align-content: space-around;
 		padding: 1.5em 0 1.5em;
 		position: relative;
 

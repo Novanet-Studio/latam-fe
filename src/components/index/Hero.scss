@@ -1,30 +1,14 @@
 .inicio {
 	.hero {
-		display: grid;
+		@include grid-structure($columns: 12);
 		grid-area: hero;
-		grid-template-columns: repeat(12, 2fr);
-		grid-template-rows: auto;
 		grid-template-areas: 'tv tv tv tv tv tv internet internet internet internet internet internet';
 
 		& > div {
 			height: 28em;
-			display: grid;
-			grid-template-columns: repeat(8, 2fr);
-			grid-template-rows: auto;
+			@include grid-structure($columns: 8);
 			align-content: flex-end;
-			background-size: cover;
-			& > div {
-				display: grid;
-				grid-template-columns: repeat(4, 2fr);
-				grid-template-rows: auto;
-				grid-template-areas: 'icon info info info';
-				border-radius: 1em;
-				min-height: 8em;
-				margin-bottom: 2em;
-				padding: 1em;
-				box-sizing: border-box;
-				box-shadow: 0.1em 0.1em 0.25em #222;
-			}
+			background-size: cover;		
 		}
 
 		&__tv {
@@ -37,19 +21,18 @@
 			box-sizing: border-box;
 			border-radius: 1em 0 0 0;
 			&__box {
-				height: fit-content;
-				grid-area: box-tv;
-				background-color: $azul;
+				@include hero-box($bg: $azul, $gridarea:'box-tv');
+				margin-bottom: 2em;
 			}
 			&__icon {
-				@include icon-box(
-        $image: 'latinamerican-control-icon.svg',
-        $fillColor: $verde,
-        $width: 5em
-      );
+				@include hero-box-icon(
+					$image: 'latinamerican-control-icon.svg',
+					$fillColor: $verde,
+					$width: 5em
+				);
 			}
 			&__info {
-				@include icon-box-info();
+				@include hero-box-icon-info();
 			}
 			&__title {
 				grid-area: title;
@@ -74,19 +57,18 @@
 			border-radius: 0 1em 0 0;
 
 			&__box {
-				height: fit-content;
-				grid-area: box-internet;
-				background-color: $verde;
+				@include hero-box($bg: $verde, $gridarea:'box-internet');
+				margin-bottom: 2em;
 			}
 			&__icon {
-				@include icon-box(
-        $image: 'latinamerican-wifi-icon.svg',
-        $fillColor: $azul,
-        $width: 4em
-      );
+				@include hero-box-icon(
+					$image: 'latinamerican-wifi-icon.svg',
+					$fillColor: $azul,
+					$width: 4em
+				);
 			}
 			&__info {
-				@include icon-box-info();
+				@include hero-box-icon-info();
 			}
 			&__title {
 				grid-area: title;

@@ -1,9 +1,7 @@
 .internetvista {
   .internet {
-    display: grid;
+    @include grid-structure($columns: 12);
     grid-area: plan-internet;
-    grid-template-columns: repeat(12, 2fr);
-    grid-template-rows: auto;
     padding: 3em 0;
     background-color: $verde;
     border-top: 6px solid #fff;

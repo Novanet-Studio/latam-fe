@@ -1,7 +1,5 @@
 .internetvista {
-  display: grid;
-  grid-template-columns: repeat(12, 2fr);
-  grid-template-rows: auto;
+  @include grid-structure($columns: 12);
   grid-template-areas:
     'hero hero hero hero hero hero hero hero hero hero hero hero'
     'plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet'

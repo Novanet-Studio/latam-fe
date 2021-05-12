@@ -1,0 +1,45 @@
+.reporte {
+	.hero {
+		@include grid-structure($columns: 12);
+		grid-area: hero;
+		grid-template-areas: 'pago pago pago pago pago pago . . . . . .';
+		border-radius: 1em 1em 0 0;
+		@include section-background($image: 'latinamericancable-internet.jpg');
+
+		& > div {
+			@include grid-structure($columns: 8);
+		}
+
+		&__pago {
+			height: 28em;
+			align-content: center;
+			grid-area: pago;
+			grid-template-areas: '. box-pago box-pago box-pago box-pago box-pago box-pago .';
+			box-sizing: border-box;
+
+			&__box {
+				@include hero-box($bg: $verde, $gridarea:'box-pago');				
+			}
+			&__icon {
+				@include hero-box-icon(
+					$image: 'latinamerican-pago-icon.svg',
+					$fillColor: $azul,
+					$width: 4em
+				);
+			}
+			&__info {
+				@include hero-box-icon-info();
+			}
+			&__title {
+				grid-area: title;
+				color: $azul;
+			}
+			&__text {
+				font-size: 1rem;
+				grid-area: text;
+				color: $azul-2;
+				margin-bottom: 0.3em;
+			}
+		}
+	}
+}

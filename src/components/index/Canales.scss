@@ -1,7 +1,6 @@
 .canales {
-  display: grid;
+  @include grid-structure($columns: 8);
   grid-area: canales;
-  grid-template-columns: repeat(8, 2fr);
   padding: 1.5em 0 3em;
 
   &__titulo {

@@ -65,14 +65,15 @@
 
 			&__boton {
 				font-size: 1rem;
-				padding: 0.35em;
+				padding: 0.25em;
 				margin-right: 1em;
 				@include boton-a($color: $verde, $bg: $azul-2);
-				cursor: pointer;
+		
 			}
 
 			&__suscripcion {
 				font-size: 1rem;
+				padding: 0.4em 1.3em 0.6em;
 				@include boton-a($color: white, $bg: $azul);
 				cursor: pointer;
 			}

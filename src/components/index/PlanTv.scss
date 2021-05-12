@@ -1,11 +1,8 @@
 .inicio {
 	.tv {
-		display: grid;
+		@include grid-structure($columns: 8);
 		grid-area: plan-tv;
-		grid-column: 7 / 13;
-		grid-template-columns: repeat(8, 2fr);
-		grid-template-rows: auto;
-
+		grid-column: 7 / 13;		
 		&__banner {
 			padding: 2.5em 4em 3em;
 			display: flex;

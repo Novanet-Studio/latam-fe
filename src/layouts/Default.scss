@@ -1,43 +1,43 @@
 body {
-  font-family: 'Sarabun', 'Trebuchet MS', sans-serif;
-  font-weight: 300;
-  line-height: 1.6rem;
+	font-family: 'Sarabun', 'Trebuchet MS', sans-serif;
+	font-weight: 300;
+	line-height: 1.6rem;
 }
 
 p {
-  font-size: 1.3rem;
-  color: $gris;
-  margin: 0 0 0.5em 0;
+	font-size: 1.3rem;
+	color: $gris;
+	margin: 0 0 0.5em 0;
 }
 
 ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 h1 {
-  font-size: 1.8rem;
-  margin: 0 0 0.1em 0;
+	font-size: 1.8rem;
+	margin: 0 0 0.1em 0;
 }
 
 h2 {
-  font-size: 1.8rem;  
+	font-size: 1.8rem;
 }
 
 h3 {
-  font-size: 1.6rem;
-  margin: 0 0 0.5em 0;
+	font-size: 1.6rem;
+	margin: 0 0 0.5em 0;
 }
 
 h4 {
-  font-size: 1.2rem;
-  margin: 0;
+	font-size: 1.2rem;
+	margin: 0;
 }
 
 h5 {
-  font-size: 0.9rem;
-  margin: 0;
+	font-size: 0.9rem;
+	margin: 0;
 }
 
 h1,
@@ -45,96 +45,96 @@ h2,
 h3,
 h4,
 h5 {
-  font-style: italic;
+	font-style: italic;
 }
 
 .layout {
-  width: 75em;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(12, 2fr);
-  grid-template-rows: auto;
-  grid-template-areas:
-    'header header header header header header header header header header header header'
-    'main main main main main main main main main main main main'
-    'footer footer footer footer footer footer footer footer footer footer footer footer ';
+	width: 75em;
+	margin: 0 auto;
+	@include grid-structure($columns: 12);
+	grid-template-areas: 'header header header header header header header header header header header header'
+		'main main main main main main main main main main main main'
+		'footer footer footer footer footer footer footer footer footer footer footer footer ';
 }
 
-main {
-  display: grid;
-  grid-area: main;
-  grid-template-columns: repeat(12, 2fr);
+main {	
+	@include grid-structure($columns: 12);
+	grid-area: main;	
 }
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
-  .layout {
-    width: 100%;
-    grid-template-columns: repeat(6, 2fr);
-    grid-template-areas:
-      'header header header header header header'
-      'main main main main main main'
-      'footer footer footer footer footer footer';
-  }
+	.layout {
+		width: 100%;
+		grid-template-columns: repeat(6, 2fr);
+		grid-template-areas: 'header header header header header header' 'main main main main main main'
+			'footer footer footer footer footer footer';
+	}
 
-  p {
-    font-size:1.05rem;
-  }
+	p {
+		font-size: 1.05rem;
+	}
 
-  h1 {
-    font-size:1.6rem;
-    line-height: 1.8rem;
-  }
+	h1 {
+		font-size: 1.6rem;
+		line-height: 1.8rem;
+	}
 
-  h2 {
-    font-size:1.6rem;
-  }
+	h2 {
+		font-size: 1.6rem;
+	}
 
-  h3 {
-    font-size:1.4rem;
-  }
+	h3 {
+		font-size: 1.4rem;
+	}
 
-  main {
-    margin-top: 0.7em;
-  }
+	main {
+		margin-top: 0.7em;
+	}
 }
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
 @include responsive(35.5em) {
-  body {
-    line-height: 1.7em;
-  }
+	body {
+		line-height: 1.7em;
+	}
 
-  main {
-    margin-top: 0;
-  }
+	main {
+		margin-top: 0;
+	}
 }
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
-  p {font-size: 1.3rem;}
+	p {
+		font-size: 1.3rem;
+	}
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
-  h1 {
-    font-size: 1.8rem;
-  }
-  
-  h2 {
-    font-size: 1.8rem;  
-  }
-  
-  h3 {
-    font-size: 1.6rem;
-  }
+	h1 {
+		font-size: 1.8rem;
+	}
+
+	h2 {
+		font-size: 1.8rem;
+	}
+
+	h3 {
+		font-size: 1.6rem;
+	}
 }
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
-  .layout {
-    width: 75em;
-  }
+	.layout {
+		width: 75em;
+		grid-template-columns: repeat(12, 2fr);
+		grid-template-areas: 'header header header header header header header header header header header header'
+			'main main main main main main main main main main main main'
+			'footer footer footer footer footer footer footer footer footer footer footer footer ';
+	}
 }
 
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/

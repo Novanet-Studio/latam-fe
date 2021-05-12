@@ -11,7 +11,7 @@
     <nav class="header__nav">
       <g-link class="header__link" to="/">TV por cable</g-link>
       <g-link class="header__link" to="/internet/">Internet</g-link>
-      <g-link class="header__link" to="/pago/">Reportar pago</g-link>
+      <g-link class="header__link" to="/reporte/">Reportar pago</g-link>
       <g-link class="header__link" to="/contacto/">Contacto</g-link>
     </nav>
   </header>
