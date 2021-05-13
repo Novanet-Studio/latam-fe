@@ -3,8 +3,8 @@
 		@include grid-structure($columns: 12);
 		grid-area: hero;
 		grid-template-areas: 'pago pago pago pago pago pago . . . . . .';
-		border-radius: 1em 1em 0 0;
-		@include section-background($image: 'latinamericancable-internet.jpg');
+		border-radius: 1em;
+		@include section-background($image: 'latinamericancable-reporte.jpg');
 
 		& > div {
 			@include grid-structure($columns: 8);

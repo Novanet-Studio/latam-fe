@@ -19,6 +19,19 @@
 	background-size: cover;
 }
 
+@mixin section-background-opacity($image) {
+	content: '';
+	background-image: url('../../assets/images/#{$image}');
+	background-size: cover;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	opacity: 0.15;
+	z-index: -1;
+}
+
 @mixin hero-box($bg: $bg, $gridarea: $gridarea) {
 	display: grid;
 	grid-template-columns: repeat(4, 2fr);
@@ -55,34 +68,41 @@
 	position: relative;
 }
 
-@mixin section-background-opacity($image) {
-	content: '';
-	background-image: url('../../assets/images/#{$image}');
-	background-size: cover;
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	opacity: 0.15;
-	z-index: -1;
-}
-
 @mixin heading-before-content($image, $color) {
 	color: #{$color};
 	&::before {
+		content: '';
 		position: absolute;
 		float: left;
+		background-image: url('../../assets/images/#{$image}');
 		background-repeat: no-repeat;
-		content: '';
 		background-size: 1em 1em;
 		width: 1em;
 		height: 1em;
-		margin-right: 1em;
 		z-index: -1;
-		background-image: url('../../assets/images/#{$image}');
 		margin-left: -0.3em;
 	}
+}
+
+@mixin item-radius {
+	margin: 1.5em;
+	padding: 1.5em 1.5em 2em;
+	position: relative;
+	background-color: $verde;
+	border-radius: 1em;
+	overflow: hidden;
+	z-index: 0;
+}
+
+@mixin item-radius-titulo {
+	font-style: normal;
+	color: $azul;
+}
+
+@mixin item-radius-texto {
+	font-size: 1.1rem;
+	line-height: 1.5rem;
+	color: $azul-2;
 }
 
 @mixin boton-a($color: $color, $bg: $bg) {

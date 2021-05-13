@@ -2,12 +2,14 @@
   <Layout>
     <main class="reporte">
       <Hero />
+      <Tarifas />
     </main>
   </Layout>
 </template>
 
 <script>
 import Hero from '../components/reporte/Hero'
+import Tarifas from '../components/reporte/Tarifas'
 
 export default {
   name: 'Reporte',
@@ -16,6 +18,7 @@ export default {
   },
   components: {
     Hero,
+    Tarifas,
   },
 }
 

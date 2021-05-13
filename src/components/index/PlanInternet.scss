@@ -1,9 +1,7 @@
 .inicio {
 	.internet {
-		display: grid;
+		@include grid-structure($columns: 12);
 		grid-area: plan-internet;
-		grid-template-columns: repeat(12, 2fr);
-		grid-template-rows: auto;
 		margin-top: 1em;
 
 		&__titulo {
@@ -19,20 +17,14 @@
 			margin-top: 0.5em;
 
 			&__item {
-				margin: 1.5em;
-				padding: 1.5em 1.5em 2em;
-				position: relative;
-				background-color: $verde;
-				border-radius: 1em;
-				overflow: hidden;
-				z-index: 0;
+				@include item-radius;
 
 				&:nth-child(odd) {
 					grid-column: 1 / 7;
 					&::before {
 						@include section-background-opacity(
-              $image: 'latinamericancable-internet-corporativo.jpg'
-            );
+							$image: 'latinamericancable-internet-corporativo.jpg'
+						);
 					}
 				}
 
@@ -40,21 +32,18 @@
 					grid-column: 7 / 13;
 					&:before {
 						@include section-background-opacity(
-              $image: 'latinamericancable-internet-residencial.jpg'
-            );
+							$image: 'latinamericancable-internet-residencial.jpg'
+						);
 					}
 				}
 			}
 
 			&__titulo {
-				font-style: normal;
-				color: $azul;
+				@include item-radius-titulo;
 			}
 
 			&__texto {
-				font-size: 1.1rem;
-				line-height: 1.5rem;
-				color: $azul-2;
+				@include item-radius-texto;
 			}
 
 			&__velocidades {
@@ -68,7 +57,6 @@
 				padding: 0.25em;
 				margin-right: 1em;
 				@include boton-a($color: $verde, $bg: $azul-2);
-		
 			}
 
 			&__suscripcion {

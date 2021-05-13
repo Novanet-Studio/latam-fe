@@ -10,10 +10,7 @@
 
 		&::before {
 			content: '';
-			background-image: url('../../assets/images/latinamericancable-pago.jpg');
-			background-position: center center;
-			background-repeat: no-repeat;
-			background-size: cover;
+			@include section-background($image: 'latinamericancable-pago.jpg');
 			position: absolute;
 			top: 0;
 			right: 0;
@@ -42,7 +39,7 @@
 			font-size: 1.2rem;
 			grid-area: boton;
 			padding: 0.75em;
-			@include boton-a($color: $azul, $bg: $verde);
+			@include boton-a($color: #1b4686, $bg: #c2d62e);
 		}
 	}
 }
