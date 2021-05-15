@@ -2,5 +2,6 @@
    @include grid-structure($columns: 12);
    grid-template-areas:
      'hero hero hero hero hero hero hero hero hero hero hero hero'
-     'tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas';
+     'tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas'
+     'info-a info-a info-a info-a info-a info-a info-a info-a info-a info-a info-a info-a';
  }

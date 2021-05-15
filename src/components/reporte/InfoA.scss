@@ -1,0 +1,67 @@
+.info-a {
+  @include grid-structure($columns: 12);
+  grid-area: info-a;
+
+  &__titulo {
+    grid-column: 1 / 13;
+    @include heading-before-content($color: $azul, $image: 'punto.svg');
+  }
+
+  &__texto {
+    grid-column: 1 / 13;
+  }
+
+  &__opciones {
+    @include grid-structure($columns: 12);
+    grid-column: 1 / 13;
+
+    &__item {
+      &:nth-child(odd) {
+        grid-column: 1 / 7;
+      }
+
+      &:nth-child(even) {
+        grid-column: 7 / 13;
+      }
+    }
+
+    &__box {
+      @include hero-box($bg: 'transparent', $gridarea: 'unset');
+      box-shadow: unset;
+    }
+    &__icon-transferencia {
+      @include hero-box-icon(
+        $image: 'latinamerican-transferencia-icon.svg',
+        $fillColor: $azul,
+        $width: 4em
+      );
+      width: 6.75em;
+      height: 6.75em;
+      left: unset;
+    }
+
+    &__icon-pago {
+      @include hero-box-icon(
+        $image: 'latinamerican-movil-icon.svg',
+        $fillColor: $azul,
+        $width: 4em
+      );
+      width: 6.75em;
+      height: 6.75em;
+      left: unset;
+    }
+
+    &__info {
+      @include hero-box-icon-info();
+    }
+
+    &__titulo {
+      @include item-radius-titulo;
+    }
+
+    &__texto {
+      @include item-radius-texto;
+      color: $gris;
+    }
+  }
+}

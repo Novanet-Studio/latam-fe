@@ -26,6 +26,7 @@
 					$fillColor: $azul,
 					$width: 4em
 				);
+				bottom: unset;
 			}
 			&__info {
 				@include hero-box-icon-info();
