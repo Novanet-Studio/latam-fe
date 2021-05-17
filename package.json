@@ -20,6 +20,7 @@
     "style-resources-loader": "^1.4.1",
     "vue": "^2.6.12",
     "vue-simple-accordion": "^0.1.0",
-    "vue-template-compiler": "^2.6.12"
+    "vue-template-compiler": "^2.6.12",
+    "vuejs-datepicker": "^1.6.2"
   }
 }

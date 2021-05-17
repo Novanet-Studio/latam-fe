@@ -38,11 +38,8 @@
 				grid-area: title;
 				color: $verde;
 			}
-			&__text {
-				font-size: 1rem;
-				grid-area: text;
-				color: white;
-				margin-bottom: 0.3em;
+			&__text {						
+				@include hero-box-icon-info-text($fontsize: 1rem, $color: '#fff', $lineheight: unset)
 			}
 		}
 
@@ -75,10 +72,7 @@
 				color: $azul;
 			}
 			&__text {
-				font-size: 1rem;
-				grid-area: text;
-				color: $gris;
-				margin-bottom: 0.3em;
+				@include hero-box-icon-info-text($fontsize: 1rem, $color: $gris, $lineheight: unset)
 			}
 		}
 	}

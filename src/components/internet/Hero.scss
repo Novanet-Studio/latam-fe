@@ -35,10 +35,7 @@
 				color: $azul;
 			}
 			&__text {
-				font-size: 1rem;
-				grid-area: text;
-				color: $azul-2;
-				margin-bottom: 0.3em;
+				@include hero-box-icon-info-text($fontsize: 1rem, $color: $azul-2, $lineheight: unset)
 			}
 		}
 	}

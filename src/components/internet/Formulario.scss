@@ -1,155 +1,21 @@
-.internetvista {
-	.formulario {
-		@include grid-structure($columns: 8);
-		grid-area: formulario;
-		padding: 5em 2em 7em;
-		background-color: $azul-2;
-		border-top: 6px solid #fff;
-		border-radius: 0 0 1em 1em;
-		position: relative;
-		z-index: 0;
+.forminternet {
+  background-color: $azul-2;
+  border-top: 6px solid #fff;
+  border-radius: 0 0 1em 1em;
 
-		&::before {
-			@include section-background-opacity(
-        $image: 'latinamericancable-internetvista-patron.svg'
-      );
-			background-size: 12.5%;
-			opacity: 0.35;
-		}
+  &::before {
+    @include section-background-opacity(
+      $image: 'latinamericancable-internetvista-patron.svg'
+    );
+    background-size: 12.5%;
+    opacity: 0.35;
+  }
 
-		&__titulo {
-			grid-column: 1 / 13;
-			color: $verde;
-			margin-top: 0;
-		}
+  .formulario__titulo {
+    color: $verde;
+  }
 
-		&__form {
-			display: grid;
-			grid-column: 1 / 13;
-
-			&__grupo {
-				display: grid;
-				margin-right: 2.5em;
-				input,
-				textarea {
-					padding: 0.6em;
-					border: 0;
-					border-radius: 1em;
-				}
-				&:nth-child(4) {
-					margin-right: 0;
-				}
-			}
-			&__label {
-				color: $verde;
-				font-size: 1.1rem;
-				margin-bottom: 0.5em;
-			}
-			&__input,
-			&__textarea {
-				font-size: 0.9rem;
-			}
-			&__boton {
-				@include boton-a($color:$azul, $bg: $verde);
-				margin-top: 1.95em;
-			}
-		}
-	}
-}
-
-/*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
-@include responsive(20em) {
-	.internetvista {
-		.formulario {
-			grid-template-columns: repeat(6, 2fr);
-			padding: 3em 1em;
-
-			&::before {
-				background-size: 35%;
-			}
-
-			&__form {
-				grid-template-columns: repeat(1, 2fr);
-				&__grupo {
-					margin-top: 1.5em;
-					margin-right: 0em;
-				}
-				&__boton {
-					margin-top: 0.5em;
-				}
-			}
-		}
-	}
-}
-
-/*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
-@include responsive(35.5em) {
-	.internetvista {
-		.formulario {
-			&::before {
-				background-size: 25%;
-			}
-		}
-	}
-}
-
-/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
-@include responsive(48em) {
-	.internetvista {
-		.formulario {
-			padding: 3em 0 5em 2em;
-			&::before {
-				background-size: 20%;
-			}
-			&__form {
-				grid-template-columns: repeat(2, 2fr);
-				&__grupo {
-					margin-right: 2.5em;
-					&:nth-child(4) {
-						margin-right: 2.5em;
-					}
-				}
-				&__boton {
-					margin-top: 2.05em;
-				}
-			}
-		}
-	}
-}
-
-/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
-@include responsive(64em) {
-	.internetvista {
-		.formulario {
-			padding: 5em 2em 7em;
-			&::before {
-				background-size: 12.5%;
-			}
-			&__form {
-				grid-template-columns: repeat(4, 2fr);
-				&__grupo {
-					margin-top: 0;
-					&:nth-child(4) {
-						margin-right: 0;
-					}
-				}
-			}
-		}
-	}
-}
-
-/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
-@include responsive(80em) {
-}
-
-/*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
-@include responsive(90em) {
-}
-
-/*--------------------------------- Medium Large Desktop (1600px) -------------------------------*/
-@include responsive(100em) {
-}
-
-/*------------------------------------- Large Desktop (1920px) ---------------------------------*/
-@include responsive(120em) {
+  .formulario__form__boton {
+    @include boton-a($color: $azul, $bg: $verde);
+  }
 }

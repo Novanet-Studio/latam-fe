@@ -6,14 +6,7 @@
       utilizando uno de los dos medios de notificación, pagina web o whatsapp al
       0414 3021751. Utilice un solo método de notificación, solo la página web o
       el whatsapp.
-    </p>
-    <p class="info-a__texto">
-      Debido a cambios en la grilla de canales por la incorporación del paquete
-      de HBO (Sony, Warner, AXN, Rai Italia, History 2, E!, Televisión Española)
-      estaremos realizando interrupciones de servicio durante el mes de abril y
-      mayo, algunos canales serán modificados. Disculpe las molestias
-      ocasionadas.
-    </p>
+    </p>    
     <ul class="info-a__opciones">
       <li class="info-a__opciones__item">
         <div class="info-a__opciones__box">

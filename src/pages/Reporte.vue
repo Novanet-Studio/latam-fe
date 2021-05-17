@@ -4,6 +4,7 @@
       <Hero />
       <Tarifas />
       <InfoA />
+      <Form />
     </main>
   </Layout>
 </template>
@@ -12,6 +13,8 @@
 import Hero from '../components/reporte/Hero'
 import Tarifas from '../components/reporte/Tarifas'
 import InfoA from '../components/reporte/InfoA'
+import Form from '../components/reporte/Form'
+
 
 export default {
   name: 'Reporte',
@@ -22,6 +25,7 @@ export default {
     Hero,
     Tarifas,
     InfoA,
+    Form,
   },
 }
 

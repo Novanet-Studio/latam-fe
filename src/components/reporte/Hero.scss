@@ -18,12 +18,12 @@
 			box-sizing: border-box;
 
 			&__box {
-				@include hero-box($bg: $verde, $gridarea:'box-pago');				
+				@include hero-box($bg: $azul, $gridarea:'box-pago');				
 			}
 			&__icon {
 				@include hero-box-icon(
 					$image: 'latinamerican-pago-icon.svg',
-					$fillColor: $azul,
+					$fillColor: $verde,
 					$width: 4em
 				);
 				bottom: unset;
@@ -33,13 +33,10 @@
 			}
 			&__title {
 				grid-area: title;
-				color: $azul;
+				color: $verde;
 			}
 			&__text {
-				font-size: 1rem;
-				grid-area: text;
-				color: $azul-2;
-				margin-bottom: 0.3em;
+				@include hero-box-icon-info-text($fontsize: 1rem, $color: '#fff', $lineheight: unset)
 			}
 		}
 	}

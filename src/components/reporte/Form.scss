@@ -1,0 +1,40 @@
+.formreporte {
+  background-color: $gris-2;
+  border-radius: 1em;
+
+  &::before {
+    @include section-background-opacity(
+      $image: 'latinamericancable-internetvista-patron.svg'
+    );
+    background-size: 12.5%;
+    opacity: 0.075;
+  }
+
+  .formulario__titulo,
+  .formulario__form__titulo {
+    color: $azul;
+  }
+
+  .formulario__form__text,
+  .formulario__form__label {
+    color: $gris;
+  }
+
+  .formulario__texto {
+    margin-bottom: 2em;
+  }
+
+  .formulario__form__label {
+    font-weight: 500;
+  }
+
+  input,
+  textarea,
+  select {
+    border: 1px solid #aaa;
+  }
+
+  .formulario__form__boton {
+    @include boton-a($color: #fff, $bg: $azul);
+  }
+}

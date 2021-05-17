@@ -1,5 +1,5 @@
 <template>
-  <section class="formulario">
+  <section class="formulario forminternet">
     <h2 class="formulario__titulo">¿Quieres conocer más?</h2>
     <form class="formulario__form">
       <div class="formulario__form__grupo">
@@ -48,8 +48,8 @@
 
 <script>
 export default {
-  name: 'Formulario',
+  name: 'Formulario Internet',
 }
 
-import './Formulario.scss'
+import './Formulario.scss' 
 </script>
