@@ -87,7 +87,6 @@
 				'internet internet internet internet internet internet internet internet';
 
 			& > div {
-				grid-template-columns: repeat(8, 2fr);
 				& > div {
 					padding: 0.75em 1.2em 0.75em 0.75em;
 					min-height: 7em;
@@ -105,7 +104,6 @@
 					background-size: 4em;
 				}
 				&__text {
-					font-size: 1rem;
 					line-height: 1.2rem;
 				}
 			}
@@ -120,7 +118,6 @@
 					background-size: 3em;
 				}
 				&__text {
-					font-size: 1rem;
 					line-height: 1.2rem;
 				}
 			}

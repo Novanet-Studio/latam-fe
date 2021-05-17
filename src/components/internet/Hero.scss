@@ -49,10 +49,9 @@
 			grid-template-areas: 'internet internet internet internet internet internet internet internet';
 
 			&__internet {
-				border-radius: 0 0 0 0;
-				grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
 				&__box {
 					padding: 0.75em 1.2em 0.75em 0.75em;
+					min-height: 7em;
 				}
 				&__icon {
 					width: 4.5em;
@@ -60,7 +59,6 @@
 					background-size: 3em;
 				}
 				&__text {
-					font-size: 1rem;
 					line-height: 1.2rem;
 				}
 			}

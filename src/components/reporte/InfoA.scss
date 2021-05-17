@@ -67,3 +67,112 @@
     }
   }
 }
+
+/*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+@include responsive(20em) {
+  .info-a {
+    grid-template-columns: repeat(6, 2fr);
+    padding: 0 1em;
+
+    &__opciones {
+      grid-template-columns: repeat(6, 2fr);
+
+      &__item {
+        &:nth-child(odd),
+        &:nth-child(even) {
+          grid-column: 1 / 7;
+        }
+      }
+
+      &__box {
+        padding: 0.75em 0 0.75em 0;
+      }
+
+      &__icon-transferencia {
+        width: 3.5em;
+        height: 3.5em;
+        background-size: 2em;
+      }
+
+      &__icon-pago {
+        width: 3.5em;
+        height: 3.5em;
+        background-size: 2em;
+      }
+
+      &__info {
+        left:0;
+      }
+
+      &__texto {
+        font-size: 1rem;
+        line-height:1.3rem;
+      }
+    }
+  }
+}
+
+/*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
+@include responsive(35.5em) {
+}
+
+/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
+@include responsive(48em) {
+}
+
+/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+@include responsive(64em) {
+}
+
+/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
+@include responsive(80em) {
+  .info-a {
+    padding: 0;
+
+    &__opciones {
+      grid-template-columns: repeat(12, 2fr);
+
+      &__item {
+        &:nth-child(even) {
+          grid-column: 7 / 13;
+        }
+      }
+
+      &__box {
+        padding: 1em;
+      }
+      &__icon-transferencia {
+        width: 6.75em;
+        height: 6.75em;
+        background-size: 4em;
+      }
+
+      &__icon-pago {
+        width: 6.75em;
+        height: 6.75em;
+        background-size: 4em;
+      }
+
+      &__info {
+        left:-1em;
+      }
+
+      &__texto {
+        font-size: 1.1rem;
+        line-height: 1.5rem;
+      }
+    }
+  }
+}
+
+/*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
+@include responsive(90em) {
+}
+
+/*--------------------------------- Medium Large Desktop (1600px) -------------------------------*/
+@include responsive(100em) {
+}
+
+/*------------------------------------- Large Desktop (1920px) ---------------------------------*/
+@include responsive(120em) {
+}

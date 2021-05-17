@@ -47,3 +47,79 @@
     }
   }
 }
+
+/*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+@include responsive(20em) {
+  .tarifas {
+    grid-template-columns: repeat(6, 2fr);
+    padding: 0 1em;
+
+    &__tipo {
+      margin-top: 0.5em;
+
+      &__item {
+        margin: 0.5em 0;
+        padding: 1em 1em 2em;
+        &:nth-child(odd),
+        &:nth-child(even) {
+          grid-column: 1/13;
+        }
+      }
+      &__texto {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+/*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
+@include responsive(35.5em) {
+}
+
+/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
+@include responsive(48em) {
+}
+
+/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+@include responsive(64em) {
+}
+
+/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
+@include responsive(80em) {
+  .tarifas {
+    grid-template-columns: repeat(12, 2fr);
+    padding: 0;
+
+    &__tipo {
+      margin-top: 0;
+
+      &__item {
+        margin: 1.5em;
+        padding: 1.5em 1.5em 2em;
+        
+        &:nth-child(odd) {
+          grid-column: 1 / 7;
+        }
+        &:nth-child(even) {
+          grid-column: 7 / 13;
+        }
+      }
+
+      &__texto {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+
+/*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
+@include responsive(90em) {
+}
+
+/*--------------------------------- Medium Large Desktop (1600px) -------------------------------*/
+@include responsive(100em) {
+}
+
+/*------------------------------------- Large Desktop (1920px) ---------------------------------*/
+@include responsive(120em) {
+}
