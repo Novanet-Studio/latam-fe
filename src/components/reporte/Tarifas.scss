@@ -1,6 +1,7 @@
 .tarifas {
   @include grid-structure($columns: 12);
   grid-area: tarifas;
+  margin: 1.5em 1em 0;
 
   &__titulo {
     grid-column: 1 / 13;

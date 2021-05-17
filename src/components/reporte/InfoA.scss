@@ -1,6 +1,7 @@
 .info-a {
   @include grid-structure($columns: 12);
   grid-area: info-a;
+  margin: 1.5em 1em 0;
 
   &__titulo {
     grid-column: 1 / 13;
@@ -14,6 +15,7 @@
   &__opciones {
     @include grid-structure($columns: 12);
     grid-column: 1 / 13;
+    margin: 1.5em 0;
 
     &__item {
       &:nth-child(odd) {

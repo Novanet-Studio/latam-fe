@@ -1,0 +1,14 @@
+.info-b {
+  @include grid-structure($columns: 12);
+  grid-area: info-b;
+  margin: 2.5em 1em 5em;
+
+  &__titulo {
+    grid-column: 1 / 13;
+    @include heading-before-content($color: $azul, $image: 'punto.svg');
+  }
+
+  &__texto {
+    grid-column: 1 / 13;
+  }
+}

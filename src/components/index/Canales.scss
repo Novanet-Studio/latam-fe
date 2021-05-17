@@ -1,7 +1,7 @@
 .canales {
   @include grid-structure($columns: 8);
   grid-area: canales;
-  padding: 1.5em 0 3em;
+  margin: 1.5em 1em 3em;
 
   &__titulo {
     grid-column: 1 / 9;
@@ -13,7 +13,7 @@
 @include responsive(20em) {
   .canales {
     grid-template-columns: repeat(6, 2fr);
-    padding: 1.5em 1em;
+
   }
 }
 
@@ -38,9 +38,6 @@
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
-  .canales {
-    padding: 1.5em 0 3em;
-  }
 }
 
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/

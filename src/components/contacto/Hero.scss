@@ -1,0 +1,154 @@
+.contacto {
+  .hero {
+    @include grid-structure($columns: 12);
+    grid-area: hero;
+    grid-template-areas: '. . . . . . mensaje mensaje mensaje mensaje mensaje mensaje ';
+    border-radius: 1em 1em 0 0;
+    @include section-background($image: 'latinamericancable-contacto.jpg');
+
+    & > div {
+      @include grid-structure($columns: 8);
+    }
+
+    &__mensaje {
+      height: 28em;
+      align-content: center;
+      grid-area: mensaje;
+      grid-template-areas: '. box-mensaje box-mensaje box-mensaje box-mensaje box-mensaje box-mensaje .';
+      box-sizing: border-box;
+
+      &__box {
+        @include hero-box($bg: $verde, $gridarea: 'box-mensaje');
+      }
+      &__icon {
+        @include hero-box-icon(
+          $image: 'latimanerican-mensaje-icon.svg',
+          $fillColor: $azul,
+          $width: 4em
+        );
+      }
+      &__info {
+        @include hero-box-icon-info();
+      }
+      &__title {
+        grid-area: title;
+        color: $azul;
+      }
+      &__text {
+        @include hero-box-icon-info-text(
+          $fontsize: 1rem,
+          $color: $azul-2,
+          $lineheight: unset
+        );
+      }
+    }
+  }
+}
+
+/*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+@include responsive(20em) {
+  .contacto {
+    .hero {
+      grid-template-columns: repeat(8, 2fr);
+      grid-template-areas: 'mensaje mensaje mensaje mensaje mensaje mensaje mensaje mensaje';
+
+      &__mensaje {
+        border-radius: 0 0 0 0;
+        grid-template-areas: '. box-mensaje box-mensaje box-mensaje box-mensaje box-mensaje box-mensaje .';
+        &__box {
+          padding: 0.75em 1.2em 0.75em 0.75em;
+        }
+        &__icon {
+          width: 4.5em;
+          height: 4.5em;
+          background-size: 3em;
+        }
+        &__text {
+          font-size: 1rem;
+          line-height: 1.2rem;
+        }
+      }
+    }
+  }
+}
+
+/*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
+@include responsive(35.5em) {
+  .contacto {
+    .hero {
+      grid-template-columns: repeat(6, 2fr);
+      grid-template-areas: '. . mensaje mensaje mensaje mensaje';
+
+      &__mensaje {
+        &__text {
+          font-size: 0.8rem;
+          line-height: 1rem;
+        }
+      }
+    }
+  }
+}
+
+/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
+@include responsive(48em) {
+  .contacto {
+    .hero {
+      grid-template-areas: '. . . mensaje mensaje mensaje';
+
+      &__mensaje {
+        &__box {
+          padding: 1em 0 1em 0.75em;
+        }
+      }
+    }
+  }
+}
+
+/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+@include responsive(64em) {
+  .contacto {
+    .hero {
+      &__mensaje {
+        &__box {
+          padding: 1em;
+        }
+        &__icon {
+          width: 6em;
+          height: 6em;
+          background-size: 4em;
+        }
+        &__text {
+          font-size: 1rem;
+          line-height: 1.3rem;
+        }
+      }
+    }
+  }
+}
+
+/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
+@include responsive(80em) {
+  .contacto {
+    .hero {
+      grid-template-columns: repeat(12, 2fr);
+      grid-template-areas: '. . . . . . mensaje mensaje mensaje mensaje mensaje mensaje';
+      &__mensaje {
+        &__text {
+          padding-top: 0.25em;
+        }
+      }
+    }
+  }
+}
+
+/*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
+@include responsive(90em) {
+}
+
+/*--------------------------------- Medium Large Desktop (1600px) -------------------------------*/
+@include responsive(100em) {
+}
+
+/*------------------------------------- Large Desktop (1920px) --------------------------------*/
+@include responsive(120em) {
+}
