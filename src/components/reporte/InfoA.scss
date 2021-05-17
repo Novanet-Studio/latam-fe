@@ -101,12 +101,12 @@
       }
 
       &__info {
-        left:0;
+        left: 0;
       }
 
       &__texto {
         font-size: 1rem;
-        line-height:1.3rem;
+        line-height: 1.3rem;
       }
     }
   }
@@ -114,6 +114,30 @@
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
 @include responsive(35.5em) {
+  .info-a {
+    &__opciones {
+      grid-template-columns: repeat(12, 2fr);
+      margin: 0 0 1.5em;
+
+      &__item {
+        &:nth-child(even) {
+          grid-column: 7 / 13;
+        }
+      }
+
+      &__icon-transferencia {
+        width: 4em;
+        height: 4em;
+        background-size: 2.5em;
+      }
+
+      &__icon-pago {
+        width: 4em;
+        height: 4em;
+        background-size: 2.5em;
+      }
+    }
+  }
 }
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
@@ -130,14 +154,6 @@
     padding: 0;
 
     &__opciones {
-      grid-template-columns: repeat(12, 2fr);
-
-      &__item {
-        &:nth-child(even) {
-          grid-column: 7 / 13;
-        }
-      }
-
       &__box {
         padding: 1em;
       }
@@ -154,7 +170,7 @@
       }
 
       &__info {
-        left:-1em;
+        left: -1em;
       }
 
       &__texto {

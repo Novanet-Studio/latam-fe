@@ -74,6 +74,21 @@
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
 @include responsive(35.5em) {
+  .tarifas {
+    &__tipo {
+      &__item {
+        margin: 0 1.5em;
+  
+        &:nth-child(odd) {
+          grid-column: 1 / 7;
+        }
+  
+        &:nth-child(even) {
+          grid-column: 7 / 13;
+        }
+      }
+    }
+  }
 }
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
@@ -96,13 +111,6 @@
       &__item {
         margin: 1.5em;
         padding: 1.5em 1.5em 2em;
-        
-        &:nth-child(odd) {
-          grid-column: 1 / 7;
-        }
-        &:nth-child(even) {
-          grid-column: 7 / 13;
-        }
       }
 
       &__texto {
