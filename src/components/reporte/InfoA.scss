@@ -124,18 +124,6 @@
           grid-column: 7 / 13;
         }
       }
-
-      &__icon-transferencia {
-        width: 4em;
-        height: 4em;
-        background-size: 2.5em;
-      }
-
-      &__icon-pago {
-        width: 4em;
-        height: 4em;
-        background-size: 2.5em;
-      }
     }
   }
 }
@@ -154,6 +142,8 @@
     padding: 0;
 
     &__opciones {
+      margin: 1.5em 0;
+
       &__box {
         padding: 1em;
       }
