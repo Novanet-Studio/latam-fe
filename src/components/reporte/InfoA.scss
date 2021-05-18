@@ -89,15 +89,15 @@
       }
 
       &__icon-transferencia {
-        width: 3.5em;
-        height: 3.5em;
-        background-size: 2em;
+        width: 4em;
+        height: 4em;
+        background-size: 2.5em;
       }
 
       &__icon-pago {
-        width: 3.5em;
-        height: 3.5em;
-        background-size: 2em;
+        width: 4em;
+        height: 4em;
+        background-size: 2.5em;
       }
 
       &__info {
@@ -130,23 +130,54 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
+  .info-a {
+    padding: 0;
+    &__opciones {
+
+      &__box {
+        padding: 1em 0;
+      }
+
+      &__info {
+        left: -1em;
+      }
+
+      &__texto {
+        font-size: 1.1rem;
+        line-height: 1.5rem;
+      }
+    }
+  }
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
+  .info-a {
+    &__opciones {
+      &__box {
+        padding: 1em;
+      }
+      &__icon-transferencia {
+        width: 5em;
+        height: 5em;
+        background-size: 3em;
+      }
+
+      &__icon-pago {
+        width: 5em;
+        height: 5em;
+        background-size: 3em;
+      }
+    }
+  }
 }
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
   .info-a {
-    padding: 0;
-
     &__opciones {
       margin: 1.5em 0;
 
-      &__box {
-        padding: 1em;
-      }
       &__icon-transferencia {
         width: 6.75em;
         height: 6.75em;
@@ -157,15 +188,6 @@
         width: 6.75em;
         height: 6.75em;
         background-size: 4em;
-      }
-
-      &__info {
-        left: -1em;
-      }
-
-      &__texto {
-        font-size: 1.1rem;
-        line-height: 1.5rem;
       }
     }
   }

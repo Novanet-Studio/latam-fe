@@ -152,7 +152,7 @@
   .internetvista {
     .internet {
       &::before {
-        background-size: 25%;
+        background-size: 20%;
       }
       &__planes {
         &__lista {
@@ -176,10 +176,6 @@
 @include responsive(48em) {
   .internetvista {
     .internet {
-      &::before {
-        background-size: 20%;
-      }
-
       &__planes {
         &__item {
           margin: 1em 1em 0;

@@ -41,10 +41,20 @@
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
+  .formreporte {
+    &::before {
+      background-size: 35%;
+    }
+  }
 }
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
 @include responsive(35.5em) {
+  .formreporte {
+    &::before {
+      background-size: 20%;
+    }
+  }
 }
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
@@ -53,6 +63,11 @@
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
+  .formreporte {
+    &::before {
+      background-size: 12.5%;
+    }
+  }
 }
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
@@ -70,4 +85,3 @@
 /*------------------------------------- Large Desktop (1920px) ---------------------------------*/
 @include responsive(120em) {
 }
-

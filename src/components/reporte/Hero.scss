@@ -87,19 +87,23 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
+	.reporte {
+		.hero {
+			grid-template-areas: 'pago pago pago . . .';
+
+			&__pago {
+				&__box {
+					padding: 1em 0 1em 0.75em;
+			}
+		}
+		}
+	}
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
-}
-
-/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
-@include responsive(80em) {
 	.reporte {
 		.hero {
-			grid-template-columns: repeat(12, 2fr);
-			grid-template-areas: 'pago pago pago pago pago pago . . . . . .';
-	
 			&__pago {
 				&__box {
 					padding: 1em;
@@ -110,9 +114,24 @@
 					background-size: 4em;
 				}
 				&__text {
-					padding-top: 0.25em;
-					font-size: 1rem;		
+					font-size: 1rem;
 					line-height: 1.3rem;
+				}
+			}
+		}
+	}
+}
+
+/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
+@include responsive(80em) {
+	.reporte {
+		.hero {
+			grid-template-columns: repeat(12, 2fr);
+			grid-template-areas: 'pago pago pago pago pago pago . . . . . .';
+	
+			&__pago {
+				&__text {
+					padding-top: 0.25em;
 				}
 			}
 		}

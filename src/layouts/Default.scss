@@ -95,6 +95,10 @@ main {
 				border: 0;
 				border-radius: 1em;
 			}
+
+			.vdp-datepicker {
+				input {width: 100%}
+			}
 			
 		}
 		&__titulo {

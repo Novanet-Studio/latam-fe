@@ -92,6 +92,7 @@
 
 				&__boton {
 					font-size: 0.9rem;
+					padding:0.5em;
 				}
 			}
 		}
@@ -106,6 +107,7 @@
 @include responsive(48em) {
 	.inicio {
 		.internet {
+			padding:0;
 			&__planes {
 				&__item {
 					margin: 1em 1em 0;
@@ -141,6 +143,10 @@
 					margin: 1.5em;
 					padding: 1.5em 1.5em 2em;
 				}
+
+				&__boton {
+					padding:0.25em;
+				}
 			}
 		}
 	}
@@ -148,11 +154,6 @@
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
-	.inicio {
-		.internet {
-			padding: 0;
-		}
-	}
 }
 
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/

@@ -15,6 +15,7 @@
   &__tipo {
     @include grid-structure($columns: 12);
     grid-column: 1 / 13;
+    margin-top:0.5em;
 
     &__item {
       @include item-radius;
@@ -55,8 +56,6 @@
     padding: 0 1em;
 
     &__tipo {
-      margin-top: 0.5em;
-
       &__item {
         margin: 0.5em 0;
         padding: 1em 1em 2em;
@@ -93,24 +92,13 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
-}
-
-/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
-@include responsive(64em) {
-}
-
-/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
-@include responsive(80em) {
   .tarifas {
-    grid-template-columns: repeat(12, 2fr);
-    padding: 0;
+    padding:0;
 
     &__tipo {
-      margin-top: 0;
-
       &__item {
-        margin: 1.5em;
-        padding: 1.5em 1.5em 2em;
+        margin: 1em 1em 0;
+        padding: 1em 1em 2em;
       }
 
       &__texto {
@@ -118,6 +106,24 @@
       }
     }
   }
+}
+
+/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+@include responsive(64em) {
+		.tarifas {
+			grid-template-columns: repeat(12, 2fr);
+
+			&__tipo {
+				&__item {
+					margin: 1.5em;
+					padding: 1.5em 1.5em 2em;
+				}
+			}
+		}
+}
+
+/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
+@include responsive(80em) {
 }
 
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
