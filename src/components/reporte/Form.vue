@@ -89,7 +89,9 @@
         <label class="formulario__form__label" for="phone"
           >Fecha de la operación</label
         >
-        <datepicker placeholder="Elija un día"></datepicker>
+        <ClientOnly>
+          <VueDatePicker placeholder="Elija un día" v-model="currentDate" format="DD-MM-YYYY" />
+        </ClientOnly>
       </div>
       <div class="formulario__form__grupo">
         <label class="formulario__form__label" for="phone">Monto</label>
@@ -155,13 +157,18 @@
 </template>
 
 <script>
-import Datepicker from 'vuejs-datepicker'
+import Vue from 'vue'
+import { VueDatePicker } from '@mathieustan/vue-datepicker'
+Vue.use(VueDatePicker)
 
 export default {
   name: 'Formulario',
   components: {
-    Datepicker,
+    VueDatePicker,
   },
+  data: () => ({
+    currentDate: new Date(),
+  }),
 }
 
 import './Form.scss'
