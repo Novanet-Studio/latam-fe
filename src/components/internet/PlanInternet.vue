@@ -13,25 +13,25 @@
         <ul class="internet__planes__lista">
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">5MB</h3>
+              <h3 class="internet__planes__subtitulo">2M</h3>
               <p class="internet__planes__texto">Bs. 5.422.742,00 / Mensual</p>
             </a>
           </li>
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">10MB</h3>
+              <h3 class="internet__planes__subtitulo">4M</h3>
               <p class="internet__planes__texto">Bs. 13.556.856,00 / Mensual</p>
             </a>
           </li>
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">20MB</h3>
+              <h3 class="internet__planes__subtitulo">10M</h3>
               <p class="internet__planes__texto">Bs. 27.036.466,00 / Mensual</p>
             </a>
           </li>
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">40MB</h3>
+              <h3 class="internet__planes__subtitulo">20M</h3>
               <p class="internet__planes__texto">Bs. 33.556.856,00 / Mensual</p>
             </a>
           </li>
@@ -51,25 +51,25 @@
         <ul class="internet__planes__lista">
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">5MB</h3>
+              <h3 class="internet__planes__subtitulo">4M</h3>
               <p class="internet__planes__texto">Bs. 5.422.742,00 / Mensual</p>
             </a>
           </li>
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">10MB</h3>
+              <h3 class="internet__planes__subtitulo">8M</h3>
               <p class="internet__planes__texto">Bs. 13.556.856,00 / Mensual</p>
             </a>
           </li>
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">20MB</h3>
+              <h3 class="internet__planes__subtitulo">10M</h3>
               <p class="internet__planes__texto">Bs. 27.036.466,00 / Mensual</p>
             </a>
           </li>
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">40MB</h3>
+              <h3 class="internet__planes__subtitulo">20M</h3>
               <p class="internet__planes__texto">Bs. 33.556.856,00 / Mensual</p>
             </a>
           </li>

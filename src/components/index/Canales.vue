@@ -1,5 +1,5 @@
 <template>
-  <section class="canales">
+  <section class="canales" id="canales">
     <h2 class="canales__titulo">TV por cable</h2>
     <vsa-list>
       <Categoria :content="nacionales" titulo="Nacionales"/>

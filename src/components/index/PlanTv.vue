@@ -7,7 +7,7 @@
       <p class="tv__banner__texto">
         <strong>Hasta 3 televisores</strong> por la misma mensualidad
       </p>
-      <a href="#" class="tv__banner__boton">Suscríbete ahora</a>
+      <a class="tv__banner__boton" href="/contacto/">Suscríbete ahora</a>
     </div>
   </section>
 </template>

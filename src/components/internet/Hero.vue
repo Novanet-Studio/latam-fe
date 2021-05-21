@@ -5,11 +5,10 @@
         <div class="hero__internet__icon"></div>
         <div class="hero__internet__info">
           <h1 class="hero__internet__title">
-            Internet corporativo de alta velocidad
+            Ingresa al sistema de gestion de internet
           </h1>
           <p class="hero__internet__text">
-            Conexión en fibra óptica dirigida a uso corporativo y residencial de
-            alta gama.
+            Administra y todo lo relacionado con el servicio de internet.
           </p>
         </div>
       </div>

@@ -1,102 +1,147 @@
 .inicio {
-	.internet {
-		@include grid-structure($columns: 12);
-		grid-area: plan-internet;
-		margin: 1.5em 1em 3em;
+  .internet {
+    @include grid-structure($columns: 12);
+    grid-area: plan-internet;
+    margin: 1.5em 1em 3em;
 
-		&__titulo {
-			grid-column: 1 / 13;
-			@include heading-before-content($color: $azul, $image: 'punto.svg');
-		}
-		&__texto {
-			grid-column: 1 / 13;
-		}
-		&__planes {
-			display: grid;
-			grid-column: 1 / 13;
-			margin-top: 0.5em;
+    &__titulo {
+      grid-column: 1 / 13;
+      @include heading-before-content($color: $azul, $image: 'punto.svg');
+    }
+    &__texto {
+      grid-column: 1 / 13;
+    }
 
-			&__item {
-				@include item-radius;
+    &__banner {
+      margin: 1.5em 1.5em 1em;
+      padding: 2.5em 4em 3em;
+      display: flex;
+      flex-direction: column;
+      grid-column: 1 / 13;
+      border-radius: 1em;
+      justify-content: space-around;
+      align-content: center;
+      @include section-background($image: 'latinamericancable-tv-plan.jpg');
 
-				&:nth-child(odd) {
-					grid-column: 1 / 7;
-					&::before {
-						@include section-background-opacity(
-							$image: 'latinamericancable-internet-corporativo.jpg'
-						);
-					}
-				}
+      &__titulo {
+        text-align: center;
+        color: white;
+        line-height: 2rem;
+      }
 
-				&:nth-child(even) {
-					grid-column: 7 / 13;
-					&:before {
-						@include section-background-opacity(
-							$image: 'latinamericancable-internet-residencial.jpg'
-						);
-					}
-				}
-			}
+      &__texto {
+        text-align: center;
+        color: white;
+        margin-bottom: 1em;
+      }
 
-			&__titulo {
-				@include item-radius-titulo;
-			}
+      &__boton {
+        margin: 0 auto;
+        padding: 0.75em 3em;
+        font-size: 1.2rem;
+        @include boton-a($color: $azul, $bg: $verde);
+      }
+    }
 
-			&__texto {
-				@include item-radius-texto;
-			}
+    &__planes {
+      display: grid;
+      grid-column: 1 / 13;
+      margin-top: 0.5em;
 
-			&__velocidades {
-				display: grid;
-				grid-template-columns: repeat(6, 2fr);
-				margin: 1.5em 0 2.2em;
-			}
+      &__item {
+        @include item-radius;
 
-			&__boton {
-				font-size: 1rem;
-				padding: 0.25em;
-				margin-right: 1em;
-				@include boton-a($color: $verde, $bg: $azul-2);
-			}
+        &:nth-child(odd) {
+          grid-column: 1 / 7;
+          &::before {
+            @include section-background-opacity(
+              $image: 'latinamericancable-internet-corporativo.jpg'
+            );
+          }
+        }
 
-			&__suscripcion {
-				font-size: 1rem;
-				padding: 0.4em 1.3em 0.6em;
-				@include boton-a($color: white, $bg: $azul);
-				cursor: pointer;
-			}
-		}
-	}
+        &:nth-child(even) {
+          grid-column: 7 / 13;
+          &:before {
+            @include section-background-opacity(
+              $image: 'latinamericancable-internet-residencial.jpg'
+            );
+          }
+        }
+      }
+
+      &__titulo {
+        @include item-radius-titulo;
+      }
+
+      &__texto {
+        @include item-radius-texto;
+      }
+
+      &__velocidades {
+        display: grid;
+        grid-template-columns: repeat(6, 2fr);
+        margin: 1.5em 0 2.2em;
+      }
+
+      &__boton {
+        font-size: 1rem;
+        padding: 0.25em;
+        margin-right: 1em;
+        @include boton-a($color: $verde, $bg: $azul-2);
+      }
+
+      &__suscripcion {
+        font-size: 1rem;
+        padding: 0.4em 1.3em 0.6em;
+        @include boton-a($color: white, $bg: $azul);
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
-	.inicio {
-		.internet {
-			grid-template-columns: repeat(6, 2fr);
-			padding: 0 1em;
+  .inicio {
+    .internet {
+      grid-template-columns: repeat(6, 2fr);
 
-			&__planes {
-				&__item {
-					margin: 0.5em 0;
-					padding: 1em 1em 2em;
-					&:nth-child(odd),
-					&:nth-child(even) {
-						grid-column: 1/13;
-					}
-				}
+      &__banner {
+        margin: 1em 0;
+        padding: 2em;
+        grid-column: 1/9;
 
-				&__texto {
-					font-size: 1rem;
-				}
+        &__titulo {
+          line-height: 1.8rem;
+        }
 
-				&__boton {
-					font-size: 0.9rem;
-					padding:0.5em;
-				}
-			}
-		}
-	}
+        &__boton {
+          font-size: 1rem;
+        }
+      }
+
+      &__planes {
+        &__item {
+          margin: 0.5em 0;
+          padding: 1em 1em 2em;
+          &:nth-child(odd),
+          &:nth-child(even) {
+            grid-column: 1/13;
+          }
+        }
+
+        &__texto {
+          font-size: 1rem;
+        }
+
+        &__boton {
+          font-size: 0.9rem;
+          padding: 0.5em;
+        }
+      }
+    }
+  }
 }
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
@@ -105,51 +150,64 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
-	.inicio {
-		.internet {
-			padding:0;
-			&__planes {
-				&__item {
-					margin: 1em 1em 0;
-					padding: 1em 1em 2em;
-					&:nth-child(odd) {
-						grid-column: 1/7;
-					}
+  .inicio {
+    .internet {
+      &__banner {
+        margin: 1em;
 
-					&:nth-child(even) {
-						grid-column: 7/13;
-					}
-				}
-				&__texto {
-					font-size: 1.1rem;
-				}
+        &__boton {
+          font-size: 1.2rem;
+          padding: 0.75em 3em;
+        }
+      }
 
-				&__boton {
-					font-size: 1rem;
-				}
-			}
-		}
-	}
+      &__planes {
+        &__item {
+          margin: 1em 1em 0;
+          padding: 1em 1em 2em;
+          &:nth-child(odd) {
+            grid-column: 1/7;
+          }
+
+          &:nth-child(even) {
+            grid-column: 7/13;
+          }
+        }
+        &__texto {
+          font-size: 1.1rem;
+        }
+
+        &__boton {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
-	.inicio {
-		.internet {
-			grid-template-columns: repeat(12, 2fr);
+  .inicio {
+    .internet {
+      grid-template-columns: repeat(12, 2fr);
 
-			&__planes {
-				&__item {
-					margin: 1.5em;
-					padding: 1.5em 1.5em 2em;
-				}
+      &__banner {
+        margin: 1.5em 1.5em 1em;
+        grid-column: 1 / 13;
+      }
 
-				&__boton {
-					padding:0.25em;
-				}
-			}
-		}
-	}
+      &__planes {
+        &__item {
+          margin: 1.5em;
+          padding: 1.5em 1.5em 2em;
+        }
+
+        &__boton {
+          padding: 0.25em;
+        }
+      }
+    }
+  }
 }
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/

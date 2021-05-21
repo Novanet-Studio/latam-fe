@@ -1,7 +1,7 @@
 <template>
   <section class="hero">
     <div class="hero__tv">
-      <div class="hero__tv__box">
+      <a class="hero__tv__box" href="#canales">
         <div class="hero__tv__icon"></div>
         <div class="hero__tv__info">
           <h1 class="hero__tv__title">TV por cable</h1>
@@ -9,10 +9,10 @@
              Tenemos nuevos canales para disfrutar en familia.
           </p>
         </div>
-      </div>
+      </a>
     </div>
     <div class="hero__internet">
-      <div class="hero__internet__box">
+      <a class="hero__internet__box" href="/internet/">
         <div class="hero__internet__icon"></div>
         <div class="hero__internet__info">
           <h1 class="hero__internet__title">Internet por fibra</h1>
@@ -20,7 +20,7 @@
             Conexión en fibra óptica de alta velocidad para uso corporativo y residencial.
           </p>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 </template>

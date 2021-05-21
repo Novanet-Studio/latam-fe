@@ -22,6 +22,15 @@
           src="../assets/images/instagram.svg"
         />
       </li>
+      <li class="footer__link">
+        <a class="footer__whatsapp" href="https://wa.me/message/7RLTG6FD5P6TJ1" target="_blank">
+          <img
+            class="footer__icon"
+            alt="whatsapp logo"
+            src="../assets/images/whatsapp.svg"
+          />
+        </a>
+      </li>
     </ul>
     <p class="footer__legal">Derechos reservados 2021</p>
     <div class="footer__autor">

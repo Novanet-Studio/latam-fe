@@ -27,8 +27,8 @@
 			}
 
 			&__boton {
-				margin: 0 3em;
-				padding: 0.75em;
+				margin: 0 auto;
+				padding: 0.75em 3em;
 				font-size: 1.2rem;
 				@include boton-a($color: $azul, $bg: $verde);
 			}
@@ -53,23 +53,14 @@
 
 				&__boton {
 					font-size: 1rem;
-					margin: 0;
 				}
 			}
 		}
 	}
 }
+
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
 @include responsive(35.5em) {
-	.inicio {
-		.tv {
-			&__banner {
-				&__boton {
-					margin: 0 3em;
-				}
-			}
-		}
-	}
 
 	/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 	@include responsive(48em) {
@@ -83,7 +74,7 @@
 					grid-column: 2/9;
 					&__boton {
 						font-size: 1.2rem;
-						margin: 0em;
+						padding: 0.75em 2em;
 					}
 				}
 			}
@@ -97,7 +88,7 @@
 				grid-template-columns: repeat(8, 2fr);
 				&__banner {
 					&__boton {
-						margin: 0 3em;
+						padding: 0.75em 3em;
 					}
 				}
 			}
