@@ -96,7 +96,6 @@ import var12 from '../assets/images/canales/musicales/telehit_logo.png'
 
 
 export const deportivos = [
-  { image: dep1 },
   { image: dep2 },
   { image: dep3 },
   { image: dep4 },
@@ -120,17 +119,11 @@ export const internacionales = [
   { image: fam9 },
   { image: fam10 },
   { image: fam11 },
-  { image: fam12 },
-  { image: fam13 },
   { image: fam14 },
-  { image: fam15 },
-  { image: fam16 },
   { image: fam17 },
-  { image: fam18 },
   { image: fam19 },
   { image: fam20 },
   { image: fam21 },
-  { image: fam22 },
 ]
 
 export const infantiles = [
@@ -144,8 +137,6 @@ export const infantiles = [
   { image: inf8 },
   { image: inf9 },
 ]
-
-export const musicales = []
 
 export const nacionales = [
   { image: nac1 },
@@ -166,7 +157,6 @@ export const nacionales = [
 export const syp = [
   { image: syp1 },
   { image: syp2 },
-  { image: syp3 },
   { image: syp4 },
   { image: syp5 },
   { image: syp6 },
@@ -208,7 +198,6 @@ export const variedades = [
 export default (deportivos,
 internacionales,
 infantiles,
-musicales,
 nacionales,
 syp,
 variedades)
