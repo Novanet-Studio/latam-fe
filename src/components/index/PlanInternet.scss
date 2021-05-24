@@ -21,17 +21,32 @@
       border-radius: 1em;
       justify-content: space-around;
       align-content: center;
-      @include section-background($image: 'latinamericancable-tv-plan.jpg');
+      position: relative;
+      &::before {
+        content: '';
+        @include section-background(
+          $image: 'latinamericancable-internet-banner.jpg'
+        );
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0.3;
+        z-index: -1;
+        border-radius: 1em;
+        box-sizing: border-box;
+      }
 
       &__titulo {
         text-align: center;
-        color: white;
+        color: $azul;
         line-height: 2rem;
       }
 
       &__texto {
         text-align: center;
-        color: white;
+        color: $azul;
         margin-bottom: 1em;
       }
 
@@ -193,6 +208,7 @@
 
       &__banner {
         margin: 1.5em 1.5em 1em;
+        padding: 2.5em 4em 3em;
         grid-column: 1 / 13;
       }
 

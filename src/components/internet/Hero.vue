@@ -1,7 +1,11 @@
 <template>
   <section class="hero">
     <div class="hero__internet">
-      <div class="hero__internet__box">
+      <a
+        class="hero__internet__box"
+        href="https://190.216.243.210:8822/"
+        target="_blank"
+      >
         <div class="hero__internet__icon"></div>
         <div class="hero__internet__info">
           <h1 class="hero__internet__title">
@@ -11,7 +15,7 @@
             Administra y todo lo relacionado con el servicio de internet.
           </p>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 </template>

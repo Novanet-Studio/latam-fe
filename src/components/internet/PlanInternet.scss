@@ -63,10 +63,12 @@
       }
 
       &__subtitulo {
-        font-size: 1.2rem;
-        margin: 0 0 0.3em 0;
+        display: inline-block;
+        padding: 0.25em 1.25em;
+        margin: 0 0 0.7em 0;
         font-style: normal;
-        color: $azul;
+        font-size: 1rem;
+        @include boton-a($color: $verde, $bg: $azul-2);
       }
 
       &__texto {
@@ -123,6 +125,11 @@
         &__cabecera {
           padding: 1em;
           min-height: auto;
+        }
+
+        &__subtitulo {
+          font-size: 0.9rem;
+          padding: 0.5em 2.2em;
         }
 
         &__lista {
@@ -191,6 +198,10 @@
           min-height: 10em;
         }
 
+        &__subtitulo {
+          padding: 0.25em 1.25em;
+        }
+
         &__texto {
           font-size: 1.1rem;
         }
@@ -211,6 +222,9 @@
       &__planes {
         &__item {
           margin: 1.5em;
+        }
+        &__subtitulo {
+          font-size: 1rem;
         }
         &__cabecera {
           min-height: 8.5em;
