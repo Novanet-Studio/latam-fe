@@ -126,6 +126,9 @@
         margin: 1em 0;
         padding: 2em;
         grid-column: 1/9;
+        &::before {
+          background-image: url('../../assets/images/latinamericancable-internet-banner-mob-por.jpg');
+        }
 
         &__titulo {
           line-height: 1.8rem;
@@ -144,6 +147,16 @@
           &:nth-child(even) {
             grid-column: 1/13;
           }
+          &:nth-child(odd) {
+            &::before {
+              background-image: url('../../assets/images/latinamericancable-internet-corporativo-mob-por.jpg');
+            }
+          }
+          &:nth-child(even) {
+            &::before {
+              background-image: url('../../assets/images/latinamericancable-internet-residencial-mob-por.jpg');
+            }
+          }
         }
 
         &__texto {
@@ -161,6 +174,30 @@
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
 @include responsive(35.5em) {
+  .inicio {
+    .internet {
+      &__banner {
+        &::before {
+          background-image: url('../../assets/images/latinamericancable-internet-banner-mob-lan.jpg');
+        }
+      }
+
+      &__planes {
+        &__item {
+          &:nth-child(odd) {
+            &::before {
+              background-image: url('../../assets/images/latinamericancable-internet-corporativo-mob-lan.jpg');
+            }
+          }
+          &:nth-child(even) {
+            &::before {
+              background-image: url('../../assets/images/latinamericancable-internet-residencial-mob-lan.jpg');
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
@@ -169,7 +206,9 @@
     .internet {
       &__banner {
         margin: 1em;
-
+        &::before {
+          background-image: url('../../assets/images/latinamericancable-internet-banner-tab-por.jpg');
+        }
         &__boton {
           font-size: 1.2rem;
           padding: 0.75em 3em;
@@ -182,10 +221,16 @@
           padding: 1em 1em 2em;
           &:nth-child(odd) {
             grid-column: 1/7;
+            &::before {
+              background-image: url('../../assets/images/latinamericancable-internet-corporativo-tab-por.jpg');
+            }
           }
 
           &:nth-child(even) {
             grid-column: 7/13;
+            &::before {
+              background-image: url('../../assets/images/latinamericancable-internet-residencial-tab-por.jpg');
+            }
           }
         }
         &__texto {
@@ -210,12 +255,26 @@
         margin: 1.5em 1.5em 1em;
         padding: 2.5em 4em 3em;
         grid-column: 1 / 13;
+        &::before {
+          background-image: url('../../assets/images/latinamericancable-internet-banner-tab-lan.jpg');
+        }
       }
 
       &__planes {
         &__item {
           margin: 1.5em;
           padding: 1.5em 1.5em 2em;
+          &:nth-child(odd) {
+            &::before {
+              background-image: url('../../assets/images/latinamericancable-internet-corporativo-tab-lan.jpg');
+            }
+          }
+
+          &:nth-child(even) {
+            &::before {
+              background-image: url('../../assets/images/latinamericancable-internet-residencial-tab-lan.jpg');
+            }
+          }
         }
 
         &__boton {
@@ -228,6 +287,35 @@
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
+  .inicio {
+    .internet {
+      &__banner {
+        &::before {
+          background-image: url('../../assets/images/latinamericancable-internet-banner.jpg');
+        }
+      }
+
+      &__planes {
+        &__item {
+          &:nth-child(odd) {
+            &::before {
+              background-image: url('../../assets/images/latinamericancable-internet-corporativo.jpg');
+            }
+          }
+
+          &:nth-child(even) {
+            &::before {
+              background-image: url('../../assets/images/latinamericancable-internet-residencial.jpg');
+            }
+          }
+        }
+
+        &__boton {
+          padding: 0.25em;
+        }
+      }
+    }
+  }
 }
 
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/

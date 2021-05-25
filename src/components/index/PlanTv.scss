@@ -96,7 +96,7 @@
 				grid-column: 7 / 13;
 				grid-template-columns: repeat(8, 2fr);
 				&__banner {
-					background-image: url('../../assets/images/latinamericancable-tv-plan.jpg');
+					background-image: url('../../assets/images/latinamericancable-tv-plan-tab-lan.jpg');
 					&__boton {
 						padding: 0.75em 3em;
 					}
@@ -109,6 +109,7 @@
 		.tv {
 			margin: 0;
 			&__banner {
+				background-image: url('../../assets/images/latinamericancable-tv-plan.jpg');
 				padding: 2.5em 4em 3em;
 			}
 		}

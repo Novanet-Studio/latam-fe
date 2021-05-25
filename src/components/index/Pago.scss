@@ -96,7 +96,7 @@
 	.inicio {
 		.pago {
 			&::before {
-				background-image: url('../../assets/images/latinamericancable-pago.jpg');
+				background-image: url('../../assets/images/latinamericancable-pago-tab-lan.jpg');
 			}
 		}
 	}
@@ -104,6 +104,13 @@
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
+	.inicio {
+		.pago {
+			&::before {
+				background-image: url('../../assets/images/latinamericancable-pago.jpg');
+			}
+		}
+	}
 }
 
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
