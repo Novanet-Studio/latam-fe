@@ -8,7 +8,6 @@
       height: 28em;
       @include grid-structure($columns: 8);
       align-content: flex-end;
-      background-size: cover;
     }
 
     &__tv {
@@ -21,7 +20,6 @@
       box-sizing: border-box;
       border-radius: 1em 0 0 0;
       
-
       &__box {
         @include hero-box($bg: $azul, $gridarea: 'box-tv');
         margin-bottom: 2em;
@@ -46,13 +44,14 @@
           $color: '#fff',
           $lineheight: unset
         );
+        line-height:1.3rem
       }
     }
 
     &__internet {
       grid-area: internet;
       grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
-      @include section-background($image: 'latinamericancable-internet-mob-por.jpg');
+      @include section-background($image: 'latinamericancable-internet.jpg');
       border: 3px;
       border-style: none none none solid;
       border-color: white;
@@ -83,6 +82,7 @@
           $color: $gris,
           $lineheight: unset
         );
+        line-height:1.3rem
       }
     }
   }
@@ -109,7 +109,8 @@
         border-radius: 1em 1em 0 0;
         grid-template-areas: '. box-tv box-tv box-tv box-tv box-tv box-tv .';
         border-style: none;
-		  @include section-background($image: 'latinamericancable-tv-mob-por.jpg');
+        background-image: url('../../assets/images/latinamericancable-tv-mob-por.jpg');
+
         &__icon {
           width: 4.5em;
           height: 4.5em;
@@ -124,6 +125,8 @@
         border-radius: 0 0 0 0;
         grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
         border-style: none;
+        background-image: url('../../assets/images/latinamericancable-internet-mob-por.jpg');
+
         &__icon {
           width: 4.5em;
           height: 4.5em;
@@ -163,6 +166,7 @@
       &__internet {
         border-radius: 0 1em 0 0;
         border-style: none none none solid;
+
         &__text {
           font-size: 0.8rem;
           line-height: 1rem;
@@ -181,6 +185,14 @@
           padding: 1em 0;
         }
       }
+
+      &__tv {
+        background-image: url('../../assets/images/latinamericancable-tv-tab-por.jpg');
+      }
+
+      &__internet {
+        background-image: url('../../assets/images/latinamericancable-internet-tab-por.jpg');
+      }
     }
   }
 }
@@ -196,6 +208,8 @@
       }
 
       &__tv {
+        background-image: url('../../assets/images/latinamericancable-tv.jpg');
+
         &__icon {
           width: 6em;
           height: 6em;
@@ -208,6 +222,8 @@
       }
 
       &__internet {
+        background-image: url('../../assets/images/latinamericancable-internet.jpg');
+
         &__icon {
           width: 6em;
           height: 6em;

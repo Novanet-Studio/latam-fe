@@ -51,6 +51,10 @@
 			grid-template-columns: repeat(6, 2fr);
 			grid-template-areas: '. icon icon icon icon .' '. boton boton boton boton .';
 
+			&::before {
+				background-image: url('../../assets/images/latinamericancable-pago-mob-por.jpg');
+			}
+
 			&__boton {
 				font-size: 1rem;
 			}
@@ -60,6 +64,13 @@
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
 @include responsive(35.5em) {
+	.inicio {
+		.pago {
+			&::before {
+				background-image: url('../../assets/images/latinamericancable-pago-mob-lan.jpg');
+			}
+		}
+	}
 }
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
@@ -68,6 +79,10 @@
 		.pago {
 			grid-template-columns: repeat(12, 2fr);
 			grid-template-areas: '. . . . icon icon icon icon . . . .' '. . . . boton boton boton boton . . . .';
+
+			&::before {
+				background-image: url('../../assets/images/latinamericancable-pago-tab-por.jpg');
+			}
 
 			&__boton {
 				font-size: 1.2rem;
@@ -78,6 +93,13 @@
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
+	.inicio {
+		.pago {
+			&::before {
+				background-image: url('../../assets/images/latinamericancable-pago.jpg');
+			}
+		}
+	}
 }
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
