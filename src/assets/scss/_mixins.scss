@@ -32,14 +32,13 @@
 }
 
 @mixin section-background-opacity($image) {
-  @include section-background-opacity-common(); 
+  @include section-background-opacity-common();
   background-image: url('../../assets/images/#{$image}');
 }
 
 @mixin section-background-opacity-a($image) {
-  @include section-background-opacity-common(); 
+  @include section-background-opacity-common();
   background-image: url('../assets/images/#{$image}');
-  
 }
 
 @mixin hero-box($bg: $bg, $gridarea: $gridarea) {

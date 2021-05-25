@@ -1,234 +1,246 @@
 .inicio {
-	.hero {
-		@include grid-structure($columns: 12);
-		grid-area: hero;
-		grid-template-areas: 'tv tv tv tv tv tv internet internet internet internet internet internet';
+  .hero {
+    @include grid-structure($columns: 12);
+    grid-area: hero;
+    grid-template-areas: 'tv tv tv tv tv tv internet internet internet internet internet internet';
 
-		& > div {
-			height: 28em;
-			@include grid-structure($columns: 8);
-			align-content: flex-end;
-			background-size: cover;		
-		}
+    & > div {
+      height: 28em;
+      @include grid-structure($columns: 8);
+      align-content: flex-end;
+      background-size: cover;
+    }
 
-		&__tv {
-			grid-area: tv;
-			grid-template-areas: '. box-tv box-tv box-tv box-tv box-tv box-tv .';
-			@include section-background($image: 'latinamericancable-tv.jpg');
-			border: 3px;
-			border-style: none solid none none;
-			border-color: white;
-			box-sizing: border-box;
-			border-radius: 1em 0 0 0;
-			&__box {
-				@include hero-box($bg: $azul, $gridarea:'box-tv');
-				margin-bottom: 2em;
-			}
-			&__icon {
-				@include hero-box-icon(
-					$image: 'latinamerican-control-icon.svg',
-					$fillColor: $verde,
-					$width: 5em
-				);
-			}
-			&__info {
-				@include hero-box-icon-info();
-			}
-			&__title {
-				grid-area: title;
-				color: $verde;
-			}
-			&__text {						
-				@include hero-box-icon-info-text($fontsize: 1rem, $color: '#fff', $lineheight: unset)
-			}
-		}
+    &__tv {
+      grid-area: tv;
+      grid-template-areas: '. box-tv box-tv box-tv box-tv box-tv box-tv .';
+      @include section-background($image: 'latinamericancable-tv.jpg');
+      border: 3px;
+      border-style: none solid none none;
+      border-color: white;
+      box-sizing: border-box;
+      border-radius: 1em 0 0 0;
+      
 
-		&__internet {
-			grid-area: internet;
-			grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
-			@include section-background($image: 'latinamericancable-internet.jpg');
-			border: 3px;
-			border-style: none none none solid;
-			border-color: white;
-			box-sizing: border-box;
-			border-radius: 0 1em 0 0;
+      &__box {
+        @include hero-box($bg: $azul, $gridarea: 'box-tv');
+        margin-bottom: 2em;
+      }
+      &__icon {
+        @include hero-box-icon(
+          $image: 'latinamerican-control-icon.svg',
+          $fillColor: $verde,
+          $width: 5em
+        );
+      }
+      &__info {
+        @include hero-box-icon-info();
+      }
+      &__title {
+        grid-area: title;
+        color: $verde;
+      }
+      &__text {
+        @include hero-box-icon-info-text(
+          $fontsize: 1rem,
+          $color: '#fff',
+          $lineheight: unset
+        );
+      }
+    }
 
-			&__box {
-				@include hero-box($bg: $verde, $gridarea:'box-internet');
-				margin-bottom: 2em;
-			}
-			&__icon {
-				@include hero-box-icon(
-					$image: 'latinamerican-wifi-icon.svg',
-					$fillColor: $azul,
-					$width: 4em
-				);
-			}
-			&__info {
-				@include hero-box-icon-info();
-			}
-			&__title {
-				grid-area: title;
-				color: $azul;
-			}
-			&__text {
-				@include hero-box-icon-info-text($fontsize: 1rem, $color: $gris, $lineheight: unset)
-			}
-		}
-	}
+    &__internet {
+      grid-area: internet;
+      grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
+      @include section-background($image: 'latinamericancable-internet-mob-por.jpg');
+      border: 3px;
+      border-style: none none none solid;
+      border-color: white;
+      box-sizing: border-box;
+      border-radius: 0 1em 0 0;
+
+      &__box {
+        @include hero-box($bg: $verde, $gridarea: 'box-internet');
+        margin-bottom: 2em;
+      }
+      &__icon {
+        @include hero-box-icon(
+          $image: 'latinamerican-wifi-icon.svg',
+          $fillColor: $azul,
+          $width: 4em
+        );
+      }
+      &__info {
+        @include hero-box-icon-info();
+      }
+      &__title {
+        grid-area: title;
+        color: $azul;
+      }
+      &__text {
+        @include hero-box-icon-info-text(
+          $fontsize: 1rem,
+          $color: $gris,
+          $lineheight: unset
+        );
+      }
+    }
+  }
 }
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
-	.inicio {
-		.hero {
-			grid-template-columns: repeat(8, 2fr);
-			grid-template-areas: 'tv tv tv tv tv tv tv tv'
-				'internet internet internet internet internet internet internet internet';
+  .inicio {
+    .hero {
+      grid-template-columns: repeat(8, 2fr);
+      grid-template-areas:
+        'tv tv tv tv tv tv tv tv'
+        'internet internet internet internet internet internet internet internet';
 
-			& > div {
-				& > div {
-					padding: 0.75em 1.2em 0.75em 0.75em;
-					min-height: 7em;
-				}
-			}
+      & > div {
+        & > div {
+          padding: 0.75em 1.2em 0.75em 0.75em;
+          min-height: 7em;
+        }
+      }
 
-			&__tv {
-				margin: 0 0 0.4em 0;
-				border-radius: 1em 1em 0 0;
-				grid-template-areas: '. box-tv box-tv box-tv box-tv box-tv box-tv .';
-				border-style: none;
-				&__icon {
-					width: 4.5em;
-					height: 4.5em;
-					background-size: 4em;
-				}
-				&__text {
-					line-height: 1.2rem;
-				}
-			}
+      &__tv {
+        margin: 0 0 0.4em 0;
+        border-radius: 1em 1em 0 0;
+        grid-template-areas: '. box-tv box-tv box-tv box-tv box-tv box-tv .';
+        border-style: none;
+		  @include section-background($image: 'latinamericancable-tv-mob-por.jpg');
+        &__icon {
+          width: 4.5em;
+          height: 4.5em;
+          background-size: 4em;
+        }
+        &__text {
+          line-height: 1.2rem;
+        }
+      }
 
-			&__internet {
-				border-radius: 0 0 0 0;
-				grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
-				border-style: none;
-				&__icon {
-					width: 4.5em;
-					height: 4.5em;
-					background-size: 3em;
-				}
-				&__text {
-					line-height: 1.2rem;
-				}
-			}
-		}
-	}
+      &__internet {
+        border-radius: 0 0 0 0;
+        grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
+        border-style: none;
+        &__icon {
+          width: 4.5em;
+          height: 4.5em;
+          background-size: 3em;
+        }
+        &__text {
+          line-height: 1.2rem;
+        }
+      }
+    }
+  }
 }
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
 @include responsive(35.5em) {
-	.inicio {
-		.hero {
-			grid-template-columns: repeat(6, 2fr);
-			grid-template-areas: 'tv tv tv internet internet internet';
+  .inicio {
+    .hero {
+      grid-template-columns: repeat(6, 2fr);
+      grid-template-areas: 'tv tv tv internet internet internet';
 
-			& > div {
-				& > div {
-					min-height: 8em;
-				}
-			}
+      & > div {
+        & > div {
+          min-height: 8em;
+        }
+      }
 
-			&__tv {
-				border-radius: 1em 0 0 0;
-				margin: 0;
-				border-style: none solid none none;
-				&__text {
-					font-size: 0.8rem;
-					line-height: 1rem;
-				}
-			}
+      &__tv {
+        border-radius: 1em 0 0 0;
+        margin: 0;
+        border-style: none solid none none;
+        &__text {
+          font-size: 0.8rem;
+          line-height: 1rem;
+        }
+      }
 
-			&__internet {
-				border-radius: 0 1em 0 0;
-				border-style: none none none solid;
-				&__text {
-					font-size: 0.8rem;
-					line-height: 1rem;
-				}
-			}
-		}
-	}
+      &__internet {
+        border-radius: 0 1em 0 0;
+        border-style: none none none solid;
+        &__text {
+          font-size: 0.8rem;
+          line-height: 1rem;
+        }
+      }
+    }
+  }
 }
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
-	.inicio {
-		.hero {
-			& > div {
-				& > div {
-					padding: 1em 0;
-				}
-			}
-		}
-	}
+  .inicio {
+    .hero {
+      & > div {
+        & > div {
+          padding: 1em 0;
+        }
+      }
+    }
+  }
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
-	.inicio {
-		.hero {
-			& > div {
-				& > div {
-					padding: 1em;
-				}
-			}
+  .inicio {
+    .hero {
+      & > div {
+        & > div {
+          padding: 1em;
+        }
+      }
 
-			&__tv {
-				&__icon {
-					width: 6em;
-					height: 6em;
-					background-size: 5em;
-				}
-				&__text {
-					font-size: 1rem;
-					line-height: 1.3rem;
-				}
-			}
+      &__tv {
+        &__icon {
+          width: 6em;
+          height: 6em;
+          background-size: 5em;
+        }
+        &__text {
+          font-size: 1rem;
+          line-height: 1.3rem;
+        }
+      }
 
-			&__internet {
-				&__icon {
-					width: 6em;
-					height: 6em;
-					background-size: 4em;
-				}
-				&__text {
-					font-size: 1rem;
-					line-height: 1.3rem;
-				}
-			}
-		}
-	}
+      &__internet {
+        &__icon {
+          width: 6em;
+          height: 6em;
+          background-size: 4em;
+        }
+        &__text {
+          font-size: 1rem;
+          line-height: 1.3rem;
+        }
+      }
+    }
+  }
 }
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
-	.inicio {
-		.hero {
-			grid-template-columns: repeat(12, 2fr);
-			grid-template-areas: 'tv tv tv tv tv tv internet internet internet internet internet internet';
-			&__tv {
-				&__text {
-					padding-top: 0.25em;
-				}
-			}
+  .inicio {
+    .hero {
+      grid-template-columns: repeat(12, 2fr);
+      grid-template-areas: 'tv tv tv tv tv tv internet internet internet internet internet internet';
+      &__tv {
+        &__text {
+          padding-top: 0.25em;
+        }
+      }
 
-			&__internet {
-				&__text {
-					padding-top: 0.25em;
-				}
-			}
-		}
-	}
+      &__internet {
+        &__text {
+          padding-top: 0.25em;
+        }
+      }
+    }
+  }
 }
 
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
