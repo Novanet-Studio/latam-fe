@@ -15,7 +15,7 @@
   &__tipo {
     @include grid-structure($columns: 12);
     grid-column: 1 / 13;
-    margin-top:0.5em;
+    margin-top: 0.5em;
 
     &__item {
       @include item-radius;
@@ -63,6 +63,18 @@
         &:nth-child(even) {
           grid-column: 1/13;
         }
+
+        &:nth-child(odd) {
+          &::before {
+            background-image: url('../../assets/images/latinamericancable-reporte-3tv-mob-por.jpg');
+          }
+        }
+
+        &:nth-child(even) {
+          &::before {
+            background-image: url('../../assets/images/latinamericancable-reporte-4tv-mob-por.jpg');
+          }
+        }
       }
       &__texto {
         font-size: 1rem;
@@ -77,13 +89,19 @@
     &__tipo {
       &__item {
         margin: 0 1.5em;
-  
+
         &:nth-child(odd) {
           grid-column: 1 / 7;
+          &::before {
+            background-image: url('../../assets/images/latinamericancable-reporte-3tv-mob-lan.jpg');
+          }
         }
-  
+
         &:nth-child(even) {
           grid-column: 7 / 13;
+          &::before {
+            background-image: url('../../assets/images/latinamericancable-reporte-4tv-mob-lan.jpg');
+          }
         }
       }
     }
@@ -93,12 +111,24 @@
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
   .tarifas {
-    padding:0;
+    padding: 0;
 
     &__tipo {
       &__item {
         margin: 1em 1em 0;
         padding: 1em 1em 2em;
+
+        &:nth-child(odd) {
+          &::before {
+            background-image: url('../../assets/images/latinamericancable-reporte-3tv-tab-por.jpg');
+          }
+        }
+
+        &:nth-child(even) {
+          &:before {
+            background-image: url('../../assets/images/latinamericancable-reporte-4tv-tab-por.jpg');
+          }
+        }
       }
 
       &__texto {
@@ -110,20 +140,49 @@
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
 @include responsive(64em) {
-		.tarifas {
-			grid-template-columns: repeat(12, 2fr);
+  .tarifas {
+    grid-template-columns: repeat(12, 2fr);
 
-			&__tipo {
-				&__item {
-					margin: 1.5em;
-					padding: 1.5em 1.5em 2em;
-				}
-			}
-		}
+    &__tipo {
+      &__item {
+        margin: 1.5em;
+        padding: 1.5em 1.5em 2em;
+
+        &:nth-child(odd) {
+          &::before {
+            background-image: url('../../assets/images/latinamericancable-reporte-3tv-tab-lan.jpg');
+          }
+        }
+
+        &:nth-child(even) {
+          &:before {
+            background-image: url('../../assets/images/latinamericancable-reporte-4tv-tab-lan.jpg');
+          }
+        }
+      }
+    }
+  }
 }
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
+  .tarifas {
+    &__tipo {
+      &__item {
+        &:nth-child(odd) {
+          &::before {
+            background-image: url('../../assets/images/latinamericancable-reporte-3tv.jpg');
+          }
+        }
+
+        &:nth-child(even) {
+          &:before {
+            background-image: url('../../assets/images/latinamericancable-reporte-4tv.jpg');
+          }
+        }
+      }
+    }
+  }
 }
 
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/

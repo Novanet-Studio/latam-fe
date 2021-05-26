@@ -56,8 +56,8 @@
       &__mensaje {
         border-radius: 0 0 0 0;
         grid-template-areas: '. box-mensaje box-mensaje box-mensaje box-mensaje box-mensaje box-mensaje .';
-        align-content:start;
-        margin-top:2em;
+        align-content: end;
+        margin-bottom: 2em;
         &__box {
           padding: 0.75em 1.2em 0.75em 0.75em;
         }
@@ -84,8 +84,8 @@
       background-image: url('../../assets/images/latinamericancable-contacto-mob-lan.jpg');
 
       &__mensaje {
-        align-content:center;
-        margin-top:0;
+        align-content: center;
+        margin-bottom: 0;
         &__text {
           font-size: 0.8rem;
           line-height: 1rem;
