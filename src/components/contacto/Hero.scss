@@ -51,10 +51,13 @@
     .hero {
       grid-template-columns: repeat(8, 2fr);
       grid-template-areas: 'mensaje mensaje mensaje mensaje mensaje mensaje mensaje mensaje';
+      background-image: url('../../assets/images/latinamericancable-contacto-mob-por.jpg');
 
       &__mensaje {
         border-radius: 0 0 0 0;
         grid-template-areas: '. box-mensaje box-mensaje box-mensaje box-mensaje box-mensaje box-mensaje .';
+        align-content:start;
+        margin-top:2em;
         &__box {
           padding: 0.75em 1.2em 0.75em 0.75em;
         }
@@ -78,8 +81,11 @@
     .hero {
       grid-template-columns: repeat(6, 2fr);
       grid-template-areas: '. . mensaje mensaje mensaje mensaje';
+      background-image: url('../../assets/images/latinamericancable-contacto-mob-lan.jpg');
 
       &__mensaje {
+        align-content:center;
+        margin-top:0;
         &__text {
           font-size: 0.8rem;
           line-height: 1rem;
@@ -94,6 +100,7 @@
   .contacto {
     .hero {
       grid-template-areas: '. . . mensaje mensaje mensaje';
+      background-image: url('../../assets/images/latinamericancable-contacto-tab-por.jpg');
 
       &__mensaje {
         &__box {
@@ -108,6 +115,8 @@
 @include responsive(64em) {
   .contacto {
     .hero {
+      background-image: url('../../assets/images/latinamericancable-contacto-tab-lan.jpg');
+
       &__mensaje {
         &__box {
           padding: 1em;
@@ -132,6 +141,8 @@
     .hero {
       grid-template-columns: repeat(12, 2fr);
       grid-template-areas: '. . . . . . mensaje mensaje mensaje mensaje mensaje mensaje';
+      background-image: url('../../assets/images/latinamericancable-contacto.jpg');
+
       &__mensaje {
         &__text {
           padding-top: 0.25em;

@@ -48,8 +48,12 @@
 		.hero {
 			grid-template-columns: repeat(8, 2fr);
 			grid-template-areas: 'pago pago pago pago pago pago pago pago';
+			background-image: url('../../assets/images/latinamericancable-reporte-mob-por.jpg');
 	
 			&__pago {
+				align-content: end;
+				margin-bottom:2em;
+
 				&__box {
 					padding: 0.75em 1.2em 0.75em 0.75em;
 					min-height: 7em;				
@@ -74,8 +78,11 @@
 		.hero {
 			grid-template-columns: repeat(6, 2fr);
 			grid-template-areas: 'pago pago pago pago . .';
+			background-image: url('../../assets/images/latinamericancable-reporte-mob-lan.jpg');
 
 			&__pago {
+				align-content: center;
+				margin-bottom:0;
 				&__text {
 					font-size: 0.8rem;
 					line-height: 1rem;
@@ -90,6 +97,7 @@
 	.reporte {
 		.hero {
 			grid-template-areas: 'pago pago pago . . .';
+			background-image: url('../../assets/images/latinamericancable-reporte-tab-por.jpg');
 
 			&__pago {
 				&__box {
@@ -104,6 +112,8 @@
 @include responsive(64em) {
 	.reporte {
 		.hero {
+			background-image: url('../../assets/images/latinamericancable-reporte-tab-lan.jpg');
+
 			&__pago {
 				&__box {
 					padding: 1em;
@@ -128,6 +138,7 @@
 		.hero {
 			grid-template-columns: repeat(12, 2fr);
 			grid-template-areas: 'pago pago pago pago pago pago . . . . . .';
+			background-image: url('../../assets/images/latinamericancable-reporte.jpg');
 	
 			&__pago {
 				&__text {

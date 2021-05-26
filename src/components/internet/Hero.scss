@@ -4,7 +4,7 @@
 		grid-area: hero;
 		grid-template-areas: '. . . . . . internet internet internet internet internet internet';
 		border-radius: 1em 1em 0 0;
-		@include section-background($image: 'latinamericancable-internet.jpg');
+		@include section-background($image: 'latinamericancable-vista-internet.jpg');
 
 		& > div {
 			@include grid-structure($columns: 8);
@@ -47,8 +47,11 @@
 		.hero {
 			grid-template-columns: repeat(8, 2fr);
 			grid-template-areas: 'internet internet internet internet internet internet internet internet';
+			background-image: url('../../assets/images/latinamericancable-vista-internet-mob-por.jpg');
 
 			&__internet {
+				align-content: end;
+				margin-bottom: 2em;
 				&__box {
 					padding: 0.75em 1.2em 0.75em 0.75em;
 					min-height: 7em;
@@ -72,8 +75,11 @@
 		.hero {
 			grid-template-columns: repeat(6, 2fr);
 			grid-template-areas: '. . internet internet internet internet';
+			background-image: url('../../assets/images/latinamericancable-vista-internet-mob-lan.jpg');
 
 			&__internet {
+				align-content:center;
+				margin-bottom:0;
 				&__text {
 					font-size: 0.8rem;
 					line-height: 1rem;
@@ -88,6 +94,7 @@
 	.internetvista {
 		.hero {
 			grid-template-areas: '. . . internet internet internet';
+			background-image: url('../../assets/images/latinamericancable-vista-internet-tab-por.jpg');
 
 			&__internet {
 				&__box {
@@ -102,6 +109,8 @@
 @include responsive(64em) {
 	.internetvista {
 		.hero {
+			background-image: url('../../assets/images/latinamericancable-vista-internet-tab-lan.jpg');
+
 			&__internet {
 				&__box {
 					padding: 1em;
@@ -126,6 +135,8 @@
 		.hero {
 			grid-template-columns: repeat(12, 2fr);
 			grid-template-areas: '. . . . . . internet internet internet internet internet internet';
+			background-image: url('../../assets/images/latinamericancable-vista-internet.jpg');
+
 			&__internet {
 				&__text {
 					padding-top: 0.25em;
