@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'PagoSection',
+  name: 'Pago',
 }
 
 import './Pago.scss'

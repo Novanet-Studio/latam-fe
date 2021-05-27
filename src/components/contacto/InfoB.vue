@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'Información contacto',
+  name: 'Información',
 }
 
 import './InfoB.scss'

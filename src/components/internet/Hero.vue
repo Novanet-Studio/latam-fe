@@ -9,10 +9,10 @@
         <div class="hero__internet__icon"></div>
         <div class="hero__internet__info">
           <h1 class="hero__internet__title">
-            Ingresa al sistema de gestion de internet
+            Acceso al sistema de gestion de internet
           </h1>
           <p class="hero__internet__text">
-            Administra y todo lo relacionado con el servicio de internet.
+            Haz click aquí para entrar
           </p>
         </div>
       </a>

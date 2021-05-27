@@ -26,6 +26,7 @@ import {
 } from '../../data/categorias'
 
 export default {
+  name: 'Canales',
   components: {
     Categoria,
     VsaList,

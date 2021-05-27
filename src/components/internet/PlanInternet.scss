@@ -62,16 +62,15 @@
         color: $azul-3;
       }
 
-      &__subtitulo {
-        display: inline-block;
-        padding: 0.25em 1.25em;
-        margin: 0 0 0.7em 0;
-        font-style: normal;
+      &__subtitulo {        
+        padding:2em 3em;
         font-size: 1rem;
+        font-style: normal; 
         @include boton-a($color: $verde, $bg: $azul-2);
       }
 
       &__texto {
+        grid-column: 1 / 7;
         font-size: 1.1rem;
         line-height: 1.5rem;
         color: $azul-2;
@@ -83,7 +82,7 @@
         grid-template-columns: repeat(2, 2fr);
       }
 
-      &__velocidades {
+      &__velocidades {        
         padding: 1.5em;
         &:nth-child(odd) {
           border-right: 5px solid $verde;
@@ -95,6 +94,7 @@
       }
 
       &__boton {
+        @include grid-structure($columns: 6);        
         cursor: pointer;
         text-decoration: none;
       }
@@ -128,8 +128,10 @@
         }
 
         &__subtitulo {
-          font-size: 0.9rem;
-          padding: 0.5em 2.2em;
+          font-size: 1rem;
+          padding: 0.25em 0.8em;
+       
+        
         }
 
         &__lista {
@@ -198,8 +200,8 @@
           min-height: 10em;
         }
 
-        &__subtitulo {
-          padding: 0.25em 1.25em;
+        &__subtitulo {      
+          padding: 0.25em 0.8em;
         }
 
         &__texto {
@@ -224,7 +226,7 @@
           margin: 1.5em;
         }
         &__subtitulo {
-          font-size: 1rem;
+          padding: 0.25em 0.8em;
         }
         &__cabecera {
           min-height: 8.5em;
@@ -247,6 +249,9 @@
       &__planes {
         &__cabecera {
           min-height: 7em;
+        }
+        &__subtitulo {
+          padding: 0.25em 0.8em;
         }
       }
     }

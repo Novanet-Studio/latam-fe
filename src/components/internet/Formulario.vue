@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  name: 'Formulario Internet',
+  name: 'Formulario',
 }
 
 import './Formulario.scss' 

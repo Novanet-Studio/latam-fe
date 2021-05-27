@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'HeroSection',
+  name: 'Hero',
 }
 
 import './Hero.scss'

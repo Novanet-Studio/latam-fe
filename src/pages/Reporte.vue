@@ -19,7 +19,7 @@ import Form from '../components/reporte/Form'
 export default {
   name: 'Reporte',
   metaInfo: {
-    title: 'Reporte',
+    title: 'Reportar pago',
   },
   components: {
     Hero,

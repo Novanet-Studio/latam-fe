@@ -22,7 +22,7 @@ export default {
   metaInfo: {
     title: 'Inicio',
     meta: [
-      { key: 'description', name: 'description', content: 'Mi mama me mima' },
+      { key: 'description', name: 'description', content: 'Servicios de TV por cable e Internet en fibra óptica de alta velocidad' },
     ],
   },
   components: {

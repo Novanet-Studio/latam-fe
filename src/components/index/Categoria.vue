@@ -23,6 +23,7 @@ import { VsaItem, VsaHeading, VsaContent, VsaIcon } from 'vue-simple-accordion'
 import 'vue-simple-accordion/dist/vue-simple-accordion.css'
 
 export default {
+  name: 'Categorias',
   props: { content: Array, titulo: String },
   components: {
     VsaItem,

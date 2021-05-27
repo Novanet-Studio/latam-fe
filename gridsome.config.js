@@ -19,8 +19,8 @@ module.exports = {
   siteName: 'Latin American Cable',
   siteUrl: 'https://www.latinamericancable.com/',
   siteDescription:
-    'Servicios de ingeniería y geociencia especializada para la construcción civil, la industria petrolera, el sector minero,atención de requerimientos de agua industriales y domésticos',
-  titleTemplate: '%s',
+    'Servicios de TV por cable e Internet en fibra óptica de alta velocidad',
+  titleTemplate: 'Latin American Cable - %s',
   icon: 'src/favicon.png',
   plugins: [
     {
@@ -40,8 +40,8 @@ module.exports = {
         themeColor: '#232a46',
         backgroundColor: '#ffffff',
         icon: 'src/favicon.png',
-        shortName: 'FyL Ingeniería', // Optional
-        description: 'FyL Ingeniería servicios', // Optional
+        shortName: 'Latin American', // Optional
+        description: 'Latin American', // Optional
         lang: 'es-ES', // Optional
         maskableIcon: true, // Optional
       },
