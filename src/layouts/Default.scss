@@ -57,6 +57,14 @@ h5 {
 		'footer footer footer footer footer footer footer footer footer footer footer footer ';
 }
 
+.fade-enter-active {
+	transition: opacity .5s;
+ }
+ 
+ .fade-enter {
+	opacity: 0;
+ }
+
 main {	
 	@include grid-structure($columns: 12);
 	grid-area: main;	

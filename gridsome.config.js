@@ -37,7 +37,7 @@ module.exports = {
         startUrl: '/',
         display: 'standalone',
         statusBarStyle: 'default',
-        themeColor: '#232a46',
+        themeColor: '#1b4685',
         backgroundColor: '#ffffff',
         icon: 'src/favicon.png',
         shortName: 'Latin American', // Optional
