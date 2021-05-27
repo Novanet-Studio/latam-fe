@@ -17,7 +17,7 @@ function addStyleResource(rule) {
 module.exports = {
   runtimeCompiler: true,
   siteName: 'Latin American Cable',
-  siteUrl: 'https://www.latinamericancable.com/',
+  siteUrl: 'https://latinamericancable.netlify.app',
   siteDescription:
     'Servicios de TV por cable e Internet en fibra óptica de alta velocidad',
   titleTemplate: 'Latin American Cable - %s',
