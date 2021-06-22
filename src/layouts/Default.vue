@@ -1,9 +1,9 @@
 <template>
   <div class="layout">
     <Header />
-    <transition name="fade" appear>
+    <transition name="fade" appear />
     <slot />
-    </transition>
+    <Whatsapp />
     <Footer />
   </div>
 </template>
@@ -18,11 +18,13 @@ query {
 
 <script>
 import Header from '~/layouts/Header'
+import Whatsapp from '~/layouts/Whatsapp'
 import Footer from '~/layouts/Footer'
 
 export default {
   components: {
     Header,
+    Whatsapp,
     Footer,
   },
 }

@@ -27,6 +27,9 @@
     border-radius: 50%;
     justify-content: center;
     align-content: center;
+    &-a {
+      margin-bottom: -0.1em;
+    }
   }
 
   &__fb {
@@ -35,10 +38,6 @@
 
   &__icon {
     width: 0.9em;
-  }
-
-  &__whatsapp {
-    margin-bottom: -0.1em;
   }
 
   &__legal {
@@ -81,6 +80,9 @@
     &__link {
       width: 1.25em;
       height: 1.25em;
+      &-a {
+        margin-bottom: 0;
+      }
     }
 
     &__rrss {
@@ -93,10 +95,6 @@
 
     &__icon {
       width: 0.7em;
-    }
-
-    &__whatsapp {
-      margin-bottom: 0;
     }
 
     &__autor {
@@ -125,6 +123,9 @@
     &__link {
       width: 1.65em;
       height: 1.65em;
+      &-a {
+        margin-bottom: -0.1em;
+      }
     }
 
     &__rrss {
@@ -137,10 +138,6 @@
 
     &__icon {
       width: 0.9em;
-    }
-
-    &__whatsapp {
-      margin-bottom: -0.1em;
     }
   }
 }

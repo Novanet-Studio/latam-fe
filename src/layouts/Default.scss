@@ -49,6 +49,7 @@ h5 {
 }
 
 .layout {
+	position: relative;
 	width: 75em;
 	margin: 0 auto;
 	@include grid-structure($columns: 12);
@@ -146,6 +147,10 @@ main {
 			margin-top: 1.95em;		
 		}
 	}
+}
+
+.none {
+	display:none;
 }
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/

@@ -77,6 +77,12 @@
   position: relative;
 }
 
+@mixin flex-center() {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+
 @mixin hero-box-icon-info-text(
   $fontsize: $fontsize,
   $color: $color,

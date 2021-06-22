@@ -1,14 +1,14 @@
 <template>
   <footer class="footer">
     <ul class="footer__rrss">
-      <li class="footer__link">
+      <li class="footer__link none">
         <img
           class="footer__fb"
           alt="Facebook logo"
           src="../assets/images/facebook.svg"
         />
       </li>
-      <li class="footer__link">
+      <li class="footer__link none">
         <img
           class="footer__icon"
           alt="Twitter logo"
@@ -16,14 +16,24 @@
         />
       </li>
       <li class="footer__link">
-        <img
-          class="footer__icon"
-          alt="Instagram logo"
-          src="../assets/images/instagram.svg"
-        />
+        <a
+          class="footer__link-a"
+          href="https://www.instagram.com/latinamericancable/"
+          target="_blank"
+        >
+          <img
+            class="footer__icon"
+            alt="Instagram logo"
+            src="../assets/images/instagram.svg"
+          />
+        </a>
       </li>
       <li class="footer__link">
-        <a class="footer__whatsapp" href="https://wa.me/message/7RLTG6FD5P6TJ1" target="_blank">
+        <a
+          class="footer__link-a"
+          href="https://wa.me/message/7RLTG6FD5P6TJ1"
+          target="_blank"
+        >
           <img
             class="footer__icon"
             alt="whatsapp logo"

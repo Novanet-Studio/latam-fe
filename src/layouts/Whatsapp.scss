@@ -1,0 +1,102 @@
+.whatsapp {
+  width: 14em;
+  position: fixed;
+  right: 2.5em;
+  bottom: 4em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: flex-end;
+  &__chat {
+    opacity: 0;
+    transition: 0.8s;
+    position: relative;
+    padding: 0.5em 1em 1.2em 1em;
+    border: 2px solid $azul;
+    background-color: white;
+    border-radius: 1em;
+    margin-bottom: 1.5em;
+    &:before {
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+      right: 0.7em;
+      bottom: -2em;
+      border: 1em solid;
+      border-color: $azul transparent transparent;
+    }
+    &:after {
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+      right: 0.93em;
+      bottom: -1.6em;
+      border: 0.8em solid;
+      border-color: white transparent transparent;
+    }
+  }
+  &:hover .whatsapp__chat {
+    opacity: 100;
+    transition:1s;
+  }
+  &__title {
+    margin-bottom: 0.5em;
+    font-style: normal;
+    font-weight: 500;
+    color: $azul-2;
+  }
+  &__button {
+    padding: 0.5em 1em;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 1.5em;
+    color: $azul;
+    background-color: $verde;
+  }
+  &__icon {
+    @include flex-center();
+    width: 3.5em;
+    height: 3.5em;
+    border-radius: 50%;
+    background-color: $azul;
+    box-shadow: 0.1em 0.1em 0.25em #222;
+    cursor: pointer;
+    &-img {
+      width: 1.5em;
+    }
+  }
+}
+
+/*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+@include responsive(20em) {
+}
+
+/*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
+@include responsive(35.5em) {
+}
+
+/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
+@include responsive(48em) {
+}
+
+/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+@include responsive(64em) {
+}
+
+/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
+@include responsive(80em) {
+}
+
+/*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
+@include responsive(90em) {
+}
+
+/*--------------------------------- Medium Large Desktop (1600px) -------------------------------*/
+@include responsive(100em) {
+}
+
+/*------------------------------------- Large Desktop (1920px) ---------------------------------*/
+@include responsive(120em) {
+}
