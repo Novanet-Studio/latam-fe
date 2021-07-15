@@ -24,6 +24,21 @@ module.exports = {
   icon: 'src/favicon.png',
   plugins: [
     {
+      use: '@gridsome/source-strapi',
+      options: {
+        apiURL:
+          process.env.NODE_ENV === 'production'
+            ? process.env.URL
+            : 'http://localhost:1337',
+        queryLimit: 1000,
+        singleTypes: ['internet', 'datos-pago', 'reportes'],
+        loginData: {
+          identifier: process.env.IDENTIFIER,
+          password: process.env.PASSWORD,
+        },
+      },
+    },
+    {
       use: 'gridsome-plugin-pwa',
       options: {
         // Service Worker Options
