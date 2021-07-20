@@ -13,6 +13,7 @@
     "clean": "rm -rf .cache /dist"
   },
   "dependencies": {
+    "@gridsome/source-strapi": "^0.2.0",
     "@mathieustan/vue-datepicker": "git+https://github.com/mathieustan/vue-datepicker.git#version/0.2.2",
     "gridsome": "^0.7.0",
     "gridsome-plugin-pwa": "^0.0.18",
