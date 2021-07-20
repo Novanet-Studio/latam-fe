@@ -1,8 +1,14 @@
 const EMAIL_REGEX = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
 
-export const validateFullName = fullname => {
-  if (!fullname.length) {
+const PHONE_REGEX = /^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/g
+
+export const validatePhone = phone => {
+  if (!phone.length) {
     return { valid: false, error: 'Este campo es requerido' }
+  }
+
+  if (!phone.match(PHONE_REGEX)) {
+    return { valid: false, error: 'Por favor, ingrese un número válido' }
   }
 
   return { valid: true, error: null }

@@ -76,18 +76,18 @@
           type="number"
           v-model="transactionNumber"
         />
-        <div class="error">{{ errors.transactionNumber }} </div>
+        <div class="error">{{ errors.transactionNumber }}</div>
       </div>
       <div class="formulario__form__grupo">
-        <label class="formulario__form__label" for="issungBank"
-          >Banco emisor</label
-        >
-        <input
-          class="formulario__form__input"
-          id="issungBank"
-          type="text"
-          v-model="issuingBank"
-        />
+        <label class="formulario__form__label" for="issungBank">
+          Banco emisor
+        </label>
+        <select v-model="issuingBank" id="issungBank">
+          <option selected disabled>Elija un banco</option>
+          <option v-for="bank in allBanks" :value="bank.name" :key="bank.id">
+            {{ bank.name }}
+          </option>
+        </select>
         <div class="error">{{ errors.issuingBank }}</div>
       </div>
       <div class="formulario__form__grupo">
@@ -189,11 +189,13 @@ import { VueDatePicker } from '@mathieustan/vue-datepicker'
 Vue.use(VueDatePicker)
 
 import request from '../../utils/request'
+import banks from '../../data/banks'
 import {
   validateCi,
   validateEmail,
   validateField,
   validateNumberField,
+  validatePhone,
 } from '../../utils/validations'
 
 const req = request()
@@ -222,6 +224,7 @@ export default {
     valid: true,
     success: false,
     errors: {},
+    allBanks: [],
   }),
   methods: {
     reset() {
@@ -307,8 +310,7 @@ export default {
         this.valid = validDtbFullname.valid
       }
 
-      // TODO: usage own validate phone number
-      const validDtbPhone = validateNumberField(this.dtbPhone)
+      const validDtbPhone = validatePhone(this.dtbPhone)
       this.errors.dtbPhone = validDtbPhone.error
 
       if (this.valid) {
@@ -354,6 +356,9 @@ export default {
       this.reset()
     },
   },
+  mounted() {
+    this.allBanks = banks
+  }
 }
 
 import './Form.scss'
