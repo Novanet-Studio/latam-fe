@@ -336,7 +336,11 @@ export default {
         return
       }
 
-      await req.post('http://localhost:1337/pagos', {
+      const isProduction = process.env.GRIDSOME_ENV === 'production'
+
+      const uri = `${isProduction ? process.env.GRIDSOME_API_URL : 'http://localhost:1337'}/pagos`
+
+      await req.post(uri, {
         dtc_nombre_apellido: this.fullname,
         dtc_cedula_identidad: this.ci,
         dtc_contrato: this.contractNumber,
@@ -358,7 +362,7 @@ export default {
   },
   mounted() {
     this.allBanks = banks
-  }
+  },
 }
 
 import './Form.scss'
