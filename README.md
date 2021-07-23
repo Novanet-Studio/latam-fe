@@ -24,6 +24,8 @@ In order to run the project, follow the instructions:
 
 ### 3. Env Variables
 
+- GRIDSOME_ENV: The process env
+- GRIDSOME_API_URL: The url of strapi backend
 - BACKEND_URL: The url of strapi backend
 - IDENTIFIER: User name of authenticated user
 - PASSWORD: Password of authenticated user
