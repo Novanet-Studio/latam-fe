@@ -22,9 +22,9 @@ In order to run the project, follow the instructions:
 3. `gridsome develop` to start a local dev server at `http://localhost:8080`
 
 
-### 2. Env Variables
+### 3. Env Variables
 
-- URL: The url of strapi backend
+- BACKEND_URL: The url of strapi backend
 - IDENTIFIER: User name of authenticated user
 - PASSWORD: Password of authenticated user
 

@@ -28,7 +28,7 @@ module.exports = {
       options: {
         apiURL:
           process.env.NODE_ENV === 'production'
-            ? process.env.URL
+            ? process.env.BACKEND_URL
             : 'http://localhost:1337',
         queryLimit: 1000,
         singleTypes: ['internet', 'datos-pago', 'reportes'],
