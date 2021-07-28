@@ -1,3 +1,4 @@
+
 <template>
   <section class="formulario formreporte">
     <h2 class="formulario__titulo">Confirmación de Pagos Televisión</h2>
@@ -107,7 +108,7 @@
           class="formulario__form__input"
           id="mount"
           type="text"
-          v-model="mount"
+          v-model="fmount"
         />
         <div class="error">{{ errors.mount }}</div>
       </div>
@@ -186,7 +187,6 @@
 <script>
 import Vue from 'vue'
 import { VueDatePicker } from '@mathieustan/vue-datepicker'
-Vue.use(VueDatePicker)
 
 import request from '../../utils/request'
 import banks from '../../data/banks'
@@ -197,6 +197,9 @@ import {
   validateNumberField,
   validatePhone,
 } from '../../utils/validations'
+import { formatCurrency, unformatCurrency } from '../../utils/currency'
+
+Vue.use(VueDatePicker)
 
 const req = request()
 
@@ -226,6 +229,24 @@ export default {
     errors: {},
     allBanks: [],
   }),
+  computed: {
+    fmount: {
+      get() {
+        const NUMBER_REGEX = /[0-9]/
+
+        if (!this.mount.match(NUMBER_REGEX)) {
+          return
+        }
+
+        if (this.mount !== '') {
+          return this.formatMount(this.mount)
+        }
+      },
+      set(newMount) {
+        this.mount = newMount
+      },
+    },
+  },
   methods: {
     reset() {
       this.errors = {}
@@ -242,6 +263,13 @@ export default {
       this.dtbPhone = ''
       this.dtbCi = ''
       this.dtbEmail = ''
+    },
+    formatMount(mount) {
+      const finalMount = mount.includes('Bs.S') 
+        ? unformatCurrency(mount)
+        : mount
+
+      return formatCurrency(finalMount)
     },
     async submitForm() {
       this.sendingForm = true
@@ -338,26 +366,33 @@ export default {
 
       const isProduction = process.env.GRIDSOME_ENV === 'production'
 
-      const uri = `${isProduction ? process.env.GRIDSOME_API_URL : 'http://localhost:1337'}/pagos`
+      const uri = `${
+        isProduction ? process.env.GRIDSOME_API_URL : 'http://localhost:1337'
+      }/pagos`
 
-      await req.post(uri, {
-        dtc_nombre_apellido: this.fullname,
-        dtc_cedula_identidad: this.ci,
-        dtc_contrato: this.contractNumber,
-        dtc_zona: this.zone,
-        dfp_forma_pago: this.paymentWay,
-        dfp_transaccion: this.transactionNumber,
-        dfp_banco_emisor: this.issuingBank,
-        dfp_fecha: this.currentDate,
-        dfp_monto: this.mount,
-        dtb_nombre_apellido: this.dtbFullname,
-        dtb_telefono: this.dtbPhone,
-        dtb_cedula_identidad: this.dtbCi,
-        dtb_correo: this.dtbEmail,
-      })
+      try {
+        await req.post(uri, {
+          dtc_nombre_apellido: this.fullname,
+          dtc_cedula_identidad: this.ci,
+          dtc_contrato: this.contractNumber,
+          dtc_zona: this.zone,
+          dfp_forma_pago: this.paymentWay,
+          dfp_transaccion: this.transactionNumber,
+          dfp_banco_emisor: this.issuingBank,
+          dfp_fecha: this.currentDate,
+          dfp_monto: this.mount,
+          dtb_nombre_apellido: this.dtbFullname,
+          dtb_telefono: this.dtbPhone,
+          dtb_cedula_identidad: this.dtbCi,
+          dtb_correo: this.dtbEmail,
+        })
 
-      this.sendingForm = false
-      this.reset()
+        this.sendingForm = false
+      } catch (error) {
+        console.error(error)
+      } finally {
+        this.reset()
+      }
     },
   },
   mounted() {
