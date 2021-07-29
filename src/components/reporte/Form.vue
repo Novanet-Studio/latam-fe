@@ -104,12 +104,13 @@
       </div>
       <div class="formulario__form__grupo">
         <label class="formulario__form__label" for="mount">Monto</label>
-        <input
+        <currency-input v-model="mount" />
+        <!-- <input
           class="formulario__form__input"
           id="mount"
           type="text"
           v-model="fmount"
-        />
+        /> -->
         <div class="error">{{ errors.mount }}</div>
       </div>
       <h3 class="formulario__form__titulo">Datos titular cuenta bancaria</h3>
@@ -188,6 +189,8 @@
 import Vue from 'vue'
 import { VueDatePicker } from '@mathieustan/vue-datepicker'
 
+import CurrencyInput from '../CurrencyInput.vue'
+
 import request from '../../utils/request'
 import banks from '../../data/banks'
 import {
@@ -197,7 +200,6 @@ import {
   validateNumberField,
   validatePhone,
 } from '../../utils/validations'
-import { formatCurrency, unformatCurrency } from '../../utils/currency'
 
 Vue.use(VueDatePicker)
 
@@ -207,6 +209,7 @@ export default {
   name: 'Formulario',
   components: {
     VueDatePicker,
+    CurrencyInput,
   },
   data: () => ({
     sendingForm: false,
@@ -229,24 +232,6 @@ export default {
     errors: {},
     allBanks: [],
   }),
-  computed: {
-    fmount: {
-      get() {
-        const NUMBER_REGEX = /[0-9]/
-
-        if (!this.mount.match(NUMBER_REGEX)) {
-          return
-        }
-
-        if (this.mount !== '') {
-          return this.formatMount(this.mount)
-        }
-      },
-      set(newMount) {
-        this.mount = newMount
-      },
-    },
-  },
   methods: {
     reset() {
       this.errors = {}
@@ -263,13 +248,6 @@ export default {
       this.dtbPhone = ''
       this.dtbCi = ''
       this.dtbEmail = ''
-    },
-    formatMount(mount) {
-      const finalMount = mount.includes('Bs.S') 
-        ? unformatCurrency(mount)
-        : mount
-
-      return formatCurrency(finalMount)
     },
     async submitForm() {
       this.sendingForm = true
