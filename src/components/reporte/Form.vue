@@ -27,6 +27,7 @@
           class="formulario__form__input"
           id="ci"
           type="number"
+          min="0"
           v-model="ci"
         />
         <div class="error">{{ errors.ci }}</div>
@@ -75,6 +76,7 @@
           class="formulario__form__input"
           id="transactionNumber"
           type="number"
+          min="0"
           v-model="transactionNumber"
         />
         <div class="error">{{ errors.transactionNumber }}</div>
@@ -98,6 +100,7 @@
             placeholder="Elija un día"
             v-model="currentDate"
             format="DD-MM-YYYY"
+            :locale="dateLocale"
           />
         </ClientOnly>
         <div class="error">{{ errors.date }}</div>
@@ -164,6 +167,12 @@
         </button>
       </div>
     </form>
+    <Modal
+      v-show="isModalVisible"
+      title="¡Éxitoso!"
+      text="Tu pago ya ha sido reportado"
+      @close="closeModal"
+    />
   </section>
 </template>
 
@@ -183,6 +192,7 @@
 import Vue from 'vue'
 import { VueDatePicker } from '@mathieustan/vue-datepicker'
 
+import Modal from '../Modal.vue';
 import CurrencyInput from '../CurrencyInput.vue'
 
 import request from '../../utils/request'
@@ -205,8 +215,13 @@ export default {
   components: {
     VueDatePicker,
     CurrencyInput,
+    Modal,
   },
   data: () => ({
+    dateLocale: {
+      lang: 'es',
+    },
+    isModalVisible: false,
     sendingForm: false,
     fullname: '',
     ci: '',
@@ -346,6 +361,7 @@ export default {
       }/pagos`
 
       try {
+
         await req.post(uri, {
           dtc_nombre_apellido: this.fullname,
           dtc_cedula_identidad: this.ci,
@@ -362,14 +378,22 @@ export default {
           dtb_correo: this.dtbEmail,
         })
 
+        this.showModal()
         this.sendingForm = false
       } catch (error) {
         console.error(error)
+        this.sendingForm = false
       } finally {
         this.sendingForm = false
         this.reset()
       }
     },
+    showModal() {
+      this.isModalVisible = true
+    },
+    closeModal() {
+      this.isModalVisible = false
+    }
   },
   mounted() {
     this.allBanks = banks

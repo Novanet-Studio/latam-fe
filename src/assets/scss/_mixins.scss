@@ -41,6 +41,12 @@
   background-image: url('../assets/images/#{$image}');
 }
 
+@mixin section-background-opacity-modal($image) {
+  @include section-background-opacity-common();
+  background-image: url('../assets/images/#{$image}');
+  opacity: 0.35;
+}
+
 @mixin hero-box($bg: $bg, $gridarea: $gridarea) {
   display: grid;
   grid-template-columns: repeat(4, 2fr);

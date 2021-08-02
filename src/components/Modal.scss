@@ -1,0 +1,135 @@
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  position: relative;
+  width: 30em;
+  background: #fff;
+  box-shadow: 5px 5px 12px 5px rgba(0, 0, 0, 0.51);
+  padding: 2em 2em 1.5em;
+  border-radius: 1em;
+  z-index: 0;
+
+  &::before {
+    @include section-background-opacity-modal(
+      $image: 'latinamericancable-pago.jpg'
+    );
+  }
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__body {
+    padding-top: 1em;
+  }
+
+  &__title {
+    color: $azul;
+    margin: 0;
+  }
+
+  &__text {
+    margin-bottom: 0;
+  }
+
+  &__button {
+    cursor: pointer;
+    padding: 0.1em 0.5em 0.3em 0.5em;
+    font-size: 1.2rem;
+    border: 0;
+    color: #fff;
+    background: $error;
+    border-radius: 1em;
+  }
+
+  &__footer {
+  }
+}
+
+/*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+@include responsive(20em) {
+  .modal {
+    width: 17em;
+    padding: 1.5em 1em;
+
+    &::before {
+      @include section-background-opacity-modal(
+        $image: 'latinamericancable-pago-mob-por.jpg'
+      );
+    }
+  }
+}
+
+/*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
+@include responsive(35.5em) {
+  .modal {
+    width: 30em;
+
+    &::before {
+      @include section-background-opacity-modal(
+        $image: 'latinamericancable-pago-mob-lan.jpg'
+      );
+    }
+  }
+}
+
+/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
+@include responsive(48em) {
+  .modal {
+    padding: 2em 2em 1.5em;
+
+    &::before {
+      @include section-background-opacity-modal(
+        $image: 'latinamericancable-pago-tab-por.jpg'
+      );
+    }
+  }
+}
+
+/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+@include responsive(64em) {
+  .modal {
+    &::before {
+      @include section-background-opacity-modal(
+        $image: 'latinamericancable-pago-tab-lan.jpg'
+      );
+    }
+  }
+}
+
+/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
+@include responsive(80em) {
+  .modal {
+    &::before {
+      @include section-background-opacity-modal(
+        $image: 'latinamericancable-pago.jpg'
+      );
+    }
+  }
+}
+
+/*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
+@include responsive(90em) {
+}
+
+/*--------------------------------- Medium Large Desktop (1600px) -------------------------------*/
+@include responsive(100em) {
+}
+
+/*------------------------------------- Large Desktop (1920px) ---------------------------------*/
+@include responsive(120em) {
+}

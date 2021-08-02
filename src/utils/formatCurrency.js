@@ -1,4 +1,9 @@
 export default function formatCurrency(value) {
+
+  if (!value) {
+    return ''
+  }
+
   const FORMAT_REGEX = /(\d)(?=(\d{3})+(?:\.\d+)?$)/g
 
   const mount = value

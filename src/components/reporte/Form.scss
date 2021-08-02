@@ -38,6 +38,7 @@
   .formulario__form__boton {
     @include boton-a($color: #fff, $bg: $azul);
     padding: 0.6em;
+    cursor: pointer;
   }
 }
 
