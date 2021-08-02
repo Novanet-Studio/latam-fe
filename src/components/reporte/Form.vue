@@ -193,6 +193,7 @@ import CurrencyInput from '../CurrencyInput.vue'
 
 import request from '../../utils/request'
 import banks from '../../data/banks'
+import formatCurrency from '../../utils/formatCurrency';
 import {
   validateCi,
   validateEmail,
@@ -302,7 +303,9 @@ export default {
         this.valid = validIssuingBank.valid
       }
 
-      const validMount = validateField(this.mount)
+      const formattedMount = formatCurrency(this.mount)
+
+      const validMount = validateField(formattedMount)
       this.errors.mount = validMount.error
 
       if (this.valid) {

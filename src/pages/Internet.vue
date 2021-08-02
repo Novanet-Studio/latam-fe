@@ -3,7 +3,7 @@
     <main class="internetvista">
       <Hero />
       <PlanInternet />
-      <Formulario />
+      <BannerWhastapp />
     </main>
   </Layout>
 </template>
@@ -11,7 +11,7 @@
 <script>
 import Hero from '../components/internet/Hero'
 import PlanInternet from '../components/internet/PlanInternet'
-import Formulario from '../components/internet/Formulario'
+import BannerWhastapp from '../components/internet/BannerWhastapp'
 
 export default {
   name: 'Internet',
@@ -21,7 +21,7 @@ export default {
   components: {
     Hero,
     PlanInternet,
-    Formulario,
+    BannerWhastapp,
   },
 }
 

@@ -17,6 +17,7 @@
 
   .formulario__form__boton {
     @include boton-a($color: $azul, $bg: $verde);
+    margin-top:2.3em;
   }
 }
 

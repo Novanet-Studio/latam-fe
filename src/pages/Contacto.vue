@@ -3,7 +3,7 @@
     <main class="contacto">
       <Hero />
       <InfoB />
-      <Formulario />
+      <BannerWhastapp />
     </main>
   </Layout>
 </template>
@@ -11,7 +11,7 @@
 <script>
 import Hero from '../components/contacto/Hero'
 import InfoB from '../components/contacto/InfoB'
-import Formulario from '../components/internet/Formulario'
+import BannerWhastapp from '../components/internet/BannerWhastapp'
 
 export default {
   name: 'Contacto',
@@ -21,7 +21,7 @@ export default {
   components: {
     Hero,
     InfoB,
-    Formulario,
+    BannerWhastapp,
   },
 }
 

@@ -63,7 +63,7 @@
       }
 
       &__subtitulo {        
-        padding:2em 3em;
+        padding:0.25em 0.8em;
         font-size: 1rem;
         font-style: normal; 
         @include boton-a($color: $verde, $bg: $azul-2);
@@ -129,9 +129,6 @@
 
         &__subtitulo {
           font-size: 1rem;
-          padding: 0.25em 0.8em;
-       
-        
         }
 
         &__lista {
@@ -199,14 +196,6 @@
         &__cabecera {
           min-height: 10em;
         }
-
-        &__subtitulo {      
-          padding: 0.25em 0.8em;
-        }
-
-        &__texto {
-          font-size: 1.1rem;
-        }
       }
     }
   }
@@ -225,15 +214,16 @@
         &__item {
           margin: 1.5em;
         }
-        &__subtitulo {
-          padding: 0.25em 0.8em;
-        }
         &__cabecera {
           min-height: 8.5em;
           padding: 1.5em;
         }
         &__velocidades {
           padding: 1.5em;
+        }
+
+        &__texto {
+          font-size: 1.1rem;
         }
       }
     }
@@ -249,9 +239,6 @@
       &__planes {
         &__cabecera {
           min-height: 7em;
-        }
-        &__subtitulo {
-          padding: 0.25em 0.8em;
         }
       }
     }

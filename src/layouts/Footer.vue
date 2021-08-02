@@ -28,7 +28,7 @@
           />
         </a>
       </li>
-      <li class="footer__link">
+      <li class="footer__link none">
         <a
           class="footer__link-a"
           href="https://wa.me/message/7RLTG6FD5P6TJ1"
