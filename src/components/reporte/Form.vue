@@ -59,7 +59,7 @@
           Forma de pago
         </label>
         <select v-model="paymentWay" id="paymentWay">
-          <option value="none" selected disabled>
+          <option selected disabled>
             Elija una forma de pago
           </option>
           <option value="transferencia_bancaria">Transferencia bancaria</option>
@@ -105,12 +105,6 @@
       <div class="formulario__form__grupo">
         <label class="formulario__form__label" for="mount">Monto</label>
         <currency-input v-model="mount" />
-        <!-- <input
-          class="formulario__form__input"
-          id="mount"
-          type="text"
-          v-model="fmount"
-        /> -->
         <div class="error">{{ errors.mount }}</div>
       </div>
       <h3 class="formulario__form__titulo">Datos titular cuenta bancaria</h3>
@@ -218,9 +212,9 @@ export default {
     ci: '',
     contractNumber: '',
     zone: '',
-    paymentWay: '',
+    paymentWay: 'Elija una forma de pago',
     transactionNumber: '',
-    issuingBank: '',
+    issuingBank: 'Elija un banco',
     date: '',
     mount: '',
     dtbFullname: '',
@@ -361,7 +355,7 @@ export default {
           dfp_transaccion: this.transactionNumber,
           dfp_banco_emisor: this.issuingBank,
           dfp_fecha: this.currentDate,
-          dfp_monto: this.mount,
+          dfp_monto: formattedMount,
           dtb_nombre_apellido: this.dtbFullname,
           dtb_telefono: this.dtbPhone,
           dtb_cedula_identidad: this.dtbCi,
@@ -372,6 +366,7 @@ export default {
       } catch (error) {
         console.error(error)
       } finally {
+        this.sendingForm = false
         this.reset()
       }
     },
