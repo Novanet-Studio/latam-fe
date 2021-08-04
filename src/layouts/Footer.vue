@@ -18,12 +18,12 @@
       <li class="footer__link">
         <a
           class="footer__link-a"
-          href="https://latam-be.herokuapp.com/"
+          href="https://latam-be.herokuapp.com/admin/"
           target="_blank"
         >
           <img
             class="footer__icon"
-            alt="whatsapp logo"
+            alt="Panel logo"
             src="../assets/images/login.svg"
           />
         </a>
