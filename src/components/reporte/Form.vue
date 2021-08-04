@@ -169,8 +169,8 @@
     </form>
     <Modal
       v-show="isModalVisible"
-      title="¡Éxitoso!"
-      text="Tu pago ya ha sido reportado"
+      title="Tu pago ha sido reportado"
+      text="Gracias por enviarnos la información de pago. Para cualquier otra información por favor envíanos un mensaje por WhatsApp"
       @close="closeModal"
     />
   </section>
