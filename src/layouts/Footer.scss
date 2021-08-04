@@ -76,15 +76,19 @@
     margin-bottom: 0.5em;
 
     p {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       line-height: 1rem;
     }
 
     &__link {
       width: 1.6em;
       height: 1.6em;
+      margin-right:1em;
       &-a {
         margin-bottom: -0.1em;
+      }
+      &:nth-child(even) {
+        margin-right:0;
       }
     }
 
@@ -182,6 +186,7 @@
     &__link {
       width: 2.1em;
       height: 2.1em;
+      margin-right: 0;
       &-a {
         margin-bottom: -0.4em;
       }

@@ -18,6 +18,19 @@
       <li class="footer__link">
         <a
           class="footer__link-a"
+          href="https://latam-be.herokuapp.com/"
+          target="_blank"
+        >
+          <img
+            class="footer__icon"
+            alt="whatsapp logo"
+            src="../assets/images/login.svg"
+          />
+        </a>
+      </li>
+      <li class="footer__link">
+        <a
+          class="footer__link-a"
           href="https://www.instagram.com/latinamericancable/"
           target="_blank"
         >
@@ -25,19 +38,6 @@
             class="footer__icon"
             alt="Instagram logo"
             src="../assets/images/instagram.svg"
-          />
-        </a>
-      </li>
-      <li class="footer__link none">
-        <a
-          class="footer__link-a"
-          href="https://wa.me/message/7RLTG6FD5P6TJ1"
-          target="_blank"
-        >
-          <img
-            class="footer__icon"
-            alt="whatsapp logo"
-            src="../assets/images/whatsapp.svg"
           />
         </a>
       </li>

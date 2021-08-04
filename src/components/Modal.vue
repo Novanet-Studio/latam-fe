@@ -2,7 +2,7 @@
   <div class="modal-wrapper">
     <div class="modal">
       <div class="modal__head">
-        <h2 class="modal__title">Tu pago ha sido reportado</h2>
+        <h2 class="modal__title">{{ title }}</h2>
         <button
           class="modal__button"
           type="button"
@@ -14,11 +14,7 @@
 
       <div class="modal__body">
         <p class="modal__text">
-          Gracias por enviarnos la información de pago.
-        </p>
-        <p class="modal__text">
-          Para cualquier otra información por favor envíanos un mensaje por
-          WhatsApp.
+          {{ text }}
         </p>
       </div>
 
