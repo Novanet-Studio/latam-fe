@@ -20,7 +20,8 @@ export default function getFullPrice(dollarMount, dollarPrice) {
   const totalString = totalMount
     .reverse()
     .concat(cents)
-    .join('')
 
-  return totalString
+  totalString[totalString.length - 3] = ','
+
+  return totalString.join('')
 }

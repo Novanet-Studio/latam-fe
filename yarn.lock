@@ -4378,6 +4378,11 @@ graphql@^14.4.2:
   dependencies:
     iterall "^1.2.2"
 
+gridsome-plugin-netlify-redirects@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gridsome-plugin-netlify-redirects/-/gridsome-plugin-netlify-redirects-1.0.0.tgz#6c9aed0a1fef257601dfa4c8d4d901a821652e72"
+  integrity sha512-irt99BCgPsmGgQH6oAsOTAW7H8ZlgY1mfQBgsY9hQYb1XTl6f9bnqWg2yruvwRDR/LRig60a/gUS5ggHJDagDg==
+
 gridsome-plugin-pwa@^0.0.18:
   version "0.0.18"
   resolved "https://registry.yarnpkg.com/gridsome-plugin-pwa/-/gridsome-plugin-pwa-0.0.18.tgz#e4ca5c82cf3cfaa6ee0a381c6372a606d622aad5"
