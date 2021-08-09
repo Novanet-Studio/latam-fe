@@ -25,7 +25,7 @@
           </li>
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">4M</h3>
+              <h3 class="internet__planes__subtitulo">5M</h3>
               <p class="internet__planes__texto">
                 {{
                   loadingText(getPrice(node.precio_corporativo.cuatro_megas))
@@ -71,7 +71,7 @@
         >
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">4M</h3>
+              <h3 class="internet__planes__subtitulo">2M</h3>
               <p class="internet__planes__texto">
                 {{
                   loadingText(getPrice(node.precio_residencial.cuatro_megas))
