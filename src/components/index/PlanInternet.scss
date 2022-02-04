@@ -52,7 +52,7 @@
 
       &__boton {
         margin: 0 auto;
-        padding: 0.75em 3em;
+        padding: 0.5em 3em;
         font-size: 1.2rem;
         @include boton-a($color: $azul, $bg: $verde);
       }
@@ -94,14 +94,13 @@
       }
 
       &__velocidades {
-        display: grid;
-        grid-template-columns: repeat(6, 2fr);
-        margin: 1.5em 0 2.2em;
+        display: flex;
+        margin: 1.5em 0 2.2em;        
       }
 
       &__boton {
         font-size: 1rem;
-        padding: 0.25em;
+        padding: 0.5em;
         margin-right: 1em;
         @include boton-a($color: $verde, $bg: $azul-2);
       }
@@ -211,7 +210,7 @@
         }
         &__boton {
           font-size: 1.2rem;
-          padding: 0.75em 3em;
+          padding: 0.5em 3em;
         }
       }
 
@@ -278,7 +277,7 @@
         }
 
         &__boton {
-          padding: 0.25em;
+          padding: 0.5em;
         }
       }
     }
@@ -311,7 +310,7 @@
         }
 
         &__boton {
-          padding: 0.25em;
+          padding: 0.5em;
         }
       }
     }

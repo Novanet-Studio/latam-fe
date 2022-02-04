@@ -94,9 +94,9 @@
       }
 
       &__boton {
-        @include grid-structure($columns: 6);        
         cursor: pointer;
         text-decoration: none;
+
       }
     }
   }

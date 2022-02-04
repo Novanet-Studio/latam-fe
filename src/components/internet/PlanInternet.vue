@@ -17,7 +17,7 @@
         >
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">2M</h3>
+              <h3 class="internet__planes__subtitulo">5M</h3>
               <p class="internet__planes__texto">
                 {{
                   loadingText(
@@ -32,7 +32,7 @@
           </li>
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">5M</h3>
+              <h3 class="internet__planes__subtitulo">10M</h3>
               <p class="internet__planes__texto">
                 {{
                   loadingText(
@@ -47,7 +47,7 @@
           </li>
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">10M</h3>
+              <h3 class="internet__planes__subtitulo">20M</h3>
               <p class="internet__planes__texto">
                 {{
                   loadingText(
@@ -62,7 +62,7 @@
           </li>
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">20M</h3>
+              <h3 class="internet__planes__subtitulo">50M</h3>
               <p class="internet__planes__texto">
                 {{
                   loadingText(
@@ -95,7 +95,7 @@
         >
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">2M</h3>
+              <h3 class="internet__planes__subtitulo">5M Plan Social</h3>
               <p class="internet__planes__texto">
                 {{
                   loadingText(
@@ -110,7 +110,7 @@
           </li>
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">8M</h3>
+              <h3 class="internet__planes__subtitulo">10M</h3>
               <p class="internet__planes__texto">
                 {{
                   loadingText(
@@ -125,7 +125,7 @@
           </li>
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">10M</h3>
+              <h3 class="internet__planes__subtitulo">20M</h3>
               <p class="internet__planes__texto">
                 {{
                   loadingText(
@@ -140,7 +140,7 @@
           </li>
           <li class="internet__planes__velocidades">
             <a class="internet__planes__boton" href="#">
-              <h3 class="internet__planes__subtitulo">20M</h3>
+              <h3 class="internet__planes__subtitulo">40M</h3>
               <p class="internet__planes__texto">
                 {{
                   loadingText(

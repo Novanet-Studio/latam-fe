@@ -29,10 +29,10 @@
           y transferencia de datos.
         </p>
         <ul class="internet__planes__velocidades">
-          <li class="internet__planes__boton">2M</li>
-          <li class="internet__planes__boton">4M</li>
+          <li class="internet__planes__boton">5M</li>
           <li class="internet__planes__boton">10M</li>
           <li class="internet__planes__boton">20M</li>
+          <li class="internet__planes__boton">50M</li>
         </ul>
         <a href="" class="internet__planes__suscripcion">Suscríbete</a>
       </li>
@@ -43,10 +43,10 @@
           simultáneas a altas velocidades.
         </p>
         <ul class="internet__planes__velocidades">
-          <li class="internet__planes__boton">4M</li>
-          <li class="internet__planes__boton">8M</li>
+          <li class="internet__planes__boton">5M Plan Social</li>
           <li class="internet__planes__boton">10M</li>
           <li class="internet__planes__boton">20M</li>
+          <li class="internet__planes__boton">40M</li>
         </ul>
         <a href="" class="internet__planes__suscripcion">Suscríbete</a>
       </li>
