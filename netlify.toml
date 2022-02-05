@@ -6,3 +6,7 @@ package = "netlify-plugin-csp-generator"
 
   [plugins.inputs.policies]
     defaultSrc = "'self'"
+    imgSrc = "'self'"
+    styleSrc = "'self'"
+    styleSrcElem = "'self'"
+    scriptSrc = "'self'"
