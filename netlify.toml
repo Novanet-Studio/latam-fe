@@ -7,6 +7,6 @@ package = "netlify-plugin-csp-generator"
   [plugins.inputs.policies]
     defaultSrc = "'self'"
     imgSrc = "'self' data:;"
-    styleSrc = "'self' 'unsafe-inline'"
+    styleSrc = "'self' 'sha256-0EZqoz+oBhx7gF4nvY2bSqoGyy4zLjNF+SDQXGp/ZrY=' 'sha256-fffcGhUhmnLFE3nBYvjR5eHJYzWK2vVaG/L3mbkZXBA='"
     styleSrcElem = "'self'"
     scriptSrc = "'self'"
