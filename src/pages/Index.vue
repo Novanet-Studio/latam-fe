@@ -22,7 +22,16 @@ export default {
   metaInfo: {
     title: 'Inicio',
     meta: [
-      { key: 'description', name: 'description', content: 'Servicios de TV por cable e Internet en fibra óptica de alta velocidad' },
+      {
+        key: 'description',
+        name: 'description',
+        content:
+          'Servicios de TV por cable e Internet en fibra óptica de alta velocidad',
+      },
+      {
+        name: 'facebook-domain-verification',
+        content: 'h720zq5kew9hsrtmt0twjlxnje6l0d',
+      },
     ],
   },
   components: {
