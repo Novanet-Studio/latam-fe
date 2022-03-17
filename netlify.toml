@@ -10,6 +10,6 @@ package = "netlify-plugin-csp-generator"
     fontSrc = "'self' data:;"
     styleSrc = "'self' 'unsafe-hashes' 'sha256-0EZqoz+oBhx7gF4nvY2bSqoGyy4zLjNF+SDQXGp/ZrY=' 'sha256-fffcGhUhmnLFE3nBYvjR5eHJYzWK2vVaG/L3mbkZXBA='"
     styleSrcElem = "'self'"
-    scriptSrc = "'self' 'unsafe-eval' 'sha256-6egcWvmQP5hRCmW3iDq1X7sXo3/AY4zjQJNgqpm0rAg=' https://cloud.issabel.org"
+    scriptSrc = "'self' 'unsafe-eval' unsafe-inline' 'sha256-6egcWvmQP5hRCmW3iDq1X7sXo3/AY4zjQJNgqpm0rAg=' https://cloud.issabel.org"
     connectSrc = "https://cloud.issabel.org"
 
