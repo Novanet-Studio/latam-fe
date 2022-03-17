@@ -26,10 +26,7 @@ module.exports = {
     {
       use: '@gridsome/source-strapi',
       options: {
-        apiURL:
-          process.env.NODE_ENV === 'production'
-            ? process.env.BACKEND_URL
-            : 'http://localhost:1337',
+        apiURL: process.env.BACKEND_URL,
         queryLimit: 1000,
         singleTypes: ['internet', 'datos-pago', 'reportes'],
         loginData: {

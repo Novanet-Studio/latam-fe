@@ -42,7 +42,7 @@
         </a>
       </li>
     </ul>
-    <p class="footer__legal">Derechos reservados 2021</p>
+    <p class="footer__legal">Latin American Cable C.A. - Todos los Derechos Reservados 2022</p>
     <div class="footer__autor">
       <p class="footer__autor__text">Realizado por:</p>
       <a href="https://novanet.studio" target="_blank">
