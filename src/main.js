@@ -7,13 +7,7 @@ import Vue from 'vue'
 //Layout por defecto
 import DefaultLayout from '~/layouts/Default.vue'
 
-export default function(Vue, { router, head, isClient }) {
+export default function({ router, head, isClient }) {
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
-
-  head.script.push({
-    src:
-      'https://cloud.issabel.org/click2call/click.js',
-    body: true,
-  })
 }
