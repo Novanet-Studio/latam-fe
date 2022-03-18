@@ -9,7 +9,7 @@ package = "netlify-plugin-csp-generator"
     imgSrc = "'self' data:;"
     fontSrc = "'self' data:;"
     styleSrc = "'self' 'unsafe-hashes' 'sha256-0EZqoz+oBhx7gF4nvY2bSqoGyy4zLjNF+SDQXGp/ZrY=' 'sha256-fffcGhUhmnLFE3nBYvjR5eHJYzWK2vVaG/L3mbkZXBA='"
-    scriptSrc = "'self' 'sha256-0QHOQsxM8IDfAwtsi/VDpmkS7lZ/z99hRp0LOXBfoUQ='"
+    scriptSrc = "'self'"
     styleSrcElem = "'self'"    
     objectSrc = "'none'"
 
