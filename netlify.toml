@@ -10,6 +10,6 @@ package = "netlify-plugin-csp-generator"
     fontSrc = "'self' data:;"
     styleSrc = "'self' 'unsafe-hashes' 'sha256-0EZqoz+oBhx7gF4nvY2bSqoGyy4zLjNF+SDQXGp/ZrY=' 'sha256-fffcGhUhmnLFE3nBYvjR5eHJYzWK2vVaG/L3mbkZXBA='"
     styleSrcElem = "'self'"
-    scriptSrc = "'self' 'unsafe-eval'"
-    scriptSrcElem =  "'unsafe-inline'"
+    scriptSrc = "'self'"
+    scriptSrcElem =  "'self'"
  
