@@ -21,7 +21,7 @@ module.exports = {
   siteDescription:
     'Servicios de TV por cable e Internet en fibra óptica de alta velocidad',
   titleTemplate: 'Latin American Cable - %s',
-  icon: 'src/favicon.png',
+  icon: 'static/favicon.png',
   plugins: [
     {
       use: '@gridsome/source-strapi',
@@ -51,7 +51,7 @@ module.exports = {
         statusBarStyle: 'default',
         themeColor: '#1b4685',
         backgroundColor: '#ffffff',
-        icon: 'src/favicon.png',
+        icon: 'static/favicon.png',
         shortName: 'Latin American', // Optional
         description: 'Latin American', // Optional
         lang: 'es-ES', // Optional
@@ -74,7 +74,6 @@ module.exports = {
   ],
   chainWebpack(config) {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
-
     types.forEach(type =>
       addStyleResource(config.module.rule('scss').oneOf(type)),
     )
