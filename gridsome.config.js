@@ -58,19 +58,6 @@ module.exports = {
         maskableIcon: true, // Optional
       },
     },
-    {
-      use: 'gridsome-plugin-netlify-redirects',
-      options: {
-        typeName: 'NetlifyRedirects',
-        redirects: [
-          {
-            from: '/pago.html',
-            to: '/reporte',
-            status: 301,
-          },
-        ],
-      },
-    },
   ],
   chainWebpack(config) {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
