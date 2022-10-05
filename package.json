@@ -19,6 +19,9 @@
     "@nuxtjs/strapi": "^1.6.1",
     "@nuxtjs/style-resources": "^1.2.1",
     "sass": "^1.55.0",
-    "sass-loader": "^13.0.2"
+    "sass-loader": "^13.0.2",
+    "vue": "^3.2.40",
+    "vue-simple-accordion": "^0.1.0",
+    "vue-template-compiler": "^2.7.10"
   }
 }

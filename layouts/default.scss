@@ -1,0 +1,294 @@
+body {
+  font-family: "Sarabun", "Trebuchet MS", sans-serif;
+  font-weight: 300;
+  line-height: 1.6rem;
+}
+
+p {
+  font-size: 1.3rem;
+  color: $gris;
+  margin: 0 0 0.5em 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin: 0 0 0.1em 0;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+  margin: 0 0 0.5em 0;
+}
+
+h4 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+h5 {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-style: italic;
+}
+
+.layout {
+  position: relative;
+  width: 75em;
+  margin: 0 auto;
+  @include grid-structure($columns: 12);
+  grid-template-areas:
+    "header header header header header header header header header header header header"
+    "main main main main main main main main main main main main"
+    "footer footer footer footer footer footer footer footer footer footer footer footer ";
+}
+
+.fade-enter-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+main {
+  @include grid-structure($columns: 12);
+  grid-area: main;
+}
+
+.formulario {
+  @include grid-structure($columns: 8);
+  grid-area: formulario;
+  padding: 4.5em 1.5em 4.5em 2em;
+  position: relative;
+  z-index: 0;
+
+  &__titulo {
+    grid-column: 1 / 13;
+    margin-top: 0;
+  }
+
+  &__texto {
+    grid-column: 1 / 13;
+    margin-top: 0;
+  }
+
+  &__form {
+    display: grid;
+    grid-column: 1 / 13;
+    grid-template-columns: repeat(4, 2fr);
+
+    &__grupo {
+      display: grid;
+      padding-right: 1em;
+      padding-bottom: 2.5em;
+      grid-template-columns: repeat(1, 2fr);
+
+      input,
+      textarea,
+      select,
+      .datepicker__wrapper {
+        border: 0;
+        border-radius: 1em;
+        grid-column: 1 / 3;
+      }
+
+      .vdp-datepicker {
+        input {
+          width: 100%;
+        }
+      }
+
+      input,
+      textarea {
+        padding: 0.6em;
+      }
+
+      select {
+        padding: 0.35em;
+      }
+
+      .datepicker__wrapper {
+        padding-left: 0.5em;
+        background-color: white;
+        input {
+          padding: 0.5em;
+        }
+      }
+    }
+    &__titulo {
+      display: grid;
+      grid-column: 1 / 5;
+      color: white;
+      font-weight: normal;
+    }
+    &__label {
+      font-size: 1.1rem;
+      color: $verde;
+      margin-bottom: 0.5em;
+      grid-column: 1;
+    }
+    &__input,
+    &__textarea {
+      font-size: 0.9rem;
+    }
+    &__boton {
+      margin-top: 1.95em;
+    }
+  }
+}
+
+.none {
+  display: none;
+}
+
+/*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+@include responsive(20em) {
+  .layout {
+    width: 100%;
+    grid-template-columns: repeat(6, 2fr);
+    grid-template-areas:
+      "header header header header header header" "main main main main main main"
+      "footer footer footer footer footer footer";
+  }
+
+  p {
+    font-size: 1.05rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  main {
+    margin-top: 0.7em;
+  }
+
+  .formulario {
+    grid-template-columns: repeat(6, 2fr);
+
+    &::before {
+      background-size: 35%;
+    }
+
+    &__form {
+      grid-template-columns: repeat(1, 2fr);
+
+      &__titulo {
+        grid-column: 1/2;
+      }
+    }
+  }
+}
+
+/*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
+@include responsive(35.5em) {
+  body {
+    line-height: 1.7em;
+  }
+
+  main {
+    margin-top: 0;
+  }
+
+  .formulario {
+    &::before {
+      background-size: 25%;
+    }
+  }
+}
+
+/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
+@include responsive(48em) {
+  p {
+    font-size: 1.3rem;
+  }
+
+  .formulario {
+    &::before {
+      background-size: 20%;
+    }
+    &__form {
+      grid-template-columns: repeat(2, 2fr);
+      &__titulo {
+        grid-column: 1 / 3;
+      }
+    }
+  }
+}
+
+/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+@include responsive(64em) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+  }
+
+  .formulario {
+    &::before {
+      background-size: 12.5%;
+    }
+    &__form {
+      grid-template-columns: repeat(4, 2fr);
+      &__titulo {
+        grid-column: 1 / 5;
+      }
+    }
+  }
+}
+
+/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
+@include responsive(80em) {
+  .layout {
+    width: 75em;
+    grid-template-columns: repeat(12, 2fr);
+    grid-template-areas:
+      "header header header header header header header header header header header header"
+      "main main main main main main main main main main main main"
+      "footer footer footer footer footer footer footer footer footer footer footer footer ";
+  }
+}
+
+/*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
+@include responsive(90em) {
+}
+
+/*--------------------------------- Medium Large Desktop (1600px) -------------------------------*/
+@include responsive(100em) {
+}
+
+/*------------------------------------- Large Desktop (1920px) ---------------------------------*/
+@include responsive(120em) {
+}
