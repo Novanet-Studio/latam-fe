@@ -1,20 +1,6 @@
 <template>
   <footer class="footer">
     <ul class="footer__rrss">
-      <li class="footer__link none">
-        <img
-          class="footer__fb"
-          alt="Facebook logo"
-          src="../assets/images/facebook.svg"
-        />
-      </li>
-      <li class="footer__link none">
-        <img
-          class="footer__icon"
-          alt="Twitter logo"
-          src="../assets/images/twitter.svg"
-        />
-      </li>
       <li class="footer__link">
         <a
           class="footer__link-a"
@@ -42,7 +28,9 @@
         </a>
       </li>
     </ul>
-    <p class="footer__legal">Latin American Cable C.A. - Todos los Derechos Reservados 2022</p>
+    <p class="footer__legal">
+      Latin American Cable C.A. - Todos los Derechos Reservados 2022
+    </p>
     <div class="footer__autor">
       <p class="footer__autor__text">Realizado por:</p>
       <a href="https://novanet.studio" target="_blank">

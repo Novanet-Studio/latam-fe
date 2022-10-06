@@ -1,40 +1,33 @@
 <template>
-  <vsa-item>
-    <vsa-heading>
-      <h5 class="canales__categoria__titulo">{{ titulo }}</h5>
-    </vsa-heading>
-    <vsa-content>
+  <AccordionItem :id="props.titulo" class="canales__lista">
+    <template #summary>
+      <h5 class="canales__categoria__titulo">{{ props.titulo }}</h5>
+    </template>
+    <template #icon><span class="canales__categoria__icono">⌃</span></template>
+    <div>
       <ul class="canales__categoria">
         <li
-          v-for="item in content"
-          :key="item.image"
+          v-for="item in props.content"
+          :key="item"
           class="canales__categoria__item"
         >
-          <g-image :src="item.image" class="canales__categoria__imagen" />
+          <nuxt-img :src="item.image" class="canales__categoria__imagen" />
         </li>
       </ul>
-    </vsa-content>
-  </vsa-item>
+    </div>
+  </AccordionItem>
 </template>
 
-<script>
-import { VsaItem, VsaHeading, VsaContent, VsaIcon } from 'vue-simple-accordion'
+<script setup lang="ts">
+import "./categoria.scss";
+import { AccordionItem } from "vue3-rich-accordion";
 
-import 'vue-simple-accordion/dist/vue-simple-accordion.css'
-
-export default {
-  name: 'Categorias',
-  props: { content: Array, titulo: String },
-  components: {
-    VsaItem,
-    VsaHeading,
-    VsaContent,
-    VsaIcon,
+const props = defineProps({
+  titulo: {
+    type: [String],
   },
-  computed: {
-    console: () => console,
+  content: {
+    type: [Object],
   },
-}
-
-import './categoria.scss'
+});
 </script>

@@ -10,7 +10,7 @@
       >
     </div>
     <div class="whatsapp__icon">
-      <img
+      <nuxt-img
         class="whatsapp__icon-img"
         alt="whatsapp logo"
         src="../assets/images/whatsapp-green.svg"
@@ -19,6 +19,6 @@
   </div>
 </template>
 
-<script lang="scss">
-@import './whatsapp.scss';
+<script >
+import "./whatsapp.scss";
 </script>

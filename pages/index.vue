@@ -38,85 +38,104 @@
       <NuxtLink to="/" class="pago__boton">Notifíque su pago aquí</NuxtLink>
     </section>
 
-    <section class="canales">
+    <section class="canales" id="canales">
       <AccordionList
         v-model:state="state"
         :open-multiple-items="openMultipleItems"
       >
-        <AccordionItem id="mId1" default-opened>
-          <template #summary> Summary one</template>
-          <template #icon>☝️</template>
-          <h3>Dynamic content reaction</h3>
-          <div>
-            <button @click="addContentLine">Add dynamic lines</button>
-            <button @click="removeContentLine">Remove dynamic lines</button>
-          </div>
-          <div v-for="(line, index) in contentLines" :key="index">
-            {{ line }}
-          </div>
-          <h3>
-            All content is provided by slots (f.g. you can nest another
-            accordion)
-          </h3>
-        </AccordionItem>
-        <AccordionItem id="mId2" disabled>
-          <template #summary
-            >This item is disabled you can control it via v-model</template
-          >
-          <template #icon> 💀</template>
-          You can control it via v-model
-        </AccordionItem>
-        <AccordionItem v-for="item in dynamicItems" :key="item">
-          <template #summary>This item is dynamically added</template>
-          <template #icon>D</template>
-          {{ item }}
-        </AccordionItem>
-        <AccordionItem id="mId3">
-          <template #summary>Last item (with default icon) here</template>
-          <div>
-            <h1>
-              Please subscribe
-              <a href="https://www.youtube.com/channel/UCxKF1Edfy3LfvAsnveD-OVA"
-                >youtube channel</a
-              >,
-              <a href="https://t.me/developers_workshop">telegram channel</a>,
-              share video, stay stars and likes
-            </h1>
-          </div>
-        </AccordionItem>
+        <Categoria :content="nacionales" titulo="Nacionales" />
+        <Categoria :content="internacionales" titulo="Internacionales" />
+        <Categoria :content="syp" titulo="Series y películas" />
+        <Categoria :content="deportivos" titulo="Deportes" />
+        <Categoria :content="variedades" titulo="Variedades" />
+        <Categoria :content="infantiles" titulo="Jóvenes y niños" />
       </AccordionList>
+    </section>
+
+    <section class="tv">
+      <div class="tv__banner">
+        <h3 class="tv__banner__titulo">
+          Más de 100 canales para disfrutar en familia
+        </h3>
+        <p class="tv__banner__texto">
+          <strong>Hasta 3 televisores</strong> por la misma mensualidad
+        </p>
+        <a class="tv__banner__boton" href="/contacto/">Suscríbete ahora</a>
+      </div>
+    </section>
+
+    <section class="internet">
+      <h2 class="internet__titulo">Internet por fibra</h2>
+      <p class="internet__texto">
+        Internet corporativo de alta velocidad. Conexión en fibra óptica
+        dirigida a uso corporativo y residencial de alta gama.
+      </p>
+
+      <div class="internet__banner">
+        <h3 class="internet__banner__titulo">
+          Ingresa al sistema de gestion de internet
+        </h3>
+        <p class="internet__banner__texto">
+          Administra y todo lo relacionado con el servicio de internet
+        </p>
+        <a
+          class="internet__banner__boton"
+          href="https://190.216.243.210:8822/"
+          target="_blank"
+          >Acceder ahora</a
+        >
+      </div>
+
+      <ul class="internet__planes">
+        <li class="internet__planes__item">
+          <h3 class="internet__planes__titulo">Corporativo</h3>
+          <p class="internet__planes__texto">
+            Gran velocidad para video conferencias, equipos en red, acceso
+            remoto y transferencia de datos.
+          </p>
+          <ul class="internet__planes__velocidades">
+            <li class="internet__planes__boton">5M</li>
+            <li class="internet__planes__boton">10M</li>
+            <li class="internet__planes__boton">20M</li>
+            <li class="internet__planes__boton">50M</li>
+          </ul>
+          <a href="" class="internet__planes__suscripcion">Suscríbete</a>
+        </li>
+        <li class="internet__planes__item">
+          <h3 class="internet__planes__titulo">Residencial</h3>
+          <p class="internet__planes__texto">
+            Especial para equipos móviles, reproducción de streaming, conexiones
+            simultáneas a altas velocidades.
+          </p>
+          <ul class="internet__planes__velocidades">
+            <li class="internet__planes__boton">5M Plan Social</li>
+            <li class="internet__planes__boton">10M</li>
+            <li class="internet__planes__boton">20M</li>
+            <li class="internet__planes__boton">40M</li>
+          </ul>
+          <a href="" class="internet__planes__suscripcion">Suscríbete</a>
+        </li>
+      </ul>
     </section>
   </main>
 </template>
 
 <script setup lang="ts">
-import { AccordionList, AccordionItem } from "vue3-rich-accordion";
-
+import { AccordionList } from "vue3-rich-accordion";
+import "vue3-rich-accordion/accordion-library-styles.css";
 import "./index.scss";
-import { computed, ref } from "vue";
-const state = ref<Record<string, boolean>>({});
-const contentLines = ref<string[]>([]);
-const dynamicItems = ref<string[]>([]);
-const openMultipleItems = ref(false);
-const accordionBlockWidthPercents = ref(100);
 
-function addContentLine() {
-  contentLines.value.push("Date now is " + Date.now());
-}
-function removeContentLine() {
-  contentLines.value.pop();
-}
-function addDynamicItem() {
-  dynamicItems.value.push("Date now is " + Date.now());
-}
-function removeDynamicItem() {
-  dynamicItems.value.pop();
-}
-function onStateControllerChange(key: string, event: Event) {
-  const newValue = !!(event.target as HTMLInputElement).checked || false;
-  state.value[key] = newValue;
-}
-const vModelItems = computed(() => {
-  return Object.entries(state.value);
-});
+import {
+  nacionales,
+  syp,
+  deportivos,
+  variedades,
+  infantiles,
+  internacionales,
+} from "../utils/categorias";
+
+import { computed, ref } from "vue";
+
+const state = ref<Record<string, boolean>>({});
+const openMultipleItems = ref(false);
 </script>

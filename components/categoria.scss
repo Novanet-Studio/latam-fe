@@ -1,45 +1,40 @@
 .inicio {
-	.canales {
-		&__lista {
-			@include grid-structure($columns: 8);
-			grid-column: 2 / 8;
-		}
+  .canales {
+    &__lista {
+      @include grid-structure($columns: 8);
+      grid-column: 2 / 8;
+    }
 
-		.vsa-list {
-			grid-column: 1 / 9;
-			border-radius: 1em 1em 1em 1em;
-			overflow: hidden;
-			margin-top: 0.75em;
-			--vsa-max-width: 100%;
-			--vsa-heading-padding: 0.2em 0.5em;
-			--vsa-border-color: rgba(0, 0, 0, 0.2);
-			--vsa-border-width: 1px;
-			--vsa-border-style: solid;
-			--vsa-highlight-color: #1b4686;
-			--vsa-bg-color: rgba(255, 255, 255, 1);
-			--vsa-text-color: #1b4686;
-			--vsa-default-icon-size: 0.5;
+    .accordion-list {
+      grid-column: 1 / 9;
+      overflow: hidden;
+      margin-top: 0.75em;
 
-			.vsa-item__content {
-				background-color: rgba(128, 128, 128, 0.15);
-			}
-		}
+      .vsa-item__content {
+        background-color: rgba(128, 128, 128, 0.15);
+      }
+    }
 
-		&__categoria {
-			display: grid;
-			grid-template-columns: repeat(4, 2fr);
+    &__categoria {
+      display: grid;
+      grid-template-columns: repeat(4, 2fr);
 
-			&__item {
-				display: grid;
-				justify-content: space-evenly;
-				padding: 0.5em;
-			}
+      &__titulo,
+      &__icono {
+        color: $azul;
+      }
 
-			&__imagen {
-				max-width: 3.5em;
-			}
-		}
-	}
+      &__item {
+        display: grid;
+        justify-content: space-evenly;
+        padding: 0.5em;
+      }
+
+      &__imagen {
+        max-width: 3.5em;
+      }
+    }
+  }
 }
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
