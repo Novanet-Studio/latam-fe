@@ -39,13 +39,59 @@
     </section>
 
     <section class="canales">
-    
+      <AccordionList
+        v-model:state="state"
+        :open-multiple-items="openMultipleItems"
+      >
+        <AccordionItem id="mId1" default-opened>
+          <template #summary> Summary one</template>
+          <template #icon>☝️</template>
+          <h3>Dynamic content reaction</h3>
+          <div>
+            <button @click="addContentLine">Add dynamic lines</button>
+            <button @click="removeContentLine">Remove dynamic lines</button>
+          </div>
+          <div v-for="(line, index) in contentLines" :key="index">
+            {{ line }}
+          </div>
+          <h3>
+            All content is provided by slots (f.g. you can nest another
+            accordion)
+          </h3>
+        </AccordionItem>
+        <AccordionItem id="mId2" disabled>
+          <template #summary
+            >This item is disabled you can control it via v-model</template
+          >
+          <template #icon> 💀</template>
+          You can control it via v-model
+        </AccordionItem>
+        <AccordionItem v-for="item in dynamicItems" :key="item">
+          <template #summary>This item is dynamically added</template>
+          <template #icon>D</template>
+          {{ item }}
+        </AccordionItem>
+        <AccordionItem id="mId3">
+          <template #summary>Last item (with default icon) here</template>
+          <div>
+            <h1>
+              Please subscribe
+              <a href="https://www.youtube.com/channel/UCxKF1Edfy3LfvAsnveD-OVA"
+                >youtube channel</a
+              >,
+              <a href="https://t.me/developers_workshop">telegram channel</a>,
+              share video, stay stars and likes
+            </h1>
+          </div>
+        </AccordionItem>
+      </AccordionList>
     </section>
   </main>
 </template>
 
-<script>
-export default {};
+<script setup>
+import { AccordionList, AccordionItem } from "vue3-rich-accordion";
+import "vue3-rich-accordion/accordion-library-styles.css";
 
 import "./index.scss";
 </script>
