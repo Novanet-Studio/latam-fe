@@ -89,9 +89,34 @@
   </main>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { AccordionList, AccordionItem } from "vue3-rich-accordion";
-import "vue3-rich-accordion/accordion-library-styles.css";
 
 import "./index.scss";
+import { computed, ref } from "vue";
+const state = ref<Record<string, boolean>>({});
+const contentLines = ref<string[]>([]);
+const dynamicItems = ref<string[]>([]);
+const openMultipleItems = ref(false);
+const accordionBlockWidthPercents = ref(100);
+
+function addContentLine() {
+  contentLines.value.push("Date now is " + Date.now());
+}
+function removeContentLine() {
+  contentLines.value.pop();
+}
+function addDynamicItem() {
+  dynamicItems.value.push("Date now is " + Date.now());
+}
+function removeDynamicItem() {
+  dynamicItems.value.pop();
+}
+function onStateControllerChange(key: string, event: Event) {
+  const newValue = !!(event.target as HTMLInputElement).checked || false;
+  state.value[key] = newValue;
+}
+const vModelItems = computed(() => {
+  return Object.entries(state.value);
+});
 </script>
