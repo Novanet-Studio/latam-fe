@@ -1,0 +1,66 @@
+.canales {
+  @include grid-structure($columns: 8);
+  grid-area: canales;
+  margin: 1.5em 1em 1em 0;
+
+  &__titulo {
+    grid-column: 1 / 9;
+    @include heading-before-content($color: $azul, $image: "punto.svg");
+  }
+}
+
+/*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+@include responsive(20em) {
+  .canales {
+    grid-template-columns: repeat(6, 2fr);
+  }
+
+  .tv {
+    grid-column: 1/9;
+    margin: 0 1em;
+
+    &__banner {
+      padding: 2em;
+      grid-column: 1/9;
+      background-image: url("../../assets/images/latinamericancable-tv-plan-mob-por.jpg");
+
+      &__titulo {
+        line-height: 1.8rem;
+      }
+
+      &__boton {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
+@include responsive(48em) {
+  .canales {
+    grid-template-columns: repeat(3, 2fr);
+  }
+
+  .tv {
+    margin: 0 1.5em 0 0;
+    grid-column: 3/7;
+    grid-template-columns: repeat(3, 2fr);
+
+    &__banner {
+      grid-column: 2/9;
+      background-image: url("../../assets/images/latinamericancable-tv-plan-tab-por.jpg");
+      &__boton {
+        font-size: 1.2rem;
+        padding: 0.75em 2em;
+      }
+    }
+  }
+}
+
+/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+@include responsive(64em) {
+  .canales {
+    grid-template-columns: repeat(8, 2fr);
+    padding-right: 0;
+  }
+}

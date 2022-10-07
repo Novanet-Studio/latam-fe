@@ -38,19 +38,7 @@
       <NuxtLink to="/" class="pago__boton">Notifíque su pago aquí</NuxtLink>
     </section>
 
-    <section class="canales" id="canales">
-      <AccordionList
-        v-model:state="state"
-        :open-multiple-items="openMultipleItems"
-      >
-        <Categoria :content="nacionales" titulo="Nacionales" />
-        <Categoria :content="internacionales" titulo="Internacionales" />
-        <Categoria :content="syp" titulo="Series y películas" />
-        <Categoria :content="deportivos" titulo="Deportes" />
-        <Categoria :content="variedades" titulo="Variedades" />
-        <Categoria :content="infantiles" titulo="Jóvenes y niños" />
-      </AccordionList>
-    </section>
+    <Canales />
 
     <section class="tv">
       <div class="tv__banner">
@@ -87,31 +75,22 @@
       </div>
 
       <ul class="internet__planes">
-        <li class="internet__planes__item">
-          <h3 class="internet__planes__titulo">Corporativo</h3>
-          <p class="internet__planes__texto">
-            Gran velocidad para video conferencias, equipos en red, acceso
-            remoto y transferencia de datos.
-          </p>
+        <li
+          class="internet__planes__item"
+          v-for="(item, index) in query.data.planInternet.data.attributes.tipo"
+          v-bind:key="index"
+        >
+          <h3 class="internet__planes__titulo">{{ item.nombre }}</h3>
+          <p class="internet__planes__texto">{{ item.descripcion }}</p>
+
           <ul class="internet__planes__velocidades">
-            <li class="internet__planes__boton">5M</li>
-            <li class="internet__planes__boton">10M</li>
-            <li class="internet__planes__boton">20M</li>
-            <li class="internet__planes__boton">50M</li>
-          </ul>
-          <a href="" class="internet__planes__suscripcion">Suscríbete</a>
-        </li>
-        <li class="internet__planes__item">
-          <h3 class="internet__planes__titulo">Residencial</h3>
-          <p class="internet__planes__texto">
-            Especial para equipos móviles, reproducción de streaming, conexiones
-            simultáneas a altas velocidades.
-          </p>
-          <ul class="internet__planes__velocidades">
-            <li class="internet__planes__boton">5M Plan Social</li>
-            <li class="internet__planes__boton">10M</li>
-            <li class="internet__planes__boton">20M</li>
-            <li class="internet__planes__boton">40M</li>
+            <li
+              class="internet__planes__boton"
+              v-for="(i, index) in item.planes"
+              v-bind:key="index"
+            >
+              {{ i.nombre }}
+            </li>
           </ul>
           <a href="" class="internet__planes__suscripcion">Suscríbete</a>
         </li>
@@ -120,24 +99,28 @@
   </main>
 </template>
 
-<script setup lang="ts">
-import { AccordionList } from "vue3-rich-accordion";
-import "vue3-rich-accordion/accordion-library-styles.css";
+<script setup>
+const graphql = useStrapiGraphQL();
+// Option 1: use inline query
+const query = await graphql(`
+  query {
+    planInternet {
+      data {
+        attributes {
+          tipo {
+            id
+            nombre
+            descripcion
+            planes {
+              nombre
+              precio_usd
+            }
+          }
+        }
+      }
+    }
+  }
+`);
+
 import "./index.scss";
-
-import {
-  nacionales,
-  syp,
-  deportivos,
-  variedades,
-  infantiles,
-  internacionales,
-} from "../utils/categorias";
-
-import { computed, ref } from "vue";
-
-const state = ref<Record<string, boolean>>({});
-const openMultipleItems = ref(false);
-
-
 </script>

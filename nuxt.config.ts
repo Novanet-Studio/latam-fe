@@ -37,10 +37,7 @@ export default {
       "2xl": 1536,
     },
   },
-  strapi: {
-    url: process.env.STRAPI_URL || `http:localhost:1337/api`,
-  },
   typescript: {
-    strict: false,
+    strict: true,
   },
 };

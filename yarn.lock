@@ -615,7 +615,7 @@
     eslint-plugin-unicorn "^43.0.2"
     eslint-plugin-vue "^9.4.0"
 
-"@nuxtjs/strapi@^1.6.1":
+"@nuxtjs/strapi@^1.6.0":
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/@nuxtjs/strapi/-/strapi-1.6.1.tgz#32b236e7a359c6d6b68b1e6d81422721e4eb2e0c"
   integrity sha512-6/7mfQ6fO6xi1uozC7HYLeLZIUcP563EWZWJihvvc68Cr7zp9dU+WxHuDN+dAM0EiJNqgxl0xdfJpmCrOlC2ew==
