@@ -138,4 +138,6 @@ import { computed, ref } from "vue";
 
 const state = ref<Record<string, boolean>>({});
 const openMultipleItems = ref(false);
+
+
 </script>

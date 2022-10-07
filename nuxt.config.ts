@@ -1,9 +1,9 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
-export default defineNuxtConfig({
+export default {
   components: {
-		global: true,
-		dirs: ['~/components'],
-	},
+    global: true,
+    dirs: ["~/components"],
+  },
   build: {
     transpile: [
       "@fortawesome/vue-fontawesome",
@@ -37,4 +37,10 @@ export default defineNuxtConfig({
       "2xl": 1536,
     },
   },
-});
+  strapi: {
+    url: process.env.STRAPI_URL || `http:localhost:1337/api`,
+  },
+  typescript: {
+    strict: false,
+  },
+};
