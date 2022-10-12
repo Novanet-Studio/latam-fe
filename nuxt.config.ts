@@ -13,7 +13,7 @@ export default {
     ],
   },
   buildModules: ["@nuxtjs/style-resources"],
-  modules: ["@nuxt/image-edge", "@nuxtjs/strapi"],
+  modules: ["@nuxt/image-edge", "@nuxtjs/strapi", "@kevinmarrec/nuxt-pwa"],
   vite: {
     css: {
       preprocessorOptions: {
@@ -39,5 +39,28 @@ export default {
   },
   typescript: {
     strict: true,
+  },
+  pwa: {
+    meta: {
+      title: "Latin American Cable",
+      name: "Latin American Cable App",
+      author: "Novanet Studio <info@novanet.studio>",
+      description: "Servicio de Internet y TV por fibra óptica",
+      theme_color: "#1b4685",
+      lang: "es",
+    },
+    manifest: {
+      name: "Latin American Cable web app",
+      short_name: "Latin American Cable",
+      description: "Servicio de Internet y TV por fibra óptica",
+      startUrl: "/",
+      display: "standalone",
+      background_color: "#ffffff",
+      theme_color: "#1b4685",
+    },
+    icon: { source: "static/favicon.png" },
+    /*workbox: {
+      enabled: true,
+    },*/
   },
 };
