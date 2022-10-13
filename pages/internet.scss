@@ -1,0 +1,57 @@
+.internetvista {
+    @include grid-structure($columns: 12);
+    grid-template-areas:
+      'hero hero hero hero hero hero hero hero hero hero hero hero'
+      'plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet'
+      'formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario'
+      'banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp';
+  }
+  
+  /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+  @include responsive(20em) {
+    .internetvista {
+      grid-template-columns: repeat(6, 2fr);
+      grid-template-areas:
+        'hero hero hero hero hero hero'
+        'plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet'
+        'formulario formulario formulario formulario formulario formulario'
+        'banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp';
+    }
+  }
+  
+  /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
+  @include responsive(35.5em) {
+  }
+  
+  /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
+  @include responsive(48em) {
+  }
+  
+  /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+  @include responsive(64em) {
+    .internetvista {
+      grid-template-columns: repeat(12, 2fr);
+      grid-template-areas:
+        'hero hero hero hero hero hero hero hero hero hero hero hero'
+        'plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet'
+        'formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario'
+        'banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp';
+    }
+  }
+  
+  /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
+  @include responsive(80em) {
+  }
+  
+  /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
+  @include responsive(90em) {
+  }
+  
+  /*--------------------------------- Medium Large Desktop (1600px) -------------------------------*/
+  @include responsive(100em) {
+  }
+  
+  /*------------------------------------- Large Desktop (1920px) ---------------------------------*/
+  @include responsive(120em) {
+  }
+  

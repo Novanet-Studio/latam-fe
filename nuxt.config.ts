@@ -1,5 +1,30 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default {
+  pwa: {
+    meta: {
+      title: "Latin American Cable",
+      name: "Latin American Aplicación web",
+      author: "Novanet Studio <info@novanet.studio>",
+      description:
+        "Más de 100 canales de TV. Internet fibra óptica de alta velocidad.",
+      theme_color: "#1b4685",
+      lang: "es",
+    },
+    manifest: {
+      name: "Latin American Aplicación web",
+      short_name: "Latin American Cable",
+      description:
+        "Más de 100 canales de TV. Internet fibra óptica de alta velocidad.",
+      startUrl: "/",
+      display: "standalone",
+      background_color: "#ffffff",
+      theme_color: "#1b4685",
+    },
+    icon: { source: "static/favicon.png" },
+    /*workbox: {
+      enabled: true,
+    },*/
+  },
   components: {
     global: true,
     dirs: ["~/components"],
@@ -39,28 +64,5 @@ export default {
   },
   typescript: {
     strict: true,
-  },
-  pwa: {
-    meta: {
-      title: "Latin American Cable",
-      name: "Latin American Cable App",
-      author: "Novanet Studio <info@novanet.studio>",
-      description: "Servicio de Internet y TV por fibra óptica",
-      theme_color: "#1b4685",
-      lang: "es",
-    },
-    manifest: {
-      name: "Latin American Cable web app",
-      short_name: "Latin American Cable",
-      description: "Servicio de Internet y TV por fibra óptica",
-      startUrl: "/",
-      display: "standalone",
-      background_color: "#ffffff",
-      theme_color: "#1b4685",
-    },
-    icon: { source: "static/favicon.png" },
-    /*workbox: {
-      enabled: true,
-    },*/
   },
 };

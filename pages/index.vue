@@ -1,5 +1,10 @@
 <template>
   <main class="inicio">
+    <Head>
+      <Title>{{
+        `TV por cable e Internet fibra óptica de alta velocidad - ${$config.pwaManifest.short_name}`
+      }}</Title>
+    </Head>
     <section class="hero">
       <div class="hero__tv">
         <a class="hero__tv__box" href="#canales">
@@ -100,8 +105,10 @@
 </template>
 
 <script setup>
+import "./index.scss";
+
 const graphql = useStrapiGraphQL();
-// Option 1: use inline query
+
 const query = await graphql(`
   query {
     planInternet {
@@ -121,6 +128,4 @@ const query = await graphql(`
     }
   }
 `);
-
-import "./index.scss";
 </script>

@@ -9,10 +9,10 @@
       </NuxtLink>
     </div>
     <nav class="header__nav">
-      <!-- <Nuxtlink class="header__link" to="/">TV por cable</Nuxtlink>
-      <Nuxtlink class="header__link" to="/internet/">Internet</Nuxtlink>
-      <Nuxtlink class="header__link" to="/reporte/">Reportar pago</Nuxtlink>
-      <Nuxtlink class="header__link" to="/contacto/">Contacto</Nuxtlink> -->
+      <NuxtLink class="header__link" to="/">TV por cable</NuxtLink>
+      <NuxtLink class="header__link" to="/internet">Internet</NuxtLink>
+       <!-- <NuxtLink class="header__link" to="/reporte/">Reportar pago</NuxtLink>
+      <NuxtLink class="header__link" to="/contacto/">Contacto</NuxtLink> -->
     </nav>
   </header>
 </template>
