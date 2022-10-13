@@ -27,7 +27,7 @@ import {
   internacionales,
 } from "../utils/categorias";
 
-import { computed, ref } from "vue";
+import { ref } from "vue";
 
 const state = ref<Record<string, boolean>>({});
 const openMultipleItems = ref(false);

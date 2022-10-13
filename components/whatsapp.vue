@@ -13,7 +13,7 @@
       <nuxt-img
         class="whatsapp__icon-img"
         alt="whatsapp logo"
-        src="../assets/images/whatsapp-green.svg"
+        src="/whatsapp-green.svg"
       />
     </div>
   </div>

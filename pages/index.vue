@@ -82,7 +82,7 @@
       <ul class="internet__planes">
         <li
           class="internet__planes__item"
-          v-for="(item, index) in query.data.planInternet.data.attributes.tipo"
+          v-for="(item, index) in planesInternet"
           v-bind:key="index"
         >
           <h3 class="internet__planes__titulo">{{ item.nombre }}</h3>
@@ -128,4 +128,6 @@ const query = await graphql(`
     }
   }
 `);
+
+const planesInternet = query.data.planInternet.data.attributes.tipo
 </script>

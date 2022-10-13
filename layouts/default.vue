@@ -3,12 +3,12 @@
     <div class="layout">
       <Header />
       <slot />
+      <Whatsapp />
       <Footer />
     </div>
   </transition>
 </template>
 
 <script>
-export default {};
 import "./default.scss";
 </script>

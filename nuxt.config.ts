@@ -1,5 +1,22 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default {
+  components: {
+    global: true,
+    dirs: ["~/components"],
+  },
+  build: {
+    transpile: [
+      "@fortawesome/vue-fontawesome",
+      "@fortawesome/fontawesome-svg-core",
+      "@fortawesome/free-solid-svg-icons",
+      "@fortawesome/free-brands-svg-icons",
+    ],
+  },
+  buildModules: ["@nuxtjs/style-resources"],
+  modules: ["@nuxt/image-edge", "@nuxtjs/strapi", "@kevinmarrec/nuxt-pwa"],
+  typescript: {
+    strict: true,
+  },
   pwa: {
     meta: {
       title: "Latin American Cable",
@@ -25,20 +42,10 @@ export default {
       enabled: true,
     },*/
   },
-  components: {
-    global: true,
-    dirs: ["~/components"],
+  strapi: {
+    url: process.env.STRAPI_URL || "http://localhost:1337",
   },
-  build: {
-    transpile: [
-      "@fortawesome/vue-fontawesome",
-      "@fortawesome/fontawesome-svg-core",
-      "@fortawesome/free-solid-svg-icons",
-      "@fortawesome/free-brands-svg-icons",
-    ],
-  },
-  buildModules: ["@nuxtjs/style-resources"],
-  modules: ["@nuxt/image-edge", "@nuxtjs/strapi", "@kevinmarrec/nuxt-pwa"],
+  css: ["@fortawesome/fontawesome-svg-core/styles.css"],
   vite: {
     css: {
       preprocessorOptions: {
@@ -48,7 +55,6 @@ export default {
       },
     },
   },
-  css: ["@fortawesome/fontawesome-svg-core/styles.css"],
   image: {
     dir: "assets/images",
     // The screen sizes predefined by `@nuxt/image`:
@@ -61,8 +67,5 @@ export default {
       xxl: 1536,
       "2xl": 1536,
     },
-  },
-  typescript: {
-    strict: true,
   },
 };

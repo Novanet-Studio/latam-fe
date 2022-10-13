@@ -1,0 +1,162 @@
+.banner-whastapp {
+    @include grid-structure($columns: 12);
+    grid-area: banner-whastapp;
+    border-top: 6px solid #fff;
+    border-radius: 0 0 1em 1em;
+    padding: 2em 4.5em;
+    background-color: $azul-2;
+    position: relative;
+    z-index: 0;
+    align-items: center;
+  
+    &::before {
+      @include section-background-opacity(
+        $image: 'latinamericancable-internetvista-patron.svg'
+      );
+      background-size: 12.5%;
+      opacity: 0.35;
+    }
+  
+    &__cols {
+      &:nth-child(odd) {
+        grid-column: 1 / 8;
+      }
+      &:nth-child(even) {
+        grid-column: 8 / 13;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  
+    &__titulo {
+      color: $verde;
+      margin-top: 0;
+    }
+  
+    &__texto {
+      color: $gris-2;
+      margin-bottom: 1.7em;
+    }
+  
+    &__boton {
+      @include boton-a($color: $azul, $bg: $verde);
+      padding: 0.4em 2em;
+      font-size: 1.1rem;
+    }
+  
+    &__image {
+      width: 23em;
+    }
+  }
+  
+  /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+  @include responsive(20em) {
+    .banner-whastapp {
+      grid-template-columns: repeat(6, 2fr);
+      padding: 2em 1em;
+  
+      &::before {
+        background-size: 35%;
+      }
+  
+      &__cols {
+        &:nth-child(odd),
+        &:nth-child(even) {
+          grid-column: 1 / 7;
+        }
+      }
+  
+      &__titulo {
+        margin-bottom: 0.8em;
+      }
+  
+      &__texto {
+        margin-bottom: 1.5em;
+      }
+  
+      &__image {
+        width: 17em;
+        margin-right: 0.5em;
+        margin-top: 2em;
+      }
+    }
+  }
+  
+  /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
+  @include responsive(35.5em) {
+    .banner-whastapp {
+      padding: 2em 3em;
+  
+      &::before {
+        background-size: 20%;
+      }
+  
+      &__cols {
+        &:nth-child(odd) {
+          grid-column: 1 / 4;
+        }
+        &:nth-child(even) {
+          grid-column: 4 / 7;
+          justify-content: flex-end;
+        }
+      }
+  
+      &__image {
+        margin-right: 0;
+        margin-top: 0;
+      }
+    }
+  }
+  
+  /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
+  @include responsive(48em) {
+    .banner-whastapp {
+      &__cols {
+        &:nth-child(even) {
+          justify-content: center
+        }
+      }
+    }
+  }
+  
+  /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+  @include responsive(64em) {
+    .banner-whastapp {
+      grid-template-columns: repeat(12, 2fr);
+      padding: 2em 4.5em;
+  
+      &::before {
+        background-size: 12.5%;
+      }
+  
+      &__cols {
+        &:nth-child(odd) {
+          grid-column: 1 / 8;
+        }
+        &:nth-child(even) {
+          grid-column: 8 / 13;
+        }
+      }
+  
+      &__image {
+        width: 23em;
+      }
+    }
+  }
+  
+  /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
+  @include responsive(80em) {
+  }
+  
+  /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
+  @include responsive(90em) {
+  }
+  
+  /*--------------------------------- Medium Large Desktop (1600px) -------------------------------*/
+  @include responsive(100em) {
+  }
+  
+  /*------------------------------------- Large Desktop (1920px) ---------------------------------*/
+  @include responsive(120em) {
+  }
+  
