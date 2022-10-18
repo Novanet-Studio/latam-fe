@@ -65,6 +65,11 @@ import "./internet.scss";
 import { getFullPrice } from "../utils/getFullPrice";
 import WhatsappBanner from "../components/whatsappBanner.vue";
 
+const description =
+  "Internet en fibra óptica de alta velocidad para empresas y hogares.";
+  
+const isLoading = { isLoading: false };
+
 const graphql = useStrapiGraphQL();
 
 const internetQuery = await graphql(`
@@ -96,10 +101,6 @@ const internetQuery = await graphql(`
 
 const tiposPlanes = internetQuery.data.planInternet.data.attributes.tipo;
 const bcv_usd = internetQuery.data.datosDePago.data.attributes.bcv_usd;
-
-const description =
-  "Internet en fibra óptica de alta velocidad para empresas y hogares.";
-const isLoading = { isLoading: false };
 
 function getPrice(dollarMount, dollarPrice) {
   const dollar = dollarPrice.trim().replace(/\./g, "").replace(",", ".");

@@ -18,7 +18,8 @@
     @include grid-structure($columns: 6);
     grid-area: nav;
     justify-items: center;
-    .active--exact {
+    .router-link-active,
+    .router-link-exact-active {
       border: 2px;
       border-style: solid none solid none;
       border-color: $verde;
