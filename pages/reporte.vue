@@ -27,6 +27,7 @@
       <p class="tarifas__texto">
         {{ datosDePago.principal }}
       </p>
+
       <ul class="tarifas__tipo">
         <li
           class="tarifas__tipo__item"
