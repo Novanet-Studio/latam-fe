@@ -16,7 +16,7 @@
           type="text"
           v-model="fullname"
         />
-        <div class="error">{{ errors.fullname }}</div>
+        <!-- <div class="error">{{ errors.fullname }}</div> -->
       </div>
       <div class="formulario__form__grupo">
         <label class="formulario__form__label" for="ci">
@@ -29,7 +29,7 @@
           min="0"
           v-model="ci"
         />
-        <div class="error">{{ errors.ci }}</div>
+        <!-- <div class="error">{{ errors.ci }}</div> -->
       </div>
       <div class="formulario__form__grupo">
         <label class="formulario__form__label" for="contractNumber">
@@ -41,7 +41,7 @@
           type="text"
           v-model="contractNumber"
         />
-        <div class="error">{{ errors.contractNumber }}</div>
+        <!-- <div class="error">{{ errors.contractNumber }}</div> -->
       </div>
       <div class="formulario__form__grupo">
         <label class="formulario__form__label" for="zone">Zona</label>
@@ -51,7 +51,7 @@
           type="text"
           v-model="zone"
         />
-        <div class="error">{{ errors.zone }}</div>
+        <!-- <div class="error">{{ errors.zone }}</div> -->
       </div>
       <h3 class="formulario__form__titulo">Datos forma de pago</h3>
       <div class="formulario__form__grupo">
@@ -63,7 +63,7 @@
           <option value="transferencia_bancaria">Transferencia bancaria</option>
           <option value="pago_movil">Pago móvil</option>
         </select>
-        <div class="error">{{ errors.paymentWay }}</div>
+        <!-- <div class="error">{{ errors.paymentWay }}</div> -->
       </div>
       <div class="formulario__form__grupo">
         <label class="formulario__form__label" for="transactionNumber">
@@ -76,7 +76,7 @@
           min="0"
           v-model="transactionNumber"
         />
-        <div class="error">{{ errors.transactionNumber }}</div>
+        <!-- <div class="error">{{ errors.transactionNumber }}</div> -->
       </div>
       <div class="formulario__form__grupo">
         <label class="formulario__form__label" for="issungBank">
@@ -88,7 +88,7 @@
             {{ bank.name }}
           </option>
         </select>
-        <div class="error">{{ errors.issuingBank }}</div>
+        <!-- <div class="error">{{ errors.issuingBank }}</div> -->
       </div>
       <div class="formulario__form__grupo">
         <label class="formulario__form__label">Fecha de la operación</label>
@@ -100,12 +100,12 @@
             :locale="dateLocale"
           />
         </ClientOnly>
-        <div class="error">{{ errors.date }}</div>
+        <!-- <div class="error">{{ errors.date }}</div> -->
       </div>
       <div class="formulario__form__grupo">
         <label class="formulario__form__label" for="mount">Monto</label>
         <!-- <currency-input v-model="mount" /> -->
-        <div class="error">{{ errors.mount }}</div>
+        <!-- <div class="error">{{ errors.mount }}</div> -->
       </div>
       <h3 class="formulario__form__titulo">Datos titular cuenta bancaria</h3>
       <div class="formulario__form__grupo">
@@ -118,7 +118,7 @@
           id="dtbFullname"
           v-model="dtbFullname"
         />
-        <div class="error">{{ errors.dtbFullname }}</div>
+        <!-- <div class="error">{{ errors.dtbFullname }}</div> -->
       </div>
       <div class="formulario__form__grupo">
         <label class="formulario__form__label" for="dtbPhone">Teléfono</label>
@@ -128,7 +128,7 @@
           id="dtbPhone"
           v-model="dtbPhone"
         />
-        <div class="error">{{ errors.dtbPhone }}</div>
+        <!-- <div class="error">{{ errors.dtbPhone }}</div> -->
       </div>
       <div class="formulario__form__grupo">
         <label class="formulario__form__label" for="dtbCi">
@@ -140,7 +140,7 @@
           id="dtbCi"
           v-model="dtbCi"
         />
-        <div class="error">{{ errors.dtbCi }}</div>
+        <!-- <div class="error">{{ errors.dtbCi }}</div> -->
       </div>
       <div class="formulario__form__grupo">
         <label class="formulario__form__label" for="dtbEmail">
@@ -152,7 +152,7 @@
           id="dtbEmail"
           v-model="dtbEmail"
         />
-        <div class="error">{{ errors.dtbEmail }}</div>
+        <!-- <div class="error">{{ errors.dtbEmail }}</div> -->
       </div>
       <div class="formulario__form__grupo">
         <button
@@ -164,18 +164,20 @@
         </button>
       </div>
     </form>
-    <!-- <Modal
+    <Modal
       v-show="isModalVisible"
       title="Tu pago ha sido reportado"
       text="Gracias por enviarnos la información de pago. Para cualquier otra información por favor envíanos un mensaje por WhatsApp"
       @close="closeModal"
-    /> -->
+    />
   </section>
 </template>
 
 <script setup>
 import "./formulariodepago.scss";
+import { banks } from "../utils/banks";
 
+// Query
 const graphql = useStrapiGraphQL();
 
 const formularioPagoQuery = await graphql(`
@@ -194,4 +196,15 @@ const formularioPagoQuery = await graphql(`
 const bcv_usd = formularioPagoQuery.data.datosDePago.data.attributes.bcv_usd;
 const mensaje_formulario =
   formularioPagoQuery.data.datosDePago.data.attributes.mensaje_formulario;
+
+// Form
+const sendingForm = false;
+
+function showModal() {
+  isModalVisible = true;
+}
+
+function closeModal() {
+  isModalVisible = false;
+}
 </script>
