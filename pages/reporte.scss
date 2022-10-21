@@ -102,6 +102,76 @@
       }
     }
   }
+
+  .info-a {
+    @include grid-structure($columns: 12);
+    grid-area: info-a;
+    margin: 1.5em 1em 0;
+
+    &__titulo {
+      grid-column: 1 / 13;
+      @include heading-before-content($color: $azul, $image: "punto.svg");
+    }
+
+    &__texto {
+      grid-column: 1 / 13;
+    }
+
+    &__opciones {
+      @include grid-structure($columns: 12);
+      grid-column: 1 / 13;
+      margin: 1.5em 0;
+
+      &__item {
+        &:nth-child(odd) {
+          grid-column: 1 / 7;
+        }
+
+        &:nth-child(even) {
+          grid-column: 7 / 13;
+        }
+      }
+
+      &__box {
+        @include hero-box($bg: "transparent", $gridarea: "unset");
+        box-shadow: unset;
+      }
+      &__icon-transferencia {
+        @include hero-box-icon(
+          $image: "latinamerican-transferencia-icon.svg",
+          $fillColor: $azul,
+          $width: 4em
+        );
+        width: 6.75em;
+        height: 6.75em;
+        left: unset;
+      }
+
+      &__icon-pago {
+        @include hero-box-icon(
+          $image: "latinamerican-movil-icon.svg",
+          $fillColor: $azul,
+          $width: 4em
+        );
+        width: 6.75em;
+        height: 6.75em;
+        left: unset;
+      }
+
+      &__info {
+        @include hero-box-icon-info();
+      }
+
+      &__titulo {
+        @include item-radius-titulo;
+      }
+
+      &__texto {
+        @include item-radius-texto;
+        color: $gris;
+      }
+    }
+  }
 }
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
@@ -162,6 +232,47 @@
         }
       }
     }
+
+    .info-a {
+      grid-template-columns: repeat(6, 2fr);
+      padding: 0 1em;
+
+      &__opciones {
+        grid-template-columns: repeat(6, 2fr);
+
+        &__item {
+          &:nth-child(odd),
+          &:nth-child(even) {
+            grid-column: 1 / 7;
+          }
+        }
+
+        &__box {
+          padding: 0.75em 0 0.75em 0;
+        }
+
+        &__icon-transferencia {
+          width: 4em;
+          height: 4em;
+          background-size: 2.5em;
+        }
+
+        &__icon-pago {
+          width: 4em;
+          height: 4em;
+          background-size: 2.5em;
+        }
+
+        &__info {
+          left: 0;
+        }
+
+        &__texto {
+          font-size: 1rem;
+          line-height: 1.3rem;
+        }
+      }
+    }
   }
 }
 
@@ -200,6 +311,19 @@
             &::before {
               background-image: url("../../assets/images/latinamericancable-reporte-4tv-mob-lan.webp");
             }
+          }
+        }
+      }
+    }
+
+    .info-a {
+      &__opciones {
+        grid-template-columns: repeat(12, 2fr);
+        margin: 0 0 1.5em;
+
+        &__item {
+          &:nth-child(even) {
+            grid-column: 7 / 13;
           }
         }
       }
@@ -244,6 +368,24 @@
 
         &__texto {
           font-size: 1.1rem;
+        }
+      }
+    }
+
+    .info-a {
+      padding: 0;
+      &__opciones {
+        &__box {
+          padding: 1em 0;
+        }
+
+        &__info {
+          left: -1em;
+        }
+
+        &__texto {
+          font-size: 1.1rem;
+          line-height: 1.5rem;
         }
       }
     }
@@ -294,6 +436,25 @@
         }
       }
     }
+
+    .info-a {
+      &__opciones {
+        &__box {
+          padding: 1em;
+        }
+        &__icon-transferencia {
+          width: 5em;
+          height: 5em;
+          background-size: 3em;
+        }
+
+        &__icon-pago {
+          width: 5em;
+          height: 5em;
+          background-size: 3em;
+        }
+      }
+    }
   }
 }
 
@@ -326,6 +487,24 @@
               background-image: url("../../assets/images/latinamericancable-reporte-4tv.webp");
             }
           }
+        }
+      }
+    }
+
+    .info-a {
+      &__opciones {
+        margin: 1.5em 0;
+
+        &__icon-transferencia {
+          width: 6.75em;
+          height: 6.75em;
+          background-size: 4em;
+        }
+
+        &__icon-pago {
+          width: 6.75em;
+          height: 6.75em;
+          background-size: 4em;
         }
       }
     }

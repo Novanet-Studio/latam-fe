@@ -44,48 +44,41 @@
       </ul>
     </section>
 
-     <section class="info-a">
-    <h2 class="info-a__titulo">Información de pago</h2>
-    <p class="info-a__texto">
-      {{$static.info.edges[0].node.mensaje_pago}}
-    </p>    
-    <ul class="info-a__opciones" v-for="{ node } in $static.pagos.edges" :key="node.id">
-      <li class="info-a__opciones__item">
-        <div class="info-a__opciones__box">
-          <div class="info-a__opciones__icon-transferencia"></div>
-          <div class="info-a__opciones__info">
-            <h3 class="info-a__opciones__titulo">Transferencia bancaria</h3>
-            <p class="info-a__opciones__texto">
-              Cuenta a la cual cual debe realizar la transferencia:<br />
-              Banco: {{ node.banco }}.<br />
-              Cuenta corriente: {{ node.numero_cuenta }}<br />
-              RIF: {{ node.rif }}
-            </p>
+    <section class="info-a">
+      <h2 class="info-a__titulo">Información de pago</h2>
+      <p class="info-a__texto">
+        {{ informacionPago }}
+      </p>
+      <ul class="info-a__opciones">
+        <li
+          class="info-a__opciones__item"
+          v-for="banco in bancos"
+          :key="banco.id"
+        >
+          <div class="info-a__opciones__box">
+            <div class="info-a__opciones__icon-transferencia"></div>
+            <div class="info-a__opciones__info">
+              <h3 class="info-a__opciones__titulo">{{ banco.tipo }}</h3>
+              <p class="info-a__opciones__texto">
+                {{ banco.mensaje }}
+                {{ banco.numero }}<br />
+                Banco: {{ banco.banco }}.<br />
+                RIF: {{ rif }}
+              </p>
+            </div>
           </div>
-        </div>
-      </li>
-      <li class="info-a__opciones__item">
-        <div class="info-a__opciones__box">
-          <div class="info-a__opciones__icon-pago"></div>
-          <div class="info-a__opciones__info">
-            <h3 class="info-a__opciones__titulo">Pago móvil</h3>
-            <p class="info-a__opciones__texto">
-              Número teléfonico al cual debe realizar el pago:<br />
-              Movil: {{ node.telefono }}<br />
-              RIF: {{ node.rif }}<br />
-              Banco: {{ node.pm_banco }}.
-            </p>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </section>
+        </li>
+      </ul>
+    </section>
+
+    <FormularioPago />
   </main>
 </template>
 
 <script setup>
 import "./reporte.scss";
 import { getFullPrice } from "../utils/getFullPrice";
+import FormularioPago from "../components/formularioPago.vue";
 
 const description = "Reporte su pago del servicio de TV por cable.";
 
@@ -110,6 +103,7 @@ const internetQuery = await graphql(`
             tipo
             banco
             numero
+            mensaje
           }
           rif
           bcv_usd
@@ -122,6 +116,10 @@ const internetQuery = await graphql(`
 
 const datosDePago = internetQuery.data.datosDePago.data.attributes;
 const bcv_usd = internetQuery.data.datosDePago.data.attributes.bcv_usd;
+const bancos = internetQuery.data.datosDePago.data.attributes.banco;
+const rif = internetQuery.data.datosDePago.data.attributes.rif;
+const informacionPago =
+  internetQuery.data.datosDePago.data.attributes.informacion_pago;
 
 function getPrice(dollarMount, dollarPrice) {
   const dollar = dollarPrice.trim().replace(/\./g, "").replace(",", ".");

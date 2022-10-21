@@ -1,8 +1,8 @@
 <template>
   <section class="formulario formreporte">
-    <h2 class="formulario__titulo">Confirmación de Pagos Televisión</h2>
+    <h2 class="formulario__titulo">Confirmación de Pagos TV por cable</h2>
     <p class="formulario__texto">
-      {{ mensaje_formulario }}
+      {{ mensaje_formulario }} {{ bcv_usd }}.
     </p>
     <form class="formulario__form" @submit.prevent="submitForm">
       <h3 class="formulario__form__titulo">Datos titular contrato</h3>
@@ -174,7 +174,7 @@
 </template>
 
 <script setup>
-import "./formulariodepago.scss";
+import "./formularioPago.scss";
 import { banks } from "../utils/banks";
 
 // Query
