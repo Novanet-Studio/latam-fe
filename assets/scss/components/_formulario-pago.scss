@@ -39,7 +39,15 @@
     @include boton-a($color: #fff, $bg: $azul);
     padding: 0.6em;
     cursor: pointer;
+    &:disabled {
+      @include boton-a($color: #fff, $bg: lighten($azul, 30));
+      cursor: not-allowed;
+    }
   }
+}
+
+.input-error {
+  border: 1px solid $error !important;
 }
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/

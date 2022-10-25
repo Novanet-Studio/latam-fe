@@ -1,12 +1,5 @@
 <template>
   <main class="reporte">
-    <Head>
-      <Title>{{ `Reporte su pago - ${$config.pwaManifest.short_name}` }}</Title>
-      <Meta name="description" :content="description" />
-      <Meta name="og:title" :content="$config.pwaManifest.short_name" />
-      <Meta name="og:description" :content="description" />
-    </Head>
-
     <section class="hero">
       <div class="hero__pago">
         <div class="hero__pago__box">
@@ -29,16 +22,12 @@
       </p>
 
       <ul class="tarifas__tipo">
-        <li
-          class="tarifas__tipo__item"
-          v-for="plan in datosDePago.planes_tv"
-          v-bind:key="plan.id"
-        >
+        <li class="tarifas__tipo__item" v-for="plan in datosDePago.planes_tv" :key="plan.id">
           <h3 class="tarifas__tipo__titulo">
             {{ plan.nombre }}
           </h3>
           <p class="tarifas__tipo__texto">
-            {{ loadingText(getPrice(plan.precio_usd, bcv_usd)) }}
+            {{ loadingText(getPrice(plan.precio_usd, bcvUsd)) }}
           </p>
         </li>
       </ul>
@@ -50,11 +39,7 @@
         {{ informacionPago }}
       </p>
       <ul class="info-a__opciones">
-        <li
-          class="info-a__opciones__item"
-          v-for="banco in bancos"
-          :key="banco.id"
-        >
+        <li class="info-a__opciones__item" v-for="banco in bancos" :key="banco.id">
           <div class="info-a__opciones__box">
             <div class="info-a__opciones__icon-transferencia"></div>
             <div class="info-a__opciones__info">
@@ -71,22 +56,42 @@
       </ul>
     </section>
 
-    <FormularioPago />
+    <payment-form />
   </main>
 </template>
 
-<script setup>
-import "./reporte.scss";
-import { getFullPrice } from "../utils/getFullPrice";
-import FormularioPago from "../components/formularioPago.vue";
+<script lang="ts" setup>
+import getPrice from "~/utils/getPrice";
+const config = useAppConfig();
+const bcvUsd = useBcvUsd();
+
 
 const description = "Reporte su pago del servicio de TV por cable.";
 
-const isLoading = { isLoading: false };
+useHead({
+  titleTemplate: 'Reporte su pago - %s',
+  title() {
+    return config.pwaManifest.short_name;
+  },
+  meta: [
+    { name: 'description', content: description },
+    { name: 'og:title', content: config.pwaManifest.short_name },
+    { name: 'og:description', content: description },
+  ]
+});
 
-const graphql = useStrapiGraphQL();
+// TODO: improve types
+const isLoading = ref(false);
+const datosDePago = ref<any>({});
+const bancos = ref<any>([]);
+const rif = ref<any>('');
+const informacionPago = ref<any>({});
 
-const internetQuery = await graphql(`
+try {
+  const graphql = useStrapiGraphQL();
+
+  // TODO: improve types
+  const query = await graphql<any>(`
   query {
     datosDePago {
       data {
@@ -106,7 +111,6 @@ const internetQuery = await graphql(`
             mensaje
           }
           rif
-          bcv_usd
           mensaje_formulario
         }
       }
@@ -114,24 +118,16 @@ const internetQuery = await graphql(`
   }
 `);
 
-const datosDePago = internetQuery.data.datosDePago.data.attributes;
-const bcv_usd = internetQuery.data.datosDePago.data.attributes.bcv_usd;
-const bancos = internetQuery.data.datosDePago.data.attributes.banco;
-const rif = internetQuery.data.datosDePago.data.attributes.rif;
-const informacionPago =
-  internetQuery.data.datosDePago.data.attributes.informacion_pago;
-
-function getPrice(dollarMount, dollarPrice) {
-  const dollar = dollarPrice.trim().replace(/\./g, "").replace(",", ".");
-  const totalPrice = getFullPrice(dollarMount, dollar);
-  return totalPrice;
+  datosDePago.value = query.data.datosDePago.data.attributes;
+  bancos.value = query.data.datosDePago.data.attributes.banco;
+  rif.value = query.data.datosDePago.data.attributes.rif;
+  informacionPago.value =
+    query.data.datosDePago.data.attributes.informacion_pago;
+} catch (err) {
+  console.log(err);
 }
 
-function loadingText(price) {
+function loadingText(price: string) {
   return isLoading ? `Bs. ${price} / Mensual` : "...cargando precio";
 }
-
-const con = (e) => {
-  console.log(e);
-};
 </script>

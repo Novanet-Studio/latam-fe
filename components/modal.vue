@@ -3,11 +3,7 @@
     <div class="modal">
       <div class="modal__head">
         <h2 class="modal__title">{{ title }}</h2>
-        <button
-          class="modal__button"
-          type="button"
-          @click.prevent="$emit('close')"
-        >
+        <button class="modal__button" type="button" @click.prevent="$emit('close')">
           &times;
         </button>
       </div>
@@ -23,15 +19,11 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import "./modal.scss";
+<script lang="ts" setup>
+type Props = {
+  title: string;
+  text: string;
+}
 
-const props = defineProps({
-  title: {
-    type: [String],
-  },
-  text: {
-    type: [String],
-  },
-});
+defineProps<Props>();
 </script>

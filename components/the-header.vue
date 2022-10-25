@@ -2,10 +2,7 @@
   <header class="header">
     <div class="header__logo">
       <NuxtLink to="/" target="_self">
-        <nuxt-img
-          alt="Latin American Cable Logo"
-          src="/latinamericancable-logo.svg"
-        />
+        <nuxt-img alt="Latin American Cable Logo" src="/latinamericancable-logo.svg" />
       </NuxtLink>
     </div>
     <nav class="header__nav">
@@ -17,7 +14,3 @@
   </header>
 </template>
 
-<script>
-export default {};
-import "./header.scss";
-</script>

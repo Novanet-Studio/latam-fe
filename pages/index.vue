@@ -1,10 +1,5 @@
 <template>
   <main class="inicio">
-    <Head>
-      <Title>{{
-        `TV por cable e Internet fibra óptica de alta velocidad - ${$config.pwaManifest.short_name}`
-      }}</Title>
-    </Head>
     <section class="hero">
       <div class="hero__tv">
         <a class="hero__tv__box" href="#canales">
@@ -19,7 +14,7 @@
         </a>
       </div>
       <div class="hero__internet">
-        <a class="hero__internet__box" href="/internet/">
+        <nuxt-link class="hero__internet__box" to="/internet">
           <div class="hero__internet__icon"></div>
           <div class="hero__internet__info">
             <h1 class="hero__internet__title">Internet por fibra</h1>
@@ -28,22 +23,19 @@
               residencial.
             </p>
           </div>
-        </a>
+        </nuxt-link>
       </div>
     </section>
 
     <section class="pago">
       <div class="pago__icon">
-        <img
-          class="pago__icon__imagen"
-          alt="Latin American Cable Pago icono"
-          src="../../assets/images/latinamericancable-pago-icon.svg"
-        />
+        <img class="pago__icon__imagen" alt="Latin American Cable Pago icono"
+          src="../assets/images/latinamericancable-pago-icon.svg" />
       </div>
-      <NuxtLink to="/" class="pago__boton">Notifíque su pago aquí</NuxtLink>
+      <nuxt-link to="/" class="pago__boton">Notifíque su pago aquí</nuxt-link>
     </section>
 
-    <Canales />
+    <channel-list />
 
     <section class="tv">
       <div class="tv__banner">
@@ -71,29 +63,16 @@
         <p class="internet__banner__texto">
           Administra y todo lo relacionado con el servicio de internet
         </p>
-        <a
-          class="internet__banner__boton"
-          href="https://190.216.243.210:8822/"
-          target="_blank"
-          >Acceder ahora</a
-        >
+        <a class="internet__banner__boton" href="https://190.216.243.210:8822/" target="_blank">Acceder ahora</a>
       </div>
 
       <ul class="internet__planes">
-        <li
-          class="internet__planes__item"
-          v-for="(item, index) in planesInternet"
-          v-bind:key="index"
-        >
+        <li class="internet__planes__item" v-for="(item, index) in planesInternet" :key="index">
           <h3 class="internet__planes__titulo">{{ item.nombre }}</h3>
           <p class="internet__planes__texto">{{ item.descripcion }}</p>
 
           <ul class="internet__planes__velocidades">
-            <li
-              class="internet__planes__boton"
-              v-for="(i, index) in item.planes"
-              v-bind:key="index"
-            >
+            <li class="internet__planes__boton" v-for="(i, index) in item.planes" :key="index">
               {{ i.nombre }}
             </li>
           </ul>
@@ -104,12 +83,21 @@
   </main>
 </template>
 
-<script setup>
-import "./index.scss";
+<script lang="ts" setup>
+const config = useAppConfig();
 
+useHead({
+  titleTemplate: 'TV por cable e Internet fibra óptica de alta velocidad - %s',
+  title() {
+    return config.pwaManifest.short_name;
+  }
+});
+
+const planesInternet = ref();
 const graphql = useStrapiGraphQL();
 
-const query = await graphql(`
+try {
+  const query = await graphql<any>(`
   query {
     planInternet {
       data {
@@ -128,6 +116,10 @@ const query = await graphql(`
     }
   }
 `);
+  planesInternet.value = query.data.planInternet.data.attributes.tipo
+} catch (err) {
+  planesInternet.value = [];
+  console.log(err);
+}
 
-const planesInternet = query.data.planInternet.data.attributes.tipo
 </script>
