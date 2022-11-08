@@ -17,9 +17,7 @@
 
     <section class="tarifas">
       <h2 class="tarifas__titulo">A nuestra distinguida clientela</h2>
-      <p class="tarifas__texto">
-        {{ datosDePago.principal }}
-      </p>
+      <p v-html="datosDePago.principal" class="tarifas__texto"></p>
 
       <ul class="tarifas__tipo">
         <li class="tarifas__tipo__item" v-for="plan in datosDePago.planes_tv" :key="plan.id">
