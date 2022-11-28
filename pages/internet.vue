@@ -67,6 +67,7 @@ const tiposPlanes = ref<any>([]);
 const bcvUsd = useBcvUsd();
 
 try {
+  isLoading.value = true;
   const graphql = useStrapiGraphQL();
 
   const internetQuery = await graphql<any>(`
@@ -86,16 +87,19 @@ try {
         }
       }
     }
+  }
 `);
 
   tiposPlanes.value = internetQuery.data.planInternet.data.attributes.tipo;
 
 } catch (err) {
   console.log(err);
+} finally {
+  isLoading.value = false;
 }
 
 function loadingText(price: string) {
-  return isLoading.value ? `Bs. ${price} / Mensual` : "...cargando precio";
+  return !isLoading.value ? `Bs. ${price} / Mensual` : "Cargando precio...";
 }
 
 </script>
