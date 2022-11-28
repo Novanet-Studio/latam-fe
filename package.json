@@ -1,5 +1,11 @@
 {
-  "private": true,
+  "name": "latam-fe",
+  "private": false,
+  "description": "Latinamerican Cable sitio web",
+  "version": "2.0.0",
+  "author": "Novanet Studio <info@novanet.studio>",
+  "homepage": "https://www.latinamericancable.com",
+  "license": "MIT",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
