@@ -1,14 +1,10 @@
 <template>
   <transition name="fade" appear>
     <div class="layout">
-      <Header />
+      <the-header />
       <slot />
-      <Footer />
+      <whatsapp />
+      <the-footer />
     </div>
   </transition>
 </template>
-
-<script>
-export default {};
-import "./default.scss";
-</script>

@@ -1,0 +1,398 @@
+.internetvista {
+  @include grid-structure($columns: 12);
+  grid-template-areas:
+    "hero hero hero hero hero hero hero hero hero hero hero hero"
+    "plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet"
+    "formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario"
+    "banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp";
+
+    .hero {
+      @include grid-structure($columns: 12);
+      grid-area: hero;
+      grid-template-areas: '. . . . . . internet internet internet internet internet internet';
+      border-radius: 1em 1em 0 0;
+      @include section-background($image: 'latinamericancable-vista-internet.webp');
+  
+      & > div {
+        @include grid-structure($columns: 8);
+      }
+  
+      &__internet {
+        height: 28em;
+        align-content: center;
+        grid-area: internet;
+        grid-template-areas: '. box-internet box-internet box-internet box-internet box-internet box-internet .';
+        box-sizing: border-box;
+  
+        &__box {
+          @include hero-box($bg:'#FFF', $gridarea:'box-internet');				
+        }
+        &__icon {
+          @include hero-box-icon(
+            $image: 'latinamerican-pc-icon.svg',
+            $fillColor: $azul,
+            $width: 4em
+          );
+        }
+        &__info {
+          @include hero-box-icon-info();
+        }
+        &__title {
+          grid-area: title;
+          color: $azul;
+        }
+        &__text {
+          @include hero-box-icon-info-text($fontsize: 1rem, $color: $azul-2, $lineheight: unset)
+        }
+      }
+    }
+
+  .internet {
+    @include grid-structure($columns: 12);
+    grid-area: plan-internet;
+    padding: 3em 0;
+    background-color: $verde;
+    border-top: 6px solid #fff;
+    position: relative;
+    z-index: 0;
+
+    &::before {
+      @include section-background-opacity(
+        $image: "latinamericancable-internetvista-patron.svg"
+      );
+      background-size: 12.5%;
+      opacity: 0.1;
+    }
+
+    &__texto {
+      grid-column: 1 / 13;
+    }
+
+    &__planes {
+      display: grid;
+      grid-column: 1 / 13;
+
+      &__item {
+        margin: 1.5em 1em;
+        position: relative;
+        background-color: #fff;
+        border-radius: 1em;
+        overflow: hidden;
+        z-index: 0;
+
+        &:nth-child(odd) {
+          grid-column: 1 / 7;
+          &::before {
+            @include section-background-opacity(
+              $image: "latinamericancable-internet-corporativo-2.webp"
+            );
+          }
+        }
+
+        &:nth-child(even) {
+          grid-column: 7 / 13;
+          &:before {
+            @include section-background-opacity(
+              $image: "latinamericancable-internet-residencial-2.webp"
+            );
+          }
+        }
+      }
+
+      &__cabecera {
+        padding: 1.5em;
+        min-height: 7em;
+        border-bottom: 5px solid $verde;
+      }
+
+      &__titulo {
+        font-style: normal;
+        color: $azul-3;
+      }
+
+      &__subtitulo {
+        padding: 0.25em 0.8em;
+        font-size: 1rem;
+        font-style: normal;
+        @include boton-a($color: $verde, $bg: $azul-2);
+      }
+
+      &__texto {
+        grid-column: 1 / 7;
+        font-size: 1.1rem;
+        line-height: 1.5rem;
+        color: $azul-2;
+        margin-bottom: 0;
+      }
+
+      &__lista {
+        display: grid;
+        grid-template-columns: repeat(2, 2fr);
+      }
+
+      &__velocidades {
+        padding: 1.5em;
+        &:nth-child(odd) {
+          border-right: 5px solid $verde;
+        }
+        &:nth-child(1),
+        &:nth-child(2) {
+          border-bottom: 5px solid $verde;
+        }
+      }
+
+      &__boton {
+        cursor: pointer;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+/*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+@include responsive(20em) {
+  .internetvista {
+    grid-template-columns: repeat(6, 2fr);
+    grid-template-areas:
+      "hero hero hero hero hero hero"
+      "plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet"
+      "formulario formulario formulario formulario formulario formulario"
+      "banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp";
+
+      .hero {
+        grid-template-columns: repeat(8, 2fr);
+        grid-template-areas: 'internet internet internet internet internet internet internet internet';
+        background-image: url('../../assets/images/latinamericancable-vista-internet-mob-por.webp');
+  
+        &__internet {
+          align-content: end;
+          margin-bottom: 2em;
+          &__box {
+            padding: 0.75em 1.2em 0.75em 0.75em;
+            min-height: 7em;
+          }
+          &__icon {
+            width: 4.5em;
+            height: 4.5em;
+            background-size: 3em;
+          }
+          &__text {
+            line-height: 1.2rem;
+          }
+        }
+      }
+
+    .internet {
+      grid-template-columns: repeat(6, 2fr);
+      padding: 2em 1em;
+
+      &::before {
+        background-size: 35%;
+      }
+
+      &__planes {
+        &__item {
+          margin: 1em 0;
+          &:nth-child(odd),
+          &:nth-child(even) {
+            grid-column: 1/13;
+          }
+        }
+
+        &__cabecera {
+          padding: 1em;
+          min-height: auto;
+        }
+
+        &__subtitulo {
+          font-size: 1rem;
+        }
+
+        &__lista {
+          grid-template-columns: repeat(1, 2fr);
+        }
+
+        &__velocidades {
+          padding: 1em;
+          &:nth-child(odd) {
+            border-right: none;
+          }
+          &:nth-child(3) {
+            border-bottom: 5px solid $verde;
+          }
+        }
+
+        &__texto {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+/*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
+@include responsive(35.5em) {
+  .internetvista {
+  .hero {
+    grid-template-columns: repeat(6, 2fr);
+    grid-template-areas: ". . internet internet internet internet";
+    background-image: url("../../assets/images/latinamericancable-vista-internet-mob-lan.webp");
+
+    &__internet {
+      align-content: center;
+      margin-bottom: 0;
+      &__text {
+        font-size: 0.8rem;
+        line-height: 1rem;
+      }
+    }
+  }
+
+  .internet {
+    &::before {
+      background-size: 20%;
+    }
+    &__planes {
+      &__lista {
+        grid-template-columns: repeat(2, 2fr);
+      }
+
+      &__velocidades {
+        &:nth-child(odd) {
+          border-right: 5px solid $verde;
+        }
+        &:nth-child(3) {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}}
+
+/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
+@include responsive(48em) {
+  .internetvista {
+    .hero {
+      grid-template-areas: ". . . internet internet internet";
+      background-image: url("../../assets/images/latinamericancable-vista-internet-tab-por.webp");
+
+      &__internet {
+        &__box {
+          padding: 1em 0 1em 0.75em;
+        }
+      }
+    }
+
+    .internet {
+      &__planes {
+        &__item {
+          margin: 1em 1em 0;
+          &:nth-child(odd) {
+            grid-column: 1/7;
+          }
+
+          &:nth-child(even) {
+            grid-column: 7/13;
+          }
+        }
+        &__cabecera {
+          min-height: 10em;
+        }
+      }
+    }
+  }
+}
+
+/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+@include responsive(64em) {
+  .internetvista {
+    grid-template-columns: repeat(12, 2fr);
+    grid-template-areas:
+      "hero hero hero hero hero hero hero hero hero hero hero hero"
+      "plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet plan-internet"
+      "formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario"
+      "banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp";
+
+    .hero {
+      background-image: url("../../assets/images/latinamericancable-vista-internet-tab-lan.webp");
+
+      &__internet {
+        &__box {
+          padding: 1em;
+        }
+        &__icon {
+          width: 6em;
+          height: 6em;
+          background-size: 4em;
+        }
+        &__text {
+          font-size: 1rem;
+          line-height: 1.3rem;
+        }
+      }
+    }
+
+    .internet {
+      grid-template-columns: repeat(12, 2fr);
+
+      &::before {
+        background-size: 12.5%;
+      }
+      &__planes {
+        &__item {
+          margin: 1.5em;
+        }
+        &__cabecera {
+          min-height: 8.5em;
+          padding: 1.5em;
+        }
+        &__velocidades {
+          padding: 1.5em;
+        }
+
+        &__texto {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+}
+
+/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
+@include responsive(80em) {
+  .internetvista {
+    .hero {
+      grid-template-columns: repeat(12, 2fr);
+      grid-template-areas: ". . . . . . internet internet internet internet internet internet";
+      background-image: url("../../assets/images/latinamericancable-vista-internet.webp");
+
+      &__internet {
+        &__text {
+          padding-top: 0.25em;
+        }
+      }
+    }
+
+    .internet {
+      padding: 3em 0;
+
+      &__planes {
+        &__cabecera {
+          min-height: 7em;
+        }
+      }
+    }
+  }
+}
+
+/*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
+@include responsive(90em) {
+}
+
+/*--------------------------------- Medium Large Desktop (1600px) -------------------------------*/
+@include responsive(100em) {
+}
+
+/*------------------------------------- Large Desktop (1920px) ---------------------------------*/
+@include responsive(120em) {
+}

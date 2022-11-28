@@ -1,0 +1,98 @@
+.formreporte {
+  background-color: $gris-2;
+  border-radius: 1em;
+
+  &::before {
+    @include section-background-opacity(
+      $image: "latinamericancable-internetvista-patron.svg"
+    );
+    background-size: 12.5%;
+    opacity: 0.075;
+  }
+
+  .formulario__titulo,
+  .formulario__form__titulo {
+    color: $azul;
+  }
+
+  .formulario__form__text,
+  .formulario__form__label {
+    color: $gris;
+  }
+
+  .formulario__texto {
+    margin-bottom: 2em;
+  }
+
+  .formulario__form__label {
+    font-weight: 500;
+  }
+
+  .datepicker__wrapper,
+  input,
+  textarea,
+  select {
+    border: 1px solid #aaa;
+  }
+
+  .formulario__form__boton {
+    @include boton-a($color: #fff, $bg: $azul);
+    padding: 0.6em;
+    cursor: pointer;
+    &:disabled {
+      @include boton-a($color: #fff, $bg: lighten($azul, 30));
+      cursor: not-allowed;
+    }
+  }
+}
+
+.input-error {
+  border: 1px solid $error !important;
+}
+
+/*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+@include responsive(20em) {
+  .formreporte {
+    &::before {
+      background-size: 35%;
+    }
+  }
+}
+
+/*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
+@include responsive(35.5em) {
+  .formreporte {
+    &::before {
+      background-size: 20%;
+    }
+  }
+}
+
+/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
+@include responsive(48em) {
+}
+
+/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+@include responsive(64em) {
+  .formreporte {
+    &::before {
+      background-size: 12.5%;
+    }
+  }
+}
+
+/*------------------------------------- Small Desktop (1280px) ----------------------------------*/
+@include responsive(80em) {
+}
+
+/*------------------------------------ Medium Desktop (1440px) ----------------------------------*/
+@include responsive(90em) {
+}
+
+/*--------------------------------- Medium Large Desktop (1600px) -------------------------------*/
+@include responsive(100em) {
+}
+
+/*------------------------------------- Large Desktop (1920px) ---------------------------------*/
+@include responsive(120em) {
+}

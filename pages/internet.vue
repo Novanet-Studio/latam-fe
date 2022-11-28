@@ -1,0 +1,101 @@
+<template>
+  <main class="internetvista">
+    <section class="hero">
+      <div class="hero__internet">
+        <nuxt-link class="hero__internet__box" to="/internet">
+          <div class="hero__internet__icon"></div>
+          <div class="hero__internet__info">
+            <h1 class="hero__internet__title">Internet por fibra</h1>
+            <p class="hero__internet__text">
+              Conexión en fibra óptica de alta velocidad para uso corporativo y
+              residencial.
+            </p>
+          </div>
+        </nuxt-link>
+      </div>
+    </section>
+
+    <section class="internet">
+      <div class="internet__planes">
+        <div class="internet__planes__item" v-for="(tipo, index) in tiposPlanes" :key="index">
+          <div class="internet__planes__cabecera">
+            <h3 class="internet__planes__titulo">{{ tipo.nombre }}</h3>
+            <p class="internet__planes__texto">
+              {{ tipo.descripcion }}
+            </p>
+          </div>
+
+          <ul class="internet__planes__lista">
+            <li class="internet__planes__velocidades" v-for="plan in tipo.planes" :key="plan.id">
+              <div class="internet__planes__boton">
+                <h3 class="internet__planes__subtitulo">{{ plan.nombre }}</h3>
+                <p class="internet__planes__texto">
+                  {{ loadingText(getPrice(plan.precio_usd, bcvUsd)) }}
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <whatsapp-banner />
+  </main>
+</template>
+
+<script lang="ts" setup>
+import getPrice from "~/utils/getPrice";
+const config = useAppConfig();
+
+const description =
+  "Internet en fibra óptica de alta velocidad para empresas y hogares.";
+
+useHead({
+  titleTemplate: 'Internet fibra óptica de alta velocidad - %s',
+  title() {
+    return config.pwaManifest.short_name;
+  },
+  meta: [
+    { name: 'description', content: description },
+    { name: 'og:title', content: config.pwaManifest.short_name },
+    { name: 'og:description', content: description },
+  ]
+})
+
+const isLoading = ref(false);
+const tiposPlanes = ref<any>([]);
+const bcvUsd = useBcvUsd();
+
+try {
+  const graphql = useStrapiGraphQL();
+
+  const internetQuery = await graphql<any>(`
+  query {
+    planInternet {
+      data {
+        attributes {
+          tipo {
+            nombre
+            descripcion
+            planes {
+              id
+              nombre
+              precio_usd
+            }
+          }
+        }
+      }
+    }
+`);
+
+  tiposPlanes.value = internetQuery.data.planInternet.data.attributes.tipo;
+
+} catch (err) {
+  console.log(err);
+}
+
+function loadingText(price: string) {
+  return isLoading.value ? `Bs. ${price} / Mensual` : "...cargando precio";
+}
+
+</script>

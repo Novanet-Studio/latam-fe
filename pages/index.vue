@@ -14,7 +14,7 @@
         </a>
       </div>
       <div class="hero__internet">
-        <a class="hero__internet__box" href="/internet/">
+        <nuxt-link class="hero__internet__box" to="/internet">
           <div class="hero__internet__icon"></div>
           <div class="hero__internet__info">
             <h1 class="hero__internet__title">Internet por fibra</h1>
@@ -23,75 +23,103 @@
               residencial.
             </p>
           </div>
-        </a>
+        </nuxt-link>
       </div>
     </section>
 
     <section class="pago">
       <div class="pago__icon">
-        <img
-          class="pago__icon__imagen"
-          alt="Latin American Cable Pago icono"
-          src="../../assets/images/latinamericancable-pago-icon.svg"
-        />
+        <img class="pago__icon__imagen" alt="Latin American Cable Pago icono"
+          src="../assets/images/latinamericancable-pago-icon.svg" />
       </div>
-      <NuxtLink to="/" class="pago__boton">Notifíque su pago aquí</NuxtLink>
+      <nuxt-link to="/" class="pago__boton">Notifíque su pago aquí</nuxt-link>
     </section>
 
-    <section class="canales">
-      <AccordionList
-        v-model:state="state"
-        :open-multiple-items="openMultipleItems"
-      >
-        <AccordionItem id="mId1" default-opened>
-          <template #summary> Summary one</template>
-          <template #icon>☝️</template>
-          <h3>Dynamic content reaction</h3>
-          <div>
-            <button @click="addContentLine">Add dynamic lines</button>
-            <button @click="removeContentLine">Remove dynamic lines</button>
-          </div>
-          <div v-for="(line, index) in contentLines" :key="index">
-            {{ line }}
-          </div>
-          <h3>
-            All content is provided by slots (f.g. you can nest another
-            accordion)
-          </h3>
-        </AccordionItem>
-        <AccordionItem id="mId2" disabled>
-          <template #summary
-            >This item is disabled you can control it via v-model</template
-          >
-          <template #icon> 💀</template>
-          You can control it via v-model
-        </AccordionItem>
-        <AccordionItem v-for="item in dynamicItems" :key="item">
-          <template #summary>This item is dynamically added</template>
-          <template #icon>D</template>
-          {{ item }}
-        </AccordionItem>
-        <AccordionItem id="mId3">
-          <template #summary>Last item (with default icon) here</template>
-          <div>
-            <h1>
-              Please subscribe
-              <a href="https://www.youtube.com/channel/UCxKF1Edfy3LfvAsnveD-OVA"
-                >youtube channel</a
-              >,
-              <a href="https://t.me/developers_workshop">telegram channel</a>,
-              share video, stay stars and likes
-            </h1>
-          </div>
-        </AccordionItem>
-      </AccordionList>
+    <channel-list />
+
+    <section class="tv">
+      <div class="tv__banner">
+        <h3 class="tv__banner__titulo">
+          Más de 100 canales para disfrutar en familia
+        </h3>
+        <p class="tv__banner__texto">
+          <strong>Hasta 3 televisores</strong> por la misma mensualidad
+        </p>
+        <a class="tv__banner__boton" href="/contacto/">Suscríbete ahora</a>
+      </div>
+    </section>
+
+    <section class="internet">
+      <h2 class="internet__titulo">Internet por fibra</h2>
+      <p class="internet__texto">
+        Internet corporativo de alta velocidad. Conexión en fibra óptica
+        dirigida a uso corporativo y residencial de alta gama.
+      </p>
+
+      <div class="internet__banner">
+        <h3 class="internet__banner__titulo">
+          Ingresa al sistema de gestion de internet
+        </h3>
+        <p class="internet__banner__texto">
+          Administra y todo lo relacionado con el servicio de internet
+        </p>
+        <a class="internet__banner__boton" href="https://190.216.243.210:8822/" target="_blank">Acceder ahora</a>
+      </div>
+
+      <ul class="internet__planes">
+        <li class="internet__planes__item" v-for="(item, index) in planesInternet" :key="index">
+          <h3 class="internet__planes__titulo">{{ item.nombre }}</h3>
+          <p class="internet__planes__texto">{{ item.descripcion }}</p>
+
+          <ul class="internet__planes__velocidades">
+            <li class="internet__planes__boton" v-for="(i, index) in item.planes" :key="index">
+              {{ i.nombre }}
+            </li>
+          </ul>
+          <a href="" class="internet__planes__suscripcion">Suscríbete</a>
+        </li>
+      </ul>
     </section>
   </main>
 </template>
 
-<script setup>
-import { AccordionList, AccordionItem } from "vue3-rich-accordion";
-import "vue3-rich-accordion/accordion-library-styles.css";
+<script lang="ts" setup>
+const config = useAppConfig();
 
-import "./index.scss";
+useHead({
+  titleTemplate: 'TV por cable e Internet fibra óptica de alta velocidad - %s',
+  title() {
+    return config.pwaManifest.short_name;
+  }
+});
+
+const planesInternet = ref();
+const graphql = useStrapiGraphQL();
+
+try {
+  const query = await graphql<any>(`
+  query {
+    planInternet {
+      data {
+        attributes {
+          tipo {
+            id
+            nombre
+            descripcion
+            planes {
+              nombre
+              precio_usd
+            }
+          }
+        }
+      }
+    }
+  }
+`);
+  planesInternet.value = query.data.planInternet.data.attributes.tipo
+} catch (err) {
+  planesInternet.value = [];
+  console.log(err);
+}
+
 </script>
