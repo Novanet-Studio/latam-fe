@@ -11,7 +11,7 @@
     grid-area: hero;
     grid-template-areas: ". . . . . . mensaje mensaje mensaje mensaje mensaje mensaje ";
     border-radius: 1em 1em 0 0;
-    @include section-background($image: "latinamericancable-contacto.jpg");
+    @include section-background($image: "latinamericancable-contacto.webp");
 
     & > div {
       @include grid-structure($columns: 8);
@@ -73,7 +73,7 @@
     .hero {
       grid-template-columns: repeat(8, 2fr);
       grid-template-areas: "mensaje mensaje mensaje mensaje mensaje mensaje mensaje mensaje";
-      background-image: url("../../assets/images/latinamericancable-contacto-mob-por.jpg");
+      background-image: url("../../assets/images/latinamericancable-contacto-mob-por.webp");
 
       &__mensaje {
         border-radius: 0 0 0 0;
@@ -103,7 +103,7 @@
     .hero {
       grid-template-columns: repeat(6, 2fr);
       grid-template-areas: ". . mensaje mensaje mensaje mensaje";
-      background-image: url("../../assets/images/latinamericancable-contacto-mob-lan.jpg");
+      background-image: url("../../assets/images/latinamericancable-contacto-mob-lan.webp");
 
       &__mensaje {
         align-content: center;
@@ -122,7 +122,7 @@
   .contacto {
     .hero {
       grid-template-areas: ". . . mensaje mensaje mensaje";
-      background-image: url("../../assets/images/latinamericancable-contacto-tab-por.jpg");
+      background-image: url("../../assets/images/latinamericancable-contacto-tab-por.webp");
 
       &__mensaje {
         &__box {
@@ -137,7 +137,7 @@
 @include responsive(64em) {
   .contacto {
     .hero {
-      background-image: url("../../assets/images/latinamericancable-contacto-tab-lan.jpg");
+      background-image: url("../../assets/images/latinamericancable-contacto-tab-lan.webp");
 
       &__mensaje {
         &__box {
@@ -163,7 +163,7 @@
     .hero {
       grid-template-columns: repeat(12, 2fr);
       grid-template-areas: ". . . . . . mensaje mensaje mensaje mensaje mensaje mensaje";
-      background-image: url("../../assets/images/latinamericancable-contacto.jpg");
+      background-image: url("../../assets/images/latinamericancable-contacto.webp");
 
       &__mensaje {
         &__text {
