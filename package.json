@@ -14,8 +14,8 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@kevinmarrec/nuxt-pwa": "^0.10.0",
-    "nuxt": "3.0.0-rc.13"
+    "@kevinmarrec/nuxt-pwa": "^0.13.0",
+    "nuxt": "3.0.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
