@@ -5,7 +5,7 @@
       <a class="whatsapp__button" href="https://wa.me/message/7RLTG6FD5P6TJ1" target="_blank">Comenzar chat</a>
     </div>
     <div class="whatsapp__icon">
-      <nuxt-img class="whatsapp__icon-img" alt="whatsapp logo" src="/whatsapp-green.svg" />
+      <img class="whatsapp__icon-img" alt="whatsapp logo" src="~/assets/images/whatsapp-green.svg" />
     </div>
   </div>
 </template>

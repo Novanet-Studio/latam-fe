@@ -2,7 +2,7 @@
   <header class="header">
     <div class="header__logo">
       <NuxtLink to="/" target="_self">
-        <nuxt-img alt="Latin American Cable Logo" src="/latinamericancable-logo.svg" />
+        <img alt="Latin American Cable Logo" src="~/assets/images/latinamericancable-logo.svg" />
       </NuxtLink>
     </div>
     <nav class="header__nav">
