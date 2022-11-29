@@ -7,7 +7,7 @@
     <div>
       <ul class="canales__categoria">
         <li v-for="item in content" :key="item" class="canales__categoria__item">
-          <nuxt-img :src="item.image" class="canales__categoria__imagen" />
+          <img :src="item.image" class="canales__categoria__imagen" />
         </li>
       </ul>
     </div>
