@@ -2,7 +2,7 @@
   <footer class="footer">
     <ul class="footer__rrss">
       <li class="footer__link">
-        <a class="footer__link-a" href="https://latam-be.herokuapp.com/admin/" target="_blank">
+        <a class="footer__link-a" href="https://latam-api.herokuapp.com/admin" target="_blank">
           <img class="footer__icon" alt="Panel logo" src="../assets/images/login.svg" />
         </a>
       </li>

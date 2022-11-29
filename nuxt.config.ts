@@ -5,6 +5,16 @@ export default {
   target: "static",
   app: {
     head: {
+      meta: [
+        { name: "title", content: "Latin American Cable" },
+        {
+          name: "description",
+          content:
+            "Más de 100 canales de TV. Internet fibra óptica de alta velocidad.",
+        },
+        { name: "name", content: "Latin American Aplicación web" },
+        { name: "author", content: "Novanet Studio <info@novanet.studio>" },
+      ],
       script: [
         {
           src: "https://cloud.issabel.org/click2call/click.js?code=eyJjdCI6ImtpK05BWDVtaWtLZVpHc2IzOCtDZjVuc2Y3NytEdFpDNnNSTDY0NGw4TWtjdzduZyswUzVqZGhYcjRvTnBIUGVHTzZMeFJUTTN0RjNQalwva1pHVzZHQlBSYUZETE5tY3BRcFBuajd3ekZhTmF0bjAxOHI2MFRxclFKUlRheWRyT0E5RFhSZEFYSG82Nm43Mzl5ZWlrZ2RSZXkzR09QR2tnMzlJTHFsTDNyMndrcko0QnlUXC8yWVM3MDJcL1BYNlJhdVVCV0l6Q0xcL2MyT2tZTjhGZ2tLTDVTSzJVWkJNMzZ1NkY5d1BBcndadEkyNEtmT240SytsWHJsUGsrNHJhQWppcDhuMytCZjV5Wm1NU21cL01iRmhIblkwZHk0dDQ0dVJKdTMwbVdhcXpyQmFnemZhV2ZXWlJWWjBtSG5aejByaXIiLCJpdiI6IjRjNWIwOWQ3MmU3MjYwODEzYmNlZTNhMTg3NDk4YWE3IiwicyI6ImY4MDIzN2MxYWUxYWYxOTMifQ==",

@@ -32,7 +32,7 @@
         <img class="pago__icon__imagen" alt="Latin American Cable Pago icono"
           src="../assets/images/latinamericancable-pago-icon.svg" />
       </div>
-      <nuxt-link to="/" class="pago__boton">Notifíque su pago aquí</nuxt-link>
+      <nuxt-link to="/reporte-pago/" class="pago__boton">Notifíque su pago aquí</nuxt-link>
     </section>
 
     <channel-list />
@@ -88,9 +88,7 @@ const config = useAppConfig();
 
 useHead({
   titleTemplate: 'TV por cable e Internet fibra óptica de alta velocidad - %s',
-  title() {
-    return config.pwaManifest.short_name;
-  }
+
 });
 
 const planesInternet = ref();

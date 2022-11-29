@@ -67,15 +67,7 @@ const bcvUsd = useBcvUsd();
 const description = "Reporte su pago del servicio de TV por cable.";
 
 useHead({
-  titleTemplate: 'Reporte su pago - %s',
-  title() {
-    return config.pwaManifest.short_name;
-  },
-  meta: [
-    { name: 'description', content: description },
-    { name: 'og:title', content: config.pwaManifest.short_name },
-    { name: 'og:description', content: description },
-  ]
+  titleTemplate: 'Reporte su pago - %s', 
 });
 
 // TODO: improve types
@@ -126,6 +118,6 @@ try {
 }
 
 function loadingText(price: string) {
-  return isLoading ? `Bs. ${price} / Mensual` : "...cargando precio";
+  return isLoading ? `Bs. ${price} / Mensual` : "Cargando precio...";
 }
 </script>

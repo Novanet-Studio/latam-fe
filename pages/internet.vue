@@ -51,15 +51,7 @@ const description =
   "Internet en fibra óptica de alta velocidad para empresas y hogares.";
 
 useHead({
-  titleTemplate: 'Internet fibra óptica de alta velocidad - %s',
-  title() {
-    return config.pwaManifest.short_name;
-  },
-  meta: [
-    { name: 'description', content: description },
-    { name: 'og:title', content: config.pwaManifest.short_name },
-    { name: 'og:description', content: description },
-  ]
+  titleTemplate: 'Internet fibra óptica de alta velocidad - %s', 
 })
 
 const isLoading = ref(false);

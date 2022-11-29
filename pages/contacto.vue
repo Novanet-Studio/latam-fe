@@ -34,14 +34,6 @@ const description =
   "Ponte en contacto con nosotros y déjanos los detalles de tu solicitud en nuestro canal de atención al Ciente en WhatsApp.";
 
 useHead({
-  titleTemplate: 'Contáctanos - %s',
-  title() {
-    return config.pwaManifest.short_name;
-  },
-  meta: [
-    { name: 'description', content: description },
-    { name: 'og:title', content: config.pwaManifest.short_name },
-    { name: 'og:description', content: description },
-  ]
+  titleTemplate: 'Contáctanos - %s',  
 });
 </script>
