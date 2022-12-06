@@ -51,8 +51,8 @@ const description =
   "Internet en fibra óptica de alta velocidad para empresas y hogares.";
 
 useHead({
-  titleTemplate: 'Internet fibra óptica de alta velocidad - %s', 
-})
+  titleTemplate: 'Internet fibra óptica de alta velocidad - %s',
+});
 
 const isLoading = ref(false);
 const tiposPlanes = ref<any>([]);
@@ -90,8 +90,5 @@ try {
   isLoading.value = false;
 }
 
-function loadingText(price: string) {
-  return !isLoading.value ? `Bs. ${price} / Mensual` : "Cargando precio...";
-}
-
+const loadingText = (price: string) => !isLoading.value ? `Bs. ${price} / Mensual` : "Cargando precio...";
 </script>
