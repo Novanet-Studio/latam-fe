@@ -7,95 +7,44 @@
     </p>
     <form class="formulario__form" @submit.prevent="submitForm">
       <h3 class="formulario__form__titulo">Datos titular contrato</h3>
-      <base-input
-        label-text="Nombre y Apellido"
-        id="fullname"
-        name="fullname"
-      />
-      <base-input
-        label-text="Cédula de identidad"
-        id="identification"
-        name="identification"
-      />
-      <base-input
-        label-text="Número de contrato"
-        id="contractNumber"
-        name="contractNumber"
-      />
+      <base-input label-text="Nombre y Apellido" id="fullname" name="fullname" />
+      <base-input label-text="Cédula de identidad" id="identification" name="identification" />
+      <base-input label-text="Número de contrato" id="contractNumber" name="contractNumber" />
       <base-input label-text="Zona" id="zone" name="zone" />
 
       <h3 class="formulario__form__titulo">Datos forma de pago</h3>
 
-      <select-input
-        label-text="Zona"
-        default-text="Seleccione forma de pago"
-        id="paymentWay"
-        name="paymentWay"
-        :options="paymentOptions"
-      />
+      <select-input label-text="Zona" default-text="Seleccione forma de pago" id="paymentWay" name="paymentWay"
+        :options="paymentOptions" />
 
-      <base-input
-        label-text="Número de transacción"
-        id="transactionNumber"
-        name="transactionNumber"
-      />
+      <base-input label-text="Número de transacción" id="transactionNumber" name="transactionNumber" />
 
-      <select-input
-        label-text="Banco emisor"
-        default-text="Seleccione un banco"
-        id="issuingBank"
-        name="issuingBank"
-        :options="bankOptions"
-      />
+      <select-input label-text="Banco emisor" default-text="Seleccione un banco" id="issuingBank" name="issuingBank"
+        :options="bankOptions" />
 
-      <date-picker-input
-        label-text="Fecha de operación"
-        placeholder="Selecccione la fecha"
-        format="dd-MM-yyyy"
-        :locale="dateLocale"
-        name="date"
-      />
+      <date-picker-input label-text="Fecha de operación" placeholder="Selecccione la fecha" format="dd-MM-yyyy"
+        :locale="dateLocale" name="date" />
 
       <form-currency label-text="Monto" id="amount" name="amount" />
 
       <h3 class="formulario__form__titulo">Datos titular cuenta bancaria</h3>
 
-      <base-input
-        label-text="Nombre y apellido"
-        id="dtbFullname"
-        name="dtbFullname"
-      />
+      <base-input label-text="Nombre y apellido" id="dtbFullname" name="dtbFullname" />
       <base-input label-text="Teléfono" id="dtbPhone" name="dtbPhone" />
-      <base-input
-        label-text="Cédula de identidad"
-        id="dtbIdentification"
-        name="dtbIdentification"
-      />
-      <base-input
-        label-text="Correo electrónico"
-        id="dtbEmail"
-        name="dtbEmail"
-      />
+      <base-input label-text="Cédula de identidad" id="dtbIdentification" name="dtbIdentification" />
+      <base-input label-text="Correo electrónico" id="dtbEmail" name="dtbEmail" />
 
-      <form-button
-        type="submit"
-        :is-loading="isSendingForm"
-        :disabled="isButtonDisabled"
-      >
+      <form-button type="submit" :is-loading="isSendingForm" :disabled="isButtonDisabled">
         Reportar pago
       </form-button>
     </form>
-    <Modal
-      v-show="isModalVisible"
-      title="Tu pago ha sido reportado"
+    <Modal v-show="isModalVisible" title="Tu pago ha sido reportado"
       text="Gracias por enviarnos la información de pago. Para cualquier otra información por favor envíanos un mensaje por WhatsApp"
-      @close="closeModal"
-    />
+      @close="closeModal" />
   </section>
 </template>
 
 <script lang="ts" setup>
-import { parse } from "date-fns";
 import { useForm } from "vee-validate";
 import { object, string, date } from "yup";
 import { paymentMapper } from "~/utils/mapper";

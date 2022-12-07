@@ -27,6 +27,7 @@
     "@types/node": "^18.11.5",
     "@vuepic/vue-datepicker": "^3.5.3",
     "date-fns": "^2.29.3",
+    "maska": "^2.0.1",
     "sass": "^1.55.0",
     "vee-validate": "^4.7.2",
     "vue3-rich-accordion": "^0.0.7",

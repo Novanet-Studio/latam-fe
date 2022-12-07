@@ -3139,6 +3139,11 @@ make-dir@^3.1.0, make-dir@~3.1.0:
   dependencies:
     semver "^6.0.0"
 
+maska@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/maska/-/maska-2.0.1.tgz#8ecbd1772a1393e5c80c168a9623d15f1130a341"
+  integrity sha512-ZE8sjNYW9qhlDlqr9CvEUhbydT77cN0gRnMjGn77sV2b9KcwCXydinuoJ1T0j5q5uiYjaYb15qNUB7NBRb7Sqg==
+
 mdn-data@2.0.14:
   version "2.0.14"
   resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.14.tgz#7113fc4281917d63ce29b43446f701e68c25ba50"

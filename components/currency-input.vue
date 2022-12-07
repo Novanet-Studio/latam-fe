@@ -1,9 +1,15 @@
 <template>
-  <input type="text" :id="id" class="formulario__form__input" v-model="value" @blur="isActive = false"
-    @focus="isActive = true" />
+  <div class="currency" :class="isActive ? 'active' : ''">
+    <label :for="id" class="currency__label">Bs</label>
+    <input type="text" :id="id" class="formulario__form__input" v-model="value" @blur="isActive = false"
+      @focus="isActive = true" v-maska="binded" data-maska="Bs 9.99#,##" data-maska-tokens="9:[0-9]:repeated"
+      data-maska-reversed />
+  </div>
 </template>
 
 <script lang="ts" setup>
+import { vMaska } from 'maska';
+
 type Props = {
   modelValue: string;
   id?: string;
@@ -17,36 +23,41 @@ const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
 const isActive = ref(false);
+const binded = reactive<{
+  masked?: string;
+  unmasked?: string;
+  completed?: string;
+}>({});
 
-const FORMAT_REGEX = /(\d)(?=(\d{3})+(?:\.\d+)?$)/g
+const value = computed(() => props.modelValue);
 
-const value = computed({
-  get() {
-    const currentValue = props.modelValue !== '' ? Number(props.modelValue) : 0;
-
-    if (isActive.value) {
-      return props.modelValue.toString()
-    }
-
-    const amount = currentValue
-      .toFixed(2)
-      .replace(FORMAT_REGEX, '$1.')
-      .split('');
-
-    const dotDecimalPosition = amount.length - 3
-
-    amount.splice(dotDecimalPosition, 1, ',')
-
-    return `Bs.S ${amount.join('')}`
-  },
-  set(newValue: string) {
-    let currentValue = parseFloat(newValue.replace(/[^\d\,]/g, ''))
-
-    if (isNaN(currentValue)) {
-      currentValue = 0
-    }
-
-    emit('update:modelValue', String(currentValue))
-  }
+watch(binded, () => {
+  emit('update:modelValue', binded?.masked ?? '');
 });
 </script>
+
+<style lang="scss" scoped>
+.currency {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 15px;
+  border: 1px solid transparent;
+
+  &__label {
+    padding-left: 1rem;
+    font-weight: 500;
+    color: #7e7e7e;
+  }
+}
+
+.active {
+  border: 1px solid #2767aa;
+}
+
+:deep(.formulario__form__input) {
+  &:focus {
+    outline: none;
+  }
+}
+</style>
