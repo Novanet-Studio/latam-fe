@@ -36,6 +36,9 @@ export default {
   modules: ["@nuxt/image-edge", "@nuxtjs/strapi", "@kevinmarrec/nuxt-pwa"],
   runtimeConfig: {
     public: {
+      strapi: {
+        url: process.env.STRAPI_URL || "http://localhost:1337",
+      },
       bcvUsdApi: process.env.BCV_USD_API_URL,
     },
   },
@@ -48,9 +51,7 @@ export default {
     },
   },
   pwa,
-  strapi: {
-    url: process.env.STRAPI_URL || "http://localhost:1337",
-  },
+
   css: [
     "~/assets/scss/global.scss",
     "@fortawesome/fontawesome-svg-core/styles.css",

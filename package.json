@@ -14,23 +14,23 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@kevinmarrec/nuxt-pwa": "^0.13.0",
-    "nuxt": "3.0.0"
+    "@kevinmarrec/nuxt-pwa": "^0.17.0",
+    "@nuxtjs/strapi": "^1.9.0",
+    "nuxt": "^3.4.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-brands-svg-icons": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
-    "@fortawesome/vue-fontawesome": "^2.0.8",
+    "@fortawesome/vue-fontawesome": "^3.0.3",
     "@nuxt/image-edge": "^1.0.0-27769790.4b27db3",
-    "@nuxtjs/strapi": "^1.6.0",
     "@types/node": "^18.11.5",
-    "@vuepic/vue-datepicker": "^3.5.3",
+    "@vuepic/vue-datepicker": "^4.3.0",
     "date-fns": "^2.29.3",
     "maska": "^2.0.1",
     "sass": "^1.55.0",
     "vee-validate": "^4.7.2",
     "vue3-rich-accordion": "^0.0.7",
-    "yup": "^0.32.11"
+    "yup": "^1.0.2"
   }
 }
