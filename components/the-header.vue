@@ -2,7 +2,10 @@
   <header class="header">
     <div class="header__logo">
       <NuxtLink to="/" target="_self">
-        <img alt="Latin American Cable Logo" src="~/assets/images/latinamericancable-logo.svg" />
+        <img
+          alt="Latin American Cable Logo"
+          src="~/assets/images/latinamericancable-logo.svg"
+        />
       </NuxtLink>
     </div>
     <nav class="header__nav">
@@ -13,4 +16,3 @@
     </nav>
   </header>
 </template>
-

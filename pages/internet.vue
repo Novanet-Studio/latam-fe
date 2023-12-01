@@ -2,7 +2,11 @@
   <main class="internetvista">
     <section class="hero">
       <div class="hero__internet">
-        <nuxt-link class="hero__internet__box" to="/internet">
+        <a
+          class="hero__internet__box"
+          href="http://190.216.243.210:8822/"
+          target="_blank"
+        >
           <div class="hero__internet__icon"></div>
           <div class="hero__internet__info">
             <h1 class="hero__internet__title">Internet por fibra</h1>
@@ -11,13 +15,20 @@
               residencial.
             </p>
           </div>
-        </nuxt-link>
+        </a>
       </div>
     </section>
+    <template>
+      <main class="reporte"></main>
+    </template>
 
     <section class="internet">
       <div class="internet__planes">
-        <div class="internet__planes__item" v-for="(tipo, index) in tiposPlanes" :key="index">
+        <div
+          class="internet__planes__item"
+          v-for="(tipo, index) in tiposPlanes"
+          :key="index"
+        >
           <div class="internet__planes__cabecera">
             <h3 class="internet__planes__titulo">{{ tipo.nombre }}</h3>
             <p class="internet__planes__texto">
@@ -26,7 +37,11 @@
           </div>
 
           <ul class="internet__planes__lista">
-            <li class="internet__planes__velocidades" v-for="plan in tipo.planes" :key="plan.id">
+            <li
+              class="internet__planes__velocidades"
+              v-for="plan in tipo.planes"
+              :key="plan.id"
+            >
               <div class="internet__planes__boton">
                 <h3 class="internet__planes__subtitulo">{{ plan.nombre }}</h3>
                 <p class="internet__planes__texto">
@@ -51,7 +66,7 @@ const description =
   "Internet en fibra óptica de alta velocidad para empresas y hogares.";
 
 useHead({
-  titleTemplate: 'Internet fibra óptica de alta velocidad - %s',
+  titleTemplate: "Internet fibra óptica de alta velocidad - %s",
 });
 
 const isLoading = ref(false);
@@ -63,32 +78,32 @@ try {
   const graphql = useStrapiGraphQL();
 
   const internetQuery = await graphql<any>(`
-  query {
-    planInternet {
-      data {
-        attributes {
-          tipo {
-            nombre
-            descripcion
-            planes {
-              id
+    query {
+      planInternet {
+        data {
+          attributes {
+            tipo {
               nombre
-              precio_usd
+              descripcion
+              planes {
+                id
+                nombre
+                precio_usd
+              }
             }
           }
         }
       }
     }
-  }
-`);
+  `);
 
   tiposPlanes.value = internetQuery.data.planInternet.data.attributes.tipo;
-
 } catch (err) {
   console.log(err);
 } finally {
   isLoading.value = false;
 }
 
-const loadingText = (price: string) => !isLoading.value ? `Bs. ${price} / Mensual` : "Cargando precio...";
+const loadingText = (price: string) =>
+  !isLoading.value ? `Bs. ${price} / Mensual` : "Cargando precio...";
 </script>

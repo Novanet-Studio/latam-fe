@@ -29,10 +29,18 @@
 
     <section class="pago">
       <div class="pago__icon">
-        <img class="pago__icon__imagen" alt="Latin American Cable Pago icono"
-          src="../assets/images/latinamericancable-pago-icon.svg" />
+        <img
+          class="pago__icon__imagen"
+          alt="Latin American Cable Pago icono"
+          src="../assets/images/latinamericancable-pago-icon.svg"
+        />
       </div>
-      <nuxt-link to="/reporte-pago/" class="pago__boton">Notifíque su pago aquí</nuxt-link>
+      <a
+        href="https://190.216.243.210:8822/"
+        target="_blank"
+        class="pago__boton"
+        >Notifíque su pago aquí</a
+      >
     </section>
 
     <channel-list />
@@ -63,16 +71,29 @@
         <p class="internet__banner__texto">
           Administra y todo lo relacionado con el servicio de internet
         </p>
-        <a class="internet__banner__boton" href="https://190.216.243.210:8822/" target="_blank">Acceder ahora</a>
+        <a
+          class="internet__banner__boton"
+          href="https://190.216.243.210:8822/"
+          target="_blank"
+          >Acceder ahora</a
+        >
       </div>
 
       <ul class="internet__planes">
-        <li class="internet__planes__item" v-for="(item, index) in planesInternet" :key="index">
+        <li
+          class="internet__planes__item"
+          v-for="(item, index) in planesInternet"
+          :key="index"
+        >
           <h3 class="internet__planes__titulo">{{ item.nombre }}</h3>
           <p class="internet__planes__texto">{{ item.descripcion }}</p>
 
           <ul class="internet__planes__velocidades">
-            <li class="internet__planes__boton" v-for="(i, index) in item.planes" :key="index">
+            <li
+              class="internet__planes__boton"
+              v-for="(i, index) in item.planes"
+              :key="index"
+            >
               {{ i.nombre }}
             </li>
           </ul>
@@ -87,8 +108,7 @@
 const config = useAppConfig();
 
 useHead({
-  titleTemplate: 'TV por cable e Internet fibra óptica de alta velocidad - %s',
-
+  titleTemplate: "TV por cable e Internet fibra óptica de alta velocidad - %s",
 });
 
 const planesInternet = ref();
@@ -96,28 +116,27 @@ const graphql = useStrapiGraphQL();
 
 try {
   const query = await graphql<any>(`
-  query {
-    planInternet {
-      data {
-        attributes {
-          tipo {
-            id
-            nombre
-            descripcion
-            planes {
+    query {
+      planInternet {
+        data {
+          attributes {
+            tipo {
+              id
               nombre
-              precio_usd
+              descripcion
+              planes {
+                nombre
+                precio_usd
+              }
             }
           }
         }
       }
     }
-  }
-`);
-  planesInternet.value = query.data.planInternet.data.attributes.tipo
+  `);
+  planesInternet.value = query.data.planInternet.data.attributes.tipo;
 } catch (err) {
   planesInternet.value = [];
   console.log(err);
 }
-
 </script>
