@@ -2,10 +2,10 @@
   <section class="login payment-section">
     <h3>Ingresa a tu cuenta</h3>
     <h5>Coloca la información solicitada</h5>
-    <form>
+    <form @submit.prevent="submitForm">
       <base-input label="Usuario" id="user" name="user" />
       <base-input label="Contraseña" id="password" name="password" type="password" />
-      <form-button type="submit" :is-loading="isSendingForm" :disabled="isButtonDisabled">
+      <form-button type="submit" :is-loading="isSending" :disabled="disabled">
           Iniciar Sesión
       </form-button>
     </form>
@@ -13,8 +13,47 @@
 </template>
 
 <script lang="ts" setup>
-const isSendingForm = ref(false);
-const isButtonDisabled = ref(false);
+import { useForm } from 'vee-validate';
+
+const isSending = ref(false);
+const disabled = ref(false);
+
+const isAuthenticated = inject('isAuthenticated') as Ref<boolean>;
+const isLoading = inject('isLoading') as Ref<boolean>;
+
+const { handleSubmit } = useForm({
+  initialValues: {
+    user: '',
+    password: ''
+  },
+});
+
+const submitForm = handleSubmit(async (values) => {
+  try {
+    isSending.value = true;
+    disabled.value = true;
+    isLoading.value = true;
+
+    setTimeout(() => {
+      if (values.user !== values.password) {
+        isAuthenticated.value = false;
+        isLoading.value = false;
+      }
+
+      if (values.user === "V12345678" && values.password === "V12345678") {
+        isAuthenticated.value = true;
+        isLoading.value = false;
+      }
+    }, 2000);
+    
+  } catch (error) {
+    isAuthenticated.value = false;
+  } finally {
+    // isSending.value = false;
+    // disabled.value = false;
+    // isLoading.value = false;
+  }
+})
 </script>
 
 <style lang="scss">

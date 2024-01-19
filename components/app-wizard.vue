@@ -1,14 +1,13 @@
 <template>
   <section class="wizard-light">
-    
     <app-stepper :steps="steps" ref="stepperRef" />
     <div class="wizard payment-section">
       <h3>Confirmación de Pagos TV por cable</h3>
       <h5>{{ label }}</h5>
 
-      <Transition :name="isNextClicked ? 'slide-left' : 'slide-right'" mode="out-in">
+      <transition :name="isNextClicked ? 'slide-left' : 'slide-right'" mode="out-in">
         <component :is="activeComponent" />
-      </Transition>
+      </transition>
 
       <div class="wizard__footer">
         <button v-if="stepperRef?.hasPreviousStep && stepperRef?.hasNextStep" class="wizard__btn wizard__btn--prev" @click="() => {
