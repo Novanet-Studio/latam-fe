@@ -5,20 +5,30 @@
     <div class="wizard payment-section">
       <h3>Confirmación de Pagos TV por cable</h3>
       <h5>{{ label }}</h5>
-      <check-subscription-step key="CheckSubscriptionStep" />
-      <subscriptor-data-step key="SubscriptorDataStep" />
-      <payment-report-step key="PaymentReportStep" />
-      <status-step key="StatusStep" />
+
+      <Transition :name="isNextClicked ? 'slide-left' : 'slide-right'" mode="out-in">
+        <component :is="activeComponent" />
+      </Transition>
 
       <div class="wizard__footer">
-        <button v-if="stepperRef?.hasPreviousStep && stepperRef?.hasNextStep" class="wizard__btn wizard__btn--prev" @click="stepperRef?.handlePrevStep()">Regresar</button>
-        <button class="wizard__btn wizard__btn--next" @click="stepperRef?.handleNextStep()">{{ nextBtnLabel }}</button>
+        <button v-if="stepperRef?.hasPreviousStep && stepperRef?.hasNextStep" class="wizard__btn wizard__btn--prev" @click="() => {
+          isNextClicked = false
+          stepperRef?.handlePrevStep()
+        }">Regresar</button>
+        <button class="wizard__btn wizard__btn--next" @click="() => {
+          isNextClicked = true
+          stepperRef?.handleNextStep()
+        }">{{ nextBtnLabel }}</button>
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+import CheckSubscriptionStep from './check-subscription-step.vue';
+import SubscriptorDataStep from './subscriptor-data-step.vue';
+import PaymentReportStep from './payment-report-step.vue';
+import StatusStep from './status-step.vue';
 import AppStepper from './app-stepper.vue';
 
 const steps = [
@@ -32,6 +42,19 @@ const steps = [
 
 const stepperRef = ref<InstanceType<typeof AppStepper> | null>(null)
 const label = computed(() => steps[stepperRef?.value?.currentStep ?? 0].label);
+const isNextClicked = ref(false);
+
+const activeComponent = computed(() => {
+  if (stepperRef?.value?.currentStep === 0) {
+    return CheckSubscriptionStep;
+  } else if (stepperRef?.value?.currentStep === 1) {
+    return SubscriptorDataStep;
+  } else if (stepperRef?.value?.currentStep === 2) {
+    return PaymentReportStep;
+  } else if (stepperRef?.value?.currentStep === 3) {
+    return StatusStep;
+  }
+});
 
 const nextBtnLabel = computed(() => {
   if (!stepperRef?.value?.hasNextStep) {
@@ -80,5 +103,25 @@ provide("stepper", stepperRef);
     background-color: #1B4686;
     color: #fff;
   }
+}
+
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-right-leave-to {
+  transform: translateX(40px);
+  opacity: 0;
+}
+
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-left-leave-to {
+  transform: translateX(-40px);
+  opacity: 0;
 }
 </style>

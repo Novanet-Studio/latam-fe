@@ -1,5 +1,5 @@
 <template>
-  <Transition name="fade">
+  <Transition name="fade" mode="out-in">
     <form v-if="stepper?.currentStep === 2" class="subscriptor-form">
       <div class="form-inputs">
         <base-input label="Teléfono" id="phone" name="phone" />

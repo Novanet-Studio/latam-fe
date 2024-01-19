@@ -1,5 +1,5 @@
 <template>
-  <Transition name="fade">
+  <Transition name="fade" mode="out-in">
     <div v-if="stepper?.currentStep === 3" class="message-wrapper">
       <div class="icon-wrapper" :class="{ error: !isSuccessful }">
         <img

@@ -1,5 +1,5 @@
 <template>
-  <Transition name="fade">
+  <Transition name="fade" mode="out-in">
     <form v-if="stepper?.currentStep === 0" @submit.prevent>
         <select-input label="Contrato" id="contract" name="contract" default-text="Selecciona" :options="options" />
     </form>

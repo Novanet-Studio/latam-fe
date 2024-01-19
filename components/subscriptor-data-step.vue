@@ -1,5 +1,5 @@
 <template>
-  <Transition name="fade">
+  <Transition name="fade" mode="out-in">
     <form v-if="stepper?.currentStep === 1" class="subscriptor-form">
       <div class="form-inputs">
         <base-input label="Número de contrato" id="contract" name="contract" disabled />
