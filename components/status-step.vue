@@ -1,24 +1,19 @@
 <template>
-  <Transition name="fade" mode="out-in">
-    <div v-if="stepper?.currentStep === 3" class="message-wrapper">
-      <div class="icon-wrapper" :class="{ error: !isSuccessful }">
-        <img
-          :src="isSuccessful ? successImage : errorImage"
-          alt="Success Icon"
-        />
-      </div>
-      <span class="message__title">{{
-        isSuccessful ? "¡Exitoso!" : "Rechazado"
-      }}</span>
-      <span class="message__text">
-        {{
-          isSuccessful
-            ? "Gracias por su pago"
-            : "Por favor verifique sus medios de pago"
-        }}
-      </span>
+  <div v-if="stepper?.currentStep === 3" class="message-wrapper">
+    <div class="icon-wrapper" :class="{ error: !isSuccessful }">
+      <img :src="isSuccessful ? successImage : errorImage" alt="Success Icon" />
     </div>
-  </Transition>
+    <span class="message__title">{{
+      isSuccessful ? "¡Exitoso!" : "Rechazado"
+    }}</span>
+    <span class="message__text">
+      {{
+        isSuccessful
+          ? "Gracias por su pago"
+          : "Por favor verifique sus medios de pago"
+      }}
+    </span>
+  </div>
 </template>
 
 <script lang="ts" setup>

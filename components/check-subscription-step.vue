@@ -1,24 +1,28 @@
 <template>
-  <Transition name="fade" mode="out-in">
-    <form v-if="stepper?.currentStep === 0" @submit.prevent>
-        <select-input label="Contrato" id="contract" name="contract" default-text="Selecciona" :options="options" />
-    </form>
-  </Transition>
+  <form v-if="stepper?.currentStep === 0" @submit.prevent>
+    <select-input
+      label="Contrato"
+      id="contract"
+      name="contract"
+      default-text="Selecciona"
+      :options="options"
+    />
+  </form>
 </template>
 
 <script lang="ts" setup>
 const options = [
   {
     text: "Contrato 1",
-    value: "1"
+    value: "1",
   },
   {
     text: "Contrato 2",
-    value: "2"
-  }
-]
+    value: "2",
+  },
+];
 
-const stepper = inject('stepper') as { currentStep?: number | null }
+const stepper = inject("stepper") as { currentStep?: number | null };
 </script>
 
 <style lang="scss">
@@ -32,11 +36,11 @@ const stepper = inject('stepper') as { currentStep?: number | null }
   width: 100%;
 
   & h3 {
-    color: #1B4686;
+    color: #1b4686;
   }
 
   & h5 {
-    color: #1B4686;
+    color: #1b4686;
     font-weight: 400;
     font-size: 22px;
   }
@@ -46,7 +50,7 @@ const stepper = inject('stepper') as { currentStep?: number | null }
 
     select {
       width: 100%;
-      padding: 0.5rem .8rem;
+      padding: 0.5rem 0.8rem;
       // border-radius: .5rem;
       border: 1px solid transparent;
       border-radius: 1rem;
@@ -66,9 +70,9 @@ const stepper = inject('stepper') as { currentStep?: number | null }
       margin-left: 1rem;
       margin-right: 1rem;
       padding: 0.6rem 0.8rem;
-      background-color: #C2D62E;
+      background-color: #c2d62e;
       border-radius: 1rem;
-      color: #1B4686;
+      color: #1b4686;
       font-weight: 800;
     }
   }

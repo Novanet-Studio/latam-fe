@@ -1,18 +1,16 @@
 <template>
-  <Transition name="fade" mode="out-in">
-    <form v-if="stepper?.currentStep === 2" class="subscriptor-form">
-      <div class="form-inputs">
-        <base-input label="Teléfono" id="phone" name="phone" />
-        <base-input label="Cédula de identidad" id="ci" name="ci" />
-        <!-- Change to select -->
-        <base-input label="Banco Emisor" id="fullname" name="fullname" />
+  <form v-if="stepper?.currentStep === 2" class="subscriptor-form">
+    <div class="form-inputs">
+      <base-input label="Teléfono" id="phone" name="phone" />
+      <base-input label="Cédula de identidad" id="ci" name="ci" />
+      <!-- Change to select -->
+      <base-input label="Banco Emisor" id="fullname" name="fullname" />
 
-        <base-input label="Fecha del pago" id="amount" name="amount" />
-        <base-input label="Numero de referencia" id="amount" name="amount" />
-        <base-input label="Monto" id="amount" name="amount" />
-      </div>
-    </form>
-  </Transition>
+      <base-input label="Fecha del pago" id="amount" name="amount" />
+      <base-input label="Numero de referencia" id="amount" name="amount" />
+      <base-input label="Monto" id="amount" name="amount" />
+    </div>
+  </form>
 </template>
 
 <script lang="ts" setup>
