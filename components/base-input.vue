@@ -1,10 +1,10 @@
 <template>
   <div class="formulario__form__grupo">
     <label class="formulario__form__label" :for="id">
-      {{ labelText }}
+      {{ label }}
     </label>
     <input class="formulario__form__input" :class="[errorMessage && 'input-error']" :id="id" :type="type"
-      v-model="value" />
+      v-model="value" :disabled="disabled" />
     <div class="error">{{ errorMessage }}</div>
   </div>
 </template>
@@ -13,10 +13,11 @@
 import { useField } from 'vee-validate';
 
 type Props = {
-  labelText: string;
+  label: string;
   name: string;
   id: string;
-  type: 'text' | 'password';
+  type?: 'text' | 'password';
+  disabled?: boolean;
 };
 
 const props = withDefaults(defineProps<Props>(), {

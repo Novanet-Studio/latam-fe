@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <Transition name="fade">
     <div>
       <nav class="stepper-nav" style="display: flex" v-bind="stepperProps">
         <ol
@@ -30,7 +30,7 @@
     <button @click="nextStep">Next</button>
 
     <div v-bind="progressProps"></div> -->
-  </div>
+  </Transition>
 </template>
 
 <script lang="ts" setup>
@@ -49,13 +49,22 @@ const { stepperProps, stepsProps, state, nextStep, prevStep } =
     disabledClick: true,
   });
 
+function handleNextStep() {
+  nextStep()
+}
+
+function handlePrevStep() {
+  prevStep()
+}
+
 
 defineExpose({
-  nextStep,
-  prevStep,
+  handleNextStep,
+  handlePrevStep,
   totalSteps: toRef(state, "totalSteps"),
   hasPreviousStep: toRef(state, "hasPreviousStep"),
   isLastStep: toRef(state, "isLastStep"),
+  currentStep: toRef(state, "currentStep"),
 })
 </script>
 

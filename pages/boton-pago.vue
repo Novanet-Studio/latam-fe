@@ -1,8 +1,11 @@
 <template>
-  <main class="internetvista">
+  <main class="internetvista" style="position: relative;">
     <!-- <app-login /> -->
     <app-wizard />
-    <!-- <payment-form /> -->
+    <!-- <div v-if="isLoading" style="position: absolute; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: rgba(255, 255, 255, 1); z-index: 100;">
+      <app-loader />
+    </div> -->
+        <!-- <payment-form /> -->
     <!-- <form v-if="!showPaymentForm" @submit.prevent="handleSubmit">
       <div>
         <label for="ci">Número de cédula</label>
@@ -149,6 +152,16 @@ function processPayment() {}
 .slide-fade-enter-from,
 .slide-fade-leave-to {
   transform: translateX(-20px);
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 }
 </style>

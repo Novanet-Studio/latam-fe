@@ -1,5 +1,5 @@
 /** Type for steps. */
-type Steps = {
+export type Steps = {
   /** Label to display. Ex.: Step 04 */
   label: string;
   /** Enable/disable step. */

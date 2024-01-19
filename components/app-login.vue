@@ -3,8 +3,8 @@
     <h3>Ingresa a tu cuenta</h3>
     <h5>Coloca la información solicitada</h5>
     <form>
-      <base-input label-text="Usuario" id="user" name="user" />
-      <base-input label-text="Contraseña" id="password" name="password" type="password" />
+      <base-input label="Usuario" id="user" name="user" />
+      <base-input label="Contraseña" id="password" name="password" type="password" />
       <form-button type="submit" :is-loading="isSendingForm" :disabled="isButtonDisabled">
           Iniciar Sesión
       </form-button>

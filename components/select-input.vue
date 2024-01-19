@@ -1,7 +1,7 @@
 <template>
   <div class="formulario__form__grupo">
     <label class="formulario__form__label" :for="id">
-      {{ labelText }}
+      {{ label }}
     </label>
     <!-- <input class="formulario__form__input" :id="id" type="text" v-model="value" /> -->
     <select v-model="value" :id="id">
@@ -26,7 +26,7 @@ type Props = {
   id: string;
   name: string;
   options: Options[];
-  labelText: string;
+  label: string;
   defaultText: string;
 };
 

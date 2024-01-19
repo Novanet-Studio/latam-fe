@@ -7,32 +7,32 @@
     </p>
     <form class="formulario__form" @submit.prevent="submitForm">
       <h3 class="formulario__form__titulo">Datos titular contrato</h3>
-      <base-input label-text="Nombre y Apellido" id="fullname" name="fullname" />
-      <base-input label-text="Cédula de identidad" id="identification" name="identification" />
-      <base-input label-text="Número de contrato" id="contractNumber" name="contractNumber" />
-      <base-input label-text="Zona" id="zone" name="zone" />
+      <base-input label="Nombre y Apellido" id="fullname" name="fullname" />
+      <base-input label="Cédula de identidad" id="identification" name="identification" />
+      <base-input label="Número de contrato" id="contractNumber" name="contractNumber" />
+      <base-input label="Zona" id="zone" name="zone" />
 
       <h3 class="formulario__form__titulo">Datos forma de pago</h3>
 
-      <select-input label-text="Zona" default-text="Seleccione forma de pago" id="paymentWay" name="paymentWay"
+      <select-input label="Zona" default-text="Seleccione forma de pago" id="paymentWay" name="paymentWay"
         :options="paymentOptions" />
 
-      <base-input label-text="Número de transacción" id="transactionNumber" name="transactionNumber" />
+      <base-input label="Número de transacción" id="transactionNumber" name="transactionNumber" />
 
-      <select-input label-text="Banco emisor" default-text="Seleccione un banco" id="issuingBank" name="issuingBank"
+      <select-input label="Banco emisor" default-text="Seleccione un banco" id="issuingBank" name="issuingBank"
         :options="bankOptions" />
 
-      <date-picker-input label-text="Fecha de operación" placeholder="Selecccione la fecha" format="dd-MM-yyyy"
+      <date-picker-input label="Fecha de operación" placeholder="Selecccione la fecha" format="dd-MM-yyyy"
         :locale="dateLocale" name="date" />
 
-      <form-currency label-text="Monto" id="amount" name="amount" />
+      <form-currency label="Monto" id="amount" name="amount" />
 
       <h3 class="formulario__form__titulo">Datos titular cuenta bancaria</h3>
 
-      <base-input label-text="Nombre y apellido" id="dtbFullname" name="dtbFullname" />
-      <base-input label-text="Teléfono" id="dtbPhone" name="dtbPhone" />
-      <base-input label-text="Cédula de identidad" id="dtbIdentification" name="dtbIdentification" />
-      <base-input label-text="Correo electrónico" id="dtbEmail" name="dtbEmail" />
+      <base-input label="Nombre y apellido" id="dtbFullname" name="dtbFullname" />
+      <base-input label="Teléfono" id="dtbPhone" name="dtbPhone" />
+      <base-input label="Cédula de identidad" id="dtbIdentification" name="dtbIdentification" />
+      <base-input label="Correo electrónico" id="dtbEmail" name="dtbEmail" />
 
       <form-button type="submit" :is-loading="isSendingForm" :disabled="isButtonDisabled">
         Reportar pago

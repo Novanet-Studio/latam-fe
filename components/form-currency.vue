@@ -1,6 +1,6 @@
 <template>
   <div class="formulario__form__grupo">
-    <label class="formulario__form__label" :for="id">{{ labelText }}</label>
+    <label class="formulario__form__label" :for="id">{{ label }}</label>
     <!-- <input type="text" v-model="form.mount" /> -->
     <currency-input v-model="value" :id="id" />
     <div class="error">{{ errorMessage }}</div>
@@ -11,7 +11,7 @@
 import { useField } from 'vee-validate';
 
 type Props = {
-  labelText: string;
+  label: string;
   name: string;
   id: string;
 };

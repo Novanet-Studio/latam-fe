@@ -1,6 +1,6 @@
 <template>
   <div class="formulario__form__grupo">
-    <label class="formulario__form__label">{{ labelText }}</label>
+    <label class="formulario__form__label">{{ label }}</label>
     <!-- <ClientOnly> -->
     <Datepicker v-model="value" :format="format" />
     <!-- <Datepicker :placeholder="placeholder" v-model="value" :format="format" :locale="locale" /> -->
@@ -15,7 +15,7 @@ import { useField } from 'vee-validate';
 import '@vuepic/vue-datepicker/dist/main.css';
 
 type Props = {
-  labelText: string;
+  label: string;
   name: string;
   placeholder?: string;
   format?: string;
