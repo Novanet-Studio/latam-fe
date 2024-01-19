@@ -1,22 +1,12 @@
 <template>
   <Transition name="fade">
-    <form @submit.prevent>
+    <form v-if="stepper?.currentStep === 0" @submit.prevent>
         <select-input label="Contrato" id="contract" name="contract" default-text="Selecciona" :options="options" />
-        <!-- <form-button type="button" @click.prevent="nextStep">
-          Siguiente
-        </form-button> -->
-      </form>
-    <!-- <div v-if="stepper?.currentStep === 0" class="wizard payment-section">
-      <h3>Confirmación de Pagos TV por cable</h3>
-      <h5>Consulta datos del suscriptor</h5>
-      
-    </div> -->
+    </form>
   </Transition>
 </template>
 
 <script lang="ts" setup>
-const stepper = inject("stepper") as Ref<any>;
-
 const options = [
   {
     text: "Contrato 1",
@@ -28,9 +18,7 @@ const options = [
   }
 ]
 
-function nextStep() {
-  stepper?.value.handleNextStep();
-}
+const stepper = inject('stepper') as { currentStep?: number | null }
 </script>
 
 <style lang="scss">

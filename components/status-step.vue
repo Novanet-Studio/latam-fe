@@ -1,21 +1,22 @@
 <template>
   <Transition name="fade">
-    <div v-if="stepper?.currentStep === 3" class="wizard payment-section">
-      <h3>Confirmación de Pagos TV por cable</h3>
-      <h5>Estatus del pago</h5>
-      <div class="message-wrapper">
-        <div class="icon-wrapper" :class="{ 'error': !isSuccessful }">
-          <img :src="isSuccessful ? successImage : errorImage" alt="Success Icon">
-        </div>
-        <span class="message__title">{{ isSuccessful ? "¡Exitoso!" : "Rechazado" }}</span>
-        <span class="message__text">
-          {{ isSuccessful ? "Gracias por su pago" : "Por favor verifique sus medios de pago" }}
-        </span>
-
-        <div class="form-buttons">
-          <form-button>Volver al inicio</form-button>
-        </div>
+    <div v-if="stepper?.currentStep === 3" class="message-wrapper">
+      <div class="icon-wrapper" :class="{ error: !isSuccessful }">
+        <img
+          :src="isSuccessful ? successImage : errorImage"
+          alt="Success Icon"
+        />
       </div>
+      <span class="message__title">{{
+        isSuccessful ? "¡Exitoso!" : "Rechazado"
+      }}</span>
+      <span class="message__text">
+        {{
+          isSuccessful
+            ? "Gracias por su pago"
+            : "Por favor verifique sus medios de pago"
+        }}
+      </span>
     </div>
   </Transition>
 </template>
@@ -39,11 +40,11 @@ const isSuccessful = ref(true);
   width: 100%;
 
   & h3 {
-    color: #1B4686;
+    color: #1b4686;
   }
 
   & h5 {
-    color: #1B4686;
+    color: #1b4686;
     font-weight: 400;
     font-size: 22px;
   }
@@ -53,7 +54,7 @@ const isSuccessful = ref(true);
 
     select {
       width: 100%;
-      padding: 0.5rem .8rem;
+      padding: 0.5rem 0.8rem;
       // border-radius: .5rem;
       border: 1px solid transparent;
       border-radius: 1rem;
@@ -73,9 +74,9 @@ const isSuccessful = ref(true);
       margin-left: 1rem;
       margin-right: 1rem;
       padding: 0.6rem 0.8rem;
-      background-color: #C2D62E;
+      background-color: #c2d62e;
       border-radius: 1rem;
-      color: #1B4686;
+      color: #1b4686;
       font-weight: 800;
     }
   }
@@ -107,7 +108,7 @@ const isSuccessful = ref(true);
 .icon-wrapper {
   width: 56px;
   height: 56px;
-  border: 2px solid #C2D62E;
+  border: 2px solid #c2d62e;
   border-radius: 50%;
   display: flex;
   justify-content: center;

@@ -1,21 +1,13 @@
 <template>
   <Transition name="fade">
-    <div v-if="stepper?.currentStep === 1" class="wizard payment-section">
-      <h3>Confirmación de Pagos TV por cable</h3>
-      <h5>Datos del suscriptor</h5>
-      <form class="subscriptor-form">
-        <div class="form-inputs">
-          <base-input label="Número de contrato" id="contract" name="contract" disabled />
-          <base-input label="Nombre y Apellido" id="fullname" name="fullname" disabled />
-          <base-input label="Cédula de identidad" id="ci" name="ci" disabled />
-          <base-input label="Monto a pagar" id="amount" name="amount" disabled />
-        </div>
-        <div class="form-buttons">
-          <form-button class="prev">Regresar</form-button>
-          <form-button>Siguiente</form-button>
-        </div>
-      </form>
-    </div>
+    <form v-if="stepper?.currentStep === 1" class="subscriptor-form">
+      <div class="form-inputs">
+        <base-input label="Número de contrato" id="contract" name="contract" disabled />
+        <base-input label="Nombre y Apellido" id="fullname" name="fullname" disabled />
+        <base-input label="Cédula de identidad" id="ci" name="ci" disabled />
+        <base-input label="Monto a pagar" id="amount" name="amount" disabled />
+      </div>
+    </form>
   </Transition>
 </template>
 

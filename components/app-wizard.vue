@@ -6,16 +6,15 @@
       <h3>Confirmación de Pagos TV por cable</h3>
       <h5>{{ label }}</h5>
       <check-subscription-step key="CheckSubscriptionStep" />
+      <subscriptor-data-step key="SubscriptorDataStep" />
+      <payment-report-step key="PaymentReportStep" />
+      <status-step key="StatusStep" />
 
       <div class="wizard__footer">
         <button v-if="stepperRef?.hasPreviousStep && stepperRef?.hasNextStep" class="wizard__btn wizard__btn--prev" @click="stepperRef?.handlePrevStep()">Regresar</button>
         <button class="wizard__btn wizard__btn--next" @click="stepperRef?.handleNextStep()">{{ nextBtnLabel }}</button>
       </div>
     </div>
-    <!-- <check-subscription-step key="CheckSubscriptionStep" />
-    <subscriptor-data-step key="SubscriptorDataStep" />
-    <payment-report-step key="PaymentReportStep" />
-    <status-step key="StatusStep" /> -->
   </section>
 </template>
 

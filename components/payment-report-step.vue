@@ -1,25 +1,17 @@
 <template>
   <Transition name="fade">
-    <div v-if="stepper?.currentStep === 2" class="wizard payment-section">
-      <h3>Confirmación de Pagos TV por cable</h3>
-      <h5>Reporte de pago</h5>
-      <form class="subscriptor-form">
-        <div class="form-inputs">
-          <base-input label="Teléfono" id="phone" name="phone" />
-          <base-input label="Cédula de identidad" id="ci" name="ci" />
-          <!-- Change to select -->
-          <base-input label="Banco Emisor" id="fullname" name="fullname" />
+    <form v-if="stepper?.currentStep === 2" class="subscriptor-form">
+      <div class="form-inputs">
+        <base-input label="Teléfono" id="phone" name="phone" />
+        <base-input label="Cédula de identidad" id="ci" name="ci" />
+        <!-- Change to select -->
+        <base-input label="Banco Emisor" id="fullname" name="fullname" />
 
-          <base-input label="Fecha del pago" id="amount" name="amount" />
-          <base-input label="Numero de referencia" id="amount" name="amount" />
-          <base-input label="Monto" id="amount" name="amount" />
-        </div>
-        <div class="form-buttons">
-          <form-button class="prev">Regresar</form-button>
-          <form-button>Siguiente</form-button>
-        </div>
-      </form>
-    </div>
+        <base-input label="Fecha del pago" id="amount" name="amount" />
+        <base-input label="Numero de referencia" id="amount" name="amount" />
+        <base-input label="Monto" id="amount" name="amount" />
+      </div>
+    </form>
   </Transition>
 </template>
 
@@ -38,11 +30,11 @@ const stepper = inject("stepper") as { currentStep: number | null };
   width: 100%;
 
   & h3 {
-    color: #1B4686;
+    color: #1b4686;
   }
 
   & h5 {
-    color: #1B4686;
+    color: #1b4686;
     font-weight: 400;
     font-size: 22px;
   }
@@ -52,7 +44,7 @@ const stepper = inject("stepper") as { currentStep: number | null };
 
     select {
       width: 100%;
-      padding: 0.5rem .8rem;
+      padding: 0.5rem 0.8rem;
       // border-radius: .5rem;
       border: 1px solid transparent;
       border-radius: 1rem;
@@ -72,9 +64,9 @@ const stepper = inject("stepper") as { currentStep: number | null };
       margin-left: 1rem;
       margin-right: 1rem;
       padding: 0.6rem 0.8rem;
-      background-color: #C2D62E;
+      background-color: #c2d62e;
       border-radius: 1rem;
-      color: #1B4686;
+      color: #1b4686;
       font-weight: 800;
     }
   }
@@ -105,7 +97,7 @@ const stepper = inject("stepper") as { currentStep: number | null };
   justify-content: center;
 
   .prev button {
-    background: #1B4686;
+    background: #1b4686;
     color: #fff;
   }
 }
