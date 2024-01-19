@@ -1,3 +1,16 @@
+.payment-section {
+  background-color: $gris-2;
+  border-radius: 1em;
+
+  &::before {
+    @include section-background-opacity(
+      $image: "latinamericancable-internetvista-patron.svg"
+    );
+    background-size: 12.5%;
+    opacity: 0.075;
+  }
+}
+
 .formreporte {
   background-color: $gris-2;
   border-radius: 1em;
