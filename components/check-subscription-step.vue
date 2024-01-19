@@ -1,15 +1,16 @@
 <template>
   <Transition name="fade">
-    <div v-if="stepper?.currentStep === 0" class="wizard payment-section">
+    <form @submit.prevent>
+        <select-input label="Contrato" id="contract" name="contract" default-text="Selecciona" :options="options" />
+        <!-- <form-button type="button" @click.prevent="nextStep">
+          Siguiente
+        </form-button> -->
+      </form>
+    <!-- <div v-if="stepper?.currentStep === 0" class="wizard payment-section">
       <h3>Confirmación de Pagos TV por cable</h3>
       <h5>Consulta datos del suscriptor</h5>
-      <form @submit.prevent>
-        <select-input label="Contrato" id="contract" name="contract" default-text="Selecciona" :options="options" />
-        <form-button type="button" @click.prevent="nextStep">
-          Siguiente
-        </form-button>
-      </form>
-    </div>
+      
+    </div> -->
   </Transition>
 </template>
 

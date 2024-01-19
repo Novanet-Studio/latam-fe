@@ -34,18 +34,14 @@
 </template>
 
 <script lang="ts" setup>
-const steps = [
-  {
-    label: "Consultar datos de suscriptor",
-  },
-  { label: "Datos del subscriptor" },
-  { label: "Reporte de pago" },
-  { label: "Estatus de pago" },
-];
+
+const props = defineProps<{
+  steps: any[]
+}>();
 
 const { stepperProps, stepsProps, state, nextStep, prevStep } =
   useStepper({
-    steps,
+    steps: props.steps,
     disabledClick: true,
   });
 
@@ -63,6 +59,7 @@ defineExpose({
   handlePrevStep,
   totalSteps: toRef(state, "totalSteps"),
   hasPreviousStep: toRef(state, "hasPreviousStep"),
+  hasNextStep: toRef(state, "hasNextStep"),
   isLastStep: toRef(state, "isLastStep"),
   currentStep: toRef(state, "currentStep"),
 })
