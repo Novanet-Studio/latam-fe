@@ -1,22 +1,22 @@
 <template>
   <section class="wizard-light">
-    <app-stepper :steps="steps" ref="stepperRef" />
+    <app-stepper :stepper="stepper" :check-disabled="allStepsBeforeAreValid"  />
     <div class="wizard payment-section">
       <h3>Confirmación de Pagos TV por cable</h3>
-      <h5>{{ label }}</h5>
+      <h5>{{ stepper.current.value.title }}</h5>
 
       <transition :name="isNextClicked ? 'slide-left' : 'slide-right'" mode="out-in">
         <component :is="activeComponent" />
       </transition>
 
       <div class="wizard__footer">
-        <button v-if="stepperRef?.hasPreviousStep && stepperRef?.hasNextStep" class="wizard__btn wizard__btn--prev" @click="() => {
+        <button v-if="!stepper?.isFirst" class="wizard__btn wizard__btn--prev" @click="() => {
           isNextClicked = false
-          stepperRef?.handlePrevStep()
+          stepper.goToNext()
         }">Regresar</button>
         <button class="wizard__btn wizard__btn--next" @click="() => {
           isNextClicked = true
-          stepperRef?.handleNextStep()
+          stepper.goToPrevious()
         }">{{ nextBtnLabel }}</button>
       </div>
     </div>
@@ -24,48 +24,82 @@
 </template>
 
 <script setup lang="ts">
+import { useStepper } from '@vueuse/core'
+
 import CheckSubscriptionStep from './check-subscription-step.vue';
 import SubscriptorDataStep from './subscriptor-data-step.vue';
 import PaymentReportStep from './payment-report-step.vue';
 import StatusStep from './status-step.vue';
 import AppStepper from './app-stepper.vue';
 
-const steps = [
-  {
-    label: "Consultar datos de suscriptor",
-  },
-  { label: "Datos del subscriptor" },
-  { label: "Reporte de pago" },
-  { label: "Estatus de pago" },
-];
-
-const stepperRef = ref<InstanceType<typeof AppStepper> | null>(null)
-const label = computed(() => steps[stepperRef?.value?.currentStep ?? 0].label);
 const isNextClicked = ref(false);
+const form = reactive({
+  ci: '',
+  contract: '',
+  fullName: '',
+  amount: 0,
+  phone: '',
+  bank: '',
+  paymentDate: '',
+  paymentReference: '',
+  status: '' // error | pending | success
+});
+
+const stepper = useStepper({
+  'check-subscription': {
+    title: 'Consultar datos de suscriptor',
+    isValid: () => form.ci.length > 0,
+  },
+  'subscriptor-data': {
+    title: 'Datos del subscriptor',
+    isValid: () => form.fullName.length > 0,
+  },
+  'payment-report': {
+    title: 'Reporte de pago',
+    isValid: () => form.paymentDate.length > 0,
+  },
+  'status': {
+    title: 'Estatus de pago',
+    isValid: () => true
+  },
+});
+
+function submit() {
+  if (stepper.current.value.isValid())
+    stepper.goToNext()
+}
+
+function allStepsBeforeAreValid(index: number): boolean {
+  return !Array(index)
+    .fill(null)
+    .some((_, i) => !stepper.at(i)?.isValid())
+}
+
 
 const activeComponent = computed(() => {
-  if (stepperRef?.value?.currentStep === 0) {
+  if (stepper.isCurrent('check-subscription')) {
     return CheckSubscriptionStep;
-  } else if (stepperRef?.value?.currentStep === 1) {
+  } else if (stepper.isCurrent('subscriptor-data')) {
     return SubscriptorDataStep;
-  } else if (stepperRef?.value?.currentStep === 2) {
+  } else if (stepper.isCurrent('payment-report')) {
     return PaymentReportStep;
-  } else if (stepperRef?.value?.currentStep === 3) {
+  } else if (stepper.isCurrent('status')) {
     return StatusStep;
   }
 });
 
 const nextBtnLabel = computed(() => {
-  if (!stepperRef?.value?.hasNextStep) {
+  if (stepper.isLast.value) {
     return "Regresar al inicio";
-  } else if (stepperRef?.value?.currentStep === 2) {
+  } else if (stepper.isCurrent('payment-report')) {
     return "Finalizar";
   } else {
     return "Siguiente";
   }
 })
 
-provide("stepper", stepperRef);
+provide("form", form);
+provide("stepper", stepper);
 </script>
 
 <style lang="scss">

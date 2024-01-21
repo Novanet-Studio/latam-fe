@@ -1,68 +1,38 @@
 <template>
   <Transition name="fade">
     <div>
-      <nav class="stepper-nav" style="display: flex" v-bind="stepperProps">
+      <nav class="stepper-nav" style="display: flex">
         <ol
           class="stepper-nav__steps"
-          v-for="(step, index) in stepsProps"
-          :key="index"
+          v-for="(step, id, index) in stepper.steps.value"
+          :key="id"
           :style="{
-            opacity: steps[index].disabled ? 0.6 : 1,
-            fontWeight: state.currentStep === index ? 'bold' : 'unset',
+            fontWeight: Number(stepper.index.value) === index ? 'bold' : 'unset',
           }"
         >
           <li class="stepper-nav__step">
-            <a class="stepper-nav__label" v-bind="step">
-              <span class="stepper-nav__index" :class="[index <= state.currentStep && 'active']">
+            <a class="stepper-nav__label">
+              <span class="stepper-nav__index" :class="[index <= stepper.index.value && 'active']">
                 {{ index + 1 }}
               </span>
-              <span class="stepper-nav__text" :class="[index <= state.currentStep && 'active']">
-                {{ steps[index].label }}
+              <span class="stepper-nav__text" :class="[index <= stepper.index.value && 'active']">
+                {{ step.title }}
               </span>
             </a>
           </li>
         </ol>
       </nav>
     </div>
-    
-    <!-- <p>Current step {{ state.currentStep }}</p>
-    <button @click="prevStep" :disabled="!state.hasPreviousStep">Prev</button>
-    <button @click="nextStep">Next</button>
-
-    <div v-bind="progressProps"></div> -->
-  </Transition>
+    </Transition>
 </template>
 
 <script lang="ts" setup>
-
 const props = defineProps<{
-  steps: any[]
+  checkDisabled?: (i: number) => boolean,
+  stepper: any
 }>();
 
-const { stepperProps, stepsProps, state, nextStep, prevStep } =
-  useStepper({
-    steps: props.steps,
-    disabledClick: true,
-  });
-
-function handleNextStep() {
-  nextStep()
-}
-
-function handlePrevStep() {
-  prevStep()
-}
-
-
-defineExpose({
-  handleNextStep,
-  handlePrevStep,
-  totalSteps: toRef(state, "totalSteps"),
-  hasPreviousStep: toRef(state, "hasPreviousStep"),
-  hasNextStep: toRef(state, "hasNextStep"),
-  isLastStep: toRef(state, "isLastStep"),
-  currentStep: toRef(state, "currentStep"),
-})
+console.log(props.stepper)
 </script>
 
 <style scope lang="scss">

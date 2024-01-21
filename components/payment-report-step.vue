@@ -1,5 +1,5 @@
 <template>
-  <form v-if="stepper?.currentStep === 2" class="subscriptor-form">
+  <form v-if="stepper.isCurrent('payment-report')" class="subscriptor-form">
     <div class="form-inputs">
       <base-input label="Teléfono" id="phone" name="phone" />
       <base-input label="Cédula de identidad" id="ci" name="ci" />
@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-const stepper = inject("stepper") as { currentStep: number | null };
+const stepper = inject("stepper") as any;
 </script>
 
 <style lang="scss">

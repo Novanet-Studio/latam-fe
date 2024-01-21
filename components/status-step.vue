@@ -1,5 +1,5 @@
 <template>
-  <div v-if="stepper?.currentStep === 3" class="message-wrapper">
+  <div v-if="stepper.isCurrent('status')" class="message-wrapper">
     <div class="icon-wrapper" :class="{ error: !isSuccessful }">
       <img :src="isSuccessful ? successImage : errorImage" alt="Success Icon" />
     </div>
@@ -20,7 +20,7 @@
 import successImage from "../assets/images/success.svg";
 import errorImage from "../assets/images/error.svg";
 
-const stepper = inject("stepper") as { currentStep: number | null };
+const stepper = inject("stepper") as any;
 const isSuccessful = ref(true);
 </script>
 

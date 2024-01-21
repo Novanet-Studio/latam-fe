@@ -1,5 +1,5 @@
 <template>
-  <form v-if="stepper?.currentStep === 0" @submit.prevent>
+  <form v-if="stepper.isCurrent('check-subscription')" @submit.prevent>
     <select-input
       label="Contrato"
       id="contract"
@@ -22,7 +22,7 @@ const options = [
   },
 ];
 
-const stepper = inject("stepper") as { currentStep?: number | null };
+const stepper = inject("stepper") as any;
 </script>
 
 <style lang="scss">
