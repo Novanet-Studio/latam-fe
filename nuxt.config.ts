@@ -33,7 +33,7 @@ export default {
       "@vuepic/vue-datapicker",
     ],
   },
-  modules: ["@nuxt/image-edge", "@nuxtjs/strapi", "@kevinmarrec/nuxt-pwa"],
+  modules: ["@nuxt/image-edge", "@nuxtjs/strapi", "@kevinmarrec/nuxt-pwa", "@vueuse/nuxt"],
   runtimeConfig: {
     public: {
       strapi: {
