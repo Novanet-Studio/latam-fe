@@ -18,15 +18,37 @@
 
 <script lang="ts" setup>
 import { useForm } from 'vee-validate';
+import { object, string, date } from "yup";
 
 const dateLocale = ref("es-VE");
 const stepper = inject("stepper") as any;
 const userData = inject("userData") as Latam.UserData;
+const form = inject('form') as Latam.Form;
 
-const { setFieldValue } = useForm();
+const schema = object({
+  phone: string().required("El campo es requerido"),
+  ci: string().required("El campo es requerido"),
+  bank: string().required("El campo es requerido"),
+  paymentDate: date().required("El campo es requerido"),
+  reference: string().required("El campo es requerido"),
+  amount: string(),
+});
+
+const { setFieldValue } = useForm({
+  initialValues: {
+    phone: '',
+    ci: '',
+    bank: '',
+    paymentDate: new Date(),
+    reference: '',
+    amount: '',
+  },
+  validationSchema: schema,
+  validateOnMount: true,
+});
 
 const { btBaseApi } = useRuntimeConfig().public;
-const { data: banks } = await useFetch<{ nombre: string; codigo: string }[]>(`${btBaseApi}/bancos`, {
+const { data: banks, pending } = await useFetch<{ nombre: string; codigo: string }[]>(`${btBaseApi}/bancos`, {
   method: 'POST'
 })
 
