@@ -4,28 +4,35 @@
     <h5>Coloca la información solicitada</h5>
     <form @submit.prevent="submitForm">
       <base-input label="Usuario" id="user" name="user" />
-      <base-input label="Contraseña" id="password" name="password" type="password" />
+      <base-input
+        label="Contraseña"
+        id="password"
+        name="password"
+        type="password"
+      />
       <form-button type="submit" :is-loading="isSending" :disabled="disabled">
-          Iniciar Sesión
+        Iniciar Sesión
       </form-button>
     </form>
   </section>
 </template>
 
 <script lang="ts" setup>
-import { useForm } from 'vee-validate';
+import { useForm } from "vee-validate";
 
 const isSending = ref(false);
 const disabled = ref(false);
 
-const isAuthenticated = inject('isAuthenticated') as Ref<boolean>;
-const isLoading = inject('isLoading') as Ref<boolean>;
-const form = inject('form') as Latam.Form;
+const isAuthenticated = inject("isAuthenticated") as Ref<boolean>;
+const isLoading = inject("isLoading") as Ref<boolean>;
+const form = inject("form") as Latam.Form;
+
+const { usersApi, usersApiKey } = useRuntimeConfig().public;
 
 const { handleSubmit } = useForm({
   initialValues: {
-    user: '',
-    password: ''
+    user: "",
+    password: "",
   },
 });
 
@@ -35,27 +42,44 @@ const submitForm = handleSubmit(async (values) => {
     disabled.value = true;
     isLoading.value = true;
 
-    setTimeout(() => {
-      if (values.user !== values.password) {
-        isAuthenticated.value = false;
-        isLoading.value = false;
-      }
-
-      if (values.user === "V12345678" && values.password === "V12345678") {
-        form.ci = values.user
-        isAuthenticated.value = true;
-        isLoading.value = false;
-      }
-    }, 2000);
+    console.log(values.user !== values.password)
     
+    if (values.user !== values.password) {
+      isAuthenticated.value = false;
+      isLoading.value = false;
+      return;
+    }
+
+    const response = await $fetch(`${usersApi}/GetClientsDetails`, {
+      method: 'post',
+      body: {
+        token: usersApiKey,
+        cedula: values.user,
+      }
+    })
+
+    console.log(response)
+
+    // setTimeout(() => {
+    //   if (values.user !== values.password) {
+    //     isAuthenticated.value = false;
+    //     isLoading.value = false;
+    //   }
+
+    //   if (values.user === "V12345678" && values.password === "V12345678") {
+    //     form.ci = values.user
+    //     isAuthenticated.value = true;
+    //     isLoading.value = false;
+    //   }
+    // }, 2000);
   } catch (error) {
     isAuthenticated.value = false;
   } finally {
-    // isSending.value = false;
-    // disabled.value = false;
-    // isLoading.value = false;
+    isSending.value = false;
+    disabled.value = false;
+    isLoading.value = false;
   }
-})
+});
 </script>
 
 <style lang="scss">
@@ -70,11 +94,11 @@ const submitForm = handleSubmit(async (values) => {
   z-index: 0;
 
   & h3 {
-    color: #1B4686;
+    color: #1b4686;
   }
 
   & h5 {
-    color: #1B4686;
+    color: #1b4686;
     font-weight: 400;
     font-size: 22px;
   }
@@ -95,9 +119,9 @@ const submitForm = handleSubmit(async (values) => {
       margin-left: 1rem;
       margin-right: 1rem;
       padding: 0.6rem 0.8rem;
-      background-color: #C2D62E;
+      background-color: #c2d62e;
       border-radius: 1rem;
-      color: #1B4686;
+      color: #1b4686;
       font-weight: 800;
     }
   }

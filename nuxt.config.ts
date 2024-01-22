@@ -41,6 +41,13 @@ export default {
       },
       bcvUsdApi: process.env.BCV_USD_API_URL,
       btBaseApi: process.env.BT_BASE_API_URL,
+      usersApi: process.env.USERS_API_URL,
+      usersApiKey: process.env.USERS_API_KEY,
+      bussiness: {
+        rif: process.env.BUSSINESS_RIF,
+        name: process.env.BUSSINESS_NAME,
+        afiliatedCode: process.env.AFILIATED_CODE,
+      }
     },
   },
   typescript: {
