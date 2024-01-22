@@ -42,13 +42,16 @@ setFieldValue('amount', 'Bs.S ' + userData.datos?.[0].servicios?.[0].costo);
 
 <style lang="scss">
 .payment-report {
+  margin-top: 2rem;
   width: 100% !important;
   display: grid;
+  place-items: center;
   grid-template-columns: repeat(3, 1fr);
 
-  & .formulario__form__grupo {
-    width: 286px;
-    padding-left: 1rem;
+  select {
+    width: 21rem;
+    background: #fff;
+    padding: .5rem;
   }
 
   & .formulario__form__grupo input {

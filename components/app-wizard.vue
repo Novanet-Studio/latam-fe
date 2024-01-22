@@ -16,9 +16,9 @@
           isNextClicked = false
           stepper.goToPrevious()
         }">Regresar</button>
-        <button type="submit" class="wizard__btn wizard__btn--next" @click="() => {
+        <button class="wizard__btn wizard__btn--next" @click="() => {
           isNextClicked = true
-          stepper.goToNext()
+          submit()
         }">{{ nextBtnLabel }}</button>
       </div>
     </div>
@@ -40,11 +40,11 @@ const form = inject('form') as Latam.Form;
 const stepper = useStepper({
   'check-subscription': {
     title: 'Consultar datos de suscriptor',
-    isValid: () => form.ci.length > 0,
+    isValid: () => form.contract.length > 0,
   },
   'subscriptor-data': {
     title: 'Datos del subscriptor',
-    isValid: () => form.fullName.length > 0,
+    isValid: () => true,
   },
   'payment-report': {
     title: 'Reporte de pago',
@@ -108,7 +108,7 @@ provide("stepper", stepper);
   display: grid;
   grid-template-rows: auto;
   place-items: center;
-  padding: 4.5em 1.5em 4.5em 2em;
+  padding: 4.5em 1.5em 4.5em 1.5em;
   position: relative;
   z-index: 0;
   width: 100%;
@@ -125,7 +125,9 @@ provide("stepper", stepper);
 
   & form {
     margin-top: 2rem;
+    margin-bottom: 2rem;
     width: 100%;
+
 
     & div label {
       color: #666666;

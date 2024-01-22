@@ -45,21 +45,20 @@ setValues({
 
 <style lang="scss">
 .subscriptor-data {
+  margin-top: 2rem;
   display: flex;
+  justify-content: center;
+  gap: 2rem;
 
   .amount-wrapper {
     position: relative;
 
     &__btn {
       position: absolute;
-      right: 4.5rem;
+      right: 0.5rem;
       top: 2.7rem;
       border: none;
     }
-  }
-
-  & .formulario__form__grupo {
-    width: 286px;
   }
 
   & .formulario__form__grupo input {
