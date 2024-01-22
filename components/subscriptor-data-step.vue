@@ -15,7 +15,7 @@
       <base-input label="Cédula de identidad" id="ci" name="ci" disabled />
       <div class="amount-wrapper">
         <base-input label="Monto a pagar" id="amount" name="amount" disabled />
-        <button class="amount-wrapper__btn" @click="() => copy(userData.datos?.[0].servicios?.[0].costo ?? '')">
+        <button type="button" class="amount-wrapper__btn" @click.prevent="() => copy(userData.datos?.[0].servicios?.[0].costo ?? '')">
           <font-awesome-icon :icon="copied ? 'check' : 'copy'" />
         </button>
       </div>
