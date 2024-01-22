@@ -27,12 +27,10 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps<{
+defineProps<{
   checkDisabled?: (i: number) => boolean,
   stepper: any
 }>();
-
-console.log(props.stepper)
 </script>
 
 <style scope lang="scss">

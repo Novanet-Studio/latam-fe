@@ -48,7 +48,7 @@ const stepper = useStepper({
   },
   'payment-report': {
     title: 'Reporte de pago',
-    isValid: () => form.paymentDate.length > 0,
+    isValid: () => form.phone.length > 0 && form.ci.length > 0 && form.bank.length > 0 && form.paymentDate.length > 0 && form.paymentReference.length > 0,
   },
   'status': {
     title: 'Estatus de pago',
