@@ -171,10 +171,23 @@ async function submit() {
         }
       );
 
-      console.log("token =>", token.value?.claveDinamica);
-      console.log("payment =>", payment.value);
-
       // Conformacion de pago
+
+      const { data: conformation } = await useFetch<any>(
+        `${btBaseApi}/botonDePago/conformacion`,
+        {
+          method: "POST",
+          body: {
+            referencia: "095813962",
+            monto: "3617,00",
+            banco: "0163",
+            codAfiliado: "004036",
+            fecha: "20231220",
+            celular: "04122084674",
+            RIF: " J297059172",
+          },
+        }
+      );
 
       // mostrar mensaje de exito o error
       stepper.goToNext();
@@ -184,8 +197,8 @@ async function submit() {
     } finally {
       form.status = "success";
     }
-    
-    return
+
+    return;
   }
 
   if (stepper.current.value.isValid()) stepper.goToNext();
