@@ -29,7 +29,9 @@ const stepper = inject("stepper") as any;
 </script>
 
 <style lang="scss">
-.check-subscription {
+.check-subscription {  
+  margin-top: 2rem;
+  
   & select {
     width: 100%;
     padding: 0.5rem 0.8rem;
@@ -37,6 +39,7 @@ const stepper = inject("stepper") as any;
     border: 1px solid transparent;
     border-radius: 1rem;
     background: #fff;
+    min-width: 270px;
   }
 }
 </style>
