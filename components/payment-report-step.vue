@@ -20,9 +20,15 @@
 import { useForm } from 'vee-validate';
 import { object, string, date } from "yup";
 
+interface BankData {
+  nombre: string;
+  codigo: string;
+}
+
 const dateLocale = ref("es-VE");
 const stepper = inject("stepper") as any;
 const userData = inject("userData") as Latam.UserData;
+const form = inject('form') as Latam.Form;
 
 const schema = object({
   phone: string().required("El campo es requerido"),
@@ -33,7 +39,7 @@ const schema = object({
   amount: string(),
 });
 
-const { setFieldValue } = useForm({
+const { setFieldValue, values, validate } = useForm({
   initialValues: {
     phone: '',
     ci: '',
@@ -47,18 +53,37 @@ const { setFieldValue } = useForm({
 });
 
 const { btBaseApi } = useRuntimeConfig().public;
-const { data: banks } = await useFetch<{ nombre: string; codigo: string }[]>(`${btBaseApi}/bancos`, {
+const { data: banks } = await useFetch<BankData[]>(`${btBaseApi}/bancos`, {
   method: 'POST'
 })
 
 const banksOptions = computed(() => {
-  return banks.value?.map((bank: any) => ({
+  return banks.value?.map((bank: BankData) => ({
     text: bank.nombre,
     value: bank.codigo
   })) || []
 });
 
 setFieldValue('amount', 'Bs.S ' + userData.datos?.[0].servicios?.[0].costo);
+
+watch(values, async () => {
+  const res = await validate();
+  
+  if (res.valid) {
+    const date = new Date(values.paymentDate);
+
+    const payload = {
+      phone: values.phone,
+      ci: values.ci,
+      bank: values.bank,
+      paymentDate: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
+      paymentReference: values.reference,
+      amount: userData.datos?.[0].servicios?.[0].costo
+    };
+    
+    Object.assign(form, payload);
+  }
+});
 </script>
 
 <style lang="scss">
