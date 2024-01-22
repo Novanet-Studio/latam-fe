@@ -102,7 +102,6 @@ provide("stepper", stepper);
   place-items: center;
   padding: 4.5em 1.5em 4.5em 2em;
   position: relative;
-  overflow: hidden;
 }
 
 .wizard {
@@ -126,6 +125,7 @@ provide("stepper", stepper);
 
   & form {
     margin-top: 2rem;
+    width: 100%;
 
     & div label {
       color: #666666;

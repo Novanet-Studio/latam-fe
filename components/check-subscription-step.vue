@@ -45,6 +45,8 @@ watch(values, () => {
 <style lang="scss">
 .check-subscription {  
   margin-top: 2rem;
+  display: flex;
+  justify-content: center;
 
   & select {
     width: 100%;

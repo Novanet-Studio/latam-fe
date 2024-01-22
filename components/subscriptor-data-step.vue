@@ -13,18 +13,27 @@
         disabled
       />
       <base-input label="Cédula de identidad" id="ci" name="ci" disabled />
-      <base-input label="Monto a pagar" id="amount" name="amount" disabled />
+      <div class="amount-wrapper">
+        <base-input label="Monto a pagar" id="amount" name="amount" disabled />
+        <button class="amount-wrapper__btn" @click="() => copy(userData.datos?.[0].servicios?.[0].costo ?? '')">
+          <font-awesome-icon :icon="copied ? 'check' : 'copy'" />
+        </button>
+      </div>
     </div>
 </template>
 
 <script lang="ts" setup>
 import { useForm } from 'vee-validate';
+import { useClipboard } from '@vueuse/core';
 
 const stepper = inject("stepper") as any;
 const userData = inject("userData") as Latam.UserData;
 const form = inject("form") as Latam.Form;
 
 const { setValues } = useForm();
+const { copy, copied } = useClipboard({
+  legacy: true
+});
 
 setValues({
   contract: form.contract,
@@ -37,6 +46,17 @@ setValues({
 <style lang="scss">
 .subscriptor-data {
   display: flex;
+
+  .amount-wrapper {
+    position: relative;
+
+    &__btn {
+      position: absolute;
+      right: 4.5rem;
+      top: 2.7rem;
+      border: none;
+    }
+  }
 
   & .formulario__form__grupo {
     width: 286px;
