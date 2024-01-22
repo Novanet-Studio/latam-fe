@@ -31,4 +31,16 @@ declare namespace Latam {
     dtbEmail: string;
     dtbIdentification: string;
   };
+
+  type Form = {
+    ci: string;
+    contract: string;
+    fullName: string;
+    amount: number | string;
+    phone: string;
+    bank: string;
+    paymentDate: string;
+    paymentReference: string;
+    status: '' | 'error' | 'pending' | 'success';
+  }
 }

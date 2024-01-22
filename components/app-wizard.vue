@@ -6,17 +6,19 @@
       <h5>{{ stepper.current.value.title }}</h5>
 
       <transition :name="isNextClicked ? 'slide-left' : 'slide-right'" mode="out-in">
-        <component :is="activeComponent" />
+        <form @submit.prevent="submit">
+          <component :is="activeComponent" />
+        </form>
       </transition>
 
       <div class="wizard__footer">
-        <button v-if="!stepper?.isFirst" class="wizard__btn wizard__btn--prev" @click="() => {
+        <button v-if="!stepper?.isFirst.value" class="wizard__btn wizard__btn--prev" @click="() => {
           isNextClicked = false
-          stepper.goToNext()
-        }">Regresar</button>
-        <button class="wizard__btn wizard__btn--next" @click="() => {
-          isNextClicked = true
           stepper.goToPrevious()
+        }">Regresar</button>
+        <button type="submit" class="wizard__btn wizard__btn--next" @click="() => {
+          isNextClicked = true
+          stepper.goToNext()
         }">{{ nextBtnLabel }}</button>
       </div>
     </div>
@@ -33,17 +35,7 @@ import StatusStep from './status-step.vue';
 import AppStepper from './app-stepper.vue';
 
 const isNextClicked = ref(false);
-const form = reactive({
-  ci: '',
-  contract: '',
-  fullName: '',
-  amount: 0,
-  phone: '',
-  bank: '',
-  paymentDate: '',
-  paymentReference: '',
-  status: '' // error | pending | success
-});
+const form = inject('form') as Latam.Form;
 
 const stepper = useStepper({
   'check-subscription': {
@@ -98,7 +90,6 @@ const nextBtnLabel = computed(() => {
   }
 })
 
-provide("form", form);
 provide("stepper", stepper);
 </script>
 
@@ -112,6 +103,105 @@ provide("stepper", stepper);
   padding: 4.5em 1.5em 4.5em 2em;
   position: relative;
   overflow: hidden;
+
+  & h3 {
+    color: #1b4686;
+  }
+
+  & h5 {
+    color: #1b4686;
+    font-weight: 400;
+    font-size: 22px;
+  }
+
+  & form {
+    margin-top: 2rem;
+
+    select {
+      width: 100%;
+      padding: 0.5rem 0.8rem;
+      // border-radius: .5rem;
+      border: 1px solid transparent;
+      border-radius: 1rem;
+      background: #fff;
+    }
+
+    & div {
+      width: 323px;
+    }
+
+    & div label {
+      color: #666666;
+      font-weight: 500;
+    }
+
+    & div button {
+      margin-left: 1rem;
+      margin-right: 1rem;
+      padding: 0.6rem 0.8rem;
+      background-color: #c2d62e;
+      border-radius: 1rem;
+      color: #1b4686;
+      font-weight: 800;
+    }
+  }
+}
+
+.wizard {
+  display: grid;
+  grid-template-rows: auto;
+  place-items: center;
+  padding: 4.5em 1.5em 4.5em 2em;
+  position: relative;
+  z-index: 0;
+  width: 100%;
+
+  & h3 {
+    color: #1b4686;
+  }
+
+  & h5 {
+    color: #1b4686;
+    font-weight: 400;
+    font-size: 22px;
+  }
+
+  & form {
+    margin-top: 2rem;
+    width: 100%;
+
+    select {
+      width: 100%;
+      padding: 0.5rem 0.8rem;
+      // border-radius: .5rem;
+      border: 1px solid transparent;
+      border-radius: 1rem;
+      background: #fff;
+    }
+
+    & div {
+      width: 323px;
+    }
+
+    & div label {
+      color: #666666;
+      font-weight: 500;
+    }
+
+    & div button {
+      margin-left: 1rem;
+      margin-right: 1rem;
+      padding: 0.6rem 0.8rem;
+      background-color: #c2d62e;
+      border-radius: 1rem;
+      color: #1b4686;
+      font-weight: 800;
+    }
+  }
+}
+
+.subscriptor-form {
+  width: 100%;
 }
 
 .wizard__footer {

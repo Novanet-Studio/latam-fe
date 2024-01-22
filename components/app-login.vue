@@ -20,6 +20,7 @@ const disabled = ref(false);
 
 const isAuthenticated = inject('isAuthenticated') as Ref<boolean>;
 const isLoading = inject('isLoading') as Ref<boolean>;
+const form = inject('form') as Latam.Form;
 
 const { handleSubmit } = useForm({
   initialValues: {
@@ -41,6 +42,7 @@ const submitForm = handleSubmit(async (values) => {
       }
 
       if (values.user === "V12345678" && values.password === "V12345678") {
+        form.ci = values.user
         isAuthenticated.value = true;
         isLoading.value = false;
       }

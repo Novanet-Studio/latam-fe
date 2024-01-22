@@ -16,29 +16,26 @@ import AppWizard from '~/components/app-wizard.vue';
 
 const isAuthenticated = ref(false);
 const isLoading = ref(false)
-// const ci = ref('')
-// interface UserObject {
-//   name: string;
-//   ci: string;
-//   contract: string;
-//   amount: number;
-// }
+const form = reactive<Latam.Form>({
+  ci: '',
+  contract: '',
+  fullName: '',
+  amount: 0,
+  phone: '',
+  bank: '',
+  paymentDate: '',
+  paymentReference: '',
+  status: '' // error | pending | success
+});
 
 // const { btBaseApi } = useRuntimeConfig().public;
 // const { data: banks } = await useFetch(`${btBaseApi}/bancos`)
 
 const activeComponent = computed(() => isAuthenticated.value ? AppWizard : AppLogin);
 
+provide('form', form);
 provide('isAuthenticated', isAuthenticated);
 provide('isLoading', isLoading);
-
-// const user = reactive<UserObject>({
-//   name: '',
-//   ci: '',
-//   contract: '',
-//   amount: 0
-// })
-
 </script>
 
 
