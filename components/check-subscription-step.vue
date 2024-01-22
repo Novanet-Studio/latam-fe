@@ -14,24 +14,38 @@
 </template>
 
 <script lang="ts" setup>
-const options = [
-  {
-    text: "Contrato 1",
-    value: "1",
-  },
-  {
-    text: "Contrato 2",
-    value: "2",
-  },
-];
+import { useForm } from 'vee-validate';
 
 const stepper = inject("stepper") as any;
+const userData = inject("userData") as Latam.UserData;
+const form = inject("form") as Latam.Form;
+
+const { values } = useForm()
+
+const options = computed(() => {
+  let services: { text: string; value: string }[] = [];
+
+  userData.datos?.forEach((item) => {
+    item.servicios?.forEach((service) => {
+      services.push({
+        text: service.perfil,
+        value: String(service.id),
+      });
+    });
+  });
+
+  return services
+});
+
+watch(values, () => {
+  form.contract = values.contract
+});
 </script>
 
 <style lang="scss">
 .check-subscription {  
   margin-top: 2rem;
-  
+
   & select {
     width: 100%;
     padding: 0.5rem 0.8rem;

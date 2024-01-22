@@ -43,4 +43,49 @@ declare namespace Latam {
     paymentReference: string;
     status: '' | 'error' | 'pending' | 'success';
   }
+
+  interface UserData {
+    estado: string;
+    datos?: (DatosEntity)[] | null;
+  }
+
+  interface DatosEntity {
+    id: number;
+    nombre: string;
+    estado: string;
+    correo: string;
+    telefono: string;
+    movil: string;
+    cedula: string;
+    pasarela: string;
+    codigo: string;
+    direccion_principal: string;
+    servicios?: (ServiciosEntity)[] | null;
+    facturacion: Facturacion;
+  }
+
+  interface ServiciosEntity {
+    id: number;
+    idperfil: number;
+    nodo: number;
+    costo: string;
+    ipap: string;
+    mac: string;
+    ip: string;
+    instalado: string;
+    pppuser: string;
+    ppppass: string;
+    tiposervicio: string;
+    status_user: string;
+    coordenadas: string;
+    direccion: string;
+    snmp_comunidad: string;
+    perfil: string;
+  }
+
+  interface Facturacion {
+    facturas_nopagadas: number;
+    total_facturas: string;
+  }
+  
 }

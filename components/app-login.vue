@@ -26,8 +26,57 @@ const disabled = ref(false);
 const isAuthenticated = inject("isAuthenticated") as Ref<boolean>;
 const isLoading = inject("isLoading") as Ref<boolean>;
 const form = inject("form") as Latam.Form;
+const userData = inject("userData") as Latam.UserData;
+
+const isDev = import.meta.env.DEV;
 
 const { usersApi, usersApiKey } = useRuntimeConfig().public;
+
+const api = isDev
+  ? "https://private-anon-0c49753ae6-mikrowisp.apiary-mock.com/api/v1"
+  : usersApi;
+
+const mockData = {
+  estado: "exito",
+  datos: [
+    {
+      id: 6,
+      nombre: "ARIEL Perez",
+      estado: "ACTIVO",
+      correo: "",
+      telefono: "45434565",
+      movil: "998283745",
+      cedula: "65454323",
+      pasarela: "",
+      codigo: "l4o4gp",
+      direccion_principal: "2301 Peger Rd.",
+      servicios: [
+        {
+          id: 5,
+          idperfil: 2,
+          nodo: 2,
+          costo: "150.00",
+          ipap: "",
+          mac: "00:44:56:56:78:17",
+          ip: "192.168.33.3",
+          instalado: "0000-00-00",
+          pppuser: "User6",
+          ppppass: "Pass6",
+          tiposervicio: "internet",
+          status_user: "OFFLINE",
+          coordenadas: "-11.984449254433779,-77.0827752259944",
+          direccion: "",
+          snmp_comunidad: "public",
+          perfil: "Plan 4Mbps",
+        },
+      ],
+      facturacion: {
+        facturas_nopagadas: 4,
+        total_facturas: "750.00",
+      },
+    },
+  ],
+};
 
 const { handleSubmit } = useForm({
   initialValues: {
@@ -42,39 +91,37 @@ const submitForm = handleSubmit(async (values) => {
     disabled.value = true;
     isLoading.value = true;
 
-    console.log(values.user !== values.password)
-    
     if (values.user !== values.password) {
       isAuthenticated.value = false;
       isLoading.value = false;
       return;
     }
 
-    const response = await $fetch(`${usersApi}/GetClientsDetails`, {
-      method: 'post',
-      body: {
-        token: usersApiKey,
-        cedula: values.user,
-      }
-    })
+    if (isDev) {
+      setTimeout(() => {
+        if (values.user === "V12345678" && values.password === "V12345678") {
+          form.ci = values.user;
+          isAuthenticated.value = true;
+          isLoading.value = false;
+          Object.assign(userData, mockData);
+        }
+      }, 2000);
+    } else {
+      const { data } = await useFetch(`${api}/GetClientsDetails`, {
+        method: "post",
+        body: {
+          token: usersApiKey,
+          cedula: values.user,
+        },
+      });
 
-    console.log(response)
-
-    // setTimeout(() => {
-    //   if (values.user !== values.password) {
-    //     isAuthenticated.value = false;
-    //     isLoading.value = false;
-    //   }
-
-    //   if (values.user === "V12345678" && values.password === "V12345678") {
-    //     form.ci = values.user
-    //     isAuthenticated.value = true;
-    //     isLoading.value = false;
-    //   }
-    // }, 2000);
+      Object.assign(userData, data.value);
+    }
   } catch (error) {
     isAuthenticated.value = false;
   } finally {
+    if (isDev) return;
+
     isSending.value = false;
     disabled.value = false;
     isLoading.value = false;

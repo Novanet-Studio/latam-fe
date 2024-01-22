@@ -18,7 +18,20 @@
 </template>
 
 <script lang="ts" setup>
+import { useForm } from 'vee-validate';
+
 const stepper = inject("stepper") as any;
+const userData = inject("userData") as Latam.UserData;
+const form = inject("form") as Latam.Form;
+
+const { setValues } = useForm();
+
+setValues({
+  contract: form.contract,
+  fullname: userData.datos?.[0].nombre,
+  ci: userData.datos?.[0].cedula,
+  amount: userData.datos?.[0].servicios?.[0].costo
+});
 </script>
 
 <style lang="scss">
