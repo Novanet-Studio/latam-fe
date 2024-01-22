@@ -1,7 +1,7 @@
 <template>
   <main class="internetvista" style="position: relative;">
     <div v-if="isLoading" class="loader-wrapper">
-      <app-loader />
+      <app-loader class="loader-wrapper__main" />
     </div>
 
     <transition name="fade" mode="out-in">
@@ -43,7 +43,7 @@ provide('isAuthenticated', isAuthenticated);
 
 
 <style lang="scss">
-.loader-wrapper {
+.loader-wrapper__main {
   position: absolute;
   width: 100%;
   height: 100%;

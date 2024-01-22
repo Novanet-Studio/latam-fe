@@ -5,11 +5,12 @@
       <h3>Confirmación de Pagos TV por cable</h3>
       <h5>{{ stepper.current.value.title }}</h5>
 
-      <transition :name="isNextClicked ? 'slide-left' : 'slide-right'" mode="out-in">
-        <form @submit.prevent="submit">
-          <component :is="activeComponent" />
-        </form>
-      </transition>
+      <form @submit.prevent="submit">
+        <transition :name="isNextClicked ? 'slide-left' : 'slide-right'" mode="out-in">
+          <app-loader v-if="form.status === 'pending'" class="loader-wrapper__wizard" />
+          <component v-else :is="activeComponent" />
+        </transition>
+      </form>
 
       <div class="wizard__footer">
         <button v-if="!stepper?.isFirst.value" class="wizard__btn wizard__btn--prev" @click="() => {
@@ -102,6 +103,10 @@ provide("stepper", stepper);
   place-items: center;
   padding: 4.5em 1.5em 4.5em 2em;
   position: relative;
+}
+
+.loader-wrapper__wizard {
+  margin-top: 2rem;
 }
 
 .wizard {
