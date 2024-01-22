@@ -23,7 +23,6 @@ import { object, string, date } from "yup";
 const dateLocale = ref("es-VE");
 const stepper = inject("stepper") as any;
 const userData = inject("userData") as Latam.UserData;
-const form = inject('form') as Latam.Form;
 
 const schema = object({
   phone: string().required("El campo es requerido"),
@@ -48,7 +47,7 @@ const { setFieldValue } = useForm({
 });
 
 const { btBaseApi } = useRuntimeConfig().public;
-const { data: banks, pending } = await useFetch<{ nombre: string; codigo: string }[]>(`${btBaseApi}/bancos`, {
+const { data: banks } = await useFetch<{ nombre: string; codigo: string }[]>(`${btBaseApi}/bancos`, {
   method: 'POST'
 })
 
