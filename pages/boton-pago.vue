@@ -1,15 +1,3 @@
-<template>
-  <main class="internetvista" style="position: relative;">
-    <div v-if="isLoading" class="loader-wrapper">
-      <app-loader class="loader-wrapper__main" />
-    </div>
-
-    <transition name="fade" mode="out-in">
-      <component :is="activeComponent" />
-    </transition>
-  </main>
-</template>
-
 <script setup lang="ts">
 import AppLogin from '~/components/app-login.vue';
 import AppWizard from '~/components/app-wizard.vue'; 
@@ -41,6 +29,17 @@ provide('isLoading', isLoading);
 provide('isAuthenticated', isAuthenticated);
 </script>
 
+<template>
+  <main class="internetvista" style="position: relative;">
+    <div v-if="isLoading" class="loader-wrapper">
+      <app-loader class="loader-wrapper__main" />
+    </div>
+
+    <transition name="fade" mode="out-in">
+      <component :is="activeComponent" />
+    </transition>
+  </main>
+</template>
 
 <style lang="scss">
 .loader-wrapper__main {
@@ -53,5 +52,4 @@ provide('isAuthenticated', isAuthenticated);
   background: rgba(255, 255, 255, 1);
   z-index: 100;
 }
-
 </style>

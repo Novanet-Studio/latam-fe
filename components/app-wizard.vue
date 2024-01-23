@@ -1,52 +1,3 @@
-<template>
-  <section class="wizard-light">
-    <app-stepper :stepper="stepper" :check-disabled="allStepsBeforeAreValid" />
-    <div class="wizard payment-section">
-      <h3>Confirmación de Pagos TV por cable</h3>
-      <h5>{{ stepper.current.value.title }}</h5>
-
-      <form @submit.prevent="submit">
-        <transition
-          :name="isNextClicked ? 'slide-left' : 'slide-right'"
-          mode="out-in"
-        >
-          <app-loader
-            v-if="form.status === 'pending'"
-            class="loader-wrapper__wizard"
-          />
-          <component v-else :is="activeComponent" />
-        </transition>
-      </form>
-
-      <div class="wizard__footer">
-        <button
-          v-if="!stepper?.isFirst.value && !stepper?.isLast.value"
-          class="wizard__btn wizard__btn--prev"
-          @click="
-            () => {
-              isNextClicked = false;
-              stepper.goToPrevious();
-            }
-          "
-        >
-          Regresar
-        </button>
-        <button
-          class="wizard__btn wizard__btn--next"
-          @click="
-            () => {
-              isNextClicked = true;
-              submit();
-            }
-          "
-        >
-          {{ nextBtnLabel }}
-        </button>
-      </div>
-    </div>
-  </section>
-</template>
-
 <script setup lang="ts">
 import { useStepper } from "@vueuse/core";
 
@@ -239,6 +190,55 @@ function allStepsBeforeAreValid(index: number): boolean {
 
 provide("stepper", stepper);
 </script>
+
+<template>
+  <section class="wizard-light">
+    <app-stepper :stepper="stepper" :check-disabled="allStepsBeforeAreValid" />
+    <div class="wizard payment-section">
+      <h3>Confirmación de Pagos TV por cable</h3>
+      <h5>{{ stepper.current.value.title }}</h5>
+
+      <form @submit.prevent="submit">
+        <transition
+          :name="isNextClicked ? 'slide-left' : 'slide-right'"
+          mode="out-in"
+        >
+          <app-loader
+            v-if="form.status === 'pending'"
+            class="loader-wrapper__wizard"
+          />
+          <component v-else :is="activeComponent" />
+        </transition>
+      </form>
+
+      <div class="wizard__footer">
+        <button
+          v-if="!stepper?.isFirst.value && !stepper?.isLast.value"
+          class="wizard__btn wizard__btn--prev"
+          @click="
+            () => {
+              isNextClicked = false;
+              stepper.goToPrevious();
+            }
+          "
+        >
+          Regresar
+        </button>
+        <button
+          class="wizard__btn wizard__btn--next"
+          @click="
+            () => {
+              isNextClicked = true;
+              submit();
+            }
+          "
+        >
+          {{ nextBtnLabel }}
+        </button>
+      </div>
+    </div>
+  </section>
+</template>
 
 <style lang="scss">
 .wizard-light {

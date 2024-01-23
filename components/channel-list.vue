@@ -1,12 +1,3 @@
-<template>
-  <section class="canales" id="canales">
-    <AccordionList v-model:state="state" :open-multiple-items="openMultipleItems">
-      <channel-item v-for="(category, index) in categories" :content="category.content" :title="category.title"
-        :key="index" />
-    </AccordionList>
-  </section>
-</template>
-
 <script setup lang="ts">
 import {
   nacionales,
@@ -50,3 +41,12 @@ const categories = [
   },
 ];
 </script>
+
+<template>
+  <section class="canales" id="canales">
+    <AccordionList v-model:state="state" :open-multiple-items="openMultipleItems">
+      <channel-item v-for="(category, index) in categories" :content="category.content" :title="category.title"
+        :key="index" />
+    </AccordionList>
+  </section>
+</template>

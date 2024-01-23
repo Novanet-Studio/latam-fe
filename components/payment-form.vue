@@ -1,49 +1,3 @@
-<template>
-  <section class="formulario formreporte">
-    <h2 class="formulario__titulo">Confirmación de Pagos TV por cable</h2>
-    <p class="formulario__texto">
-      {{ mensaje_formulario }} <br />
-      Tipo de cambio de referencia BCV $USD {{ bcvUsd }} Bs.
-    </p>
-    <form class="formulario__form" @submit.prevent="submitForm">
-      <h3 class="formulario__form__titulo">Datos titular contrato</h3>
-      <base-input label="Nombre y Apellido" id="fullname" name="fullname" />
-      <base-input label="Cédula de identidad" id="identification" name="identification" />
-      <base-input label="Número de contrato" id="contractNumber" name="contractNumber" />
-      <base-input label="Zona" id="zone" name="zone" />
-
-      <h3 class="formulario__form__titulo">Datos forma de pago</h3>
-
-      <select-input label="Zona" default-text="Seleccione forma de pago" id="paymentWay" name="paymentWay"
-        :options="paymentOptions" />
-
-      <base-input label="Número de transacción" id="transactionNumber" name="transactionNumber" />
-
-      <select-input label="Banco emisor" default-text="Seleccione un banco" id="issuingBank" name="issuingBank"
-        :options="bankOptions" />
-
-      <date-picker-input label="Fecha de operación" placeholder="Selecccione la fecha" format="dd-MM-yyyy"
-        :locale="dateLocale" name="date" />
-
-      <form-currency label="Monto" id="amount" name="amount" />
-
-      <h3 class="formulario__form__titulo">Datos titular cuenta bancaria</h3>
-
-      <base-input label="Nombre y apellido" id="dtbFullname" name="dtbFullname" />
-      <base-input label="Teléfono" id="dtbPhone" name="dtbPhone" />
-      <base-input label="Cédula de identidad" id="dtbIdentification" name="dtbIdentification" />
-      <base-input label="Correo electrónico" id="dtbEmail" name="dtbEmail" />
-
-      <form-button type="submit" :is-loading="isSendingForm" :disabled="isButtonDisabled">
-        Reportar pago
-      </form-button>
-    </form>
-    <Modal v-show="isModalVisible" title="Tu pago ha sido reportado"
-      text="Gracias por enviarnos la información de pago. Para cualquier otra información por favor envíanos un mensaje por WhatsApp"
-      @close="closeModal" />
-  </section>
-</template>
-
 <script lang="ts" setup>
 import { useForm } from "vee-validate";
 import { object, string, date } from "yup";
@@ -181,3 +135,49 @@ try {
   console.log(err);
 }
 </script>
+
+<template>
+  <section class="formulario formreporte">
+    <h2 class="formulario__titulo">Confirmación de Pagos TV por cable</h2>
+    <p class="formulario__texto">
+      {{ mensaje_formulario }} <br />
+      Tipo de cambio de referencia BCV $USD {{ bcvUsd }} Bs.
+    </p>
+    <form class="formulario__form" @submit.prevent="submitForm">
+      <h3 class="formulario__form__titulo">Datos titular contrato</h3>
+      <base-input label="Nombre y Apellido" id="fullname" name="fullname" />
+      <base-input label="Cédula de identidad" id="identification" name="identification" />
+      <base-input label="Número de contrato" id="contractNumber" name="contractNumber" />
+      <base-input label="Zona" id="zone" name="zone" />
+
+      <h3 class="formulario__form__titulo">Datos forma de pago</h3>
+
+      <select-input label="Zona" default-text="Seleccione forma de pago" id="paymentWay" name="paymentWay"
+        :options="paymentOptions" />
+
+      <base-input label="Número de transacción" id="transactionNumber" name="transactionNumber" />
+
+      <select-input label="Banco emisor" default-text="Seleccione un banco" id="issuingBank" name="issuingBank"
+        :options="bankOptions" />
+
+      <date-picker-input label="Fecha de operación" placeholder="Selecccione la fecha" format="dd-MM-yyyy"
+        :locale="dateLocale" name="date" />
+
+      <form-currency label="Monto" id="amount" name="amount" />
+
+      <h3 class="formulario__form__titulo">Datos titular cuenta bancaria</h3>
+
+      <base-input label="Nombre y apellido" id="dtbFullname" name="dtbFullname" />
+      <base-input label="Teléfono" id="dtbPhone" name="dtbPhone" />
+      <base-input label="Cédula de identidad" id="dtbIdentification" name="dtbIdentification" />
+      <base-input label="Correo electrónico" id="dtbEmail" name="dtbEmail" />
+
+      <form-button type="submit" :is-loading="isSendingForm" :disabled="isButtonDisabled">
+        Reportar pago
+      </form-button>
+    </form>
+    <Modal v-show="isModalVisible" title="Tu pago ha sido reportado"
+      text="Gracias por enviarnos la información de pago. Para cualquier otra información por favor envíanos un mensaje por WhatsApp"
+      @close="closeModal" />
+  </section>
+</template>

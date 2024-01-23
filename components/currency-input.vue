@@ -1,12 +1,3 @@
-<template>
-  <div class="currency" :class="isActive ? 'active' : ''">
-    <label :for="id" class="currency__label">Bs</label>
-    <input type="text" :id="id" class="formulario__form__input" v-model="value" @blur="isActive = false"
-      @focus="isActive = true" v-maska="binded" data-maska="Bs 9.99#,##" data-maska-tokens="9:[0-9]:repeated"
-      data-maska-reversed />
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { vMaska } from 'maska';
 
@@ -35,6 +26,15 @@ watch(binded, () => {
   emit('update:modelValue', binded?.masked ?? '');
 });
 </script>
+
+<template>
+  <div class="currency" :class="isActive ? 'active' : ''">
+    <label :for="id" class="currency__label">Bs</label>
+    <input type="text" :id="id" class="formulario__form__input" v-model="value" @blur="isActive = false"
+      @focus="isActive = true" v-maska="binded" data-maska="Bs 9.99#,##" data-maska-tokens="9:[0-9]:repeated"
+      data-maska-reversed />
+  </div>
+</template>
 
 <style lang="scss" scoped>
 .currency {

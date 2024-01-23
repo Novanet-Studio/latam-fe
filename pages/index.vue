@@ -1,3 +1,40 @@
+<script lang="ts" setup>
+const config = useAppConfig();
+
+useHead({
+  titleTemplate: "TV por cable e Internet fibra óptica de alta velocidad - %s",
+});
+
+const planesInternet = ref();
+const graphql = useStrapiGraphQL();
+
+try {
+  const query = await graphql<any>(`
+    query {
+      planInternet {
+        data {
+          attributes {
+            tipo {
+              id
+              nombre
+              descripcion
+              planes {
+                nombre
+                precio_usd
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+  planesInternet.value = query.data.planInternet.data.attributes.tipo;
+} catch (err) {
+  planesInternet.value = [];
+  console.log(err);
+}
+</script>
+
 <template>
   <main class="inicio">
     <section class="hero">
@@ -103,40 +140,3 @@
     </section>
   </main>
 </template>
-
-<script lang="ts" setup>
-const config = useAppConfig();
-
-useHead({
-  titleTemplate: "TV por cable e Internet fibra óptica de alta velocidad - %s",
-});
-
-const planesInternet = ref();
-const graphql = useStrapiGraphQL();
-
-try {
-  const query = await graphql<any>(`
-    query {
-      planInternet {
-        data {
-          attributes {
-            tipo {
-              id
-              nombre
-              descripcion
-              planes {
-                nombre
-                precio_usd
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
-  planesInternet.value = query.data.planInternet.data.attributes.tipo;
-} catch (err) {
-  planesInternet.value = [];
-  console.log(err);
-}
-</script>

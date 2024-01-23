@@ -1,18 +1,3 @@
-<template>
-  <div
-    v-if="stepper.isCurrent('check-subscription')"
-    class="check-subscription"
-  >
-    <select-input
-      label="Contrato"
-      id="contract"
-      name="contract"
-      default-text="Selecciona"
-      :options="options"
-    />
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { useForm } from 'vee-validate';
 
@@ -41,6 +26,21 @@ watch(values, () => {
   form.contract = values.contract
 });
 </script>
+
+<template>
+  <div
+    v-if="stepper.isCurrent('check-subscription')"
+    class="check-subscription"
+  >
+    <select-input
+      label="Contrato"
+      id="contract"
+      name="contract"
+      default-text="Selecciona"
+      :options="options"
+    />
+  </div>
+</template>
 
 <style lang="scss">
 .check-subscription {  

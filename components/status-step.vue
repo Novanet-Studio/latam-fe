@@ -1,3 +1,13 @@
+<script lang="ts" setup>
+import successImage from "../assets/images/success.svg";
+import errorImage from "../assets/images/error.svg";
+
+const form = inject("form") as Latam.Form;
+
+const stepper = inject("stepper") as any;
+const isSuccessful = ref(form.status === "success");
+</script>
+
 <template>
   <div v-if="stepper.isCurrent('status')" class="message-wrapper">
     <div class="icon-wrapper" :class="{ error: !isSuccessful }">
@@ -15,16 +25,6 @@
     </span>
   </div>
 </template>
-
-<script lang="ts" setup>
-import successImage from "../assets/images/success.svg";
-import errorImage from "../assets/images/error.svg";
-
-const form = inject("form") as Latam.Form;
-
-const stepper = inject("stepper") as any;
-const isSuccessful = ref(form.status === "success");
-</script>
 
 <style lang="scss">
 .message-wrapper {

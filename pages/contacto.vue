@@ -1,3 +1,13 @@
+<script lang="ts" setup>
+const config = useAppConfig();
+const description =
+  "Ponte en contacto con nosotros y déjanos los detalles de tu solicitud en nuestro canal de atención al Ciente en WhatsApp.";
+
+useHead({
+  titleTemplate: 'Contáctanos - %s',  
+});
+</script>
+
 <template>
   <main class="contacto">
     <section class="hero">
@@ -27,13 +37,3 @@
     <WhatsappBanner />
   </main>
 </template>
-
-<script lang="ts" setup>
-const config = useAppConfig();
-const description =
-  "Ponte en contacto con nosotros y déjanos los detalles de tu solicitud en nuestro canal de atención al Ciente en WhatsApp.";
-
-useHead({
-  titleTemplate: 'Contáctanos - %s',  
-});
-</script>

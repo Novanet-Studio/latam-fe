@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+type Props = {
+  title: string;
+  content: any[];
+};
+defineProps<Props>();
+</script>
+
 <template>
   <AccordionItem :id="title" class="canales__lista">
     <template #summary>
@@ -13,11 +21,3 @@
     </div>
   </AccordionItem>
 </template>
-
-<script lang="ts" setup>
-type Props = {
-  title: string;
-  content: any[];
-};
-defineProps<Props>();
-</script>

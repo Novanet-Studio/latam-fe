@@ -1,16 +1,3 @@
-<template>
-  <div class="formulario__form__grupo">
-    <button type="submit" class="formulario__form__boton" :disabled="isLoading || disabled">
-      <template v-if="isLoading">
-        <slot name="indicator">Enviando...</slot>
-      </template>
-      <template v-else>
-        <slot />
-      </template>
-    </button>
-  </div>
-</template>
-
 <script lang="ts" setup>
 type Props = {
   type?: 'button' | 'submit';
@@ -27,3 +14,16 @@ withDefaults(defineProps<Props>(), {
 });
 defineEmits<Emits>();
 </script>
+
+<template>
+  <div class="formulario__form__grupo">
+    <button type="submit" class="formulario__form__boton" :disabled="isLoading || disabled">
+      <template v-if="isLoading">
+        <slot name="indicator">Enviando...</slot>
+      </template>
+      <template v-else>
+        <slot />
+      </template>
+    </button>
+  </div>
+</template>

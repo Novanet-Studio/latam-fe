@@ -1,3 +1,53 @@
+<script lang="ts" setup>
+import getPrice from "~/utils/getPrice";
+const config = useAppConfig();
+
+const description =
+  "Internet en fibra óptica de alta velocidad para empresas y hogares.";
+
+useHead({
+  titleTemplate: "Internet fibra óptica de alta velocidad - %s",
+});
+
+const isLoading = ref(false);
+const tiposPlanes = ref<any>([]);
+const bcvUsd = useBcvUsd();
+
+try {
+  isLoading.value = true;
+  const graphql = useStrapiGraphQL();
+
+  const internetQuery = await graphql<any>(`
+    query {
+      planInternet {
+        data {
+          attributes {
+            tipo {
+              nombre
+              descripcion
+              planes {
+                id
+                nombre
+                precio_usd
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  tiposPlanes.value = internetQuery.data.planInternet.data.attributes.tipo;
+} catch (err) {
+  console.log(err);
+} finally {
+  isLoading.value = false;
+}
+
+const loadingText = (price: string) =>
+  !isLoading.value ? `Bs. ${price} / Mensual` : "Cargando precio...";
+</script>
+
 <template>
   <main class="internetvista">
     <section class="hero">
@@ -57,53 +107,3 @@
     <whatsapp-banner />
   </main>
 </template>
-
-<script lang="ts" setup>
-import getPrice from "~/utils/getPrice";
-const config = useAppConfig();
-
-const description =
-  "Internet en fibra óptica de alta velocidad para empresas y hogares.";
-
-useHead({
-  titleTemplate: "Internet fibra óptica de alta velocidad - %s",
-});
-
-const isLoading = ref(false);
-const tiposPlanes = ref<any>([]);
-const bcvUsd = useBcvUsd();
-
-try {
-  isLoading.value = true;
-  const graphql = useStrapiGraphQL();
-
-  const internetQuery = await graphql<any>(`
-    query {
-      planInternet {
-        data {
-          attributes {
-            tipo {
-              nombre
-              descripcion
-              planes {
-                id
-                nombre
-                precio_usd
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  tiposPlanes.value = internetQuery.data.planInternet.data.attributes.tipo;
-} catch (err) {
-  console.log(err);
-} finally {
-  isLoading.value = false;
-}
-
-const loadingText = (price: string) =>
-  !isLoading.value ? `Bs. ${price} / Mensual` : "Cargando precio...";
-</script>

@@ -1,22 +1,3 @@
-<template>
-  <section class="login payment-section">
-    <h3>Ingresa a tu cuenta</h3>
-    <h5>Coloca la información solicitada</h5>
-    <form @submit.prevent="submitForm">
-      <base-input label="Usuario" id="user" name="user" />
-      <base-input
-        label="Contraseña"
-        id="password"
-        name="password"
-        type="password"
-      />
-      <form-button type="submit" :is-loading="isSending" :disabled="disabled">
-        Iniciar Sesión
-      </form-button>
-    </form>
-  </section>
-</template>
-
 <script lang="ts" setup>
 import { useForm } from "vee-validate";
 
@@ -139,6 +120,25 @@ const submitForm = handleSubmit(async (values) => {
   }
 });
 </script>
+
+<template>
+  <section class="login payment-section">
+    <h3>Ingresa a tu cuenta</h3>
+    <h5>Coloca la información solicitada</h5>
+    <form @submit.prevent="submitForm">
+      <base-input label="Usuario" id="user" name="user" />
+      <base-input
+        label="Contraseña"
+        id="password"
+        name="password"
+        type="password"
+      />
+      <form-button type="submit" :is-loading="isSending" :disabled="disabled">
+        Iniciar Sesión
+      </form-button>
+    </form>
+  </section>
+</template>
 
 <style lang="scss">
 .login {

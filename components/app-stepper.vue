@@ -1,3 +1,10 @@
+<script lang="ts" setup>
+defineProps<{
+  checkDisabled?: (i: number) => boolean,
+  stepper: any
+}>();
+</script>
+
 <template>
   <Transition name="fade">
     <div>
@@ -25,13 +32,6 @@
     </div>
     </Transition>
 </template>
-
-<script lang="ts" setup>
-defineProps<{
-  checkDisabled?: (i: number) => boolean,
-  stepper: any
-}>();
-</script>
 
 <style scope lang="scss">
 ol {

@@ -1,3 +1,12 @@
+<script lang="ts" setup>
+type Props = {
+  title: string;
+  text: string;
+}
+
+defineProps<Props>();
+</script>
+
 <template>
   <div class="modal-wrapper">
     <div class="modal">
@@ -18,12 +27,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-type Props = {
-  title: string;
-  text: string;
-}
-
-defineProps<Props>();
-</script>
