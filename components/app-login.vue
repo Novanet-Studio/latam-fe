@@ -93,19 +93,23 @@ const submitForm = handleSubmit(async (values) => {
 
     if (values.user !== values.password) {
       isAuthenticated.value = false;
+      isSending.value = false;
       isLoading.value = false;
+      alert("Credenciales incorrectas");
       return;
     }
 
     if (isDev) {
-      setTimeout(() => {
-        if (values.user === "V12345678" && values.password === "V12345678") {
+      if (values.user === "V12345678" && values.password === "V12345678") {
+        setTimeout(() => {
           form.ci = values.user;
           isAuthenticated.value = true;
           isLoading.value = false;
           Object.assign(userData, mockData);
-        }
-      }, 2000);
+        }, 2000);
+      } else {
+        throw new Error("Credenciales incorrectas");
+      }
     } else {
       const { data } = await useFetch(`${api}/GetClientsDetails`, {
         method: "post",
@@ -117,14 +121,21 @@ const submitForm = handleSubmit(async (values) => {
 
       Object.assign(userData, data.value);
     }
-  } catch (error) {
+  } catch (error: any) {
+    alert(error.message);
     isAuthenticated.value = false;
   } finally {
-    if (isDev) return;
-
-    isSending.value = false;
-    disabled.value = false;
-    isLoading.value = false;
+    if (isDev) {
+      setTimeout(() => {
+        isSending.value = false;
+        disabled.value = false;
+        isLoading.value = false;
+      }, 2000);
+    } else {
+      isSending.value = false;
+      disabled.value = false;
+      isLoading.value = false;
+    }
   }
 });
 </script>
