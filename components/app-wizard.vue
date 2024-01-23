@@ -7,10 +7,39 @@ import PaymentReportStep from "./payment-report-step.vue";
 import StatusStep from "./status-step.vue";
 import AppStepper from "./app-stepper.vue";
 
+interface KeyResponse {
+  codResp: string;
+  descResp: string;
+  claveDinamica: string;
+}
+
+interface PaymentResponse {
+  codres: string;
+  descRes: string;
+  autorizacionISO: string;
+  traceISO: string;
+  autorizacionIBSMonto: string;
+  autorizacionIBSComision: string;
+  montoComision: string;
+  referencia: string;
+  fecha: string; // DD/MM/YYYY
+  hora: string; // HH:MM:SS
+  claveDinamica: number;
+  monto: string;
+  numeroLote: string;
+}
+
+interface ConformationResponse {
+  mensaje: string;
+  status: "OK" | "Error";
+}
+
+const isDev = import.meta.env.DEV;
 const isNextClicked = ref(false);
 const form = inject("form") as Latam.Form;
 
 const { btBaseApi, bussiness } = useRuntimeConfig().public;
+const router = useRouter();
 
 const stepper = useStepper({
   "check-subscription": {
@@ -58,35 +87,6 @@ const nextBtnLabel = computed(() => {
   }
 });
 
-interface KeyRequest {
-  codResp: string;
-  descResp: string;
-  claveDinamica: string;
-}
-
-interface PaymentResponse {
-  codres: string;
-  descRes: string;
-  autorizacionISO: string;
-  traceISO: string;
-  autorizacionIBSMonto: string;
-  autorizacionIBSComision: string;
-  montoComision: string;
-  referencia: string;
-  fecha: string; // DD/MM/YYYY
-  hora: string; // HH:MM:SS
-  claveDinamica: number;
-  monto: string;
-  numeroLote: string;
-}
-
-interface ConformationResponse {
-  mensaje: string;
-  status: "OK" | "Error";
-}
-
-const isDev = import.meta.env.DEV;
-
 async function submit() {
   if (stepper.isCurrent("payment-report") && stepper.current.value.isValid()) {
     try {
@@ -97,7 +97,7 @@ async function submit() {
       const areOthersBanks = othersBanks.includes(form.bank);
       const isSameBank = sameBank.includes(form.bank);
 
-      const { data: token } = await useFetch<KeyRequest>(
+      const { data: token } = await useFetch<KeyResponse>(
         `${btBaseApi}/lotes/solicitud/clave`,
         {
           method: "POST",
@@ -197,6 +197,7 @@ async function submit() {
   }
 
   if (form.status === 'error') stepper.goTo('subscriptor-data');
+  if (form.status === 'success' && stepper.isLast.value) router.push('/');
   if (stepper.current.value.isValid()) stepper.goToNext();
 }
 
