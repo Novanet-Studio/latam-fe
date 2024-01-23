@@ -13,14 +13,14 @@ const isSuccessful = ref(form.status === "success");
     <div class="icon-wrapper" :class="{ error: !isSuccessful }">
       <img :src="isSuccessful ? successImage : errorImage" alt="Success Icon" />
     </div>
-    <span class="message__title">{{
+    <span class="message__title" :class="{ 'error': !isSuccessful }">{{
       isSuccessful ? "¡Exitoso!" : "Rechazado"
     }}</span>
     <span class="message__text">
       {{
         isSuccessful
           ? "Gracias por su pago"
-          : "Por favor verifique su información de pago"
+          : "Por favor inténtelo nuevamente"
       }}
     </span>
   </div>
@@ -47,6 +47,10 @@ const isSuccessful = ref(form.status === "success");
     font-size: 18px;
     line-height: 28px;
     color: #666666;
+  }
+
+  .error {
+    color: rgb(199, 25, 25);
   }
 }
 

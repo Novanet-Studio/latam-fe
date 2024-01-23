@@ -50,7 +50,7 @@ const activeComponent = computed(() => {
 
 const nextBtnLabel = computed(() => {
   if (stepper.isLast.value) {
-    return "Regresar al inicio";
+    return form.status === "success" ? "Regresar al inicio" : "Intentar de nuevo";
   } else if (stepper.isCurrent("payment-report")) {
     return "Finalizar";
   } else {
@@ -196,6 +196,7 @@ async function submit() {
     return;
   }
 
+  if (form.status === 'error') stepper.goTo('subscriptor-data');
   if (stepper.current.value.isValid()) stepper.goToNext();
 }
 
