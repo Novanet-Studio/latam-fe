@@ -10,7 +10,7 @@
       {{
         isSuccessful
           ? "Gracias por su pago"
-          : "Por favor verifique sus medios de pago"
+          : "Por favor verifique su información de pago"
       }}
     </span>
   </div>
@@ -20,8 +20,10 @@
 import successImage from "../assets/images/success.svg";
 import errorImage from "../assets/images/error.svg";
 
+const form = inject("form") as Latam.Form;
+
 const stepper = inject("stepper") as any;
-const isSuccessful = ref(true);
+const isSuccessful = ref(form.status === "success");
 </script>
 
 <style lang="scss">

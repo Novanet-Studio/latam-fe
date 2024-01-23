@@ -115,7 +115,7 @@ interface KeyRequest {
 
 interface PaymentResponse {
   codres: string;
-  descResp: string;
+  descRes: string;
   autorizacionISO: string;
   traceISO: string;
   autorizacionIBSMonto: string;
@@ -129,8 +129,15 @@ interface PaymentResponse {
   numeroLote: string;
 }
 
+interface ConformationResponse {
+  mensaje: string;
+  status: "OK" | "Error";
+}
+
+const isDev = import.meta.env.DEV;
+
 async function submit() {
-  if (stepper.isCurrent("payment-report")) {
+  if (stepper.isCurrent("payment-report") && stepper.current.value.isValid()) {
     try {
       form.status = "pending";
       // Peticion para el token
@@ -140,62 +147,82 @@ async function submit() {
           method: "POST",
           body: {
             canal: "01",
-            celularDestino: "V011484286",
+            celularDestino: isDev ? "V011484286" : form.ci,
           },
         }
       );
 
-      if (!token.value?.claveDinamica) {
+      if (!token.value?.claveDinamica.length) {
         // TODO: show error or some modal
         alert(token.value?.descResp);
+        form.status = "error";
+        stepper.goToNext();
         return;
       }
 
       // Procesar pago
+      const paymentBody = {
+        canal: "06",
+        celular: isDev ? '04122084674' : form.phone,
+        banco: form.bank,
+        RIF: isDev ? 'J297059172' : bussiness.rif,
+        cedula: isDev ? 'V011484286' : form.ci,
+        monto: form.amount,
+        token: isDev ? '14866991' : token.value?.claveDinamica.toString(),
+        concepto: `Pago de servicios de ${form.fullName}`,
+        codAfiliado: isDev ? '004036' : bussiness.afiliatedCode,
+        comercio: bussiness.name,
+      }
+      
       const { data: payment } = await useFetch<PaymentResponse>(
         `${btBaseApi}/botonDePago/pago`,
         {
           method: "POST",
-          body: {
-            canal: "06",
-            celular: "04122084674",
-            banco: "0163",
-            RIF: "J297059172",
-            cedula: "V011484286",
-            monto: "3617,00",
-            token: "14866991",
-            concepto: "prueba",
-            codAfiliado: "004036",
-            comercio: "Latam",
-          },
+          body: paymentBody,
         }
       );
 
-      // Conformacion de pago
+      if (!payment?.value?.referencia) {
+        alert(payment.value?.descRes);
+        form.status = "error";
+        stepper.goToNext();
+        return;
+      }
 
-      const { data: conformation } = await useFetch<any>(
+      // Conformacion de pago
+      const conformationDate = payment.value.fecha.split("/").reverse().join("");
+      
+      const conformationBody = {
+        referencia: isDev ? "095813962" : payment.value.referencia,
+        monto: form.amount,
+        banco: form.bank,
+        codAfiliado: isDev ? '004036' : bussiness.afiliatedCode,
+        fecha: conformationDate,
+        celular: isDev ? '04122084674' : form.phone,
+        RIF: isDev ? 'J297059172' : bussiness.rif,
+      }
+
+      const { data: conformation } = await useFetch<ConformationResponse>(
         `${btBaseApi}/botonDePago/conformacion`,
         {
           method: "POST",
-          body: {
-            referencia: "095813962",
-            monto: "3617,00",
-            banco: "0163",
-            codAfiliado: "004036",
-            fecha: "20231220",
-            celular: "04122084674",
-            RIF: " J297059172",
-          },
+          body: conformationBody,
         }
       );
 
+      if (conformation?.value?.status === "Error") {
+        alert(conformation.value.mensaje);
+        form.status = "error";
+        stepper.goToNext();
+        return;
+      }
+
       // mostrar mensaje de exito o error
+      form.status = "success";
       stepper.goToNext();
     } catch (error) {
+      // OPTIONAL: show error or some modal
       form.status = "error";
-      // TODO: show error or some modal
-    } finally {
-      form.status = "success";
     }
 
     return;
