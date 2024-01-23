@@ -220,7 +220,7 @@ provide("stepper", stepper);
   grid-area: formulario;
   grid-template-columns: 1fr;
   place-items: center;
-  padding: 4.5em 1.5em 4.5em 2em;
+  padding: 1em 1.5em 4.5em 2em;
   position: relative;
 }
 
