@@ -39,7 +39,7 @@ setValues({
   contract: form.contract,
   fullname: userData.datos?.[0].nombre,
   ci: userData.datos?.[0].cedula,
-  amount: userData.datos?.[0].servicios?.[0].costo
+  amount: formatAmount(userData.datos?.[0].servicios?.[0].costo)
 });
 </script>
 

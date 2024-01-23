@@ -20,7 +20,7 @@
 
       <div class="wizard__footer">
         <button
-          v-if="!stepper?.isFirst.value"
+          v-if="!stepper?.isFirst.value && !stepper?.isLast.value"
           class="wizard__btn wizard__btn--prev"
           @click="
             () => {
