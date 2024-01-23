@@ -92,18 +92,23 @@ async function submit() {
     try {
       form.status = "pending";
       // Peticion para el token
+      const othersBanks = ["0191", "0172"]
+      const sameBank = ["0163"];
+      const areOthersBanks = othersBanks.includes(form.bank);
+      const isSameBank = sameBank.includes(form.bank);
+
       const { data: token } = await useFetch<KeyRequest>(
         `${btBaseApi}/lotes/solicitud/clave`,
         {
           method: "POST",
           body: {
             canal: "01",
-            celularDestino: isDev ? "V011484286" : form.ci,
+            celularDestino: form.ci,
           },
         }
       );
 
-      if (!token.value?.claveDinamica.length) {
+      if (!token.value?.claveDinamica.length && (isDev && !areOthersBanks)) {
         // TODO: show error or some modal
         alert(token.value?.descResp);
         form.status = "error";
@@ -111,17 +116,29 @@ async function submit() {
         return;
       }
 
+      const getPaymentToken = () => {
+        if (isDev && isSameBank) {
+          return token.value?.claveDinamica.toString();
+        }
+
+        if (isDev && areOthersBanks) {
+          return "20191231";
+        }
+
+        return token.value?.claveDinamica.toString();
+      }
+
       // Procesar pago
       const paymentBody = {
         canal: "06",
-        celular: isDev ? '04122084674' : form.phone,
+        celular: form.phone,
         banco: form.bank,
-        RIF: isDev ? 'J297059172' : bussiness.rif,
-        cedula: isDev ? 'V011484286' : form.ci,
+        RIF: bussiness.rif,
+        cedula: form.ci,
         monto: form.amount,
-        token: isDev ? '14866991' : token.value?.claveDinamica.toString(),
+        token: getPaymentToken(),
         concepto: `Pago de servicios de ${form.fullName}`,
-        codAfiliado: isDev ? '004036' : bussiness.afiliatedCode,
+        codAfiliado: bussiness.afiliatedCode,
         comercio: bussiness.name,
       }
       
@@ -144,13 +161,13 @@ async function submit() {
       const conformationDate = payment.value.fecha.split("/").reverse().join("");
       
       const conformationBody = {
-        referencia: isDev ? "095813962" : payment.value.referencia,
+        referencia: payment.value.referencia,
         monto: form.amount,
         banco: form.bank,
-        codAfiliado: isDev ? '004036' : bussiness.afiliatedCode,
+        codAfiliado: bussiness.afiliatedCode,
         fecha: conformationDate,
-        celular: isDev ? '04122084674' : form.phone,
-        RIF: isDev ? 'J297059172' : bussiness.rif,
+        celular: form.phone,
+        RIF: bussiness.rif,
       }
 
       const { data: conformation } = await useFetch<ConformationResponse>(
