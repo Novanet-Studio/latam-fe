@@ -1,16 +1,15 @@
 <template>
-  <main class="internetvista">
+  <main class="report-view">
     <section class="hero">
       <div class="hero__internet">
         <div class="hero__internet__box">
           <div class="hero__internet__icon"></div>
           <div class="hero__internet__info">
             <h1 class="hero__internet__title">
-              Redirigiendo a portal del cliente
+              Reporta tus pagos
             </h1>
             <p class="hero__internet__text">
-              Conexión en fibra óptica de alta velocidad para uso corporativo y
-              residencial.
+              Ponemos a tu disposición formas para que notifiques los pagos que realices
             </p>
           </div>
         </div>
