@@ -12,8 +12,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ComputedRef } from 'vue';
-
 type Props = {
   type?: 'button' | 'submit';
   isLoading?: boolean;
