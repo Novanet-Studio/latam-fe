@@ -1,3 +1,46 @@
+.payment {
+  grid-column: span 12;
+
+  &__title {
+    @include heading-before-content($color: $azul, $image: "punto.svg");
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .info-box {
+    display: flex;
+    gap: 1rem;
+
+    &__icon-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $azul;
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+
+      & img {
+        width: 64px;
+        height: 64px;
+        color: #fff;
+      }
+    }
+
+    &__title {
+      font-style: normal;
+      color: $azul;
+    }
+  }
+}
+
 .payment-section {
   background-color: $gris-2;
   border-radius: 1em;
