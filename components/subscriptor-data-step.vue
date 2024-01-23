@@ -35,11 +35,13 @@ const { copy, copied } = useClipboard({
   legacy: true
 });
 
+const data = userData.datos?.[0].servicios?.find((item: Latam.ServiciosEntity) => item.id === Number(form.contract));
+
 setValues({
   contract: form.contract,
   fullname: userData.datos?.[0].nombre,
   ci: userData.datos?.[0].cedula,
-  amount: formatAmount(userData.datos?.[0].servicios?.[0].costo)
+  amount: formatAmount(data?.costo)
 });
 </script>
 
