@@ -4,7 +4,7 @@ interface Body {
 }
 
 export default defineEventHandler(async (event) => {
-  const { usersApi, usersApiKey } = useRuntimeConfig().public;
+  const { usersApi, usersApiKey } = useRuntimeConfig();
 
   try {
     const data = (await readBody(event)) as Body;
