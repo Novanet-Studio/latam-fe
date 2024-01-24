@@ -3,17 +3,13 @@ interface Body {
   cedula: string;
 }
 
-const testAPI = 'https://private-anon-0c49753ae6-mikrowisp.apiary-mock.com/api/v1'
-
 export default defineEventHandler(async (event) => {
   const { usersApi, usersApiKey } = useRuntimeConfig().public;
-
-  const api = import.meta.env.DEV ? testAPI : usersApi
 
   try {
     const data = (await readBody(event)) as Body;
 
-    const response = await $fetch(`${api}/GetClientsDetails`, {
+    const response = await $fetch(`${usersApi}/GetClientsDetails`, {
       method: 'POST',
       body: {
         token: usersApiKey,
