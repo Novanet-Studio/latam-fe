@@ -1,9 +1,9 @@
-interface Body {
-  token: string;
-  cedula: string;
-}
+// interface Body {
+//   token: string;
+//   cedula: string;
+// }
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(() => {
 
   return {
     message: "hola"
