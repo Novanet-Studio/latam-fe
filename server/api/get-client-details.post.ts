@@ -9,15 +9,17 @@ export default defineEventHandler(async (event) => {
   try {
     const data = (await readBody(event)) as Body;
 
-    const response = await $fetch(`${usersApi}/GetClientsDetails`, {
+    const response = await fetch(`${usersApi}/GetClientsDetails`, {
       method: 'POST',
-      body: {
+      body: JSON.stringify({
         token: usersApiKey,
         cedula: data.cedula
-      }
+      })
     });
 
-    return response;
+    const json = await response.json();
+
+    return json;
   } catch (error: any) {
     return createError({
       statusCode: 500,
