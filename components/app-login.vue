@@ -11,12 +11,6 @@ const userData = inject("userData") as Latam.UserData;
 
 const isDev = import.meta.env.DEV;
 
-const { usersApi, usersApiKey } = useRuntimeConfig().public;
-
-const api = isDev
-  ? "https://private-anon-0c49753ae6-mikrowisp.apiary-mock.com/api/v1"
-  : usersApi;
-
 const { handleSubmit } = useForm({
   initialValues: {
     user: "",
@@ -38,10 +32,9 @@ const submitForm = handleSubmit(async (values) => {
       return;
     }
 
-    const { data } = await useFetch(`${api}/GetClientsDetails`, {
+    const { data } = await useFetch('/api/get-client-details', {
       method: "post",
       body: {
-        token: usersApiKey,
         cedula: values.user,
       },
     });
