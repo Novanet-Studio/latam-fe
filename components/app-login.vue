@@ -9,6 +9,8 @@ const isLoading = inject("isLoading") as Ref<boolean>;
 const form = inject("form") as Latam.Form;
 const userData = inject("userData") as Latam.UserData;
 
+const { usersApiKey } = useRuntimeConfig().public;
+
 const isDev = import.meta.env.DEV;
 
 const { handleSubmit } = useForm({
@@ -35,6 +37,7 @@ const submitForm = handleSubmit(async (values) => {
     const { data } = await useFetch('/api/get-client-details', {
       method: "post",
       body: {
+        token: usersApiKey,
         cedula: values.user,
       },
     });
