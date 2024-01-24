@@ -2,6 +2,15 @@
 import AppLogin from '~/components/app-login.vue';
 import AppWizard from '~/components/app-wizard.vue'; 
 
+useHead({
+  meta: [
+    {
+      "http-equiv": "Content-Security-Policy",
+      content: "upgrade-insecure-requests",
+    },
+  ],
+});
+
 const isAuthenticated = ref(false);
 const isLoading = ref(false)
 const userData = reactive<Latam.UserData>({
