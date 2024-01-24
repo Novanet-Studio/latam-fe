@@ -34,14 +34,14 @@ export default defineNuxtConfig({
   },
   modules: ["@nuxt/image", "@nuxtjs/strapi", "@kevinmarrec/nuxt-pwa", "@vueuse/nuxt"],
   runtimeConfig: {
+    btBaseApi: process.env.BT_BASE_API_URL,
+    usersApi: process.env.USERS_API_URL,
+    usersApiKey: process.env.USERS_API_KEY,
     public: {
       strapi: {
         url: process.env.STRAPI_URL || "http://localhost:1337",
       },
       bcvUsdApi: process.env.BCV_USD_API_URL,
-      btBaseApi: process.env.BT_BASE_API_URL,
-      usersApi: process.env.USERS_API_URL,
-      usersApiKey: process.env.USERS_API_KEY,
       bussiness: {
         rif: process.env.BUSSINESS_RIF,
         name: process.env.BUSSINESS_NAME,
