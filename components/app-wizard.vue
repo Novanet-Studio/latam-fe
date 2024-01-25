@@ -36,6 +36,7 @@ interface ConformationResponse {
 
 const isDev = import.meta.env.DEV;
 const isNextClicked = ref(false);
+const isLoading = ref(false);
 const form = inject("form") as Latam.Form;
 
 const { latamServicesApiUrl } = useRuntimeConfig().public;
@@ -88,6 +89,35 @@ const nextBtnLabel = computed(() => {
 });
 
 async function submit() {
+  if (stepper.isCurrent("subscriptor-data")) {
+    isLoading.value = true;
+    try {
+      const { data: billing } = await useFetch<Latam.BillingResponse>(
+        `${latamServicesApiUrl}/consulta-deuda`,
+        {
+          method: "POST",
+          body: {
+            cedula: form.ci,
+          },
+        }
+      );
+
+      if (!billing.value?.facturas.length) {
+        alert("No tienes facturas por pagar");
+        return;
+      }
+
+      form.amount = billing.value.facturas[0].valor;
+
+      stepper.goToNext();
+      return;
+    } catch (error: any) {
+      alert(error.message)
+    } finally {
+      isLoading.value = false;
+    }
+  }
+  
   if (stepper.isCurrent("payment-report") && !stepper.current.value.isValid()) {
     alert("Debe completar todos los campos");
     return;
@@ -249,8 +279,9 @@ provide("stepper", stepper);
               submit();
             }
           "
+          :disabled="isLoading"
         >
-          {{ nextBtnLabel }}
+          {{ isLoading ? "Verificando..." : nextBtnLabel }}
         </button>
       </div>
     </div>

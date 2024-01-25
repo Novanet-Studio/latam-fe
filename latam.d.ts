@@ -87,5 +87,16 @@ declare namespace Latam {
     facturas_nopagadas: number;
     total_facturas: string;
   }
-  
+
+  interface BillingResponse {
+    code: string;
+    facturas: Billing[];
+    mensaje: string;
+  }
+
+  interface Billing {
+    IDFactura: string;
+    detalle: string;
+    valor: string;
+  }
 }

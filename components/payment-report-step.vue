@@ -1,29 +1,3 @@
-<template>
-  <div v-if="stepper.isCurrent('payment-report')" class="payment-report">
-    <base-input label="Teléfono" id="phone" name="phone" />
-    <div class="id-group">
-      <select-input
-        label="Tipo"
-        id="type"
-        name="type"
-        default-text="Selecciona el tipo"
-        :options="identificationOptions"
-      />
-      <base-input label="Cédula de identidad" id="ci" name="ci" />
-    </div>
-    <select-input
-      label="Banco emisor"
-      id="bank"
-      name="bank"
-      default-text="Selecciona el banco"
-      :options="banksOptions"
-    />
-    <date-picker-input label="Fecha de operación" placeholder="Selecccione la fecha" format="dd-MM-yyyy" :locale="dateLocale" id="paymentDate" name="paymentDate" />
-    <base-input label="Numero de referencia" id="reference" name="reference" />
-    <base-input label="Monto" id="amount" name="amount" readonly />
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { useForm } from 'vee-validate';
 import { object, string, date } from "yup";
@@ -37,6 +11,10 @@ const dateLocale = ref("es-VE");
 const stepper = inject("stepper") as any;
 const userData = inject("userData") as Latam.UserData;
 const form = inject('form') as Latam.Form;
+
+const { copy, copied } = useClipboard({
+  legacy: true,
+});
 
 const schema = object({
   phone: string().required("El campo es requerido"),
@@ -84,7 +62,7 @@ const banksOptions = computed(() => {
   })) || []
 });
 
-setFieldValue('amount', 'Bs.S ' + userData.datos?.[0].servicios?.[0].costo);
+setFieldValue('amount', 'Bs.S ' + form.amount);
 
 watch(values, async () => {
   const res = await validate();
@@ -98,13 +76,51 @@ watch(values, async () => {
       bank: values.bank,
       paymentDate: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
       paymentReference: values.reference,
-      amount: userData.datos?.[0].servicios?.[0].costo
+      amount: form.amount
     };
     
     Object.assign(form, payload);
   }
 });
 </script>
+
+<template>
+  <div v-if="stepper.isCurrent('payment-report')" class="payment-report">
+    <base-input label="Teléfono" id="phone" name="phone" />
+    <div class="id-group">
+      <select-input
+        label="Tipo"
+        id="type"
+        name="type"
+        default-text="Selecciona el tipo"
+        :options="identificationOptions"
+      />
+      <base-input label="Cédula de identidad" id="ci" name="ci" />
+    </div>
+    <select-input
+      label="Banco emisor"
+      id="bank"
+      name="bank"
+      default-text="Selecciona el banco"
+      :options="banksOptions"
+    />
+    <date-picker-input label="Fecha de operación" placeholder="Selecccione la fecha" format="dd-MM-yyyy" :locale="dateLocale" id="paymentDate" name="paymentDate" />
+    <base-input label="Numero de referencia" id="reference" name="reference" />
+    <!-- <base-input label="Monto" id="amount" name="amount" readonly /> -->
+    <div class="amount-wrapper">
+      <base-input label="Monto a pagar" id="amount" name="amount" readonly />
+      <button
+        type="button"
+        class="amount-wrapper__btn"
+        @click.prevent="
+          () => copy(userData.datos?.[0].servicios?.[0].costo ?? '')
+        "
+      >
+        <font-awesome-icon :icon="copied ? 'check' : 'copy'" />
+      </button>
+    </div>
+  </div>
+</template>
 
 <style lang="scss">
 .payment-report {
@@ -120,6 +136,17 @@ watch(values, async () => {
     &#bank {
       width: 21rem;
       padding: .5rem;
+    }
+  }
+
+  .amount-wrapper {
+    position: relative;
+
+    &__btn {
+      position: absolute;
+      right: 0.5rem;
+      top: 2.5rem;
+      border: none;
     }
   }
 

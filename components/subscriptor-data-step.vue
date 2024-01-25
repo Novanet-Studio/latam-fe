@@ -16,6 +16,7 @@ const data = userData.datos?.[0].servicios?.find(
 );
 
 setValues({
+  status: userData.datos?.[0].estado,
   contract: form.contract,
   fullname: userData.datos?.[0].nombre,
   ci: userData.datos?.[0].cedula,
@@ -23,6 +24,7 @@ setValues({
 });
 
 form.fullName = userData.datos?.[0]?.nombre || "";
+form.ci = userData.datos?.[0].cedula || "";
 </script>
 
 <template>
@@ -40,7 +42,7 @@ form.fullName = userData.datos?.[0]?.nombre || "";
       readonly
     />
     <base-input label="Cédula de identidad" id="ci" name="ci" readonly />
-    <div class="amount-wrapper">
+    <!-- <div class="amount-wrapper">
       <base-input label="Monto a pagar" id="amount" name="amount" readonly />
       <button
         type="button"
@@ -51,7 +53,7 @@ form.fullName = userData.datos?.[0]?.nombre || "";
       >
         <font-awesome-icon :icon="copied ? 'check' : 'copy'" />
       </button>
-    </div>
+    </div> -->
   </div>
 </template>
 
