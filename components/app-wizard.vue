@@ -220,6 +220,28 @@ async function submit() {
         return;
       }
 
+      // Report payment
+      const paymentDate = payment.value.fecha.split("/").reverse().join("-");
+
+      const { data: response } = await useFetch<Latam.BillingResponse>(
+        `${latamServicesApiUrl}/registrar-pago`,
+        {
+          method: "POST",
+          body: {
+            cedula: form.ci,
+            IDFactura: billingData.IDFactura,
+            valor: Number(form.amount),
+            fecha: paymentDate,
+            secuencial: Number(generateUniqueNumbers())
+          },
+        }
+      );
+
+      if (response.value?.code === "170") {
+        alert(response.value?.mensaje);
+        return;
+      }
+
       // mostrar mensaje de exito o error
       form.status = "success";
       stepper.goToNext();
