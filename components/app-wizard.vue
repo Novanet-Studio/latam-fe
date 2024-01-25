@@ -92,7 +92,7 @@ async function submit() {
     try {
       form.status = "pending";
       // Peticion para el token
-      const othersBanks = ["0191", "0172"]
+      const othersBanks = ["0138", "0151"]
       const sameBank = ["0163"];
       const areOthersBanks = othersBanks.includes(form.bank);
       const isSameBank = sameBank.includes(form.bank);
