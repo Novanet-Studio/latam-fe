@@ -97,7 +97,7 @@ async function submit() {
     try {
       form.status = "pending";
       // Peticion para el token
-      const othersBanks = ["0138", "0151"]
+      const othersBanks = ["0102"]
       const sameBank = ["0163"];
       const areOthersBanks = othersBanks.includes(form.bank);
       const isSameBank = sameBank.includes(form.bank);
@@ -126,7 +126,7 @@ async function submit() {
         }
 
         if (areOthersBanks) {
-          return "20191231";
+          return "01020103";
         }
 
         return token.value?.claveDinamica.toString();
