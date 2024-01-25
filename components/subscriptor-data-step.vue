@@ -31,17 +31,17 @@ form.fullName = userData.datos?.[0]?.nombre || "";
       label="Número de contrato"
       id="contract"
       name="contract"
-      disabled
+      readonly
     />
     <base-input
       label="Nombre y Apellido"
       id="fullname"
       name="fullname"
-      disabled
+      readonly
     />
-    <base-input label="Cédula de identidad" id="ci" name="ci" disabled />
+    <base-input label="Cédula de identidad" id="ci" name="ci" readonly />
     <div class="amount-wrapper">
-      <base-input label="Monto a pagar" id="amount" name="amount" disabled />
+      <base-input label="Monto a pagar" id="amount" name="amount" readonly />
       <button
         type="button"
         class="amount-wrapper__btn"
