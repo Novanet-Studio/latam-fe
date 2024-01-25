@@ -81,7 +81,7 @@ const nextBtnLabel = computed(() => {
   if (stepper.isLast.value) {
     return form.status === "success" ? "Regresar al inicio" : "Intentar de nuevo";
   } else if (stepper.isCurrent("payment-report")) {
-    return "Finalizar";
+    return "Pagar";
   } else {
     return "Siguiente";
   }
