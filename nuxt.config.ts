@@ -78,6 +78,6 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'netlify-edge'
+    preset: 'netlify-builder'
   }
 });
