@@ -1,9 +1,17 @@
 <template>
   <div v-if="stepper.isCurrent('payment-report')" class="payment-report">
     <base-input label="Teléfono" id="phone" name="phone" />
-    <base-input label="Cédula de identidad" id="ci" name="ci" />
+    <div class="id-group">
+      <select-input
+        label="Tipo"
+        id="type"
+        name="type"
+        default-text="Selecciona el tipo"
+        :options="identificationOptions"
+      />
+      <base-input label="Cédula de identidad" id="ci" name="ci" />
+    </div>
     <select-input
-      v-if="banksOptions"
       label="Banco emisor"
       id="bank"
       name="bank"
@@ -12,7 +20,7 @@
     />
     <date-picker-input label="Fecha de operación" placeholder="Selecccione la fecha" format="dd-MM-yyyy" :locale="dateLocale" id="paymentDate" name="paymentDate" />
     <base-input label="Numero de referencia" id="reference" name="reference" />
-    <base-input label="Monto" id="amount" name="amount" disabled />
+    <base-input label="Monto" id="amount" name="amount" readonly />
   </div>
 </template>
 
@@ -33,6 +41,7 @@ const form = inject('form') as Latam.Form;
 const schema = object({
   phone: string().required("El campo es requerido"),
   ci: string().required("El campo es requerido"),
+  type: string().required("Requerido"),
   bank: string().required("El campo es requerido"),
   paymentDate: date().required("El campo es requerido"),
   reference: string().required("El campo es requerido"),
@@ -43,19 +52,30 @@ const { setFieldValue, values, validate } = useForm({
   initialValues: {
     phone: '',
     ci: '',
+    type: '',
     bank: '',
     paymentDate: new Date(),
     reference: '',
     amount: '',
   },
   validationSchema: schema,
-  validateOnMount: true,
 });
 
 const { latamServicesApiUrl } = useRuntimeConfig().public;
 const { data: banks } = await useFetch<BankData[]>(`${latamServicesApiUrl}/bancos`, {
   method: 'POST'
 })
+
+const identificationOptions = [
+  {
+    text: 'V',
+    value: 'V',
+  },
+  {
+    text: 'J',
+    value: 'J',
+  },
+]
 
 const banksOptions = computed(() => {
   return banks.value?.map((bank: BankData) => ({
@@ -74,7 +94,7 @@ watch(values, async () => {
 
     const payload = {
       phone: values.phone,
-      ci: values.ci,
+      ci: `${values.type}${values.ci}`,
       bank: values.bank,
       paymentDate: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
       paymentReference: values.reference,
@@ -95,13 +115,33 @@ watch(values, async () => {
   grid-template-columns: repeat(3, 1fr);
 
   select {
-    width: 21rem;
     background: #fff;
-    padding: .5rem;
+
+    &#bank {
+      width: 21rem;
+      padding: .5rem;
+    }
   }
 
   & .formulario__form__grupo input {
     width: 20rem !important;
+  }
+
+  .id-group {
+    display: flex;
+    gap: 1rem;
+
+    .formulario__form__grupo:has(select) {
+      width: 4rem;
+    }
+
+    input#type {
+      width: .8rem;
+    }
+
+    input {
+      width: 16rem !important;
+    }
   }
 }
 </style>

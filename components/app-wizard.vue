@@ -88,6 +88,11 @@ const nextBtnLabel = computed(() => {
 });
 
 async function submit() {
+  if (stepper.isCurrent("payment-report") && !stepper.current.value.isValid()) {
+    alert("Debe completar todos los campos");
+    return;
+  }
+
   if (stepper.isCurrent("payment-report") && stepper.current.value.isValid()) {
     try {
       form.status = "pending";
