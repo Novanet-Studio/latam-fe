@@ -38,6 +38,11 @@ const isDev = import.meta.env.DEV;
 const isNextClicked = ref(false);
 const isLoading = ref(false);
 const form = inject("form") as Latam.Form;
+const billingData = reactive<Latam.Billing>({
+  IDFactura: 0,
+  detalle: '',
+  valor: '',
+})
 
 const { latamServicesApiUrl } = useRuntimeConfig().public;
 const router = useRouter();
@@ -108,6 +113,8 @@ async function submit() {
       }
 
       form.amount = billing.value.facturas[0].valor;
+
+      Object.assign(billingData, billing.value.facturas[0]);
 
       stepper.goToNext();
       return;

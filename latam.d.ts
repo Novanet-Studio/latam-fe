@@ -95,7 +95,7 @@ declare namespace Latam {
   }
 
   interface Billing {
-    IDFactura: string;
+    IDFactura: number;
     detalle: string;
     valor: string;
   }
