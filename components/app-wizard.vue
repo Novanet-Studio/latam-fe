@@ -116,11 +116,11 @@ async function submit() {
       }
 
       const getPaymentToken = () => {
-        if (isDev && isSameBank) {
+        if (isSameBank) {
           return token.value?.claveDinamica.toString();
         }
 
-        if (isDev && areOthersBanks) {
+        if (areOthersBanks) {
           return "20191231";
         }
 
