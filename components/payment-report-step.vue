@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useForm } from 'vee-validate';
+import { useForm } from "vee-validate";
 import { object, string, date } from "yup";
 
 interface BankData {
@@ -8,9 +8,10 @@ interface BankData {
 }
 
 const dateLocale = ref("es-VE");
+const amountVes = ref("");
 const stepper = inject("stepper") as any;
-const userData = inject("userData") as Latam.UserData;
-const form = inject('form') as Latam.Form;
+// const userData = inject("userData") as Latam.UserData;
+const form = inject("form") as Latam.Form;
 
 const { copy, copied } = useClipboard({
   legacy: true,
@@ -28,45 +29,60 @@ const schema = object({
 
 const { setFieldValue, values, validate } = useForm({
   initialValues: {
-    phone: '',
-    ci: '',
-    type: '',
-    bank: '',
+    phone: "",
+    ci: "",
+    type: "",
+    bank: "",
     paymentDate: new Date(),
-    reference: '',
-    amount: '',
+    reference: "",
+    amount: "",
   },
   validationSchema: schema,
 });
 
 const { latamServicesApiUrl } = useRuntimeConfig().public;
-const { data: banks } = await useFetch<BankData[]>(`${latamServicesApiUrl}/bancos`, {
-  method: 'POST'
-})
+const { data: banks } = await useFetch<BankData[]>(
+  `${latamServicesApiUrl}/bancos`,
+  {
+    method: "POST",
+  }
+);
+
+const vesUsd = useBcvUsd();
 
 const identificationOptions = [
   {
-    text: 'V',
-    value: 'V',
+    text: "V",
+    value: "V",
   },
   {
-    text: 'J',
-    value: 'J',
+    text: "J",
+    value: "J",
   },
-]
+];
 
 const banksOptions = computed(() => {
-  return banks.value?.map((bank: BankData) => ({
-    text: bank.nombre,
-    value: bank.codigo
-  })) || []
+  return (
+    banks.value?.map((bank: BankData) => ({
+      text: bank.nombre,
+      value: bank.codigo,
+    })) || []
+  );
 });
 
-setFieldValue('amount', 'Bs.S ' + form.amount);
+setFieldValue("amount", "Bs.S " + form.amount);
+
+watch(vesUsd, () => {
+  const value = Number(vesUsd.value) * Number(form.amount);
+  const amount = transformAmount(value.toString(), true);
+  amountVes.value = amount;
+
+  setFieldValue("amount", "Bs.S " + amount);
+});
 
 watch(values, async () => {
   const res = await validate();
-  
+
   if (res.valid) {
     const date = new Date(values.paymentDate);
 
@@ -74,11 +90,13 @@ watch(values, async () => {
       phone: values.phone,
       ci: `${values.type}${values.ci}`,
       bank: values.bank,
-      paymentDate: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
+      paymentDate: `${date.getFullYear()}-${
+        date.getMonth() + 1
+      }-${date.getDate()}`,
       paymentReference: values.reference,
-      amount: form.amount
+      amount: form.amount,
     };
-    
+
     Object.assign(form, payload);
   }
 });
@@ -104,7 +122,14 @@ watch(values, async () => {
       default-text="Selecciona el banco"
       :options="banksOptions"
     />
-    <date-picker-input label="Fecha de operación" placeholder="Selecccione la fecha" format="dd-MM-yyyy" :locale="dateLocale" id="paymentDate" name="paymentDate" />
+    <date-picker-input
+      label="Fecha de operación"
+      placeholder="Selecccione la fecha"
+      format="dd-MM-yyyy"
+      :locale="dateLocale"
+      id="paymentDate"
+      name="paymentDate"
+    />
     <base-input label="Numero de referencia" id="reference" name="reference" />
     <!-- <base-input label="Monto" id="amount" name="amount" readonly /> -->
     <div class="amount-wrapper">
@@ -112,9 +137,7 @@ watch(values, async () => {
       <button
         type="button"
         class="amount-wrapper__btn"
-        @click.prevent="
-          () => copy(userData.datos?.[0].servicios?.[0].costo ?? '')
-        "
+        @click.prevent="() => copy(amountVes ?? '')"
       >
         <font-awesome-icon :icon="copied ? 'check' : 'copy'" />
       </button>
@@ -135,7 +158,7 @@ watch(values, async () => {
 
     &#bank {
       width: 21rem;
-      padding: .5rem;
+      padding: 0.5rem;
     }
   }
 
@@ -163,7 +186,7 @@ watch(values, async () => {
     }
 
     input#type {
-      width: .8rem;
+      width: 0.8rem;
     }
 
     input {
