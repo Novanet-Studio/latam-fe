@@ -38,7 +38,7 @@ const isDev = import.meta.env.DEV;
 const isNextClicked = ref(false);
 const form = inject("form") as Latam.Form;
 
-const { btBaseApi, bussiness } = useRuntimeConfig().public;
+const { latamServicesApiUrl } = useRuntimeConfig().public;
 const router = useRouter();
 
 const stepper = useStepper({
@@ -98,11 +98,10 @@ async function submit() {
       const isSameBank = sameBank.includes(form.bank);
 
       const { data: token } = await useFetch<KeyResponse>(
-        `${btBaseApi}/lotes/solicitud/clave`,
+        `${latamServicesApiUrl}/clave`,
         {
           method: "POST",
           body: {
-            canal: "01",
             celularDestino: form.ci,
           },
         }
@@ -130,20 +129,16 @@ async function submit() {
 
       // Procesar pago
       const paymentBody = {
-        canal: "06",
         celular: form.phone,
         banco: form.bank,
-        RIF: bussiness.rif,
         cedula: form.ci,
         monto: form.amount,
         token: getPaymentToken(),
-        concepto: `Pago de servicios de ${form.fullName}`,
-        codAfiliado: bussiness.afiliatedCode,
-        comercio: bussiness.name,
+        nombre: form.fullName,
       }
       
       const { data: payment } = await useFetch<PaymentResponse>(
-        `${btBaseApi}/botonDePago/pago`,
+        `${latamServicesApiUrl}/pago`,
         {
           method: "POST",
           body: paymentBody,
@@ -164,14 +159,12 @@ async function submit() {
         referencia: payment.value.referencia,
         monto: form.amount,
         banco: form.bank,
-        codAfiliado: bussiness.afiliatedCode,
         fecha: conformationDate,
         celular: form.phone,
-        RIF: bussiness.rif,
       }
 
       const { data: conformation } = await useFetch<ConformationResponse>(
-        `${btBaseApi}/botonDePago/conformacion`,
+        `${latamServicesApiUrl}/conformacion`,
         {
           method: "POST",
           body: conformationBody,

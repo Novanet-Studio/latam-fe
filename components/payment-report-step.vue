@@ -52,8 +52,8 @@ const { setFieldValue, values, validate } = useForm({
   validateOnMount: true,
 });
 
-const { btBaseApi } = useRuntimeConfig().public;
-const { data: banks } = await useFetch<BankData[]>(`${btBaseApi}/bancos`, {
+const { latamServicesApiUrl } = useRuntimeConfig().public;
+const { data: banks } = await useFetch<BankData[]>(`${latamServicesApiUrl}/bancos`, {
   method: 'POST'
 })
 

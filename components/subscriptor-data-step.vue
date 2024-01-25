@@ -21,6 +21,8 @@ setValues({
   ci: userData.datos?.[0].cedula,
   amount: formatAmount(data?.costo),
 });
+
+form.fullName = userData.datos?.[0]?.nombre || "";
 </script>
 
 <template>
