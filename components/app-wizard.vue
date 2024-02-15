@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useStepper } from "@vueuse/core";
+import generateUniqueID from 'generate-unique-id'
 
 import CheckSubscriptionStep from "./check-subscription-step.vue";
 import SubscriptorDataStep from "./subscriptor-data-step.vue";
@@ -107,14 +108,14 @@ async function submit() {
         }
       );
 
-      if (!billing.value?.facturas.length) {
+      if (billing.value?.code === '160') {
         alert("No tienes facturas por pagar");
         return;
       }
 
-      form.amount = billing.value.facturas[0].valor;
+      form.amount = billing.value!.facturas[0].valor;
 
-      Object.assign(billingData, billing.value.facturas[0]);
+      Object.assign(billingData, billing.value!.facturas[0]);
 
       stepper.goToNext();
       return;
@@ -134,7 +135,7 @@ async function submit() {
     try {
       form.status = "pending";
       // Peticion para el token
-      const othersBanks = ["0102"]
+      const othersBanks = ["0104"]
       const sameBank = ["0163"];
       const areOthersBanks = othersBanks.includes(form.bank);
       const isSameBank = sameBank.includes(form.bank);
@@ -163,7 +164,7 @@ async function submit() {
         }
 
         if (areOthersBanks) {
-          return "01020103";
+          return "20191231";
         }
 
         return token.value?.claveDinamica.toString();
@@ -179,7 +180,7 @@ async function submit() {
         nombre: form.fullName,
       }
       
-      const { data: payment } = await useFetch<PaymentResponse>(
+      const { data: payment, error: paymentError } = await useFetch<PaymentResponse>(
         `${latamServicesApiUrl}/pago`,
         {
           method: "POST",
@@ -194,6 +195,11 @@ async function submit() {
         return;
       }
 
+      if (paymentError.value?.data?.error) {
+        alert(paymentError.value?.data?.error);
+        return;
+      }
+
       // Conformacion de pago
       const conformationDate = payment.value.fecha.split("/").reverse().join("");
       
@@ -205,7 +211,7 @@ async function submit() {
         celular: form.phone,
       }
 
-      const { data: conformation } = await useFetch<ConformationResponse>(
+      const { data: conformation, error: conformationError } = await useFetch<ConformationResponse>(
         `${latamServicesApiUrl}/conformacion`,
         {
           method: "POST",
@@ -220,22 +226,34 @@ async function submit() {
         return;
       }
 
+      if (conformationError.value?.data?.error) {
+        alert(conformationError.value?.data?.error);
+        return;
+      }
+
       // Report payment
       const paymentDate = payment.value.fecha.split("/").reverse().join("-");
 
-      const { data: response } = await useFetch<Latam.BillingResponse>(
+      const { data: response, error: registerPaymentError } = await useFetch<Latam.BillingResponse>(
         `${latamServicesApiUrl}/registrar-pago`,
         {
           method: "POST",
           body: {
-            cedula: form.ci,
             IDFactura: billingData.IDFactura,
             valor: Number(form.amount),
             fecha: paymentDate,
-            secuencial: Number(generateUniqueNumbers())
+            secuencial: Number(generateUniqueID({
+              length: 15,
+              useLetters: false,
+            }))
           },
         }
       );
+
+      if (registerPaymentError.value?.data?.error) {
+        alert(registerPaymentError.value?.data?.error);
+        return;
+      }
 
       if (response.value?.code === "170") {
         alert(response.value?.mensaje);

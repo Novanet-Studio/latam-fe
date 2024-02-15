@@ -11,7 +11,7 @@ const userData = inject("userData") as Latam.UserData;
 
 const { latamServicesApiUrl } = useRuntimeConfig().public;
 
-const isDev = import.meta.env.DEV;
+// const isDev = import.meta.env.DEV;
 
 const { handleSubmit } = useForm({
   initialValues: {
@@ -34,12 +34,17 @@ const submitForm = handleSubmit(async (values) => {
       return;
     }
 
-    const { data } = await useFetch(`${latamServicesApiUrl}/get-client-details`, {
+    const { data, error } = await useFetch(`${latamServicesApiUrl}/get-client-details`, {
       method: "post",
       body: {
         cedula: values.user,
       },
     });
+
+    if (error.value?.data?.error) {
+      alert(error.value?.data?.error);
+      return;
+    }
 
     Object.assign(userData, data.value);
     isAuthenticated.value = true;
@@ -47,17 +52,9 @@ const submitForm = handleSubmit(async (values) => {
     alert(error.message);
     isAuthenticated.value = false;
   } finally {
-    if (isDev) {
-      setTimeout(() => {
-        isSending.value = false;
-        disabled.value = false;
-        isLoading.value = false;
-      }, 2000);
-    } else {
-      isSending.value = false;
-      disabled.value = false;
-      isLoading.value = false;
-    }
+    isSending.value = false;
+    disabled.value = false;
+    isLoading.value = false;
   }
 });
 </script>
