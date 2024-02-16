@@ -74,6 +74,11 @@ const submitForm = handleSubmit(async (values) => {
       <form-button type="submit" :is-loading="isSending" :disabled="disabled">
         Iniciar Sesión
       </form-button>
+
+      <div class="bt-copy__wrapper">
+        <img src="~/assets/images/bt-pagos-logo.svg" alt="Banco del tesoro pagos logo">
+        <p>Servicio Banco del Tesoro</p>
+      </div>
     </form>
   </section>
 </template>
@@ -88,6 +93,7 @@ const submitForm = handleSubmit(async (values) => {
   padding: 4.5em 1.5em 4.5em 2em;
   position: relative;
   z-index: 0;
+  padding-bottom: 2.5rem;
 
   & h3 {
     color: #1b4686;
@@ -119,7 +125,22 @@ const submitForm = handleSubmit(async (values) => {
       border-radius: 1rem;
       color: #1b4686;
       font-weight: 800;
+      margin-top: 0.5rem;
     }
+  }
+}
+
+.bt-copy__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  p {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.1;
+    color:#1b4686;
   }
 }
 </style>
