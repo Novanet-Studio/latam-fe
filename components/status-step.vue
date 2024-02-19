@@ -5,7 +5,7 @@ import errorImage from "../assets/images/error.svg";
 const form = inject("form") as Latam.Form;
 
 const stepper = inject("stepper") as any;
-const isSuccessful = ref(form.status === "success");
+const isSuccessful = ref(form.status === "success" || false);
 </script>
 
 <template>

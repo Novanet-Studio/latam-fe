@@ -58,6 +58,8 @@ form.ci = userData.datos?.[0].cedula || "";
 </template>
 
 <style lang="scss">
+@import "@/assets/scss/_mixins.scss";
+
 .subscriptor-data {
   margin-top: 2rem;
   display: flex;
@@ -77,6 +79,20 @@ form.ci = userData.datos?.[0].cedula || "";
 
   & .formulario__form__grupo input {
     width: 14rem !important;
+  }
+}
+
+/*---- 
+  Mobile Portrait (320px)
+----*/
+@include responsive(20em) {
+  .subscriptor-data {
+    flex-direction: column;
+    gap: 1rem;
+
+    .formulario__form__grupo {
+      padding: 1em;
+    }
   }
 }
 </style>

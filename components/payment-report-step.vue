@@ -146,6 +146,8 @@ watch(values, async () => {
 </template>
 
 <style lang="scss">
+@import "@/assets/scss/_mixins.scss";
+
 .payment-report {
   margin-top: 2rem;
   width: 100% !important;
@@ -193,5 +195,39 @@ watch(values, async () => {
       width: 16rem !important;
     }
   }
+}
+
+/*---- 
+  Mobile Portrait (320px)
+----*/
+@include responsive(20em) {
+  .payment-report {
+    grid-template-columns: 1fr;
+    place-items: flex-start;
+
+    select {
+      &#bank {
+        width: 15rem;
+        padding: 0.5rem;
+      }
+    }
+
+    & .formulario__form__grupo input {
+      width: 15rem !important;
+    }
+
+    .id-group {
+      gap: 1rem;
+
+      .formulario__form__grupo:has(select) {
+        width: 3rem;
+      }
+
+      input {
+        width: 11rem !important;
+      }
+    }
+  }
+
 }
 </style>

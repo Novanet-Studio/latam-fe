@@ -41,17 +41,17 @@ defineProps<{
     <div v-else class="radial-stepper">
       <RadialProgress
         :diameter="130"
-        :completed-steps="stepper.index.value"
-        :total-steps="stepper.steps.value.length"
+        :completed-steps="stepper.index.value + 1"
+        :total-steps="stepper.steps.value.length - 1"
         inner-stroke-color="#e2e2e2"
         start-color="#c2d62e"
         stop-color="#c2d62e"
       >
-        {{ stepper.index.value }} de {{ Object.keys(stepper.steps).length }}
+        {{ stepper.index.value + 1 }} de {{ Object.keys(stepper.steps).length - 1 }}
       </RadialProgress>
       <div>
-        <h3>{{ stepper.current.value.title }}</h3>
-        <p>Siguiente: {{ stepper.steps.value[stepper.next.value].title }}</p>
+        <h3>{{ stepper.current?.value?.title }}</h3>
+        <p v-if="!stepper.isLast.value">Siguiente: {{ stepper.steps.value[stepper.next.value]?.title }}</p>
       </div>
     </div>
   </Transition>

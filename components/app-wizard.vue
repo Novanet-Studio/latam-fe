@@ -282,7 +282,7 @@ function allStepsBeforeAreValid(index: number): boolean {
     .some((_, i) => !stepper.at(i)?.isValid());
 }
 
-stepper.goTo('subscriptor-data')
+stepper.goTo('status')
 
 provide("stepper", stepper);
 </script>
@@ -307,7 +307,10 @@ provide("stepper", stepper);
         </transition>
       </form>
 
-      <div class="wizard__footer">
+      <div class="wizard__footer" :style="{
+        width: stepper.isLast.value ? '75%' : 'auto',
+        justifyContent: stepper.isLast.value ? 'center' : 'space-around'
+      }">
         <button
           v-if="!stepper?.isFirst.value && !stepper?.isLast.value"
           class="wizard__btn wizard__btn--prev"
@@ -322,6 +325,9 @@ provide("stepper", stepper);
         </button>
         <button
           class="wizard__btn wizard__btn--next"
+          :style="{
+            width: `${stepper.isLast.value ? '350px !important' : 'auto'}`,
+          }"
           @click="
             () => {
               isNextClicked = true;
@@ -338,6 +344,8 @@ provide("stepper", stepper);
 </template>
 
 <style lang="scss">
+@import "@/assets/scss/_mixins.scss";
+
 .wizard-light {
   display: grid;
   grid-template-rows: auto;
@@ -429,5 +437,28 @@ provide("stepper", stepper);
 .slide-left-leave-to {
   transform: translateX(-40px);
   opacity: 0;
+}
+
+/*---- 
+  Mobile Portrait (320px)
+----*/
+@include responsive(20em) {
+  .wizard {
+    width: 70vw;
+    place-items: flex-start;
+    padding: 0rem 1.5em 2.5em 1.5em;
+
+    h3, h5 {
+      display: none;
+    }
+
+    form {
+      width: 70vw;
+    }
+
+    &__footer {
+      margin-top: 1rem;
+    }
+  }
 }
 </style>
