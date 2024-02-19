@@ -284,7 +284,7 @@ function allStepsBeforeAreValid(index: number): boolean {
     .some((_, i) => !stepper.at(i)?.isValid());
 }
 
-// stepper.goTo('subscriptor-data')
+// stepper.goTo('subscriptor-data');
 
 provide("stepper", stepper);
 </script>
@@ -401,9 +401,7 @@ provide("stepper", stepper);
   justify-content: space-around;
 
   & .wizard__btn {
-    // width: 270px;
-    width: v-bind("isFirstOrLast ? '250px !important' : 'auto'");
-    min-width: v-bind("isFirstOrLast ? '250px !important' : '50%'");
+    width: 270px;
     height: 38px;
     border-radius: 1rem;
     font-weight: 800;
@@ -459,6 +457,11 @@ provide("stepper", stepper);
 
     &__footer {
       margin-top: 1rem;
+
+      & .wizard__btn {
+        width: 50%;
+        min-width: 50%;
+      }
     }
   }
 }
