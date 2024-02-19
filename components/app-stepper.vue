@@ -7,10 +7,13 @@ const breakpoints = useBreakpoints({
   desktop: 1280,
 })
 
-defineProps<{
+const props = defineProps<{
   checkDisabled?: (i: number) => boolean,
   stepper: any
 }>();
+
+const completedSteps = computed(() => props.stepper.index.value + 1);
+const totalSteps = computed(() => Object.keys(props.stepper.steps).length - 1);
 </script>
 
 <template>
@@ -40,19 +43,20 @@ defineProps<{
     </div>
     <div v-else class="radial-stepper">
       <RadialProgress
-        :diameter="130"
-        :completed-steps="stepper.index.value + 1"
-        :total-steps="stepper.steps.value.length - 1"
+        :diameter="110"
+        :completed-steps="completedSteps"
+        :total-steps="totalSteps"
         inner-stroke-color="#e2e2e2"
         start-color="#c2d62e"
         stop-color="#c2d62e"
       >
-        {{ stepper.index.value + 1 }} de {{ Object.keys(stepper.steps).length - 1 }}
+        {{ completedSteps }} de {{ totalSteps }}
       </RadialProgress>
-      <div>
+      <div v-if="!stepper.isLast.value">
         <h3>{{ stepper.current?.value?.title }}</h3>
-        <p v-if="!stepper.isLast.value">Siguiente: {{ stepper.steps.value[stepper.next.value]?.title }}</p>
+        <p>Siguiente: {{ stepper.steps.value[stepper.next.value]?.title }}</p>
       </div>
+      <h3 v-else>¡Completado!</h3>
     </div>
   </Transition>
 </template>
@@ -64,7 +68,9 @@ ol {
 
 .radial-stepper {
   display: flex;
-  justify-content: space-between;
+  justify-content: v-bind("stepper.isLast.value ? 'flex-start' : 'space-between'");
+  gap: v-bind("stepper.isLast.value ? '1rem' : '0'");
+  align-items: v-bind("stepper.isLast.value ? 'center' : 'flex-start'");
   width: 100%;
   margin-top: 1rem;
   margin-bottom: 1rem;
