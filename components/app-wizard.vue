@@ -84,6 +84,8 @@ const activeComponent = computed(() => {
   }
 });
 
+const isFirstOrLast = computed(() => stepper.isFirst.value || stepper.isLast.value)
+
 const nextBtnLabel = computed(() => {
   if (stepper.isLast.value) {
     return form.status === "success" ? "Regresar al inicio" : "Intentar de nuevo";
@@ -282,7 +284,7 @@ function allStepsBeforeAreValid(index: number): boolean {
     .some((_, i) => !stepper.at(i)?.isValid());
 }
 
-stepper.goTo('status')
+// stepper.goTo('subscriptor-data')
 
 provide("stepper", stepper);
 </script>
@@ -308,7 +310,7 @@ provide("stepper", stepper);
       </form>
 
       <div class="wizard__footer" :style="{
-        width: stepper.isLast.value ? '75%' : 'auto',
+        width: stepper.isLast.value ? '75%' : '100%',
         justifyContent: stepper.isLast.value ? 'center' : 'space-around'
       }">
         <button
@@ -325,9 +327,6 @@ provide("stepper", stepper);
         </button>
         <button
           class="wizard__btn wizard__btn--next"
-          :style="{
-            width: `${stepper.isLast.value ? '350px !important' : 'auto'}`,
-          }"
           @click="
             () => {
               isNextClicked = true;
@@ -402,7 +401,9 @@ provide("stepper", stepper);
   justify-content: space-around;
 
   & .wizard__btn {
-    width: 270px;
+    // width: 270px;
+    width: v-bind("isFirstOrLast ? '250px !important' : 'auto'");
+    min-width: v-bind("isFirstOrLast ? '250px !important' : '50%'");
     height: 38px;
     border-radius: 1rem;
     font-weight: 800;
