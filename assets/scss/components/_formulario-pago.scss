@@ -205,6 +205,45 @@
       background-size: 35%;
     }
   }
+
+  .report-view {  
+    .hero {
+      &__internet {
+        &__box {
+          width: 20em;
+          margin-left: 2rem;
+        }
+      }
+    }
+  }
+  
+  .payment {
+    padding-left: 1rem;  
+    padding-right: 1rem;  
+
+    &__info {
+      flex-direction: column;
+      padding-left: 0.6rem;
+      padding-right: 0.6rem;
+    }
+  
+    .info-box {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+  
+      &__icon-wrapper {
+        width: 80px;
+        height: 80px;
+  
+        & img {
+          width: 44px;
+          height: 44px;
+        }
+      }
+    }
+  }
 }
 
 /*----------------------------------- Mobile Landscape (568px) ----------------------------------*/
@@ -218,6 +257,39 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
+  .report-view {  
+    .hero {
+      &__internet {
+        &__box {
+          width: 28em;
+          margin-left: 5rem;
+        }
+      }
+    }
+  }
+  
+  .payment {
+    &__info {
+      flex-direction: row;
+    }
+  
+    .info-box {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+  
+      &__icon-wrapper {
+        width: 101px;
+        height: 101px;
+  
+        & img {
+          width: 64px;
+          height: 64px;
+        }
+      }
+    }
+  }
 }
 
 /*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
@@ -231,6 +303,16 @@
 
 /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
 @include responsive(80em) {
+  .payment {
+    &__info {
+      flex-direction: row;
+    }
+  
+    .info-box {
+      flex-direction: row;
+      gap: 1rem;
+    }
+  }
 }
 
 /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/

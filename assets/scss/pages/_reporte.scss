@@ -1,178 +1,178 @@
-.reporte {
-  @include grid-structure($columns: 12);
-  grid-template-areas:
-    "hero hero hero hero hero hero hero hero hero hero hero hero"
-    "tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas"
-    "info-a info-a info-a info-a info-a info-a info-a info-a info-a info-a info-a info-a"
-    "formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario";
+// .reporte {
+//   @include grid-structure($columns: 12);
+//   grid-template-areas:
+//     "hero hero hero hero hero hero hero hero hero hero hero hero"
+//     "tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas tarifas"
+//     "info-a info-a info-a info-a info-a info-a info-a info-a info-a info-a info-a info-a"
+//     "formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario formulario";
 
-  .hero {
-    @include grid-structure($columns: 12);
-    grid-area: hero;
-    grid-template-areas: "pago pago pago pago pago pago . . . . . .";
-    border-radius: 1em;
-    @include section-background($image: "latinamericancable-reporte.webp");
+//   .hero {
+//     @include grid-structure($columns: 12);
+//     grid-area: hero;
+//     grid-template-areas: "pago pago pago pago pago pago . . . . . .";
+//     border-radius: 1em;
+//     @include section-background($image: "latinamericancable-reporte.webp");
 
-    & > div {
-      @include grid-structure($columns: 8);
-    }
+//     & > div {
+//       @include grid-structure($columns: 8);
+//     }
 
-    &__pago {
-      height: 28em;
-      align-content: center;
-      grid-area: pago;
-      grid-template-areas: ". box-pago box-pago box-pago box-pago box-pago box-pago .";
-      box-sizing: border-box;
+//     &__pago {
+//       height: 28em;
+//       align-content: center;
+//       grid-area: pago;
+//       grid-template-areas: ". box-pago box-pago box-pago box-pago box-pago box-pago .";
+//       box-sizing: border-box;
 
-      &__box {
-        @include hero-box($bg: $azul, $gridarea: "box-pago");
-      }
-      &__icon {
-        @include hero-box-icon(
-          $image: "latinamerican-pago-icon.svg",
-          $fillColor: $verde,
-          $width: 4em
-        );
-        bottom: unset;
-      }
-      &__info {
-        @include hero-box-icon-info();
-      }
-      &__title {
-        grid-area: title;
-        color: $verde;
-      }
-      &__text {
-        @include hero-box-icon-info-text(
-          $fontsize: 1rem,
-          $color: "#fff",
-          $lineheight: unset
-        );
-      }
-    }
-  }
+//       &__box {
+//         @include hero-box($bg: $azul, $gridarea: "box-pago");
+//       }
+//       &__icon {
+//         @include hero-box-icon(
+//           $image: "latinamerican-pago-icon.svg",
+//           $fillColor: $verde,
+//           $width: 4em
+//         );
+//         bottom: unset;
+//       }
+//       &__info {
+//         @include hero-box-icon-info();
+//       }
+//       &__title {
+//         grid-area: title;
+//         color: $verde;
+//       }
+//       &__text {
+//         @include hero-box-icon-info-text(
+//           $fontsize: 1rem,
+//           $color: "#fff",
+//           $lineheight: unset
+//         );
+//       }
+//     }
+//   }
 
-  .tarifas {
-    @include grid-structure($columns: 12);
-    grid-area: tarifas;
-    margin: 1.5em 1em 0;
+//   .tarifas {
+//     @include grid-structure($columns: 12);
+//     grid-area: tarifas;
+//     margin: 1.5em 1em 0;
 
-    &__titulo {
-      grid-column: 1 / 13;
-      @include heading-before-content($color: $azul, $image: "punto.svg");
-    }
+//     &__titulo {
+//       grid-column: 1 / 13;
+//       @include heading-before-content($color: $azul, $image: "punto.svg");
+//     }
 
-    &__texto {
-      grid-column: 1 / 13;
-    }
+//     &__texto {
+//       grid-column: 1 / 13;
+//     }
 
-    &__tipo {
-      @include grid-structure($columns: 12);
-      grid-column: 1 / 13;
-      margin-top: 0.5em;
+//     &__tipo {
+//       @include grid-structure($columns: 12);
+//       grid-column: 1 / 13;
+//       margin-top: 0.5em;
 
-      &__item {
-        @include item-radius;
+//       &__item {
+//         @include item-radius;
 
-        &:nth-child(odd) {
-          grid-column: 1 / 7;
-          &::before {
-            @include section-background-opacity(
-              $image: "latinamericancable-reporte-3tv.webp"
-            );
-          }
-        }
+//         &:nth-child(odd) {
+//           grid-column: 1 / 7;
+//           &::before {
+//             @include section-background-opacity(
+//               $image: "latinamericancable-reporte-3tv.webp"
+//             );
+//           }
+//         }
 
-        &:nth-child(even) {
-          grid-column: 7 / 13;
-          &:before {
-            @include section-background-opacity(
-              $image: "latinamericancable-reporte-4tv.webp"
-            );
-          }
-        }
-      }
+//         &:nth-child(even) {
+//           grid-column: 7 / 13;
+//           &:before {
+//             @include section-background-opacity(
+//               $image: "latinamericancable-reporte-4tv.webp"
+//             );
+//           }
+//         }
+//       }
 
-      &__titulo {
-        @include item-radius-titulo;
-      }
+//       &__titulo {
+//         @include item-radius-titulo;
+//       }
 
-      &__texto {
-        @include item-radius-texto;
-      }
-    }
-  }
+//       &__texto {
+//         @include item-radius-texto;
+//       }
+//     }
+//   }
 
-  .info-a {
-    @include grid-structure($columns: 12);
-    grid-area: info-a;
-    margin: 1.5em 1em 0;
+//   .info-a {
+//     @include grid-structure($columns: 12);
+//     grid-area: info-a;
+//     margin: 1.5em 1em 0;
 
-    &__titulo {
-      grid-column: 1 / 13;
-      @include heading-before-content($color: $azul, $image: "punto.svg");
-    }
+//     &__titulo {
+//       grid-column: 1 / 13;
+//       @include heading-before-content($color: $azul, $image: "punto.svg");
+//     }
 
-    &__texto {
-      grid-column: 1 / 13;
-    }
+//     &__texto {
+//       grid-column: 1 / 13;
+//     }
 
-    &__opciones {
-      @include grid-structure($columns: 12);
-      grid-column: 1 / 13;
-      margin: 1.5em 0;
+//     &__opciones {
+//       @include grid-structure($columns: 12);
+//       grid-column: 1 / 13;
+//       margin: 1.5em 0;
 
-      &__item {
-        &:nth-child(odd) {
-          grid-column: 1 / 7;
-        }
+//       &__item {
+//         &:nth-child(odd) {
+//           grid-column: 1 / 7;
+//         }
 
-        &:nth-child(even) {
-          grid-column: 7 / 13;
-        }
-      }
+//         &:nth-child(even) {
+//           grid-column: 7 / 13;
+//         }
+//       }
 
-      &__box {
-        @include hero-box($bg: "transparent", $gridarea: "unset");
-        box-shadow: unset;
-      }
-      &__icon-transferencia {
-        @include hero-box-icon(
-          $image: "latinamerican-transferencia-icon.svg",
-          $fillColor: $azul,
-          $width: 4em
-        );
-        width: 6.75em;
-        height: 6.75em;
-        left: unset;
-      }
+//       &__box {
+//         @include hero-box($bg: "transparent", $gridarea: "unset");
+//         box-shadow: unset;
+//       }
+//       &__icon-transferencia {
+//         @include hero-box-icon(
+//           $image: "latinamerican-transferencia-icon.svg",
+//           $fillColor: $azul,
+//           $width: 4em
+//         );
+//         width: 6.75em;
+//         height: 6.75em;
+//         left: unset;
+//       }
 
-      &__icon-pago {
-        @include hero-box-icon(
-          $image: "latinamerican-movil-icon.svg",
-          $fillColor: $azul,
-          $width: 4em
-        );
-        width: 6.75em;
-        height: 6.75em;
-        left: unset;
-      }
+//       &__icon-pago {
+//         @include hero-box-icon(
+//           $image: "latinamerican-movil-icon.svg",
+//           $fillColor: $azul,
+//           $width: 4em
+//         );
+//         width: 6.75em;
+//         height: 6.75em;
+//         left: unset;
+//       }
 
-      &__info {
-        @include hero-box-icon-info();
-      }
+//       &__info {
+//         @include hero-box-icon-info();
+//       }
 
-      &__titulo {
-        @include item-radius-titulo;
-      }
+//       &__titulo {
+//         @include item-radius-titulo;
+//       }
 
-      &__texto {
-        @include item-radius-texto;
-        color: $gris;
-      }
-    }
-  }
-}
+//       &__texto {
+//         @include item-radius-texto;
+//         color: $gris;
+//       }
+//     }
+//   }
+// }
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
 @include responsive(20em) {
