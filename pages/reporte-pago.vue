@@ -11,7 +11,7 @@ useHead({
   ],
 });
 
-const isAuthenticated = ref(false);
+const isAuthenticated = ref(true);
 const isLoading = ref(false)
 const userData = reactive<Latam.UserData>({
   estado: '',

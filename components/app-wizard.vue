@@ -282,6 +282,8 @@ function allStepsBeforeAreValid(index: number): boolean {
     .some((_, i) => !stepper.at(i)?.isValid());
 }
 
+stepper.goTo('subscriptor-data')
+
 provide("stepper", stepper);
 </script>
 

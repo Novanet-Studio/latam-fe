@@ -1,4 +1,12 @@
 <script lang="ts" setup>
+import RadialProgress from 'vue3-radial-progress';
+
+const breakpoints = useBreakpoints({
+  tablet: 768,
+  laptop: 1024,
+  desktop: 1280,
+})
+
 defineProps<{
   checkDisabled?: (i: number) => boolean,
   stepper: any
@@ -7,7 +15,7 @@ defineProps<{
 
 <template>
   <Transition name="fade">
-    <div>
+    <div v-if="breakpoints.isGreater('tablet')">
       <nav class="stepper-nav" style="display: flex">
         <ol
           class="stepper-nav__steps"
@@ -30,12 +38,36 @@ defineProps<{
         </ol>
       </nav>
     </div>
-    </Transition>
+    <div v-else class="radial-stepper">
+      <RadialProgress
+        :diameter="130"
+        :completed-steps="stepper.index.value"
+        :total-steps="stepper.steps.value.length"
+        inner-stroke-color="#e2e2e2"
+        start-color="#c2d62e"
+        stop-color="#c2d62e"
+      >
+        {{ stepper.index.value }} de {{ Object.keys(stepper.steps).length }}
+      </RadialProgress>
+      <div>
+        <h3>{{ stepper.current.value.title }}</h3>
+        <p>Siguiente: {{ stepper.steps.value[stepper.next.value].title }}</p>
+      </div>
+    </div>
+  </Transition>
 </template>
 
 <style scope lang="scss">
 ol {
   list-style-type: none;
+}
+
+.radial-stepper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .stepper-nav {

@@ -33,6 +33,7 @@
     "maska": "^2.0.1",
     "sass": "^1.55.0",
     "vee-validate": "^4.7.2",
+    "vue3-radial-progress": "^1.1.1",
     "vue3-rich-accordion": "^0.0.7",
     "yup": "^1.0.2"
   }
