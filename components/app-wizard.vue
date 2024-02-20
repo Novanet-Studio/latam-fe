@@ -284,8 +284,6 @@ function allStepsBeforeAreValid(index: number): boolean {
     .some((_, i) => !stepper.at(i)?.isValid());
 }
 
-// stepper.goTo('subscriptor-data');
-
 provide("stepper", stepper);
 </script>
 
@@ -491,6 +489,29 @@ provide("stepper", stepper);
       width: 100%;
     }
 
+  }
+}
+
+/*---- 
+  Small Desktop (1280px)
+----*/
+@include responsive(80em) {
+  .wizard {
+    place-items: center;
+    padding: 4.5em 1.5em 4.5em 1.5em;
+
+    h3, h5 {
+      display: block;
+    }
+  }
+
+  .wizard__footer {
+    gap: 1rem;
+
+    .wizard__btn {
+      width: 270px !important;
+      min-width: 250px;
+    }
   }
 }
 </style>

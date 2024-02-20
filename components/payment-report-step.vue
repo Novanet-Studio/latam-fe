@@ -260,4 +260,35 @@ watch(values, async () => {
     }
   }
 }
+
+/*---- 
+  Small Desktop (1280px)
+----*/
+@include responsive(80em) {
+  .payment-report {
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+
+    select {
+      &#bank {
+        width: 15rem;
+        padding: 0.5rem;
+      }
+    }
+
+    & .formulario__form__grupo input {
+      width: 15rem !important;
+    }
+
+    .id-group {
+      .formulario__form__grupo:has(select) {
+        width: 4rem;
+      }
+
+      input {
+        width: 12rem !important;
+      }
+    }
+  }
+}
 </style>

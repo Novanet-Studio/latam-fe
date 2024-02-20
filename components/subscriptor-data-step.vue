@@ -110,4 +110,22 @@ form.ci = userData.datos?.[0].cedula || "";
     }
   }
 }
+
+/*---- 
+  Small Desktop (1280px)
+----*/
+@include responsive(80em) {
+  .subscriptor-data {
+    flex-direction: row;
+    gap: 1rem;
+
+    .formulario__form__grupo {
+      padding: 1em;
+    }
+
+    & .formulario__form__grupo input {
+      width: 14rem !important;
+    }
+  }
+}
 </style>
