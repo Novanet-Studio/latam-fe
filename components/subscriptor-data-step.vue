@@ -95,4 +95,19 @@ form.ci = userData.datos?.[0].cedula || "";
     }
   }
 }
+
+/*---- 
+  Tablet Portrait (768px)
+----*/
+@include responsive(48em) {
+  .subscriptor-data {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    & .formulario__form__grupo input {
+      width: 25rem !important;
+    }
+  }
+}
 </style>

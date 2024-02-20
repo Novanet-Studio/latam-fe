@@ -310,9 +310,8 @@ provide("stepper", stepper);
       </form>
 
       <div class="wizard__footer" :style="{
-        width: stepper.isLast.value ? '75%' : '100%',
         justifyContent: stepper.isLast.value ? 'center' : 'space-around'
-      }">
+      }" :class="{'wizard__footer--full': isFirstOrLast}">
         <button
           v-if="!stepper?.isFirst.value && !stepper?.isLast.value"
           class="wizard__btn wizard__btn--prev"
@@ -327,6 +326,9 @@ provide("stepper", stepper);
         </button>
         <button
           class="wizard__btn wizard__btn--next"
+          :class="{
+            'wizard__btn--full': stepper.isLast.value
+          }"
           @click="
             () => {
               isNextClicked = true;
@@ -400,6 +402,10 @@ provide("stepper", stepper);
   display: flex;
   justify-content: space-around;
 
+  &--full {
+    width: 65%;
+  }
+
   & .wizard__btn {
     width: 270px;
     height: 38px;
@@ -461,8 +467,30 @@ provide("stepper", stepper);
       & .wizard__btn {
         width: 50%;
         min-width: 50%;
+
+        &--full {
+          width: 25rem !important;
+        }
       }
     }
+  }
+}
+
+/*---- 
+  Tablet Portrait (768px)
+----*/
+@include responsive(48em) {
+  .wizard {
+    padding: 2em 2.5em 2.5em 2em;
+  }
+
+  .wizard__footer {
+    gap: 1rem;
+
+    &--full {
+      width: 100%;
+    }
+
   }
 }
 </style>

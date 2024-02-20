@@ -228,6 +228,36 @@ watch(values, async () => {
       }
     }
   }
+}
 
+/*---- 
+  Tablet Portrait (768px)
+----*/
+@include responsive(48em) {
+  .payment-report {
+    grid-template-columns: 1fr;
+    place-items: center;
+
+    select {
+      &#bank {
+        width: 25rem;
+        padding: 0.5rem;
+      }
+    }
+
+    & .formulario__form__grupo input {
+      width: 25rem !important;
+    }
+
+    .id-group {
+      .formulario__form__grupo:has(select) {
+        width: 5rem;
+      }
+
+      input {
+        width: 19rem !important;
+      }
+    }
+  }
 }
 </style>
