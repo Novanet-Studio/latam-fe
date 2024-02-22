@@ -86,14 +86,14 @@ watch(values, async () => {
   if (res.valid) {
     const date = new Date(values.paymentDate);
 
-    const payload = {
+    const payload: Partial<Latam.Form> = {
       phone: values.phone,
       ci: `${values.type}${values.ci}`,
       bank: values.bank,
       paymentDate: `${date.getFullYear()}-${
         date.getMonth() + 1
       }-${date.getDate()}`,
-      paymentReference: values.reference,
+      dynamicKey: values.reference,
       amount: form.amount,
     };
 

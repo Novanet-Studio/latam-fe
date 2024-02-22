@@ -17,7 +17,7 @@ const form = reactive<Latam.Form>({
   phone: '',
   bank: '',
   paymentDate: '',
-  paymentReference: '',
+  dynamicKey: '',
   status: '' // error | pending | success
 });
 

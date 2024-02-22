@@ -40,7 +40,7 @@ declare namespace Latam {
     phone: string;
     bank: string;
     paymentDate: string;
-    paymentReference: string;
+    dynamicKey: string;
     status: '' | 'error' | 'pending' | 'success';
   }
 

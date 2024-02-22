@@ -8,12 +8,6 @@ import PaymentReportStep from "./payment-report-step.vue";
 import StatusStep from "./status-step.vue";
 import AppStepper from "./app-stepper.vue";
 
-interface KeyResponse {
-  codResp: string;
-  descResp: string;
-  claveDinamica: string;
-}
-
 interface PaymentResponse {
   codres: string;
   descRes: string;
@@ -35,7 +29,6 @@ interface ConformationResponse {
   status: "OK" | "Error";
 }
 
-const isDev = import.meta.env.DEV;
 const isNextClicked = ref(false);
 const isLoading = ref(false);
 const form = inject("form") as Latam.Form;
@@ -64,7 +57,7 @@ const stepper = useStepper({
       form.ci.length > 0 &&
       form.bank.length > 0 &&
       form.paymentDate.length > 0 &&
-      form.paymentReference.length > 0,
+      form.dynamicKey.length > 0,
   },
   status: {
     title: "Estatus de pago",
@@ -136,41 +129,6 @@ async function submit() {
   if (stepper.isCurrent("payment-report") && stepper.current.value.isValid()) {
     try {
       form.status = "pending";
-      // Peticion para el token
-      const othersBanks = ["0104"]
-      const sameBank = ["0163"];
-      const areOthersBanks = othersBanks.includes(form.bank);
-      const isSameBank = sameBank.includes(form.bank);
-
-      const { data: token } = await useFetch<KeyResponse>(
-        `${latamServicesApiUrl}/clave`,
-        {
-          method: "POST",
-          body: {
-            celularDestino: form.ci,
-          },
-        }
-      );
-
-      if (!token.value?.claveDinamica.length && (isDev && !areOthersBanks)) {
-        // TODO: show error or some modal
-        alert(token.value?.descResp);
-        form.status = "error";
-        stepper.goToNext();
-        return;
-      }
-
-      const getPaymentToken = () => {
-        if (isSameBank) {
-          return token.value?.claveDinamica.toString();
-        }
-
-        if (areOthersBanks) {
-          return "20191231";
-        }
-
-        return token.value?.claveDinamica.toString();
-      }
 
       // Procesar pago
       const paymentBody = {
@@ -178,7 +136,7 @@ async function submit() {
         banco: form.bank,
         cedula: form.ci,
         monto: form.amount,
-        token: getPaymentToken(),
+        token: form.dynamicKey,
         nombre: form.fullName,
       }
       
