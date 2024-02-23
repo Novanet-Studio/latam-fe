@@ -23,7 +23,7 @@ const schema = object({
   type: string().required("Requerido"),
   bank: string().required("El campo es requerido"),
   paymentDate: date().required("El campo es requerido"),
-  reference: string().required("El campo es requerido"),
+  dynamicKey: string().required("El campo es requerido"),
   amount: string(),
 });
 
@@ -34,7 +34,7 @@ const { setFieldValue, values, validate } = useForm({
     type: "",
     bank: "",
     paymentDate: new Date(),
-    reference: "",
+    dynamicKey: "",
     amount: "",
   },
   validationSchema: schema,
@@ -93,7 +93,7 @@ watch(values, async () => {
       paymentDate: `${date.getFullYear()}-${
         date.getMonth() + 1
       }-${date.getDate()}`,
-      dynamicKey: values.reference,
+      dynamicKey: values.dynamicKey,
       amount: form.amount,
     };
 
@@ -130,7 +130,7 @@ watch(values, async () => {
       id="paymentDate"
       name="paymentDate"
     />
-    <base-input label="Numero de referencia" id="reference" name="reference" />
+    <base-input label="Clave dinámica" id="dynamicKey" name="dynamicKey" />
     <!-- <base-input label="Monto" id="amount" name="amount" readonly /> -->
     <div class="amount-wrapper">
       <base-input label="Monto a pagar" id="amount" name="amount" readonly />
