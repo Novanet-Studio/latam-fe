@@ -37,6 +37,7 @@ declare namespace Latam {
     contract: string;
     fullName: string;
     amount: number | string;
+    vesAmount: string;
     phone: string;
     bank: string;
     paymentDate: string;

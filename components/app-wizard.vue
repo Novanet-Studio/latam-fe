@@ -135,7 +135,7 @@ async function submit() {
         celular: form.phone,
         banco: form.bank,
         cedula: form.ci,
-        monto: form.amount,
+        monto: form.vesAmount,
         token: form.dynamicKey,
         nombre: form.fullName,
       }
@@ -165,7 +165,7 @@ async function submit() {
       
       const conformationBody = {
         referencia: payment.value.referencia,
-        monto: form.amount,
+        monto: form.vesAmount,
         banco: form.bank,
         fecha: conformationDate,
         celular: form.phone,

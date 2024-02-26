@@ -23,6 +23,7 @@ const form = reactive<Latam.Form>({
   contract: '',
   fullName: '',
   amount: 0,
+  vesAmount: '',
   phone: '',
   bank: '',
   paymentDate: '',

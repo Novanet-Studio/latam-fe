@@ -84,9 +84,13 @@ watch(values, async () => {
   const res = await validate();
 
   if (res.valid) {
+    const value = Number(vesUsd.value) * Number(form.amount);
+    const vesAmount = transformAmount(value.toString(), true);
     const date = new Date(values.paymentDate);
 
     const payload: Partial<Latam.Form> = {
+      vesAmount,
+      amount: form.amount,
       phone: values.phone,
       ci: `${values.type}${values.ci}`,
       bank: values.bank,
@@ -94,7 +98,6 @@ watch(values, async () => {
         date.getMonth() + 1
       }-${date.getDate()}`,
       dynamicKey: values.dynamicKey,
-      amount: form.amount,
     };
 
     Object.assign(form, payload);
