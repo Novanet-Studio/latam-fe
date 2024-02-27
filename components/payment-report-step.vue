@@ -50,17 +50,6 @@ const { data: banks } = await useFetch<BankData[]>(
 
 const vesUsd = useBcvUsd();
 
-const identificationOptions = [
-  {
-    text: "V",
-    value: "V",
-  },
-  {
-    text: "J",
-    value: "J",
-  },
-];
-
 const banksOptions = computed(() => {
   return (
     banks.value?.map((bank: BankData) => ({
@@ -92,7 +81,7 @@ watch(values, async () => {
       vesAmount,
       amount: form.amount,
       phone: values.phone,
-      ci: `${values.type}${values.ci}`,
+      ci: values.ci,
       bank: values.bank,
       paymentDate: `${date.getFullYear()}-${
         date.getMonth() + 1
@@ -108,16 +97,7 @@ watch(values, async () => {
 <template>
   <div v-if="stepper.isCurrent('payment-report')" class="payment-report">
     <base-input label="Teléfono" id="phone" name="phone" />
-    <div class="id-group">
-      <select-input
-        label="Tipo"
-        id="type"
-        name="type"
-        default-text="Selecciona el tipo"
-        :options="identificationOptions"
-      />
-      <base-input label="Cédula de identidad" id="ci" name="ci" />
-    </div>
+    <base-input label="Cédula de identidad" id="ci" name="ci" />
     <select-input
       label="Banco emisor"
       id="bank"
