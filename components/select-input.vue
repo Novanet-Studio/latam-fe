@@ -26,7 +26,7 @@ const { value, errorMessage } = useField(props.name);
     </label>
     <!-- <input class="formulario__form__input" :id="id" type="text" v-model="value" /> -->
     <select v-model="value" :id="id">
-      <option selected disabled>{{ defaultText }}</option>
+      <option disabled selected>{{ defaultText }}</option>
       <option v-for="(opt, index) in options" :key="index" :value="opt.value">{{ opt.text }}</option>
       <!-- <option value="transferencia_bancaria">Transferencia bancaria</option>
       <option value="pago_movil">Pago móvil</option> -->

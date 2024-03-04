@@ -4,7 +4,7 @@
       {{ label }}
     </label>
     <input class="formulario__form__input" :class="[errorMessage && 'input-error']" :id="id" :type="type"
-      v-model="value" :disabled="disabled" />
+      v-model="value" :disabled="disabled" :placeholder="placeholder" />
     <div class="error">{{ errorMessage }}</div>
   </div>
 </template>
@@ -17,6 +17,7 @@ type Props = {
   name: string;
   id: string;
   type?: 'text' | 'password';
+  placeholder?: string;
   disabled?: boolean;
 };
 
