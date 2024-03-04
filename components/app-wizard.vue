@@ -242,8 +242,6 @@ function allStepsBeforeAreValid(index: number): boolean {
     .some((_, i) => !stepper.at(i)?.isValid());
 }
 
-stepper.goTo('payment-report')
-
 provide("stepper", stepper);
 </script>
 
