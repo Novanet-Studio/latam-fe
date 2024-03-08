@@ -26,7 +26,6 @@ const schema = object({
 
     return ciRegex.test(item);
   }),
-  type: string().required("Requerido"),
   bank: string().required("El campo es requerido"),
   paymentDate: date().required("El campo es requerido"),
   dynamicKey: string().required("El campo es requerido"),
@@ -37,7 +36,6 @@ const { setFieldValue, values, validate } = useForm({
   initialValues: {
     phone: "",
     ci: "",
-    type: "",
     bank: "",
     paymentDate: new Date(),
     dynamicKey: "",
