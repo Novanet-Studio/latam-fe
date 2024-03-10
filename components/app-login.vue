@@ -11,8 +11,6 @@ const userData = inject("userData") as Latam.UserData;
 
 const { latamServicesApiUrl } = useRuntimeConfig().public;
 
-// const isDev = import.meta.env.DEV;
-
 const { handleSubmit } = useForm({
   initialValues: {
     user: "",
@@ -21,6 +19,7 @@ const { handleSubmit } = useForm({
 });
 
 const submitForm = handleSubmit(async (values) => {
+  const notification = push.promise("Procesando solicitud...")
   try {
     isSending.value = true;
     disabled.value = true;
@@ -30,11 +29,11 @@ const submitForm = handleSubmit(async (values) => {
       isAuthenticated.value = false;
       isSending.value = false;
       isLoading.value = false;
-      alert("Credenciales incorrectas");
+      notification.reject("Credenciales incorrectas");
       return;
     }
 
-    const { data, error } = await useFetch(`${latamServicesApiUrl}/get-client-details`, {
+    const { data, error } = await useFetch<any>(`${latamServicesApiUrl}/get-client-details`, {
       method: "post",
       body: {
         cedula: values.user,
@@ -42,14 +41,20 @@ const submitForm = handleSubmit(async (values) => {
     });
 
     if (error.value?.data?.error) {
-      alert(error.value?.data?.error);
+      notification.reject(error.value?.data?.error.toLowerCase());
+      return;
+    }
+
+    if (data?.value?.estado === "error") {
+      notification.reject(data?.value?.mensaje)
       return;
     }
 
     Object.assign(userData, data.value);
     isAuthenticated.value = true;
+    notification.resolve("Sesión iniciada correctamente");
   } catch (error: any) {
-    alert(error.message);
+    notification.reject(error.message)
     isAuthenticated.value = false;
   } finally {
     isSending.value = false;
