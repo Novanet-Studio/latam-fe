@@ -32,7 +32,7 @@ export default defineNuxtConfig({
       "@vuepic/vue-datapicker",
     ],
   },
-  modules: ["@nuxt/image", "@nuxtjs/strapi", "@kevinmarrec/nuxt-pwa", "@vueuse/nuxt"],
+  modules: ["@nuxt/image", "@nuxtjs/strapi", "@kevinmarrec/nuxt-pwa", "@vueuse/nuxt", "notivue/nuxt"],
   runtimeConfig: {
     public: {
       strapi: {
@@ -56,7 +56,14 @@ export default defineNuxtConfig({
     "~/assets/scss/global.scss",
     "@fortawesome/fontawesome-svg-core/styles.css",
     "vue3-rich-accordion/accordion-library-styles.css",
+    "notivue/notifications.css",
+    "notivue/animations.css"
   ],
+
+  notivue: {
+    position: "top-right",
+  },
+  
   image: {
     // The screen sizes predefined by `@nuxt/image`:
     screens: {

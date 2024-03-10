@@ -31,6 +31,7 @@
     "date-fns": "^3.3.1",
     "generate-unique-id": "^2.0.3",
     "maska": "^2.1.11",
+    "notivue": "^2.2.1",
     "qs": "^6.12.0",
     "sass": "^1.71.1",
     "vee-validate": "^4.12.6",
