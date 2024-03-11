@@ -64,7 +64,7 @@ provide("isAuthenticated", isAuthenticated);
         Sigue las indicaciones del formulario multipasos mostrado a
         continuación, las datos de acceso son los mismos que utilizas en el
         portal Acceso a Clientes. Una vez realizado el pago es obligatorio hacer
-        la notificacion del mismo por WhatApp al 0414 3021751.
+        la notificacion del mismo por WhatsApp al 0414 3021751.
       </p>
     </section>
 
