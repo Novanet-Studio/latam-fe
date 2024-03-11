@@ -73,7 +73,7 @@ try {
         />
       </div>
       <a
-        href="https://190.216.243.210:8822/"
+        href="https://cloud.latinamericancable.com:8922/"
         target="_blank"
         class="pago__boton"
         >Notifíque su pago aquí</a
@@ -110,7 +110,7 @@ try {
         </p>
         <a
           class="internet__banner__boton"
-          href="https://190.216.243.210:8822/"
+          href="https://cloud.latinamericancable.com:8922/"
           target="_blank"
           >Acceder ahora</a
         >
