@@ -54,7 +54,7 @@ const loadingText = (price: string) =>
       <div class="hero__internet">
         <a
           class="hero__internet__box"
-          href="https://cloud.latinamericancable.com:8922/"
+          href="http://cloud.latinamericancable.com:8922/"
           target="_blank"
         >
           <div class="hero__internet__icon"></div>
