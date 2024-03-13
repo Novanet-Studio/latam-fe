@@ -91,7 +91,9 @@ const nextBtnLabel = computed(() => {
 
 async function submit() {
   if (stepper.isCurrent("subscriptor-data")) {
+    const notification = push.promise("Procesando solicitud...")
     isLoading.value = true;
+
     try {
       const { data: billing } = await useFetch<Latam.BillingResponse>(
         `${latamServicesApiUrl}/consulta-deuda`,
@@ -104,7 +106,7 @@ async function submit() {
       );
 
       if (billing.value?.code === '160') {
-        alert("No tienes facturas por pagar");
+        notification.resolve("No tienes facturas por pagar");
         return;
       }
 
@@ -112,21 +114,24 @@ async function submit() {
 
       Object.assign(billingData, billing.value!.facturas[0]);
 
+      notification.resolve("Consulta realizada");
       stepper.goToNext();
+
       return;
     } catch (error: any) {
-      alert(error.message)
+      notification.reject(error.message)
     } finally {
       isLoading.value = false;
     }
   }
   
   if (stepper.isCurrent("payment-report") && !stepper.current.value.isValid()) {
-    alert("Debe completar todos los campos");
+    push.info("Debe completar todos los campos");
     return;
   }
 
   if (stepper.isCurrent("payment-report") && stepper.current.value.isValid()) {
+    const notification = push.promise("Procesando pago...")
     try {
       form.status = "pending";
 
@@ -139,24 +144,24 @@ async function submit() {
         token: form.dynamicKey,
         nombre: form.fullName,
       }
-      
+
       const { data: payment, error: paymentError } = await useFetch<PaymentResponse>(
         `${latamServicesApiUrl}/pago`,
         {
           method: "POST",
-          body: paymentBody,
+          body: paymentBody
         }
       );
 
       if (!payment?.value?.referencia) {
-        alert(payment.value?.descRes);
+        notification.reject(payment.value?.descRes);
         form.status = "error";
         stepper.goToNext();
         return;
       }
 
       if (paymentError.value?.data?.error) {
-        alert(paymentError.value?.data?.error);
+        notification.reject(paymentError.value?.data?.error);
         return;
       }
 
@@ -180,14 +185,14 @@ async function submit() {
       );
 
       if (conformation?.value?.status === "Error") {
-        alert(conformation.value.mensaje);
+        notification.reject(conformation.value.mensaje);
         form.status = "error";
         stepper.goToNext();
         return;
       }
 
       if (conformationError.value?.data?.error) {
-        alert(conformationError.value?.data?.error);
+        notification.reject(conformationError.value?.data?.error);
         return;
       }
 
@@ -211,20 +216,20 @@ async function submit() {
       );
 
       if (registerPaymentError.value?.data?.error) {
-        alert(registerPaymentError.value?.data?.error);
+        notification.reject(registerPaymentError.value?.data?.error);
         return;
       }
 
       if (response.value?.code === "170") {
-        alert(response.value?.mensaje);
+        notification.reject(response.value?.mensaje);
         return;
       }
 
-      // mostrar mensaje de exito o error
+      notification.resolve("Pago procesado correctamente");
       form.status = "success";
       stepper.goToNext();
     } catch (error) {
-      // OPTIONAL: show error or some modal
+      notification.error("Hubo un error al procesar el pago");
       form.status = "error";
     }
 
