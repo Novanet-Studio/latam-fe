@@ -9,7 +9,7 @@ const isLoading = inject("isLoading") as Ref<boolean>;
 const form = inject("form") as Latam.Form;
 const userData = inject("userData") as Latam.UserData;
 
-const { latamServicesApiUrl } = useRuntimeConfig().public;
+const { executeGetClientDetails } = useLatamServices();
 
 const { handleSubmit } = useForm({
   initialValues: {
@@ -33,12 +33,7 @@ const submitForm = handleSubmit(async (values) => {
       return;
     }
 
-    const { data, error } = await useFetch<any>(`${latamServicesApiUrl}/get-client-details`, {
-      method: "post",
-      body: {
-        cedula: values.user,
-      },
-    });
+    const { data, error } = await executeGetClientDetails(values.user)
 
     if (error.value?.data?.error) {
       notification.reject(error.value?.data?.error.toLowerCase());

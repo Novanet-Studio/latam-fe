@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useStepper } from "@vueuse/core";
-import generateUniqueID from 'generate-unique-id'
+import generateUniqueID from "generate-unique-id";
 
 import CheckSubscriptionStep from "./check-subscription-step.vue";
 import SubscriptorDataStep from "./subscriptor-data-step.vue";
@@ -8,37 +8,21 @@ import PaymentReportStep from "./payment-report-step.vue";
 import StatusStep from "./status-step.vue";
 import AppStepper from "./app-stepper.vue";
 
-interface PaymentResponse {
-  codres: string;
-  descRes: string;
-  autorizacionISO: string;
-  traceISO: string;
-  autorizacionIBSMonto: string;
-  autorizacionIBSComision: string;
-  montoComision: string;
-  referencia: string;
-  fecha: string; // DD/MM/YYYY
-  hora: string; // HH:MM:SS
-  claveDinamica: number;
-  monto: string;
-  numeroLote: string;
-}
-
-interface ConformationResponse {
-  mensaje: string;
-  status: "OK" | "Error";
-}
-
 const isNextClicked = ref(false);
 const isLoading = ref(false);
 const form = inject("form") as Latam.Form;
 const billingData = reactive<Latam.Billing>({
   IDFactura: 0,
-  detalle: '',
-  valor: '',
-})
+  detalle: "",
+  valor: "",
+});
 
-const { latamServicesApiUrl } = useRuntimeConfig().public;
+const {
+  executeCheckDebts,
+  executeBtPay,
+  executeConformation,
+  executeRegisterPay,
+} = useLatamServices();
 const router = useRouter();
 
 const stepper = useStepper({
@@ -77,11 +61,15 @@ const activeComponent = computed(() => {
   }
 });
 
-const isFirstOrLast = computed(() => stepper.isFirst.value || stepper.isLast.value)
+const isFirstOrLast = computed(
+  () => stepper.isFirst.value || stepper.isLast.value
+);
 
 const nextBtnLabel = computed(() => {
   if (stepper.isLast.value) {
-    return form.status === "success" ? "Regresar al inicio" : "Intentar de nuevo";
+    return form.status === "success"
+      ? "Regresar al inicio"
+      : "Intentar de nuevo";
   } else if (stepper.isCurrent("payment-report")) {
     return "Pagar";
   } else {
@@ -91,21 +79,13 @@ const nextBtnLabel = computed(() => {
 
 async function submit() {
   if (stepper.isCurrent("subscriptor-data")) {
-    const notification = push.promise("Procesando solicitud...")
+    const notification = push.promise("Procesando solicitud...");
     isLoading.value = true;
 
     try {
-      const { data: billing } = await useFetch<Latam.BillingResponse>(
-        `${latamServicesApiUrl}/consulta-deuda`,
-        {
-          method: "POST",
-          body: {
-            cedula: form.ci,
-          },
-        }
-      );
+      const { data: billing } = await executeCheckDebts(form.ci);
 
-      if (billing.value?.code === '160') {
+      if (billing.value?.code === "160") {
         notification.resolve("No tienes facturas por pagar");
         return;
       }
@@ -119,19 +99,19 @@ async function submit() {
 
       return;
     } catch (error: any) {
-      notification.reject(error.message)
+      notification.reject(error.message);
     } finally {
       isLoading.value = false;
     }
   }
-  
+
   if (stepper.isCurrent("payment-report") && !stepper.current.value.isValid()) {
     push.info("Debe completar todos los campos");
     return;
   }
 
   if (stepper.isCurrent("payment-report") && stepper.current.value.isValid()) {
-    const notification = push.promise("Procesando pago...")
+    const notification = push.promise("Procesando pago...");
     try {
       form.status = "pending";
 
@@ -143,14 +123,10 @@ async function submit() {
         monto: form.vesAmount,
         token: form.dynamicKey,
         nombre: form.fullName,
-      }
+      };
 
-      const { data: payment, error: paymentError } = await useFetch<PaymentResponse>(
-        `${latamServicesApiUrl}/pago`,
-        {
-          method: "POST",
-          body: paymentBody
-        }
+      const { data: payment, error: paymentError } = await executeBtPay(
+        paymentBody
       );
 
       if (!payment?.value?.referencia) {
@@ -166,23 +142,21 @@ async function submit() {
       }
 
       // Conformacion de pago
-      const conformationDate = payment.value.fecha.split("/").reverse().join("");
-      
+      const conformationDate = payment.value.fecha
+        .split("/")
+        .reverse()
+        .join("");
+
       const conformationBody = {
         referencia: payment.value.referencia,
         monto: form.vesAmount,
         banco: form.bank,
         fecha: conformationDate,
         celular: form.phone,
-      }
+      };
 
-      const { data: conformation, error: conformationError } = await useFetch<ConformationResponse>(
-        `${latamServicesApiUrl}/conformacion`,
-        {
-          method: "POST",
-          body: conformationBody,
-        }
-      );
+      const { data: conformation, error: conformationError } =
+        await executeConformation(conformationBody);
 
       if (conformation?.value?.status === "Error") {
         notification.reject(conformation.value.mensaje);
@@ -199,21 +173,18 @@ async function submit() {
       // Report payment
       const paymentDate = payment.value.fecha.split("/").reverse().join("-");
 
-      const { data: response, error: registerPaymentError } = await useFetch<Latam.BillingResponse>(
-        `${latamServicesApiUrl}/registrar-pago`,
-        {
-          method: "POST",
-          body: {
-            IDFactura: billingData.IDFactura,
-            valor: Number(form.amount),
-            fecha: paymentDate,
-            secuencial: Number(generateUniqueID({
+      const { data: response, error: registerPaymentError } =
+        await executeRegisterPay({
+          IDFactura: billingData.IDFactura,
+          valor: Number(form.amount),
+          fecha: paymentDate,
+          secuencial: Number(
+            generateUniqueID({
               length: 15,
               useLetters: false,
-            }))
-          },
-        }
-      );
+            })
+          ),
+        });
 
       if (registerPaymentError.value?.data?.error) {
         notification.reject(registerPaymentError.value?.data?.error);
@@ -236,8 +207,8 @@ async function submit() {
     return;
   }
 
-  if (form.status === 'error') stepper.goTo('subscriptor-data');
-  if (form.status === 'success' && stepper.isLast.value) router.push('/');
+  if (form.status === "error") stepper.goTo("subscriptor-data");
+  if (form.status === "success" && stepper.isLast.value) router.push("/");
   if (stepper.current.value.isValid()) stepper.goToNext();
 }
 
@@ -246,6 +217,8 @@ function allStepsBeforeAreValid(index: number): boolean {
     .fill(null)
     .some((_, i) => !stepper.at(i)?.isValid());
 }
+
+stepper.goTo("payment-report");
 
 provide("stepper", stepper);
 </script>
@@ -270,9 +243,13 @@ provide("stepper", stepper);
         </transition>
       </form>
 
-      <div class="wizard__footer" :style="{
-        justifyContent: stepper.isLast.value ? 'center' : 'space-around'
-      }" :class="{'wizard__footer--full': isFirstOrLast}">
+      <div
+        class="wizard__footer"
+        :style="{
+          justifyContent: stepper.isLast.value ? 'center' : 'space-around',
+        }"
+        :class="{ 'wizard__footer--full': isFirstOrLast }"
+      >
         <button
           v-if="!stepper?.isFirst.value && !stepper?.isLast.value"
           class="wizard__btn wizard__btn--prev"
@@ -288,7 +265,7 @@ provide("stepper", stepper);
         <button
           class="wizard__btn wizard__btn--next"
           :class="{
-            'wizard__btn--full': stepper.isLast.value
+            'wizard__btn--full': stepper.isLast.value,
           }"
           @click="
             () => {
@@ -414,7 +391,8 @@ provide("stepper", stepper);
     place-items: flex-start;
     padding: 0rem 1.5em 2.5em 1.5em;
 
-    h3, h5 {
+    h3,
+    h5 {
       display: none;
     }
 
@@ -451,7 +429,6 @@ provide("stepper", stepper);
     &--full {
       width: 100%;
     }
-
   }
 }
 
@@ -463,7 +440,8 @@ provide("stepper", stepper);
     place-items: center;
     padding: 4.5em 1.5em 4.5em 1.5em;
 
-    h3, h5 {
+    h3,
+    h5 {
       display: block;
     }
   }
