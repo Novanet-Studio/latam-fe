@@ -4,14 +4,11 @@ const form = inject("form") as Latam.Form;
 
 const {
   dateLocale,
-  // amountVes,
   banksOptions,
-  // capitalize,
   handlePayload,
 } = await usePaymentReport();
-// const vesUsd = useBcvUsd();
 
-const { setFieldValue, values, validate } = useForm({
+const { values, validate } = useForm({
   initialValues: {
     account: "",
     bank: "",

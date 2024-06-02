@@ -13,7 +13,7 @@ export default async function() {
 
   const banksOptions = computed(() => {
     return (
-      banks.value?.map((bank) => ({
+      banks.value?.map((bank: { nombre: string, codigo: string }) => ({
         text: bank.nombre,
         value: bank.codigo,
       })) || []
@@ -22,7 +22,7 @@ export default async function() {
 
   const schema = object({
     phone: string().required("El campo es requerido"),
-    ci: string().required("El campo es requerido").test('regex', 'Formato de cédula incorrecto', (item, _content) => {
+    ci: string().required("El campo es requerido").test('regex', 'Formato de cédula incorrecto', (item: any, _content: any) => {
       const ciRegex = /^V\d{6,}$/;
   
       return ciRegex.test(item);
@@ -60,8 +60,12 @@ export default async function() {
     }
 
     return {
-      
-    }
+      accountNumber: values.account,
+      reference: values.reference,
+      paymentDate: values.paymentDate,
+      bank: values.bank,
+      amount: transformAmount(form.amount),
+    } as Partial<Latam.Form>;
   }
 
   return {
