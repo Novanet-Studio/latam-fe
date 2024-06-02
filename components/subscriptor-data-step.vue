@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 import { useForm } from "vee-validate";
-import { useClipboard } from "@vueuse/core";
+// import { useClipboard } from "@vueuse/core";
 
 const stepper = inject("stepper") as any;
 const userData = inject("userData") as Latam.UserData;
 const form = inject("form") as Latam.Form;
 
 const { setValues } = useForm();
-const { copy, copied } = useClipboard({
-  legacy: true,
-});
+// const { copy, copied } = useClipboard({
+//   legacy: true,
+// });
 
 const data = userData.datos?.[0].servicios?.find(
   (item: Latam.ServiciosEntity) => item.id === Number(form.contract)
