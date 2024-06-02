@@ -1,4 +1,6 @@
 declare namespace Latam {
+  type PaymentMethod = "pagoMovil" | "tcInternational" | "tcNacional" | "transference";
+  
   type PaymentStrapiRecord = {
     dtc_nombre_apellido: string;
     dtc_cedula_identidad: string;
@@ -43,6 +45,7 @@ declare namespace Latam {
     paymentDate: string;
     dynamicKey: string;
     status: '' | 'error' | 'pending' | 'success';
+    accountNumber?: string;
   }
 
   interface UserData {

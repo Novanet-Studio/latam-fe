@@ -21,17 +21,6 @@ const { setFieldValue, values, validate } = useForm({
   // validationSchema: schema,
 });
 
-
-// setFieldValue("amount", "Bs.S " + form.amount);
-
-// watch(vesUsd, () => {
-//   const value = Number(vesUsd.value) * Number(form.amount);
-//   const amount = transformAmount(value.toString(), true);
-//   amountVes.value = amount;
-
-//   setFieldValue("amount", "Bs.S " + amount);
-// });
-
 watch(values, async () => {
   const res = await validate();
 

@@ -35,26 +35,33 @@ export default async function() {
 
   const handlePayload = ({
     values,
-    form
+    form,
+    paymentMethod = "pagoMovil"
   }: any) => {
-    const value = Number(vesUsd.value) * Number(form.amount);
-    const vesAmount = transformAmount(value.toString(), true);
-    const date = new Date(values.paymentDate);
-    const paymentDate = `${date.getUTCFullYear()}-${
-      date.getUTCMonth() + 1
-    }-${date.getUTCDate()}`
+    if (paymentMethod === "pagoMovil") {
+      const value = Number(vesUsd.value) * Number(form.amount);
+      const vesAmount = transformAmount(value.toString(), true);
+      const date = new Date(values.paymentDate);
+      const paymentDate = `${date.getUTCFullYear()}-${
+        date.getUTCMonth() + 1
+      }-${date.getUTCDate()}`
 
-    const payload: Partial<Latam.Form> = {
-      vesAmount,
-      paymentDate,
-      amount: form.amount,
-      phone: values.phone,
-      ci: values.ci,
-      bank: values.bank,
-      dynamicKey: values.dynamicKey,
-    };
+      const payload: Partial<Latam.Form> = {
+        vesAmount,
+        paymentDate,
+        amount: form.amount,
+        phone: values.phone,
+        ci: values.ci,
+        bank: values.bank,
+        dynamicKey: values.dynamicKey,
+      };
 
-    return payload;
+      return payload;
+    }
+
+    return {
+      
+    }
   }
 
   return {

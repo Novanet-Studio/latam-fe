@@ -1,15 +1,14 @@
 <script lang="ts" setup>
 const stepper = inject("stepper") as any;
-
-const option = ref("pagoMovil");
+const paymentMethod = inject("paymentMethod") as Latam.PaymentMethod;
 </script>
 
 <template>
   <div v-if="stepper.isCurrent('payment-report')" class="payment-report">
     <section class="wrapper">
-      <PaymentTabs v-model="option" />
-      <PagoMovil v-if="option === 'pagoMovil'" />
-      <Transference v-if="option === 'transference'" />
+      <PaymentTabs v-model="paymentMethod" />
+      <PagoMovil v-if="paymentMethod === 'pagoMovil'" />
+      <Transference v-if="paymentMethod === 'transference'" />
     </section>
   </div>
 </template>

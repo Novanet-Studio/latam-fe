@@ -75,14 +75,14 @@ export default function() {
     })
   }
 
-  async function executeRequestOTP(body = {}) {
+  async function executeRequestMiBancoOTP(body = {}) {
     return useFetch(`${latamServicesApiUrl}/mibanco/request-otp`, {
       method: "POST",
       body
     })
   }
 
-  async function executePayment(body = {}) {
+  async function executeMiBancoPayment(body = {}) {
     return useFetch(`${latamServicesApiUrl}/mibanco/pay`, {
       method: "POST",
       body
@@ -96,7 +96,7 @@ export default function() {
     executeGetBanks,
     executeBtPay,
     executeConformation,
-    executeRequestOTP,
-    executePayment
+    executeRequestMiBancoOTP,
+    executeMiBancoPayment
   }
 }
