@@ -462,44 +462,6 @@ async function transferencePayment() {
       paymentBody
     );
 
-    // if (!payment?.value?.referencia) {
-    //   notification.reject(payment.value?.descRes);
-    //   form.status = "error";
-    //   stepper.goToNext();
-    //   return;
-    // }
-
-    // if (paymentError.value?.data?.error) {
-    //   notification.reject(paymentError.value?.data?.error);
-    //   return;
-    // }
-
-    // Report payment
-    // const paymentDate = payment.value.fecha.split("/").reverse().join("-");
-
-    // const { data: response, error: registerPaymentError } =
-    //   await executeRegisterPay({
-    //     IDFactura: billingData.IDFactura,
-    //     valor: Number(form.amount),
-    //     fecha: paymentDate,
-    //     secuencial: Number(
-    //       generateUniqueID({
-    //         length: 15,
-    //         useLetters: false,
-    //       })
-    //     ),
-    //   });
-
-    // if (registerPaymentError.value?.data?.error) {
-    //   notification.reject(registerPaymentError.value?.data?.error);
-    //   return;
-    // }
-
-    // if (response.value?.code === "170") {
-    //   notification.reject(response.value?.mensaje);
-    //   return;
-    // }
-
     notification.resolve("Pago procesado correctamente");
     form.status = "success";
     stepper.goToNext();
