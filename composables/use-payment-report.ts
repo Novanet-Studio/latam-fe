@@ -38,13 +38,14 @@ export default async function() {
     form,
     paymentMethod = "pagoMovil"
   }: any) => {
-    if (paymentMethod === "pagoMovil") {
-      const value = Number(vesUsd.value) * Number(form.amount);
-      const vesAmount = transformAmount(value.toString(), true);
-      const date = new Date(values.paymentDate);
+    const date = new Date(values.paymentDate);
       const paymentDate = `${date.getUTCFullYear()}-${
         date.getUTCMonth() + 1
       }-${date.getUTCDate()}`
+
+    if (paymentMethod === "pagoMovil") {
+      const value = Number(vesUsd.value) * Number(form.amount);
+      const vesAmount = transformAmount(value.toString(), true);
 
       const payload: Partial<Latam.Form> = {
         vesAmount,
@@ -60,9 +61,9 @@ export default async function() {
     }
 
     return {
+      paymentDate,
       accountNumber: values.account,
       reference: values.reference,
-      paymentDate: values.paymentDate,
       bank: values.bank,
       amount: transformAmount(form.amount),
     } as Partial<Latam.Form>;
