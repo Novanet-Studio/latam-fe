@@ -48,42 +48,42 @@ export default function() {
   }
 
   async function executeRegisterPay(body = {}) {
-    return useFetch<Latam.BillingResponse>(`${latamServicesApiUrl}/user/registrar-pago`, {
+    return useFetch<Latam.BillingResponse>(`${URL}/user/registrar-pago`, {
       method: "POST",
       body
     })
   }
 
   async function executeGetBanks(body = {}) {
-    return useFetch<BankData[]>(`${latamServicesApiUrl}/bt/bancos`, {
+    return useFetch<BankData[]>(`${URL}/bt/bancos`, {
       method: "POST",
       body
     })
   }
   
   async function executeBtPay(body = {}) {
-    return useFetch<PaymentResponse>(`${latamServicesApiUrl}/bt/pago`, {
+    return useFetch<PaymentResponse>(`${URL}/bt/pago`, {
       method: "POST",
       body
     })
   }
 
   async function executeConformation(body = {}) {
-    return useFetch<ConformationResponse>(`${latamServicesApiUrl}/bt/conformacion`, {
+    return useFetch<ConformationResponse>(`${URL}/bt/conformacion`, {
       method: "POST",
       body
     })
   }
 
   async function executeRequestMiBancoOTP(body = {}) {
-    return useFetch(`${latamServicesApiUrl}/mibanco/request-otp`, {
+    return useFetch(`${URL}/mibanco/request-otp`, {
       method: "POST",
       body
     })
   }
 
   async function executeMiBancoPayment(body = {}) {
-    return useFetch(`${latamServicesApiUrl}/mibanco/pay`, {
+    return useFetch(`${URL}/mibanco/pay`, {
       method: "POST",
       body
     })
