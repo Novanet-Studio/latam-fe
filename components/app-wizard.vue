@@ -39,12 +39,7 @@ const stepper = useStepper({
   },
   "payment-report": {
     title: "Reporte de pago",
-    isValid: () =>
-      form.phone.length > 0 &&
-      form.ci.length > 0 &&
-      form.bank.length > 0 &&
-      form.paymentDate.length > 0 &&
-      form.dynamicKey.length > 0,
+    isValid: () => checkPaymentReportValidation()
   },
   status: {
     title: "Estatus de pago",
@@ -171,6 +166,33 @@ async function pagoMovilPayment() {
     notification.error("Hubo un error al procesar el pago");
     form.status = "error";
   }
+}
+
+function checkPaymentReportValidation() {
+  if (paymentMethod.value === "pagoMovil") {
+    return pagoMovilValidation()
+  }
+
+  if (paymentMethod.value === "transference") {
+    return transferenceValidation()
+  }
+
+  return false
+}
+
+function pagoMovilValidation() {
+  return form.phone.length > 0 &&
+      form.ci.length > 0 &&
+      form.bank.length > 0 &&
+      form.paymentDate.length > 0 &&
+      form.dynamicKey.length > 0
+}
+
+function transferenceValidation() {
+  return form.accountNumber!.length > 0 &&
+      form.bank.length > 0 &&
+      form.paymentDate.length > 0 &&
+      form.reference!.length > 0
 }
 
 async function transferencePayment() {

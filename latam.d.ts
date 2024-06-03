@@ -46,6 +46,7 @@ declare namespace Latam {
     dynamicKey: string;
     status: '' | 'error' | 'pending' | 'success';
     accountNumber?: string;
+    reference?: string;
   }
 
   interface UserData {

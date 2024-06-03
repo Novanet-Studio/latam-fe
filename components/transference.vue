@@ -25,6 +25,7 @@ watch(values, async () => {
     const payload = handlePayload({
       form,
       values,
+      paymentMethod: "transference",
     });
 
     Object.assign(form, payload);
