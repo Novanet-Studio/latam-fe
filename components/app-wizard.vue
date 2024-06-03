@@ -342,7 +342,8 @@ async function transferencePayment() {
           MsgId: msgId,
           CreDtTm: getTimeFormatDate(),
           NbOfTxs: 1,
-          CtrlSum: 10.01,
+          // CtrlSum: 10.01,
+          CtrlSum: Number(form.amount),
           InitgPty: {
             Id: {
               PrvtId: {
