@@ -207,7 +207,8 @@ async function transferencePayment() {
                 ClrSysId: {
                   Cd: "NCCE",
                 },
-                MmbId: "0102",
+                // MmbId: "0102",
+                MmbId: form.bank,
               },
             },
           },
@@ -273,7 +274,8 @@ async function transferencePayment() {
                   ClrSysId: {
                     Cd: "NCCE",
                   },
-                  MmbId: "0102",
+                  // MmbId: "0102",
+                  MmbId: form.bank,
                 },
               },
             },
@@ -366,7 +368,8 @@ async function transferencePayment() {
                   ClrSysId: {
                     Cd: "NCCE",
                   },
-                  MmbId: "0102",
+                  // MmbId: "0102",
+                  MmbId: form.bank,
                 },
               },
             },
