@@ -408,7 +408,7 @@ async function transferencePayment() {
                 },
                 InstdAmt: {
                   // Amt: 10.01,
-                  Amt: form.amount,
+                  Amt: Number(form.amount),
                   Ccy: "VES",
                 },
                 DbtrAgt: {
