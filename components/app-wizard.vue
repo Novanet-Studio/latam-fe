@@ -179,14 +179,19 @@ async function transferencePayment() {
   try {
     form.status = "pending";
 
+    const getShortFormatDate = () => new Date().toISOString().replace(/\.(\d{3})Z$/, "").replace("T", "").replaceAll("-", "").replaceAll(":", "")
+    const getTimeFormatDate = () => new Date().toISOString().replace(/\.(\d{3})Z$/, "") + "Z"
+    const msgId = `000101${getShortFormatDate()}00000000`;
+
     // otp
     const otpBody = {
       AuthstnReq: {
         GrpHdr: {
-          MsgId: "0001012021070708190000000000",
-          CreDtTm: "2021-07-07T08:19:00z",
+          MsgId: msgId,
+          CreDtTm: getTimeFormatDate(),
           InstgAgt: {
             FinInstnId: {
+              // Bussiness
               ClrSysMmbId: {
                 ClrSysId: {
                   Cd: "NCCE",
@@ -197,6 +202,7 @@ async function transferencePayment() {
           },
           InstdAgt: {
             FinInstnId: {
+              // Client
               ClrSysMmbId: {
                 ClrSysId: {
                   Cd: "NCCE",
@@ -224,7 +230,8 @@ async function transferencePayment() {
           OrgnlTxRef: {
             InstdAmt: {
               Ccy: "VES",
-              Amt: 18.01,
+              // Amt: 18.01,
+              Amt: Number(form.amount),
             },
             MndtRltdInf: {
               MndtId: "00012020062418222012345671",
@@ -238,7 +245,8 @@ async function transferencePayment() {
               Id: {
                 PrvtId: {
                   Othr: {
-                    Id: "V19458201",
+                    // Id: "V19458201",
+                    Id: form.ci,
                     SchmeNm: {
                       Cd: "SCID",
                     },
@@ -249,6 +257,7 @@ async function transferencePayment() {
             Cdtr: {
               Id: {
                 PrvtId: {
+                  // Bussines Data
                   Othr: {
                     Id: "J123456789",
                     SchmeNm: {
@@ -301,10 +310,6 @@ async function transferencePayment() {
 
     await executeRequestMiBancoOTP(otpBody);
 
-    const getShortFormatDate = () => new Date().toISOString().replace(/\.(\d{3})Z$/, "").replace("T", "").replaceAll("-", "").replaceAll(":", "")
-    const getTimeFormatDate = () => new Date().toISOString().replace(/\.(\d{3})Z$/, "") + "Z"
-
-    const msgId = `000101${getShortFormatDate()}00000000`;
 
     // Procesar pago
     const paymentBody = {
@@ -377,7 +382,8 @@ async function transferencePayment() {
                   },
                 },
                 InstdAmt: {
-                  Amt: 10.01,
+                  // Amt: 10.01,
+                  Amt: form.amount,
                   Ccy: "VES",
                 },
                 DbtrAgt: {
