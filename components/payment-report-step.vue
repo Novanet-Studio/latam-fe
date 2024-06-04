@@ -6,9 +6,9 @@ const paymentMethod = inject("paymentMethod") as Latam.PaymentMethod;
 <template>
   <div v-if="stepper.isCurrent('payment-report')" class="payment-report">
     <section class="wrapper">
-      <PaymentTabs v-model="paymentMethod" />
+      <!-- <PaymentTabs v-model="paymentMethod" /> -->
       <PagoMovil v-if="paymentMethod === 'pagoMovil'" />
-      <Transference v-if="paymentMethod === 'transference'" />
+      <!-- <Transference v-if="paymentMethod === 'transference'" /> -->
     </section>
   </div>
 </template>
