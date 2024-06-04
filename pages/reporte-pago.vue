@@ -14,6 +14,7 @@ useHead({
 const isAuthenticated = ref(false);
 const isLoading = ref(false);
 const paymentMethod = ref<Latam.PaymentMethod>("pagoMovil");
+const paymentOption = ref<Latam.PaymentOption>("");
 const userData = reactive<Latam.UserData>({
   estado: "",
   datos: null,
@@ -38,6 +39,7 @@ const activeComponent = computed(() =>
 
 provide("form", form);
 provide("paymentMethod", paymentMethod)
+provide("paymentOption", paymentOption)
 provide("userData", userData);
 provide("isLoading", isLoading);
 provide("isAuthenticated", isAuthenticated);

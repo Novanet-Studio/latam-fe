@@ -3,6 +3,7 @@ import { useStepper } from "@vueuse/core";
 import generateUniqueID from "generate-unique-id";
 
 import CheckSubscriptionStep from "./check-subscription-step.vue";
+import PaymentOptionStep from "./payment-option-step.vue";
 import SubscriptorDataStep from "./subscriptor-data-step.vue";
 import PaymentReportStep from "./payment-report-step.vue";
 import StatusStep from "./status-step.vue";
@@ -12,6 +13,7 @@ const isNextClicked = ref(false);
 const isLoading = ref(false);
 const form = inject("form") as Latam.Form;
 const paymentMethod = inject("paymentMethod") as Ref<Latam.PaymentMethod>;
+const paymentOption = inject("paymentOption") as Ref<Latam.PaymentOption>;
 const billingData = reactive<Latam.Billing>({
   IDFactura: 0,
   detalle: "",
@@ -33,6 +35,10 @@ const stepper = useStepper({
     title: "Consultar datos de suscriptor",
     isValid: () => form.contract.length > 0,
   },
+  "payment-option": {
+    title: "Seleccione el medio de pago",
+    isValid: () => paymentOption.value.length > 0,
+  },
   "subscriptor-data": {
     title: "Datos del subscriptor",
     isValid: () => true,
@@ -50,6 +56,8 @@ const stepper = useStepper({
 const activeComponent = computed(() => {
   if (stepper.isCurrent("check-subscription")) {
     return CheckSubscriptionStep;
+  } else if (stepper.isCurrent("payment-option")) {
+    return PaymentOptionStep;
   } else if (stepper.isCurrent("subscriptor-data")) {
     return SubscriptorDataStep;
   } else if (stepper.isCurrent("payment-report")) {

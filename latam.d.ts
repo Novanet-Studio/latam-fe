@@ -1,5 +1,6 @@
 declare namespace Latam {
   type PaymentMethod = "pagoMovil" | "tcInternational" | "tcNacional" | "transference";
+  type PaymentOption = "miBanco" | "bancoTesoro" | "";
   
   type PaymentStrapiRecord = {
     dtc_nombre_apellido: string;

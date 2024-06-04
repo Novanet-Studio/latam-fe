@@ -75,10 +75,10 @@ const submitForm = handleSubmit(async (values) => {
         Iniciar Sesión
       </form-button>
 
-      <div class="bt-copy__wrapper">
+      <!-- <div class="bt-copy__wrapper">
         <img src="~/assets/images/bt-pagos-logo.svg" alt="Banco del tesoro pagos logo">
         <p>Servicio Banco del Tesoro</p>
-      </div>
+      </div> -->
     </form>
   </section>
 </template>
