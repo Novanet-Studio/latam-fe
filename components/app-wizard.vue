@@ -45,7 +45,7 @@ const stepper = useStepper({
   },
   "payment-report": {
     title: "Reporte de pago",
-    isValid: () => checkPaymentReportValidation()
+    isValid: () => checkPaymentReportValidation(),
   },
   status: {
     title: "Estatus de pago",
@@ -83,7 +83,7 @@ const nextBtnLabel = computed(() => {
   }
 });
 
-async function pagoMovilPayment() {
+async function btPayment() {
   const notification = push.promise("Procesando pago...");
 
   try {
@@ -176,41 +176,21 @@ async function pagoMovilPayment() {
   }
 }
 
-function checkPaymentReportValidation() {
-  if (paymentMethod.value === "pagoMovil") {
-    return pagoMovilValidation()
-  }
-
-  if (paymentMethod.value === "transference") {
-    return transferenceValidation()
-  }
-
-  return false
-}
-
-function pagoMovilValidation() {
-  return form.phone.length > 0 &&
-      form.ci.length > 0 &&
-      form.bank.length > 0 &&
-      form.paymentDate.length > 0 &&
-      form.dynamicKey.length > 0
-}
-
-function transferenceValidation() {
-  return form.accountNumber!.length > 0 &&
-      form.bank.length > 0 &&
-      form.paymentDate.length > 0 &&
-      form.reference!.length > 0
-}
-
-async function transferencePayment() {
+async function miBancoPayment() {
   const notification = push.promise("Procesando pago...");
 
   try {
     form.status = "pending";
 
-    const getShortFormatDate = () => new Date().toISOString().replace(/\.(\d{3})Z$/, "").replace("T", "").replaceAll("-", "").replaceAll(":", "")
-    const getTimeFormatDate = () => new Date().toISOString().replace(/\.(\d{3})Z$/, "") + "Z"
+    const getShortFormatDate = () =>
+      new Date()
+        .toISOString()
+        .replace(/\.(\d{3})Z$/, "")
+        .replace("T", "")
+        .replaceAll("-", "")
+        .replaceAll(":", "");
+    const getTimeFormatDate = () =>
+      new Date().toISOString().replace(/\.(\d{3})Z$/, "") + "Z";
     const msgId = `000101${getShortFormatDate()}00000000`;
 
     // otp
@@ -324,7 +304,8 @@ async function transferencePayment() {
                 Tp: {
                   Cd: "CELE",
                 },
-                Id: "04121231234",
+                Id: form.phone,
+                // Id: "04121231234",
               },
             },
             CdtrAcct: {
@@ -341,7 +322,6 @@ async function transferencePayment() {
     };
 
     await executeRequestMiBancoOTP(otpBody);
-
 
     // Procesar pago
     const paymentBody = {
@@ -387,10 +367,10 @@ async function transferencePayment() {
             CdtrAcct: {
               Prxy: {
                 Tp: {
-                  Cd: "CNTA",
+                  Cd: "CELE",
                 },
                 // Id: "00011234567890123456",
-                Id: form.accountNumber,
+                Id: form.phone,
               },
             },
             CdtrAgt: {
@@ -451,7 +431,7 @@ async function transferencePayment() {
                       Cd: "CNTA",
                     },
                     // Id: "00011234567890123456",
-                    Id: form.accountNumber
+                    Id: form.accountNumber,
                   },
                 },
                 Purp: {
@@ -467,9 +447,7 @@ async function transferencePayment() {
       },
     };
 
-    await executeMiBancoPayment(
-      paymentBody
-    );
+    await executeMiBancoPayment(paymentBody);
 
     notification.resolve("Pago procesado correctamente");
     form.status = "success";
@@ -479,6 +457,53 @@ async function transferencePayment() {
     form.status = "error";
   }
 }
+
+async function pagoMovilPayment() {
+  if (paymentOption.value === "bancoTesoro") {
+    btPayment();
+    return;
+  }
+
+  if (paymentOption.value === "miBanco") {
+    miBancoPayment();
+    return;
+  }
+
+  return;
+}
+
+function checkPaymentReportValidation() {
+  if (paymentMethod.value === "pagoMovil") {
+    return pagoMovilValidation();
+  }
+
+  if (paymentMethod.value === "transference") {
+    return transferenceValidation();
+  }
+
+  return false;
+}
+
+function pagoMovilValidation() {
+  return (
+    form.phone.length > 0 &&
+    form.ci.length > 0 &&
+    form.bank.length > 0 &&
+    form.paymentDate.length > 0 &&
+    form.dynamicKey.length > 0
+  );
+}
+
+function transferenceValidation() {
+  return (
+    form.accountNumber!.length > 0 &&
+    form.bank.length > 0 &&
+    form.paymentDate.length > 0 &&
+    form.reference!.length > 0
+  );
+}
+
+async function transferencePayment() {}
 
 async function submit() {
   if (stepper.isCurrent("subscriptor-data")) {
