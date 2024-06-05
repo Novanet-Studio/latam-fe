@@ -1,19 +1,20 @@
 import { object, string, date } from "yup";
 
-export default async function() {
+export default async function (method = "bancoTesoro") {
   const dateLocale = useState("dateLocale", () => "es-VE");
   const amountVes = useState("amountVes", () => "");
 
   const vesUsd = useBcvUsd();
   const { executeGetBanks } = useLatamServices();
-  
-  const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
+  const capitalize = (str: string) =>
+    str.charAt(0).toUpperCase() + str.slice(1);
 
   const { data: banks } = await executeGetBanks();
 
   const banksOptions = computed(() => {
     return (
-      banks.value?.map((bank: { nombre: string, codigo: string }) => ({
+      banks.value?.map((bank: { nombre: string; codigo: string }) => ({
         text: bank.nombre,
         value: bank.codigo,
       })) || []
@@ -22,26 +23,36 @@ export default async function() {
 
   const schema = object({
     phone: string().required("El campo es requerido"),
-    ci: string().required("El campo es requerido").test('regex', 'Formato de cédula incorrecto', (item: any, _content: any) => {
-      const ciRegex = /^V\d{6,}$/;
-  
-      return ciRegex.test(item);
-    }),
+    ci: string()
+      .required("El campo es requerido")
+      .test(
+        "regex",
+        "Formato de cédula incorrecto",
+        (item: any, _content: any) => {
+          const ciRegex = /^V\d{6,}$/;
+
+          return ciRegex.test(item);
+        }
+      ),
     bank: string().required("El campo es requerido"),
     paymentDate: date().required("El campo es requerido"),
-    dynamicKey: string().required("El campo es requerido"),
+    ...(method === "bancoTesoro"
+      ? {
+          dynamicKey: string().required("El campo es requerido"),
+        }
+      : {}),
     amount: string(),
   });
 
   const handlePayload = ({
     values,
     form,
-    paymentMethod = "pagoMovil"
+    paymentMethod = "pagoMovil",
   }: any) => {
     const date = new Date(values.paymentDate);
-      const paymentDate = `${date.getUTCFullYear()}-${
-        date.getUTCMonth() + 1
-      }-${date.getUTCDate()}`
+    const paymentDate = `${date.getUTCFullYear()}-${
+      date.getUTCMonth() + 1
+    }-${date.getUTCDate()}`;
 
     if (paymentMethod === "pagoMovil") {
       const value = Number(vesUsd.value) * Number(form.amount);
@@ -67,7 +78,7 @@ export default async function() {
       bank: values.bank,
       amount: transformAmount(form.amount),
     } as Partial<Latam.Form>;
-  }
+  };
 
   return {
     dateLocale,
@@ -76,5 +87,5 @@ export default async function() {
     banksOptions,
     capitalize,
     handlePayload,
-  }
+  };
 }

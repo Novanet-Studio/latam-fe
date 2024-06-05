@@ -485,6 +485,15 @@ function checkPaymentReportValidation() {
 }
 
 function pagoMovilValidation() {
+  if (paymentOption.value === "miBanco") {
+    return (
+      form.phone.length > 0 &&
+      form.ci.length > 0 &&
+      form.bank.length > 0 &&
+      form.paymentDate.length > 0
+    )
+  }
+
   return (
     form.phone.length > 0 &&
     form.ci.length > 0 &&

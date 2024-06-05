@@ -2,6 +2,8 @@
 import { useForm } from "vee-validate";
 
 const form = inject("form") as Latam.Form;
+const paymentOption = inject("paymentOption") as Ref<Latam.PaymentOption>;
+const paymentMethod = inject("paymentMethod") as Ref<Latam.PaymentMethod>;
 
 const { copy, copied } = useClipboard({
   legacy: true,
@@ -14,7 +16,7 @@ const {
   banksOptions,
   capitalize,
   handlePayload,
-} = await usePaymentReport();
+} = await usePaymentReport(paymentMethod.value);
 const vesUsd = useBcvUsd();
 
 const { setFieldValue, values, validate } = useForm({
@@ -28,7 +30,6 @@ const { setFieldValue, values, validate } = useForm({
   },
   validationSchema: schema,
 });
-
 
 setFieldValue("amount", "Bs.S " + form.amount);
 
@@ -57,7 +58,6 @@ watch(values, async () => {
     Object.assign(form, payload);
   }
 });
-
 </script>
 
 <template>
@@ -90,6 +90,7 @@ watch(values, async () => {
       name="paymentDate"
     />
     <base-input
+      v-if="paymentOption !== 'miBanco'"
       label="Clave dinámica"
       id="dynamicKey"
       name="dynamicKey"
