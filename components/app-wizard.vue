@@ -428,10 +428,11 @@ async function miBancoPayment() {
                 DbtrAcct: {
                   Prxy: {
                     Tp: {
-                      Cd: "CNTA",
+                      // Cd: "CNTA",
+                      Cd: "CELE",
                     },
                     // Id: "00011234567890123456",
-                    Id: form.accountNumber,
+                    Id: form.phone,
                   },
                 },
                 Purp: {
