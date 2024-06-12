@@ -89,12 +89,25 @@ watch(values, async () => {
       id="paymentDate"
       name="paymentDate"
     />
-    <base-input
+    <!-- <base-input
       v-if="paymentOption !== 'miBanco'"
       label="Clave dinámica"
       id="dynamicKey"
       name="dynamicKey"
       placeholder="123456"
+    />
+    <base-input
+      v-else
+      label="Clave pago"
+      id="otp"
+      name="otp"
+      placeholder="543210"
+    /> -->
+    <base-input
+      :label="paymentOption !== 'miBanco' ? 'Clave dinámica' : 'Clave pago'"
+      :id="paymentOption !== 'miBanco' ? 'dynamicKey' : 'otp'"
+      :name="paymentOption !== 'miBanco' ? 'dynamicKey' : 'otp'"
+      :placeholder="paymentOption !== 'miBanco' ? '123456' : '543210'"
     />
     <!-- <base-input label="Monto" id="amount" name="amount" readonly /> -->
     <div class="amount-wrapper">

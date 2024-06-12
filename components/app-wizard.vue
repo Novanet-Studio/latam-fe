@@ -6,6 +6,7 @@ import CheckSubscriptionStep from "./check-subscription-step.vue";
 import PaymentOptionStep from "./payment-option-step.vue";
 import SubscriptorDataStep from "./subscriptor-data-step.vue";
 import PaymentReportStep from "./payment-report-step.vue";
+import OtpStep from "./otp-step.vue";
 import StatusStep from "./status-step.vue";
 import AppStepper from "./app-stepper.vue";
 
@@ -43,6 +44,12 @@ const stepper = useStepper({
     title: "Datos del subscriptor",
     isValid: () => true,
   },
+  ...(paymentOption.value === "miBanco" ? ({
+    "otp": {
+      title: "Solicita tu clave de pago",
+      isValid: () => true,
+    }
+  }) : {}),
   "payment-report": {
     title: "Reporte de pago",
     isValid: () => checkPaymentReportValidation(),
@@ -60,6 +67,8 @@ const activeComponent = computed(() => {
     return PaymentOptionStep;
   } else if (stepper.isCurrent("subscriptor-data")) {
     return SubscriptorDataStep;
+  } else if (stepper.isCurrent("otp")) {
+    return OtpStep;
   } else if (stepper.isCurrent("payment-report")) {
     return PaymentReportStep;
   } else if (stepper.isCurrent("status")) {
@@ -76,6 +85,8 @@ const nextBtnLabel = computed(() => {
     return form.status === "success"
       ? "Regresar al inicio"
       : "Intentar de nuevo";
+  } else if (stepper.isCurrent("otp")) {
+    return "Solicitar clave";
   } else if (stepper.isCurrent("payment-report")) {
     return "Pagar";
   } else {
@@ -182,6 +193,157 @@ async function miBancoPayment() {
   try {
     form.status = "pending";
 
+    const getShortFormatDate = () =>
+      new Date()
+        .toISOString()
+        .replace(/\.(\d{3})Z$/, "")
+        .replace("T", "")
+        .replaceAll("-", "")
+        .replaceAll(":", "");
+    const getTimeFormatDate = () =>
+      new Date().toISOString().replace(/\.(\d{3})Z$/, "") + "Z";
+    const msgId = `000101${getShortFormatDate()}00000000`;
+
+    // Procesar pago
+    const paymentBody = {
+      CstmrDrctDbtInitn: {
+        GrpHdr: {
+          MsgId: msgId,
+          CreDtTm: getTimeFormatDate(),
+          NbOfTxs: 1,
+          // CtrlSum: 10.01,
+          CtrlSum: Number(form.amount),
+          InitgPty: {
+            Id: {
+              PrvtId: {
+                Othr: {
+                  Id: "800001",
+                },
+              },
+            },
+          },
+          InitnSrc: {
+            Nm: "1234",
+            Prvdr: "SBTC",
+            Vrsn: "1.0.1",
+          },
+        },
+        PmtInf: [
+          {
+            Cdtr: {
+              // Nombre Acreedor
+              Nm: form.fullName,
+              Id: {
+                PrvtId: {
+                  Othr: {
+                    // Id: "V15555666",
+                    Id: form.ci,
+                    SchmeNm: {
+                      Cd: "SCID",
+                    },
+                  },
+                },
+              },
+            },
+            CdtrAcct: {
+              Prxy: {
+                Tp: {
+                  Cd: "CELE",
+                },
+                // Id: "00011234567890123456",
+                Id: form.phone,
+              },
+            },
+            CdtrAgt: {
+              FinInstnId: {
+                ClrSysMmbId: {
+                  ClrSysId: {
+                    Cd: "NCCE",
+                  },
+                  // MmbId: "0102",
+                  MmbId: form.bank,
+                },
+              },
+            },
+            DrctDbtTxInf: [
+              {
+                PmtId: {
+                  // InstrId: "20c6d352-68c1-4b58-b1d1-afad41b8229f",
+                  InstrId: crypto.randomUUID(),
+                },
+                PmtTpInf: {
+                  LclInstrm: {
+                    Cd: "050",
+                  },
+                },
+                InstdAmt: {
+                  // Amt: 10.01,
+                  Amt: Number(form.amount),
+                  Ccy: "VES",
+                },
+                DbtrAgt: {
+                  FinInstnId: {
+                    ClrSysMmbId: {
+                      ClrSysId: {
+                        Cd: "NCCE",
+                      },
+                      MmbId: "0105",
+                    },
+                  },
+                },
+                Dbtr: {
+                  // Nm: "Nombre Deudor",
+                  Nm: form.fullName,
+                  Id: {
+                    PrvtId: {
+                      Othr: {
+                        // Id: "V15555666",
+                        Id: form.ci,
+                        SchmeNm: {
+                          Cd: "SCID",
+                        },
+                      },
+                    },
+                  },
+                },
+                DbtrAcct: {
+                  Prxy: {
+                    Tp: {
+                      // Cd: "CNTA",
+                      Cd: "CELE",
+                    },
+                    // Id: "00011234567890123456",
+                    Id: form.phone,
+                  },
+                },
+                Purp: {
+                  Cd: "002",
+                },
+                RmtInf: {
+                  Ustrd: "DESCRIPCION DEL COBRO",
+                },
+              },
+            ],
+          },
+        ],
+      },
+    };
+
+    await executeMiBancoPayment(paymentBody);
+
+    notification.resolve("Pago procesado correctamente");
+    form.status = "success";
+    stepper.goToNext();
+  } catch (error) {
+    notification.error("Hubo un error al procesar el pago");
+    form.status = "error";
+  }
+}
+
+async function miBancoOtpRequest() {
+  const notification = push.promise("Solicitando clave...");
+
+  try {
     const getShortFormatDate = () =>
       new Date()
         .toISOString()
@@ -323,139 +485,10 @@ async function miBancoPayment() {
 
     await executeRequestMiBancoOTP(otpBody);
 
-    // Procesar pago
-    const paymentBody = {
-      CstmrDrctDbtInitn: {
-        GrpHdr: {
-          MsgId: msgId,
-          CreDtTm: getTimeFormatDate(),
-          NbOfTxs: 1,
-          // CtrlSum: 10.01,
-          CtrlSum: Number(form.amount),
-          InitgPty: {
-            Id: {
-              PrvtId: {
-                Othr: {
-                  Id: "800001",
-                },
-              },
-            },
-          },
-          InitnSrc: {
-            Nm: "1234",
-            Prvdr: "SBTC",
-            Vrsn: "1.0.1",
-          },
-        },
-        PmtInf: [
-          {
-            Cdtr: {
-              // Nombre Acreedor
-              Nm: form.fullName,
-              Id: {
-                PrvtId: {
-                  Othr: {
-                    // Id: "V15555666",
-                    Id: form.ci,
-                    SchmeNm: {
-                      Cd: "SCID",
-                    },
-                  },
-                },
-              },
-            },
-            CdtrAcct: {
-              Prxy: {
-                Tp: {
-                  Cd: "CELE",
-                },
-                // Id: "00011234567890123456",
-                Id: form.phone,
-              },
-            },
-            CdtrAgt: {
-              FinInstnId: {
-                ClrSysMmbId: {
-                  ClrSysId: {
-                    Cd: "NCCE",
-                  },
-                  // MmbId: "0102",
-                  MmbId: form.bank,
-                },
-              },
-            },
-            DrctDbtTxInf: [
-              {
-                PmtId: {
-                  // InstrId: "20c6d352-68c1-4b58-b1d1-afad41b8229f",
-                  InstrId: crypto.randomUUID(),
-                },
-                PmtTpInf: {
-                  LclInstrm: {
-                    Cd: "050",
-                  },
-                },
-                InstdAmt: {
-                  // Amt: 10.01,
-                  Amt: Number(form.amount),
-                  Ccy: "VES",
-                },
-                DbtrAgt: {
-                  FinInstnId: {
-                    ClrSysMmbId: {
-                      ClrSysId: {
-                        Cd: "NCCE",
-                      },
-                      MmbId: "0105",
-                    },
-                  },
-                },
-                Dbtr: {
-                  // Nm: "Nombre Deudor",
-                  Nm: form.fullName,
-                  Id: {
-                    PrvtId: {
-                      Othr: {
-                        // Id: "V15555666",
-                        Id: form.ci,
-                        SchmeNm: {
-                          Cd: "SCID",
-                        },
-                      },
-                    },
-                  },
-                },
-                DbtrAcct: {
-                  Prxy: {
-                    Tp: {
-                      // Cd: "CNTA",
-                      Cd: "CELE",
-                    },
-                    // Id: "00011234567890123456",
-                    Id: form.phone,
-                  },
-                },
-                Purp: {
-                  Cd: "002",
-                },
-                RmtInf: {
-                  Ustrd: "DESCRIPCION DEL COBRO",
-                },
-              },
-            ],
-          },
-        ],
-      },
-    };
-
-    await executeMiBancoPayment(paymentBody);
-
-    notification.resolve("Pago procesado correctamente");
-    form.status = "success";
+    notification.resolve("Clave de pago solicitada");
     stepper.goToNext();
   } catch (error) {
-    notification.error("Hubo un error al procesar el pago");
-    form.status = "error";
+    notification.error("Hubo un error al solicitar la clave de pago");
   }
 }
 
@@ -491,7 +524,8 @@ function pagoMovilValidation() {
       form.phone.length > 0 &&
       form.ci.length > 0 &&
       form.bank.length > 0 &&
-      form.paymentDate.length > 0
+      form.paymentDate.length > 0 && 
+      form.otp!.length > 0
     )
   }
 
@@ -543,12 +577,17 @@ async function submit() {
     }
   }
 
-  if (stepper.isCurrent("payment-report") && !stepper.current.value.isValid()) {
+  if (stepper.isCurrent("otp")) {
+    await miBancoOtpRequest();
+    return;
+  }
+
+  if (stepper.isCurrent("payment-report") && !stepper.current.value!.isValid()) {
     push.info("Debe completar todos los campos");
     return;
   }
 
-  if (stepper.isCurrent("payment-report") && stepper.current.value.isValid()) {
+  if (stepper.isCurrent("payment-report") && stepper.current.value!.isValid()) {
     if (paymentMethod.value === "pagoMovil") {
       pagoMovilPayment();
     } else if (paymentMethod.value === "transference") {
@@ -560,7 +599,7 @@ async function submit() {
 
   if (form.status === "error") stepper.goTo("subscriptor-data");
   if (form.status === "success" && stepper.isLast.value) router.push("/");
-  if (stepper.current.value.isValid()) stepper.goToNext();
+  if (stepper.current.value!.isValid()) stepper.goToNext();
 }
 
 function allStepsBeforeAreValid(index: number): boolean {
@@ -579,7 +618,7 @@ provide("stepper", stepper);
     <app-stepper :stepper="stepper" :check-disabled="allStepsBeforeAreValid" />
     <div class="wizard payment-section">
       <h3>Confirmación de Pagos TV por cable</h3>
-      <h5>{{ stepper.current.value.title }}</h5>
+      <h5>{{ stepper.current.value!.title }}</h5>
 
       <form @submit.prevent="submit">
         <transition

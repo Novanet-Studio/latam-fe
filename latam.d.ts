@@ -48,6 +48,7 @@ declare namespace Latam {
     status: '' | 'error' | 'pending' | 'success';
     accountNumber?: string;
     reference?: string;
+    otp?: string;
   }
 
   interface UserData {

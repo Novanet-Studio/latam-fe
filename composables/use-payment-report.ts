@@ -77,6 +77,7 @@ export default async function (method = "bancoTesoro") {
       reference: values.reference,
       bank: values.bank,
       amount: transformAmount(form.amount),
+      otp: values.otp,
     } as Partial<Latam.Form>;
   };
 
