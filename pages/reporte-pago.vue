@@ -33,6 +33,8 @@ const form = reactive<Latam.Form>({
   status: "", // error | pending | success
 });
 
+const showOtp = ref(false)
+
 const activeComponent = computed(() =>
   isAuthenticated.value ? AppWizard : AppLogin
 );
@@ -43,6 +45,7 @@ provide("paymentOption", paymentOption)
 provide("userData", userData);
 provide("isLoading", isLoading);
 provide("isAuthenticated", isAuthenticated);
+provide("showOtp", showOtp);
 </script>
 
 <template>

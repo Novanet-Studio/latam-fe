@@ -15,6 +15,7 @@ const isLoading = ref(false);
 const form = inject("form") as Latam.Form;
 const paymentMethod = inject("paymentMethod") as Ref<Latam.PaymentMethod>;
 const paymentOption = inject("paymentOption") as Ref<Latam.PaymentOption>;
+const showOtp = inject("showOtp") as Ref<boolean>;
 const billingData = reactive<Latam.Billing>({
   IDFactura: 0,
   detalle: "",
@@ -44,12 +45,6 @@ const stepper = useStepper({
     title: "Datos del subscriptor",
     isValid: () => true,
   },
-  ...(paymentOption.value === "miBanco" ? ({
-    "otp": {
-      title: "Solicita tu clave de pago",
-      isValid: () => true,
-    }
-  }) : {}),
   "payment-report": {
     title: "Reporte de pago",
     isValid: () => checkPaymentReportValidation(),
@@ -67,8 +62,6 @@ const activeComponent = computed(() => {
     return PaymentOptionStep;
   } else if (stepper.isCurrent("subscriptor-data")) {
     return SubscriptorDataStep;
-  } else if (stepper.isCurrent("otp")) {
-    return OtpStep;
   } else if (stepper.isCurrent("payment-report")) {
     return PaymentReportStep;
   } else if (stepper.isCurrent("status")) {
@@ -85,10 +78,10 @@ const nextBtnLabel = computed(() => {
     return form.status === "success"
       ? "Regresar al inicio"
       : "Intentar de nuevo";
-  } else if (stepper.isCurrent("otp")) {
+  } else if (stepper.isCurrent("payment-report") && !showOtp.value) {
     return "Solicitar clave";
-  } else if (stepper.isCurrent("payment-report")) {
-    return "Pagar";
+  } else if (stepper.isCurrent("payment-report") && showOtp.value) {
+    return "Confirmar";
   } else {
     return "Siguiente";
   }
@@ -486,7 +479,8 @@ async function miBancoOtpRequest() {
     await executeRequestMiBancoOTP(otpBody);
 
     notification.resolve("Clave de pago solicitada");
-    stepper.goToNext();
+    showOtp.value = true
+    stepper.goTo("payment-report");
   } catch (error) {
     notification.error("Hubo un error al solicitar la clave de pago");
   }
@@ -494,12 +488,17 @@ async function miBancoOtpRequest() {
 
 async function pagoMovilPayment() {
   if (paymentOption.value === "bancoTesoro") {
-    btPayment();
+    await btPayment();
     return;
   }
 
-  if (paymentOption.value === "miBanco") {
-    miBancoPayment();
+  if (paymentOption.value === "miBanco" && !showOtp.value) {
+    await miBancoOtpRequest();
+    return;
+  }
+
+  if (paymentOption.value === "miBanco" && showOtp.value) {
+    await miBancoPayment();
     return;
   }
 
@@ -519,7 +518,16 @@ function checkPaymentReportValidation() {
 }
 
 function pagoMovilValidation() {
-  if (paymentOption.value === "miBanco") {
+  if (paymentOption.value === "miBanco" && !showOtp.value) {
+    return (
+      form.phone.length > 0 &&
+      form.ci.length > 0 &&
+      form.bank.length > 0 &&
+      form.paymentDate.length > 0
+    )
+  }
+
+  if (paymentOption.value === "miBanco" && showOtp.value) {
     return (
       form.phone.length > 0 &&
       form.ci.length > 0 &&
@@ -577,10 +585,10 @@ async function submit() {
     }
   }
 
-  if (stepper.isCurrent("otp")) {
-    await miBancoOtpRequest();
-    return;
-  }
+  // if (stepper.isCurrent("otp")) {
+  //   await miBancoOtpRequest();
+  //   return;
+  // }
 
   if (stepper.isCurrent("payment-report") && !stepper.current.value!.isValid()) {
     push.info("Debe completar todos los campos");

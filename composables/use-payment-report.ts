@@ -66,6 +66,7 @@ export default async function (method = "bancoTesoro") {
         ci: values.ci,
         bank: values.bank,
         dynamicKey: values.dynamicKey,
+        ...(values.otp ? { otp: values.otp } : {}),
       };
 
       return payload;
