@@ -3,26 +3,65 @@ import successImage from "../assets/images/success.svg";
 import errorImage from "../assets/images/error.svg";
 
 const form = inject("form") as Latam.Form;
-
 const stepper = inject("stepper") as any;
-const isSuccessful = ref(form.status === "success" || false);
+const isSuccessful = computed(() => form.status === "success" || false);
+const isPending = computed(() => form.status === "pending" || false);
+const isError = computed(() => form.status === "error" || false);
+
+const title = computed(() => {
+  if (isSuccessful.value) {
+    return "¡Exitoso!";
+  }
+
+  if (isPending.value) {
+    return "Procesando...";
+  }
+
+  return "Rechazado";
+})
+
+const statusText = computed(() => {
+  if (isSuccessful.value) {
+    return "Gracias por su pago";
+  } 
+  
+  if (isPending.value) {
+    return "Esperando respuesta...";
+  }
+  
+  return "Por favor inténtelo nuevamente";
+})
+
+const image = computed(() => {
+  if (isSuccessful.value) {
+    return {
+      url: successImage,
+      alt: "Success Icon"
+    };
+  }
+
+  if (isError.value) {
+    return {
+      url: errorImage,
+      alt: "Error Icon"
+    };
+  }
+
+  return {
+    url: null,
+    alt: null
+  }
+})
 </script>
 
 <template>
   <div v-if="stepper.isCurrent('status')" class="message-wrapper">
-    <div class="icon-wrapper" :class="{ error: !isSuccessful }">
-      <img :src="isSuccessful ? successImage : errorImage" alt="Success Icon" />
+    <AppLoader text="" v-if="isPending" />
+    <div v-if="!isPending" class="icon-wrapper" :class="{ error: isError }">
+      <img v-if="image.url" :src="image.url" alt="Success Icon" />
     </div>
-    <span class="message__title" :class="{ 'error': !isSuccessful }">{{
-      isSuccessful ? "¡Exitoso!" : "Rechazado"
-    }}</span>
-    <span class="message__text">
-      {{
-        isSuccessful
-          ? "Gracias por su pago"
-          : "Por favor inténtelo nuevamente"
-      }}
-    </span>
+    <span class="message__title" :class="{ 'error': isError }">{{ title }}</span>
+    <span class="message__text">{{ statusText }}</span>
   </div>
 </template>
 

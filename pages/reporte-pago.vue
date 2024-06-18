@@ -72,6 +72,7 @@ watch(data, () => {
           title: "Estatus de pago",
           message: getCode(statusCode),
         })
+        form.status = "success";
       } else {
         push.error({
           title: "Estatus de pago",

@@ -56,9 +56,18 @@ export default function useStepperApp() {
 
   const nextBtnLabel = computed(() => {
     if (stepper.isLast.value) {
-      return form.status === "success"
-        ? "Regresar al inicio"
-        : "Intentar de nuevo";
+      if (form.status === "success") {
+        return "Regresar al inicio";
+      }
+
+      if (form.status === "pending") {
+        return "...";
+      }
+
+      return "Intentar de nuevo"
+      // return form.status === "success"
+      //   ? "Regresar al inicio"
+      //   : "Intentar de nuevo";
     } else if (stepper.isCurrent("payment-report") && !showOtp.value) {
       return "Solicitar clave";
     } else if (stepper.isCurrent("payment-report") && showOtp.value) {

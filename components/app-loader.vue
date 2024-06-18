@@ -1,7 +1,17 @@
+<script setup lang="ts">
+interface Props {
+  text?: string
+}
+
+withDefaults(defineProps<Props>(), {
+  text: "Espera un momento..."
+})
+</script>
+
 <template>
   <div class="loader-wrapper">
     <div class="loader"></div>
-    <p class="loader__text">Espera un momento...</p>
+    <p class="loader__text">{{ text }}</p>
   </div>
 </template>
 

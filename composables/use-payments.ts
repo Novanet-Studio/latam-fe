@@ -271,8 +271,8 @@ export default function usePayments({
       localStorage.setItem("msgId", btoa(msgId));
       open()
 
-      notification.resolve("Pago procesado correctamente");
-      form.status = "success";
+      notification.resolve("Pago enviado correctamente");
+      // form.status = "success";
       stepper.goToNext();
     } catch (error) {
       notification.error("Hubo un error al procesar el pago");
