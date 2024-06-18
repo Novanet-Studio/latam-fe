@@ -2,6 +2,11 @@
 import AppLogin from "~/components/app-login.vue";
 import AppWizard from "~/components/app-wizard.vue";
 
+const { status, data, error, close, open } = useEventSource("http://localhost:8001/api/v1/mibanco/notify", undefined, {
+  immediate: false,
+  autoReconnect: true
+});
+
 useHead({
   meta: [
     {
@@ -46,6 +51,23 @@ provide("userData", userData);
 provide("isLoading", isLoading);
 provide("isAuthenticated", isAuthenticated);
 provide("showOtp", showOtp);
+provide("sse", { status, data, error, close, open });
+
+watch(data, () => {
+  if (status.value === "OPEN" && data.value) {
+    const msgId = atob(localStorage.getItem("msgId") || "");
+    const parsed = JSON.parse(data.value);
+
+    if (msgId === parsed.CstmrPmtStsRpt.GrpHdr.MsgId) {
+      alert("Mensaje recibido")
+    }
+
+    console.log("DATA =>", parsed);
+    setTimeout(() => {
+      close()
+    }, 3000)
+  }
+})
 </script>
 
 <template>

@@ -12,6 +12,7 @@ export default function usePayments({
   const form = inject("form") as Latam.Form;
   const paymentOption = inject("paymentOption") as Ref<Latam.PaymentOption>;
   const showOtp = inject("showOtp") as Ref<boolean>;
+  const { open } = inject("sse") as any;
 
   const {
     executeBtPay,
@@ -263,6 +264,10 @@ export default function usePayments({
       };
 
       await executeMiBancoPayment(paymentBody);
+
+      // When payment is executed, then we open the connection
+      localStorage.setItem("msgId", btoa(msgId));
+      open()
 
       notification.resolve("Pago procesado correctamente");
       form.status = "success";
