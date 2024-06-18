@@ -2,7 +2,10 @@
 import AppLogin from "~/components/app-login.vue";
 import AppWizard from "~/components/app-wizard.vue";
 
-const { status, data, error, close, open } = useEventSource("http://localhost:8001/api/v1/mibanco/notify", undefined, {
+const { public: { latamServicesApiUrl } } = useRuntimeConfig();
+const NOTIFY_SSE_URL = `${latamServicesApiUrl}/api/v1/mibanco/notify`;
+
+const { status, data, error, close, open } = useEventSource(NOTIFY_SSE_URL, undefined, {
   immediate: false,
   autoReconnect: true
 });
