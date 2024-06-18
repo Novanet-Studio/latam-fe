@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AppLogin from "~/components/app-login.vue";
 import AppWizard from "~/components/app-wizard.vue";
+import { getCode } from "~/data/codes"
 
 const { public: { latamServicesApiUrl } } = useRuntimeConfig();
 const NOTIFY_SSE_URL = `${latamServicesApiUrl}/api/v1/mibanco/notify`;
@@ -62,10 +63,22 @@ watch(data, () => {
     const parsed = JSON.parse(data.value);
 
     if (msgId === parsed.CstmrPmtStsRpt.GrpHdr.MsgId) {
-      alert("Mensaje recibido")
+      const statusCode = parsed.CstmrPmtStsRpt.OrgnlGrpInfAndSts.GrpSts;
+
+      if (statusCode === "ACCP") {
+        push.success({
+          title: "Estatus de pago",
+          message: getCode(statusCode),
+        })
+      } else {
+        push.error({
+          title: "Estatus de pago",
+          message: getCode(statusCode),
+        })
+      }
+
     }
 
-    console.log("DATA =>", parsed);
     setTimeout(() => {
       close()
     }, 3000)

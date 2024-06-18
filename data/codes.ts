@@ -1,7 +1,7 @@
 /**
  * Listado de codigos retornados por el SSE para las transacciones de Mi Banco
  */
-const codes = {
+export const codes: { [key: string]: string } = {
   AB01: 'Tiempo de espera agotado',
   AB07: 'Agente fuera de línea',
   AC00: 'Operación en Espera de Respuesta del Receptor',
@@ -36,6 +36,10 @@ const codes = {
   TKCM: 'Código único de operación de débito incorrecto.',
   TM01: 'Fuera del horario permitido',
   VE01: 'Rechazo técnico'
+}
+
+export function getCode(code: string): string {
+  return codes[code]
 }
 
 export default codes
