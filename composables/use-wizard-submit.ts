@@ -9,7 +9,7 @@ export default function useWizardSubmit({
 }: UseWizardParams) {
   const form = inject("form") as Latam.Form;
   const paymentMethod = inject("paymentMethod") as Ref<Latam.PaymentMethod>;
-  const isLoading = inject("isLoading") as Ref<boolean>;
+  const isSending = inject("isSending") as Ref<boolean>;
 
   const { executeCheckDebts } = useLatamServices();
   const { pagoMovilPayment, transferencePayment } = usePayments({
@@ -22,7 +22,7 @@ export default function useWizardSubmit({
   async function submit() {
     if (stepper.isCurrent("subscriptor-data")) {
       const notification = push.promise("Procesando solicitud...");
-      isLoading.value = true;
+      isSending.value = true;
 
       try {
         const { data: billing } = await executeCheckDebts(form.ci);
@@ -43,7 +43,7 @@ export default function useWizardSubmit({
       } catch (error: any) {
         notification.reject(error.message);
       } finally {
-        isLoading.value = false;
+        isSending.value = false;
       }
     }
 

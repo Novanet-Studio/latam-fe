@@ -2,8 +2,8 @@
 import AppStepper from "./app-stepper.vue";
 
 const isNextClicked = ref(false);
-const isLoading = ref(false);
 const form = inject("form") as Latam.Form;
+const isSending = inject("isSending") as Ref<boolean>;
 const billingData = reactive<Latam.Billing>({
   IDFactura: 0,
   detalle: "",
@@ -72,9 +72,9 @@ provide("stepper", stepper);
               submit();
             }
           "
-          :disabled="isLoading"
+          :disabled="isSending"
         >
-          {{ isLoading ? "Verificando..." : nextBtnLabel }}
+          {{ isSending ? "Verificando..." : nextBtnLabel }}
         </button>
       </div>
     </div>

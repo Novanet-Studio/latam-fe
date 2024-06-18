@@ -22,6 +22,7 @@ useHead({
 
 const isAuthenticated = ref(false);
 const isLoading = ref(false);
+const isSending = ref(false);
 const paymentMethod = ref<Latam.PaymentMethod>("pagoMovil");
 const paymentOption = ref<Latam.PaymentOption>("");
 const userData = reactive<Latam.UserData>({
@@ -53,6 +54,7 @@ provide("paymentMethod", paymentMethod)
 provide("paymentOption", paymentOption)
 provide("userData", userData);
 provide("isLoading", isLoading);
+provide("isSending", isSending);
 provide("isAuthenticated", isAuthenticated);
 provide("showOtp", showOtp);
 provide("sse", { status, data, error, close, open });

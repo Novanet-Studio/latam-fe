@@ -12,6 +12,7 @@ export default function usePayments({
   const form = inject("form") as Latam.Form;
   const paymentOption = inject("paymentOption") as Ref<Latam.PaymentOption>;
   const showOtp = inject("showOtp") as Ref<boolean>;
+  const isSending = inject("isSending") as Ref<boolean>;
   const { open } = inject("sse") as any;
 
   const {
@@ -122,6 +123,7 @@ export default function usePayments({
     const notification = push.promise("Procesando pago...");
 
     try {
+      isSending.value = true
       form.status = "pending";
 
       const getShortFormatDate = () =>
@@ -275,6 +277,8 @@ export default function usePayments({
     } catch (error) {
       notification.error("Hubo un error al procesar el pago");
       form.status = "error";
+    } finally {
+      isSending.value = false
     }
   }
 
@@ -282,6 +286,7 @@ export default function usePayments({
     const notification = push.promise("Solicitando clave...");
 
     try {
+      isSending.value = true
       const getShortFormatDate = () =>
         new Date()
           .toISOString()
@@ -429,6 +434,8 @@ export default function usePayments({
     } catch (error) {
       console.log("error =>", error);
       notification.error("Hubo un error al solicitar la clave de pago");
+    } finally {
+      isSending.value = false
     }
   }
 
