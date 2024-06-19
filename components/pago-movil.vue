@@ -40,6 +40,10 @@ const typeOptions = [
     value: "V",
   },
   {
+    text: "E",
+    value: "E",
+  },
+  {
     text: "J",
     value: "J"
   },
