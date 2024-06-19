@@ -166,6 +166,8 @@ watch(values, async () => {
 </template>
 
 <style lang="scss" scoped>
+@import "@/assets/scss/_mixins.scss";
+
 .main-section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -191,5 +193,23 @@ watch(values, async () => {
 
 .group :deep(.formulario__form__grupo label[for="type"]) {
   margin-left: 1rem !important;
+}
+
+/*---- 
+  Small Desktop (1280px)
+----*/
+@include responsive(80em) {
+  .main-section .group :deep(.formulario__form__grupo #ci) {
+    width: 10rem !important;
+  }
+}
+
+/*---- 
+  Large Desktop (1920px)
+----*/
+@include responsive(120em) {
+  .main-section .group {
+    justify-content: center;
+  }
 }
 </style>
