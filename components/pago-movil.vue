@@ -2,9 +2,9 @@
 import { useForm } from "vee-validate";
 
 const form = inject("form") as Latam.Form;
+const showOtp = inject("showOtp") as Ref<boolean>;
 const paymentOption = inject("paymentOption") as Ref<Latam.PaymentOption>;
 const paymentMethod = inject("paymentMethod") as Ref<Latam.PaymentMethod>;
-const showOtp = inject("showOtp") as Ref<boolean>;
 
 const { copy, copied } = useClipboard({
   legacy: true,
@@ -31,6 +31,21 @@ const { setFieldValue, values, validate } = useForm({
   },
   validationSchema: schema,
 });
+
+const typeOptions = [
+  {
+    text: "V",
+    value: "V",
+  },
+  {
+    text: "J",
+    value: "J"
+  },
+  {
+    text: "P",
+    value: "P"
+  }
+]
 
 setFieldValue("amount", "Bs.S " + form.amount);
 
@@ -69,7 +84,24 @@ watch(values, async () => {
       name="phone"
       placeholder="Ejemplo: 04123456789"
     />
+    <div class="group" v-if="paymentOption === 'bancoTesoro'">
+      <select-input
+        label="Tipo"
+        id="type"
+        name="type"
+        default-text="Tipo de documento"
+        :options="typeOptions"
+      />
+      <base-input
+        style="width: 12rem;"
+        label="Cédula de identidad"
+        id="ci"
+        name="ci"
+        placeholder="Ejemplo: 00000000"
+      />
+    </div>
     <base-input
+      v-else
       label="Cédula de identidad"
       id="ci"
       name="ci"
@@ -138,5 +170,24 @@ watch(values, async () => {
   place-items: center;
   gap: 1rem;
   margin-top: 3rem;
+}
+
+.main-section .group {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+
+  :deep(.formulario__form__grupo #ci) {
+    width: 15rem !important;
+  }
+}
+
+.group :deep(.formulario__form__grupo #type) {
+  width: 4rem !important;
+  margin-left: 1rem !important;
+}
+
+.group :deep(.formulario__form__grupo label[for="type"]) {
+  margin-left: 1rem !important;
 }
 </style>

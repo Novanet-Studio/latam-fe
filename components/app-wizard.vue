@@ -17,7 +17,7 @@ const submit = useWizardSubmit({
   billingData
 })
 
-// stepper.goTo("status");
+// stepper.goTo("payment-report");
 
 provide("stepper", stepper);
 </script>

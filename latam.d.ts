@@ -49,6 +49,7 @@ declare namespace Latam {
     accountNumber?: string;
     reference?: string;
     otp?: string;
+    type?: 'V' | 'P' | 'J' | ''; 
   }
 
   interface UserData {

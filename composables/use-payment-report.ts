@@ -23,17 +23,23 @@ export default async function (method = "bancoTesoro") {
 
   const schema = object({
     phone: string().required("El campo es requerido"),
-    ci: string()
-      .required("El campo es requerido")
-      .test(
-        "regex",
-        "Formato de cédula incorrecto",
-        (item: any, _content: any) => {
-          const ciRegex = /^V\d{6,}$/;
+    ...(method === "bancoTesoro"
+      ? {
+          ci: string()
+            .required("El campo es requerido")
+            .test(
+              "regex",
+              "Formato de cédula incorrecto",
+              (item: any, _content: any) => {
+                const ciRegex = /^V\d{6,}$/;
 
-          return ciRegex.test(item);
+                return ciRegex.test(item);
+              }
+            ),
         }
-      ),
+      : {
+          ci: string().required("El campo es requerido"),
+        }),
     bank: string().required("El campo es requerido"),
     paymentDate: date().required("El campo es requerido"),
     ...(method === "bancoTesoro"
@@ -67,6 +73,7 @@ export default async function (method = "bancoTesoro") {
         bank: values.bank,
         dynamicKey: values.dynamicKey,
         ...(values.otp ? { otp: values.otp } : {}),
+        ...(values.type ? { type: values.type } : {}),
       };
 
       return payload;

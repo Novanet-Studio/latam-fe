@@ -33,7 +33,7 @@ export default function usePayments({
       const paymentBody = {
         celular: form.phone,
         banco: form.bank,
-        cedula: form.ci,
+        cedula: `${form.type}${form.ci}`,
         monto: form.vesAmount,
         token: form.dynamicKey,
         nombre: form.fullName,

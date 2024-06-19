@@ -3,7 +3,7 @@
     <label class="formulario__form__label" :for="id">
       {{ label }}
     </label>
-    <input class="formulario__form__input" :class="[errorMessage && 'input-error']" :id="id" :type="type"
+    <input v-bind="$attrs" class="formulario__form__input" :class="[errorMessage && 'input-error']" :id="id" :type="type"
       v-model="value" :disabled="disabled" :placeholder="placeholder" :readonly="readonly" />
     <div class="error">{{ errorMessage }}</div>
   </div>

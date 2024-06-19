@@ -1,7 +1,7 @@
 export default function useValidations() {
   const form = inject("form") as Latam.Form;
-  const paymentOption = inject("paymentOption") as Ref<Latam.PaymentOption>;
   const showOtp = inject("showOtp") as Ref<boolean>;
+  const paymentOption = inject("paymentOption") as Ref<Latam.PaymentOption>;
   const paymentMethod = inject("paymentMethod") as Ref<Latam.PaymentMethod>;
 
   function pagoMovilValidation() {
@@ -29,7 +29,8 @@ export default function useValidations() {
       form.ci.length > 0 &&
       form.bank.length > 0 &&
       form.paymentDate.length > 0 &&
-      form.dynamicKey.length > 0
+      form.dynamicKey.length > 0 &&
+      form.type!.length > 0
     );
   }
 

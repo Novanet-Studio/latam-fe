@@ -64,13 +64,20 @@ export default function useStepperApp() {
         return "...";
       }
 
-      return "Intentar de nuevo"
-      // return form.status === "success"
-      //   ? "Regresar al inicio"
-      //   : "Intentar de nuevo";
-    } else if (stepper.isCurrent("payment-report") && !showOtp.value) {
+      return "Intentar de nuevo";
+    } else if (
+      stepper.isCurrent("payment-report") &&
+      paymentOption.value === "miBanco" &&
+      !showOtp.value
+    ) {
       return "Solicitar clave";
-    } else if (stepper.isCurrent("payment-report") && showOtp.value) {
+    } else if (
+      (stepper.isCurrent("payment-report") &&
+        paymentOption.value === "miBanco" &&
+        showOtp.value) ||
+      (stepper.isCurrent("payment-report") &&
+        paymentOption.value === "bancoTesoro")
+    ) {
       return "Confirmar";
     } else {
       return "Siguiente";
