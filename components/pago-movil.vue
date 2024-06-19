@@ -20,6 +20,8 @@ const {
 } = await usePaymentReport(paymentMethod.value);
 const vesUsd = useBcvUsd();
 
+paymentOption.value = "bancoTesoro";
+
 const { setFieldValue, values, validate } = useForm({
   initialValues: {
     phone: "",
