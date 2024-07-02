@@ -2,7 +2,8 @@
 import successImage from "../assets/images/success.svg";
 import errorImage from "../assets/images/error.svg";
 
-const form = inject("form") as Latam.Form;
+// const form = inject("form") as Latam.Form;
+const form = { status: "success" }
 const stepper = inject("stepper") as any;
 const isSuccessful = computed(() => form.status === "success" || false);
 const isPending = computed(() => form.status === "pending" || false);

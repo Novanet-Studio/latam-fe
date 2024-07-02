@@ -17,7 +17,7 @@ const submit = useWizardSubmit({
   billingData
 })
 
-// stepper.goTo("payment-report");
+stepper.goTo("payment-report");
 
 provide("stepper", stepper);
 </script>
@@ -201,13 +201,18 @@ provide("stepper", stepper);
 
     &__footer {
       margin-top: 1rem;
+      width: 100%;
+
+      &--full {
+        width: 100%;
+      }
 
       & .wizard__btn {
         width: 50%;
         min-width: 50%;
 
         &--full {
-          width: 25rem !important;
+          width: 100% !important;
         }
       }
     }

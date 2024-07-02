@@ -199,10 +199,53 @@ watch(values, async () => {
   margin-left: 1rem !important;
 }
 
+/*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+@include responsive(20em) {
+  .main-section {
+    margin-top: 1rem;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0;
+
+    .group :deep(.formulario__form__grupo #type) {
+      width: 3rem !important;
+      margin-left: 0;
+    }
+
+    .group :deep(.formulario__form__grupo #ci) {
+      width: 10rem !important;
+    }
+  }
+}
+
+/*---- 
+  Tablet Portrait (768px)
+----*/
+@include responsive(48em) {
+  .main-section {
+    .group { width: 28rem; }
+
+    .group :deep(.formulario__form__grupo #type) {
+      width: 4rem !important;
+    }
+
+    .group :deep(.formulario__form__grupo #ci) {
+      width: 20rem !important;
+    }
+  }
+}
+
 /*---- 
   Small Desktop (1280px)
 ----*/
 @include responsive(80em) {
+  .main-section {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .main-section .group {
+    width: 18rem;
+  }
+
   .main-section .group :deep(.formulario__form__grupo #ci) {
     width: 10rem !important;
   }
