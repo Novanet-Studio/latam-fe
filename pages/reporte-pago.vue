@@ -63,11 +63,9 @@ watch(data, () => {
   if (status.value === "OPEN" && data.value) {
     const msgId = atob(localStorage.getItem("msgId") || "");
     const parsed = JSON.parse(data.value);
+    const statusCode = parsed.CstmrPmtStsRpt.OrgnlGrpInfAndSts.GrpSts;
 
-    if (msgId === parsed.CstmrPmtStsRpt.GrpHdr.MsgId) {
-      const statusCode = parsed.CstmrPmtStsRpt.OrgnlGrpInfAndSts.GrpSts;
-
-      if (statusCode === "ACCP") {
+    if (statusCode === "ACCP") {
         push.success({
           title: "Estatus de pago",
           message: getCode(statusCode),
@@ -81,6 +79,8 @@ watch(data, () => {
         form.status = "error";
       }
 
+    if (msgId === parsed.CstmrPmtStsRpt.GrpHdr.MsgId) {
+      //TODO: verify if its the same request (?)
     }
 
     setTimeout(() => {
