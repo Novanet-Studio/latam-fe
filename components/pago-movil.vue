@@ -21,6 +21,7 @@ const {
 } = await usePaymentReport(paymentMethod.value);
 const vesUsd = useBcvUsd();
 
+// Get banks from json
 const banksOptions = banks.map(({ legalName, code }) => ({
   text: legalName,
   value: code
