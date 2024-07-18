@@ -63,6 +63,18 @@ watch(data, () => {
   if (status.value === "OPEN" && data.value) {
     const msgId = atob(localStorage.getItem("msgId") || "");
     const parsed = JSON.parse(data.value);
+
+    // This means something went wrong
+    if (parsed?.message === "OK") {
+      push.warning({
+        title: "Estatus de pago",
+        message: "Se ha producido un inconveniente al procesar el pago. Por favor intenta de nuevo.",
+      })
+
+      form.status = "error";
+      close()
+    }
+    
     const statusCode = parsed.CstmrPmtStsRpt.OrgnlGrpInfAndSts.GrpSts;
 
     if (statusCode === "ACCP") {
