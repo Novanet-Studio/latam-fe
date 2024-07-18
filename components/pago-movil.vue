@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useForm } from "vee-validate";
+import banks from "@/data/banks.json"
 
 const form = inject("form") as Latam.Form;
 const showOtp = inject("showOtp") as Ref<boolean>;
@@ -14,11 +15,16 @@ const {
   dateLocale,
   amountVes,
   schema,
-  banksOptions,
+  // banksOptions,
   capitalize,
   handlePayload,
 } = await usePaymentReport(paymentMethod.value);
 const vesUsd = useBcvUsd();
+
+const banksOptions = banks.map(({ legalName, code }) => ({
+  text: legalName,
+  value: code
+}))
 
 const { setFieldValue, values, validate } = useForm({
   initialValues: {
