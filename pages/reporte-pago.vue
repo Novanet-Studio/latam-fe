@@ -44,6 +44,7 @@ const form = reactive<Latam.Form>({
 });
 
 const showOtp = ref(false)
+const count = ref(0)
 
 const activeComponent = computed(() =>
   isAuthenticated.value ? AppWizard : AppLogin
@@ -60,6 +61,8 @@ provide("showOtp", showOtp);
 provide("sse", { status, data, error, close, open });
 
 watch(data, () => {
+  console.log('status ->', status.value)
+  console.log('data ->', data.value)
   if (status.value === "OPEN" && data.value) {
     const msgId = atob(localStorage.getItem("msgId") || "");
     const parsed = JSON.parse(data.value);
@@ -68,11 +71,12 @@ watch(data, () => {
     if (parsed?.message === "OK") {
       push.warning({
         title: "Estatus de pago",
-        message: "Se ha producido un inconveniente al procesar el pago. Por favor intenta de nuevo.",
+        message: "El pago ha sido aceptado, mas no procesado, revise sus datos o intente mas tarde",
       })
 
-      form.status = "error";
+      form.status = "success";
       close()
+      return
     }
     
     const statusCode = parsed.CstmrPmtStsRpt.OrgnlGrpInfAndSts.GrpSts;
@@ -98,6 +102,21 @@ watch(data, () => {
     setTimeout(() => {
       close()
     }, 3000)
+  }
+})
+
+watch(error, () => {
+  if (error.value) {
+    count.value++
+  }
+
+  if (count.value === 5) {
+    push.error({
+      title: "Estatus de pago",
+      message: "No hubo respuesta del servidor.",
+    })
+    form.status = "error";
+    close()
   }
 })
 </script>

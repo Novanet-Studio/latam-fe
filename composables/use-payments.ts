@@ -265,7 +265,14 @@ export default function usePayments({
         },
       };
 
-      await executeMiBancoPayment(paymentBody);
+      const { error } = await executeMiBancoPayment(paymentBody)
+
+      if (error.value?.message) {
+        notification.error("Hubo un error al procesar el pago");
+        form.status = "error";
+        stepper.goToNext();
+        return
+      }
 
       // When payment is executed, then we open the connection
       localStorage.setItem("msgId", btoa(msgId));
