@@ -55,6 +55,11 @@ export default function useWizardSubmit({
       return;
     }
 
+    if (stepper.isCurrent('payment-report') && (form.otp!.length < 6 || form.otp!.length > 6)) {
+      push.info("La clave pago debe contener 6 digitos");
+      return;
+    }
+
     if (
       stepper.isCurrent("payment-report") &&
       stepper.current.value!.isValid()
