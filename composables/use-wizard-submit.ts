@@ -10,6 +10,7 @@ export default function useWizardSubmit({
   const form = inject("form") as Latam.Form;
   const paymentMethod = inject("paymentMethod") as Ref<Latam.PaymentMethod>;
   const isSending = inject("isSending") as Ref<boolean>;
+  const showOtp = inject("showOtp") as Ref<boolean>;
 
   const { executeCheckDebts } = useLatamServices();
   const { pagoMovilPayment, transferencePayment } = usePayments({
@@ -55,7 +56,7 @@ export default function useWizardSubmit({
       return;
     }
 
-    if (stepper.isCurrent('payment-report') && (form.otp!.length < 6 || form.otp!.length > 6)) {
+    if (stepper.isCurrent('payment-report') && showOtp.value && (form.otp!.length < 6 || form.otp!.length > 6)) {
       push.info("La clave pago debe contener 6 digitos");
       return;
     }
