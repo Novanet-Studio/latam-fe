@@ -79,7 +79,18 @@ watch(data, () => {
       return
     }
     
-    const statusCode = parsed.CstmrPmtStsRpt.OrgnlGrpInfAndSts.GrpSts;
+    const statusCode = parsed?.CstmrPmtStsRpt?.OrgnlGrpInfAndSts?.GrpSts;
+
+    if (!statusCode) {
+      push.warning({
+        title: "Estatus de pago",
+        message: "El pago ha sido aceptado, mas no procesado, revise sus datos o intente mas tarde",
+      })
+
+      form.status = "success";
+      close()
+      return
+    }
 
     if (statusCode === "ACCP") {
         push.success({
