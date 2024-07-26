@@ -6,7 +6,7 @@ import { getCode } from "~/data/codes"
 const { public: { latamServicesApiUrl } } = useRuntimeConfig();
 const NOTIFY_SSE_URL = `${latamServicesApiUrl}/api/v1/mibanco/notify`;
 
-const { status, data, error, close, open } = useEventSource(NOTIFY_SSE_URL, undefined, {
+const { status, data, error, close, open  } = useEventSource(NOTIFY_SSE_URL, undefined, {
   immediate: false,
   autoReconnect: true
 });
@@ -45,6 +45,7 @@ const form = reactive<Latam.Form>({
 
 const showOtp = ref(false)
 const count = ref(0)
+const retries = ref(0)
 
 const activeComponent = computed(() =>
   isAuthenticated.value ? AppWizard : AppLogin
@@ -67,19 +68,27 @@ watch(data, () => {
     const msgId = atob(localStorage.getItem("msgId") || "");
     const parsed = JSON.parse(data.value);
 
+    if (retries.value === 5) {
+      form.status = "error";
+      close()
+      return
+    }
+
     // This means something went wrong
     if (parsed?.message === "OK") {
       push.warning({
         title: "Estatus de pago",
-        message: "El pago ha sido aceptado, mas no procesado, revise sus datos o intente mas tarde",
+        message: "Esperando respuesta...",
       })
 
-      form.status = "success";
-      close()
+      // form.status = "success";
+      // close()
+      retries.value++
       return
     }
     
     const statusCode = parsed?.CstmrPmtStsRpt?.OrgnlGrpInfAndSts?.GrpSts;
+    const identificator = parsed?.OrgnlPmtInfAndSts?.TxInfAndSts[0]?.OrgnlTxRef?.Dbtr?.Id?.PrvtId?.Othr?.Id;
 
     if (!statusCode) {
       push.warning({
@@ -92,7 +101,8 @@ watch(data, () => {
       return
     }
 
-    if (statusCode === "ACCP") {
+    if (form.ci === identificator) {
+     if (statusCode === "ACCP") {
         push.success({
           title: "Estatus de pago",
           message: getCode(statusCode),
@@ -105,14 +115,24 @@ watch(data, () => {
         })
         form.status = "error";
       }
-
-    if (msgId === parsed.CstmrPmtStsRpt.GrpHdr.MsgId) {
-      //TODO: verify if its the same request (?)
     }
 
     setTimeout(() => {
       close()
     }, 3000)
+  }
+})
+
+watch(retries, () => {
+  if (retries.value > 0) {
+    push.clearAll()
+    push.promise('Esperando respuesta...')
+  }
+
+  if (retries.value === 5) {
+    push.clearAll()
+    push.error('No hubo respuesta del servidor.')
+    retries.value = 0
   }
 })
 

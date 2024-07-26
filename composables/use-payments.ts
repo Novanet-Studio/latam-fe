@@ -276,7 +276,9 @@ export default function usePayments({
 
       // When payment is executed, then we open the connection
       localStorage.setItem("msgId", btoa(msgId));
-      open()
+      setTimeout(() => {
+        open()
+      }, 1000)
 
       notification.resolve("Pago enviado correctamente");
       // form.status = "success";
