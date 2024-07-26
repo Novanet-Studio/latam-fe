@@ -156,7 +156,7 @@ export default function usePayments({
               },
             },
             InitnSrc: {
-              Nm: "1234",
+              Nm: "0071",
               Prvdr: "SBTC",
               Vrsn: "1.0.1",
             },
@@ -165,14 +165,14 @@ export default function usePayments({
             {
               Cdtr: {
                 // Nombre Acreedor
-                Nm: form.fullName,
+                Nm: "Latin American Cable",
                 Id: {
                   PrvtId: {
                     Othr: {
                       // Id: "V15555666",
-                      Id: form.ci,
+                      Id: "J298946229",
                       SchmeNm: {
-                        Cd: "SCID",
+                        Cd: "SRIF",
                       },
                     },
                   },
@@ -181,10 +181,10 @@ export default function usePayments({
               CdtrAcct: {
                 Prxy: {
                   Tp: {
-                    Cd: "CELE",
+                    Cd: "CNTA",
                   },
                   // Id: "00011234567890123456",
-                  Id: form.phone,
+                  Id: "01690001041000579342",
                 },
               },
               CdtrAgt: {
@@ -194,7 +194,7 @@ export default function usePayments({
                       Cd: "NCCE",
                     },
                     // MmbId: "0102",
-                    MmbId: form.bank,
+                    MmbId: "0106",
                   },
                 },
               },
