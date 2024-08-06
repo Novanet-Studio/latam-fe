@@ -1,6 +1,6 @@
 export default function transformAmount(amount: string, pretty = false) {
   const [val, decimal] = amount.split('.');
-  const quote = `${val}.${decimal.slice(0, 2)}`;
+  const quote = `${val}.${decimal?.slice(0, 2) ?? '00'}`;
 
   if (pretty) {
     return quote.replace('.', ',')
