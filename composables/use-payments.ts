@@ -281,7 +281,7 @@ export default function usePayments({
         open()
       }, 1000)
 
-      notification.resolve("Pago enviado correctamente");
+      notification.resolve("Conexión con el banco exitosa");
       // form.status = "success";
       stepper.goToNext();
     } catch (error) {
