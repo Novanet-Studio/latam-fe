@@ -341,13 +341,13 @@ export default function usePayments({
               Id: {
                 PrvtId: {
                   Othr: {
-                    Id: "800001",
+                    Id: "0071",
                   },
                 },
               },
             },
             InitnSrc: {
-              Nm: "50001",
+              Nm: "0071",
               Prvdr: "SBTC",
               Vrsn: "1.0",
             },
@@ -360,7 +360,7 @@ export default function usePayments({
                 Amt: Number(form.amount),
               },
               MndtRltdInf: {
-                MndtId: "00012020062418222012345671",
+                MndtId: "01691234563993136694",
                 Tp: {
                   LclInstrm: {
                     Cd: "050",
@@ -385,7 +385,7 @@ export default function usePayments({
                   PrvtId: {
                     // Bussines Data
                     Othr: {
-                      Id: "J123456789",
+                      Id: "J298946229",
                       SchmeNm: {
                         Cd: "SRIF",
                       },
@@ -428,7 +428,7 @@ export default function usePayments({
                   Tp: {
                     Cd: "CNTA",
                   },
-                  Id: "01691234567890123456",
+                  Id: "01690001041000579342",
                 },
               },
             },
