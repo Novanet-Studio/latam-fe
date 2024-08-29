@@ -13,7 +13,7 @@ useHead({
     <section class="hero">
       <div class="hero__mensaje">
         <div class="hero__mensaje__box">
-          <div class="hero__mensaje__icon"></div>
+          <div class="hero__mensaje__icon--contacto"></div>
           <div class="hero__mensaje__info">
             <h1 class="hero__mensaje__title">Contáctanos</h1>
             <p class="hero__mensaje__text">
