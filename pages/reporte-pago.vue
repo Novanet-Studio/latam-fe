@@ -87,7 +87,7 @@ watch(data, () => {
       return
     }
     
-    const statusCode = parsed?.CstmrPmtStsRpt?.OrgnlGrpInfAndSts?.GrpSts;
+    const statusCode = parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0]?.TxSts;
     const identificator = parsed?.CstmrPmtStsRpt.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0]?.OrgnlTxRef?.Dbtr?.Id?.PrvtId?.Othr?.Id;
 
     if (!statusCode) {
@@ -102,19 +102,20 @@ watch(data, () => {
     }
 
     if (form.ci === identificator) {
-     if (statusCode === "ACCP") {
-        push.success({
-          title: "Estatus de pago",
-          message: getCode(statusCode),
-        })
-        form.status = "success";
-      } else {
-        push.error({
-          title: "Estatus de pago",
-          message: getCode(statusCode),
-        })
-        form.status = "error";
+      const isSuccess = statusCode === "ACCP"
+
+      const options = {
+        title: 'Estatus de pago',
+        message: getCode(statusCode)
       }
+      
+      if (isSuccess) {
+        push.success(options)
+      } else {
+        push.error(options)
+      }
+
+      form.status = isSuccess ? "success" : "error";
     }
 
     setTimeout(() => {
