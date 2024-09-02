@@ -87,7 +87,8 @@ watch(data, () => {
       return
     }
     
-    const statusCode = parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0]?.TxSts;
+    const statusInfo = parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0];
+    const statusCode = statusInfo?.TxSts;
     const identificator = parsed?.CstmrPmtStsRpt.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0]?.OrgnlTxRef?.Dbtr?.Id?.PrvtId?.Othr?.Id;
 
     if (!statusCode) {
@@ -112,7 +113,11 @@ watch(data, () => {
       if (isSuccess) {
         push.success(options)
       } else {
-        push.error(options)
+        const reasonCode = statusInfo?.StsRsnInf?.Rsn?.Cd ?? statusCode
+        push.error({
+          title: "Estatus de pago",
+          message: getCode(reasonCode),
+        })
       }
 
       form.status = isSuccess ? "success" : "error";
