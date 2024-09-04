@@ -45,13 +45,29 @@ const typeOptions = [
     value: "V",
   },
   {
+    text: 'E',
+    value: 'E',
+  },
+  {
     text: "J",
     value: "J"
   },
   {
     text: "P",
     value: "P"
-  }
+  },
+  {
+    text: 'R',
+    value: 'R',
+  },
+  {
+    text: 'G',
+    value: 'G',
+  },
+  {
+    text: 'C',
+    value: 'C',
+  },
 ]
 
 setFieldValue("amount", "Bs.S " + form.amount);
@@ -91,7 +107,7 @@ watch(values, async () => {
       name="phone"
       placeholder="Ejemplo: 04123456789"
     />
-    <div class="group" v-if="paymentOption === 'bancoTesoro'">
+    <div class="group">
       <select-input
         label="Tipo"
         id="type"
@@ -107,13 +123,13 @@ watch(values, async () => {
         placeholder="Ejemplo: 00000000"
       />
     </div>
-    <base-input
+    <!-- <base-input
       v-else
       label="Cédula de identidad"
       id="ci"
       name="ci"
       placeholder="Ejemplo: V00000000"
-    />
+    /> -->
     <select-input
       label="Banco emisor"
       id="bank"
