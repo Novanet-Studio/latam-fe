@@ -145,7 +145,7 @@ export default function usePayments({
             CreDtTm: getTimeFormatDate(),
             NbOfTxs: 1,
             // CtrlSum: 10.01,
-            CtrlSum: Number(form.amount),
+            CtrlSum: Number(form.vesAmount.replace(',', '.')),
             InitgPty: {
               Id: {
                 PrvtId: {
@@ -214,7 +214,7 @@ export default function usePayments({
                   },
                   InstdAmt: {
                     // Amt: 10.01,
-                    Amt: Number(form.amount),
+                    Amt: Number(form.vesAmount.replace(',', '.')),
                     Ccy: "VES",
                   },
                   DbtrAgt: {
@@ -357,7 +357,7 @@ export default function usePayments({
               InstdAmt: {
                 Ccy: "VES",
                 // Amt: 18.01,
-                Amt: Number(form.amount),
+                Amt: Number(form.vesAmount.replace(',', '.')),
               },
               MndtRltdInf: {
                 MndtId: "01691234563993136694",
