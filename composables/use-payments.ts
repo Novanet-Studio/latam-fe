@@ -235,7 +235,7 @@ export default function usePayments({
                       PrvtId: {
                         Othr: {
                           // Id: "V15555666",
-                          Id: form.ci,
+                          Id: `${form.type}${form.ci}`,
                           SchmeNm: {
                             Cd: "SCID",
                           },
@@ -372,7 +372,7 @@ export default function usePayments({
                   PrvtId: {
                     Othr: {
                       // Id: "V19458201",
-                      Id: form.ci,
+                      Id: `${form.type}${form.ci}`,
                       SchmeNm: {
                         Cd: "SCID",
                       },
