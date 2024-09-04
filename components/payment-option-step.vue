@@ -38,6 +38,7 @@ const option = inject("paymentOption") as Ref<Latam.PaymentOption>;
   border: 4px solid transparent;
   border-radius: 50%;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .selected {
