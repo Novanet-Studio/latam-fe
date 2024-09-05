@@ -52,6 +52,7 @@ export default function usePayments({
 
       if (paymentError.value?.data?.error) {
         notification.reject(paymentError.value?.data?.error);
+        form.status = "error";
         return;
       }
 
@@ -81,6 +82,7 @@ export default function usePayments({
 
       if (conformationError.value?.data?.error) {
         notification.reject(conformationError.value?.data?.error);
+        form.status = "error";
         return;
       }
 
@@ -102,11 +104,13 @@ export default function usePayments({
 
       if (registerPaymentError.value?.data?.error) {
         notification.reject(registerPaymentError.value?.data?.error);
+        form.status = "error";
         return;
       }
 
       if (response.value?.code === "170") {
         notification.reject(response.value?.mensaje);
+        form.status = "error";
         return;
       }
 
