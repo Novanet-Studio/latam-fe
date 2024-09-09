@@ -62,8 +62,6 @@ provide("showOtp", showOtp);
 provide("sse", { status, data, error, close, open });
 
 watch(data, () => {
-  // console.log('status ->', status.value)
-  // console.log('data ->', data.value)
   if (status.value === "OPEN" && data.value) {
     const msgId = atob(localStorage.getItem("msgId") || "");
     const parsed = JSON.parse(data.value);
