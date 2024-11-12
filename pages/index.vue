@@ -76,7 +76,7 @@ try {
         href="http://8.243.249.70:8922/"
         target="_blank"
         class="pago__boton"
-        >Notifíque su pago aquí</a
+        >Notifíque su pago C2P aquí</a
       >
     </section>
 
