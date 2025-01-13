@@ -127,7 +127,7 @@ export default function usePayments({
     const notification = push.promise("Procesando pago...");
 
     try {
-      isSending.value = true
+      isSending.value = true;
       form.status = "pending";
 
       const getShortFormatDate = () =>
@@ -149,7 +149,7 @@ export default function usePayments({
             CreDtTm: getTimeFormatDate(),
             NbOfTxs: 1,
             // CtrlSum: 10.01,
-            CtrlSum: Number(form.vesAmount.replace(',', '.')),
+            CtrlSum: Number(form.vesAmount.replace(",", ".")),
             InitgPty: {
               Id: {
                 PrvtId: {
@@ -218,7 +218,7 @@ export default function usePayments({
                   },
                   InstdAmt: {
                     // Amt: 10.01,
-                    Amt: Number(form.vesAmount.replace(',', '.')),
+                    Amt: Number(form.vesAmount.replace(",", ".")),
                     Ccy: "VES",
                   },
                   DbtrAgt: {
@@ -270,20 +270,20 @@ export default function usePayments({
         },
       };
 
-      const { error } = await executeMiBancoPayment(paymentBody)
+      const { error } = await executeMiBancoPayment(paymentBody);
 
       if (error.value?.message) {
         notification.error("Hubo un error al procesar el pago");
         form.status = "error";
         stepper.goToNext();
-        return
+        return;
       }
 
       // When payment is executed, then we open the connection
       localStorage.setItem("msgId", btoa(msgId));
       setTimeout(() => {
-        open()
-      }, 1000)
+        open();
+      }, 1000);
 
       notification.resolve("Conexión con el banco exitosa");
       // form.status = "success";
@@ -292,7 +292,7 @@ export default function usePayments({
       notification.error("Hubo un error al procesar el pago");
       form.status = "error";
     } finally {
-      isSending.value = false
+      isSending.value = false;
     }
   }
 
@@ -300,7 +300,7 @@ export default function usePayments({
     const notification = push.promise("Solicitando clave...");
 
     try {
-      isSending.value = true
+      isSending.value = true;
       const getShortFormatDate = () =>
         new Date()
           .toISOString()
@@ -361,7 +361,7 @@ export default function usePayments({
               InstdAmt: {
                 Ccy: "VES",
                 // Amt: 18.01,
-                Amt: Number(form.vesAmount.replace(',', '.')),
+                Amt: Number(form.vesAmount.replace(",", ".")),
               },
               MndtRltdInf: {
                 MndtId: "01691234563993136694",
@@ -440,6 +440,8 @@ export default function usePayments({
         },
       };
 
+      console.log(`<<< otpBody >>>`, otpBody);
+
       await executeRequestMiBancoOTP(otpBody);
 
       notification.resolve("Clave de pago solicitada");
@@ -449,7 +451,7 @@ export default function usePayments({
       console.log("error =>", error);
       notification.error("Hubo un error al solicitar la clave de pago");
     } finally {
-      isSending.value = false
+      isSending.value = false;
     }
   }
 

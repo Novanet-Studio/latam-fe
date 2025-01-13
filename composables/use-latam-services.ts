@@ -24,18 +24,28 @@ interface ConformationResponse {
   status: "OK" | "Error";
 }
 
-export default function() {
+interface BcvUsdResponse {
+  fuente: string;
+  nombre: string;
+  compra?: any;
+  venta?: any;
+  promedio: number;
+  fechaActualizacion: string;
+}
+
+export default function () {
   const { latamServicesApiUrl } = useRuntimeConfig().public;
 
   const URL = `${latamServicesApiUrl}/api/v1`;
 
+  //? Users - Mikrowisp
   async function executeGetClientDetails(ci: string) {
     return useFetch<any>(`${URL}/user/get-client-details`, {
       method: "POST",
       body: {
         cedula: ci,
-      }
-    })
+      },
+    });
   }
 
   async function executeCheckDebts(ci: string) {
@@ -43,60 +53,77 @@ export default function() {
       method: "POST",
       body: {
         cedula: ci,
-      }
-    })
+      },
+    });
   }
 
   async function executeRegisterPay(body = {}) {
     return useFetch<Latam.BillingResponse>(`${URL}/user/registrar-pago`, {
       method: "POST",
-      body
-    })
+      body,
+    });
   }
 
+  //? BtD - Banco del Tesoro
   async function executeGetBanks(body = {}) {
     return useFetch<BankData[]>(`${URL}/bt/bancos`, {
       method: "POST",
-      body
-    })
+      body,
+    });
   }
-  
+
   async function executeBtPay(body = {}) {
     return useFetch<PaymentResponse>(`${URL}/bt/pago`, {
       method: "POST",
-      body
-    })
+      body,
+    });
   }
 
   async function executeConformation(body = {}) {
     return useFetch<ConformationResponse>(`${URL}/bt/conformacion`, {
       method: "POST",
-      body
-    })
+      body,
+    });
   }
 
+  //? MB - MiBanco
   async function executeRequestMiBancoOTP(body = {}) {
     return useFetch(`${URL}/mibanco/request-otp`, {
       method: "POST",
-      body
-    })
+      body,
+    });
   }
 
   async function executeMiBancoPayment(body = {}) {
     return useFetch(`${URL}/mibanco/pay`, {
       method: "POST",
-      body
-    })
+      body,
+    });
+  }
+
+  //? UsdVes - current usd/ves convertion
+  async function executeGetUsdVesConvertion() {
+    return useFetch<BcvUsdResponse>(`${URL}/usdVes/get-usd-ves-rate-1`, {
+      method: "GET",
+    });
   }
 
   return {
+    //? Users - Mikrowisp
     executeGetClientDetails,
     executeCheckDebts,
     executeRegisterPay,
+
+    //? BtD - Banco del Tesoro
     executeGetBanks,
     executeBtPay,
     executeConformation,
+
+    //? MB - MiBanco
     executeRequestMiBancoOTP,
-    executeMiBancoPayment
-  }
+    executeMiBancoPayment,
+
+    //? UsdVes - current usd/ves convertion
+    executeGetUsdVesConvertion,
+  };
 }

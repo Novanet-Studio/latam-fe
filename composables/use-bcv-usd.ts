@@ -8,19 +8,15 @@ interface BcvUsdResponse {
 }
 
 export default function useBcvUsd() {
-  const { bcvUsdApi } = useRuntimeConfig().public;
   const usd = ref("");
 
-  /*
-  04242785127
-  3413756
-  */
+  const { executeGetUsdVesConvertion } = useLatamServices();
 
   onMounted(async () => {
     try {
-      const response = await fetch(bcvUsdApi);
-      const result: BcvUsdResponse = await response.json();
-      const quote = transformAmount(String(result.promedio));
+      const { data: result } = await executeGetUsdVesConvertion();
+
+      const quote = transformAmount(String(result.value?.promedio));
 
       usd.value = quote;
     } catch (err) {
