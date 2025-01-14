@@ -44,8 +44,13 @@ export default function usePayments({
       );
 
       if (!payment?.value?.referencia) {
-        notification.reject(payment.value?.descRes);
         form.status = "error";
+
+        if (payment.value?.descRes) {
+          form.errorMessage = payment.value?.descRes;
+        }
+
+        notification.reject(payment.value?.descRes);
         stepper.goToNext();
         return;
       }
@@ -274,6 +279,11 @@ export default function usePayments({
 
       if (error.value?.message) {
         notification.error("Hubo un error al procesar el pago");
+
+        if (error.value?.message) {
+          form.errorMessage = error.value?.message;
+        }
+
         form.status = "error";
         stepper.goToNext();
         return;
