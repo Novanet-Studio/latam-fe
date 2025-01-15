@@ -275,7 +275,11 @@ export default function usePayments({
         },
       };
 
+      console.log(`<<< paymentBody >>>`, paymentBody);
+
       const { error } = await executeMiBancoPayment(paymentBody);
+
+      console.log(`<<< error >>>`, error);
 
       if (error.value?.message) {
         notification.error("Hubo un error al procesar el pago");
@@ -285,6 +289,7 @@ export default function usePayments({
         }
 
         form.status = "error";
+       
         stepper.goToNext();
         return;
       }
@@ -300,6 +305,7 @@ export default function usePayments({
       stepper.goToNext();
     } catch (error) {
       notification.error("Hubo un error al procesar el pago");
+      form.errorMessage = "Error al procesar el pago";
       form.status = "error";
     } finally {
       isSending.value = false;
@@ -460,6 +466,7 @@ export default function usePayments({
     } catch (error) {
       console.log("error =>", error);
       notification.error("Hubo un error al solicitar la clave de pago");
+      form.errorMessage = "Error al solicitar la clave de pago";
     } finally {
       isSending.value = false;
     }

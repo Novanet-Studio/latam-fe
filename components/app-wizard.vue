@@ -10,12 +10,18 @@ const billingData = reactive<Latam.Billing>({
   valor: "",
 });
 
-const { stepper, activeComponent, isFirstOrLast, nextBtnLabel, allStepsBeforeAreValid } = useStepperApp()
+const {
+  stepper,
+  activeComponent,
+  isFirstOrLast,
+  nextBtnLabel,
+  allStepsBeforeAreValid,
+} = useStepperApp();
 
 const submit = useWizardSubmit({
   stepper,
-  billingData
-})
+  billingData,
+});
 
 // stepper.goTo("payment-report");
 

@@ -56,7 +56,11 @@ export default function useWizardSubmit({
       return;
     }
 
-    if (stepper.isCurrent('payment-report') && showOtp.value && (form.otp!.length < 6)) {
+    if (
+      stepper.isCurrent("payment-report") &&
+      showOtp.value &&
+      form.otp!.length < 6
+    ) {
       push.info("La clave pago debe contener al menos 6 digitos");
       return;
     }
@@ -76,7 +80,11 @@ export default function useWizardSubmit({
 
     if (form.status === "error") stepper.goTo("subscriptor-data");
     if (form.status === "success" && stepper.isLast.value) router.push("/");
-    if (stepper.current.value!.isValid()) stepper.goToNext();
+    if (stepper.current.value!.isValid()) {
+      console.log(`<<< volver al principio >>>`);
+      
+      stepper.goToNext();
+    }
   }
 
   return submit;

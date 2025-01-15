@@ -1,15 +1,21 @@
 <script setup lang="ts">
 import AppLogin from "~/components/app-login.vue";
 import AppWizard from "~/components/app-wizard.vue";
-import { getCode } from "~/data/codes"
+import { getCode } from "~/data/codes";
 
-const { public: { latamServicesApiUrl } } = useRuntimeConfig();
+const {
+  public: { latamServicesApiUrl },
+} = useRuntimeConfig();
 const NOTIFY_SSE_URL = `${latamServicesApiUrl}/api/v1/mibanco/notify`;
 
-const { status, data, error, close, open  } = useEventSource(NOTIFY_SSE_URL, undefined, {
-  immediate: false,
-  autoReconnect: true
-});
+const { status, data, error, close, open } = useEventSource(
+  NOTIFY_SSE_URL,
+  undefined,
+  {
+    immediate: false,
+    autoReconnect: true,
+  }
+);
 
 useHead({
   meta: [
@@ -40,20 +46,21 @@ const form = reactive<Latam.Form>({
   bank: "",
   paymentDate: "",
   dynamicKey: "",
-  status: "", // error | pending | success
+  status: "",
+  errorMessage: "",
 });
 
-const showOtp = ref(false)
-const count = ref(0)
-const retries = ref(0)
+const showOtp = ref(false);
+const count = ref(0);
+const retries = ref(0);
 
 const activeComponent = computed(() =>
   isAuthenticated.value ? AppWizard : AppLogin
 );
 
 provide("form", form);
-provide("paymentMethod", paymentMethod)
-provide("paymentOption", paymentOption)
+provide("paymentMethod", paymentMethod);
+provide("paymentOption", paymentOption);
 provide("userData", userData);
 provide("isLoading", isLoading);
 provide("isSending", isSending);
@@ -68,8 +75,8 @@ watch(data, () => {
 
     if (retries.value === 5) {
       form.status = "error";
-      close()
-      return
+      close();
+      return;
     }
 
     // This means something went wrong
@@ -77,83 +84,88 @@ watch(data, () => {
       push.warning({
         title: "Estatus de pago",
         message: "Esperando respuesta...",
-      })
+      });
 
-      // form.status = "success";
-      // close()
-      retries.value++
-      return
+      retries.value++;
+      return;
     }
-    
-    const statusInfo = parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0];
+
+    const statusInfo =
+      parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0];
     const statusCode = statusInfo?.TxSts;
-    const identificator = parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0]?.OrgnlTxRef?.Dbtr?.Id?.PrvtId?.Othr?.Id;
+    const identificator =
+      parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0]?.OrgnlTxRef
+        ?.Dbtr?.Id?.PrvtId?.Othr?.Id;
 
     if (!statusCode) {
       push.warning({
         title: "Estatus de pago",
-        message: "El pago ha sido aceptado, mas no procesado, revise sus datos o intente mas tarde",
-      })
+        message:
+          "El pago ha sido aceptado, mas no procesado, revise sus datos o intente mas tarde",
+      });
 
       form.status = "success";
-      close()
-      return
+      close();
+      return;
     }
 
     if (form.ci === identificator) {
-      const isSuccess = statusCode === "ACCP"
+      const isSuccess = statusCode === "ACCP";
 
       const options = {
-        title: 'Estatus de pago',
-        message: getCode(statusCode)
-      }
-      
+        title: "Estatus de pago",
+        message: getCode(statusCode),
+      };
+
       if (isSuccess) {
-        push.success(options)
+        push.success(options);
       } else {
-        const reasonCode = statusInfo?.StsRsnInf?.Rsn?.Cd ?? statusCode
+        const reasonCode = statusInfo?.StsRsnInf?.Rsn?.Cd ?? statusCode;
         push.error({
           title: "Estatus de pago",
           message: getCode(reasonCode),
-        })
+        });
       }
 
       form.status = isSuccess ? "success" : "error";
     }
 
     setTimeout(() => {
-      close()
-    }, 3000)
+      close();
+    }, 3000);
   }
-})
+});
 
 watch(retries, () => {
   if (retries.value > 0) {
-    push.clearAll()
-    push.promise('Esperando respuesta...')
+    push.clearAll();
+    push.promise("Esperando respuesta...");
   }
 
   if (retries.value === 5) {
-    push.clearAll()
-    push.error('No hubo respuesta del servidor.')
-    retries.value = 0
+    push.clearAll();
+    push.error("No hubo respuesta del servidor.");
+
+    retries.value = 0;
   }
-})
+});
 
 watch(error, () => {
   if (error.value) {
-    count.value++
+    count.value++;
   }
 
   if (count.value === 5) {
     push.error({
       title: "Estatus de pago",
       message: "No hubo respuesta del servidor.",
-    })
+    });
+
     form.status = "error";
-    close()
+    form.errorMessage = "No hubo respuesta del servicio de pago";
+    close();
   }
-})
+});
 </script>
 
 <template>
