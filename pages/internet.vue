@@ -54,7 +54,7 @@ const loadingText = (price: string) =>
       <div class="hero__internet">
         <a
           class="hero__internet__box"
-          href="http://8.243.249.70:8922/"
+          href="http://190.52.105.146:8922"
           target="_blank"
         >
           <div class="hero__internet__icon"></div>
