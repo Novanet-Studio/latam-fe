@@ -1,12 +1,3 @@
-interface BcvUsdResponse {
-  fuente: string;
-  nombre: string;
-  compra?: any;
-  venta?: any;
-  promedio: number;
-  fechaActualizacion: string;
-}
-
 export default function useBcvUsd() {
   const usd = ref("");
 
@@ -16,7 +7,9 @@ export default function useBcvUsd() {
     try {
       const { data: result } = await executeGetUsdVesConvertion();
 
-      const quote = transformAmount(String(result.value?.promedio));
+      console.log(`<<< result >>>`, result);
+
+      const quote = transformAmount(String(result.value?.rate));
 
       usd.value = quote;
     } catch (err) {

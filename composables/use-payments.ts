@@ -301,7 +301,7 @@ export default function usePayments({
       }, 1000);
 
       notification.resolve("Conexión con el banco exitosa");
-      // form.status = "success";
+       form.status = "success";
       stepper.goToNext();
     } catch (error) {
       notification.error("Hubo un error al procesar el pago");

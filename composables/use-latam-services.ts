@@ -25,12 +25,8 @@ interface ConformationResponse {
 }
 
 interface BcvUsdResponse {
-  fuente: string;
-  nombre: string;
-  compra?: any;
-  venta?: any;
-  promedio: number;
-  fechaActualizacion: string;
+  status: "ERROR" | "SUCCESS";
+  rate: number;
 }
 
 export default function () {
@@ -103,7 +99,7 @@ export default function () {
 
   //? UsdVes - current usd/ves convertion
   async function executeGetUsdVesConvertion() {
-    return useFetch<BcvUsdResponse>(`${URL}/usdVes/get-usd-ves-rate-1`, {
+    return useFetch<BcvUsdResponse>(`${URL}/usdVes/get-usd-ves-current`, {
       method: "GET",
     });
   }
