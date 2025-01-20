@@ -91,12 +91,18 @@ watch(data, () => {
       return;
     }
 
+    console.log(`<<< parsed >>>`, parsed);
+
     const statusInfo =
       parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0];
     const statusCode = statusInfo?.TxSts;
     const identificator =
       parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0]?.OrgnlTxRef
         ?.Dbtr?.Id?.PrvtId?.Othr?.Id;
+
+    console.log(`<<< statusInfo`, statusInfo);
+    console.log(`<<< statusCode`, statusCode);
+    console.log(`<<< identificator`, identificator);
 
     if (!statusCode) {
       push.warning({
