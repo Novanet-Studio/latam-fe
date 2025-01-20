@@ -11,19 +11,19 @@ export default function useValidations() {
         form.ci.length > 0 &&
         form.bank.length > 0 &&
         form.paymentDate.length > 0
-      )
+      );
     }
-  
+
     if (paymentOption.value === "miBanco" && showOtp.value) {
       return (
         form.phone.length > 0 &&
         form.ci.length > 0 &&
         form.bank.length > 0 &&
-        form.paymentDate.length > 0 && 
+        form.paymentDate.length > 0 &&
         form.otp!.length > 0
-      )
+      );
     }
-  
+
     return (
       form.phone.length > 0 &&
       form.ci.length > 0 &&
@@ -47,17 +47,17 @@ export default function useValidations() {
     if (paymentMethod.value === "pagoMovil") {
       return pagoMovilValidation();
     }
-  
+
     if (paymentMethod.value === "transference") {
       return transferenceValidation();
     }
-  
+
     return false;
   }
 
   return {
     pagoMovilValidation,
     transferenceValidation,
-    checkPaymentReportValidation
-  }
+    checkPaymentReportValidation,
+  };
 }

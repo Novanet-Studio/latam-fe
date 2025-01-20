@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppLogin from "~/components/app-login.vue";
 import AppWizard from "~/components/app-wizard.vue";
-import { getCode } from "~/data/codes";
+import { getCode, getFailureReason } from "~/data/codes";
 
 const {
   public: { latamServicesApiUrl },
@@ -69,8 +69,9 @@ provide("showOtp", showOtp);
 provide("sse", { status, data, error, close, open });
 
 watch(data, () => {
+  const { stepper } = useStepperApp();
+
   if (status.value === "OPEN" && data.value) {
-    const msgId = atob(localStorage.getItem("msgId") || "");
     const parsed = JSON.parse(data.value);
 
     if (retries.value === 5) {
@@ -93,9 +94,6 @@ watch(data, () => {
     const statusInfo =
       parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0];
     const statusCode = statusInfo?.TxSts;
-    const identificator =
-      parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0]?.OrgnlTxRef
-        ?.Dbtr?.Id?.PrvtId?.Othr?.Id;
 
     if (!statusCode) {
       push.warning({
@@ -106,28 +104,32 @@ watch(data, () => {
 
       form.status = "success";
       close();
+
       return;
     }
 
-    if (form.ci === identificator) {
-      const isSuccess = statusCode === "ACCP";
+    const isSuccess = statusCode === "ACCP";
 
-      const options = {
+    const options = {
+      title: "Estatus de pago",
+      message: getCode(statusCode),
+    };
+
+    if (!isSuccess) {
+      close();
+
+      const reasonCode = statusInfo?.StsRsnInf?.Rsn?.Cd ?? statusCode;
+
+      push.error({
         title: "Estatus de pago",
-        message: getCode(statusCode),
-      };
+        message: getFailureReason(reasonCode),
+      });
 
-      if (isSuccess) {
-        push.success(options);
-      } else {
-        const reasonCode = statusInfo?.StsRsnInf?.Rsn?.Cd ?? statusCode;
-        push.error({
-          title: "Estatus de pago",
-          message: getCode(reasonCode),
-        });
-      }
+      form.status = "error";
 
-      form.status = isSuccess ? "success" : "error";
+      form.errorMessage = getFailureReason(reasonCode);
+
+      stepper.goToNext();
     }
 
     setTimeout(() => {

@@ -7,8 +7,6 @@ export default function useBcvUsd() {
     try {
       const { data: result } = await executeGetUsdVesConvertion();
 
-      console.log(`<<< result >>>`, result);
-
       const quote = transformAmount(String(result.value?.rate));
 
       usd.value = quote;

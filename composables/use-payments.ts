@@ -275,11 +275,7 @@ export default function usePayments({
         },
       };
 
-      console.log(`<<< paymentBody >>>`, paymentBody);
-
       const { error } = await executeMiBancoPayment(paymentBody);
-
-      console.log(`<<< error >>>`, error);
 
       if (error.value?.message) {
         notification.error("Hubo un error al procesar el pago");
@@ -289,20 +285,22 @@ export default function usePayments({
         }
 
         form.status = "error";
-       
+
         stepper.goToNext();
         return;
       }
 
-      // When payment is executed, then we open the connection
       localStorage.setItem("msgId", btoa(msgId));
+
       setTimeout(() => {
         open();
       }, 1000);
 
+      setTimeout(() => {
+        miBancoPaymentSuccess();
+      }, 4000);
+
       notification.resolve("Conexión con el banco exitosa");
-       form.status = "success";
-      stepper.goToNext();
     } catch (error) {
       notification.error("Hubo un error al procesar el pago");
       form.errorMessage = "Error al procesar el pago";
@@ -310,6 +308,41 @@ export default function usePayments({
     } finally {
       isSending.value = false;
     }
+  }
+
+  async function miBancoPaymentSuccess() {
+    const notification = push.promise("Procesando pago...");
+
+    const { data: response, error: registerPaymentError } =
+      await executeRegisterPay({
+        IDFactura: billingData.IDFactura,
+        valor: Number(form.amount),
+        fecha: form.paymentDate,
+        secuencial: Number(
+          generateUniqueID({
+            length: 15,
+            useLetters: false,
+          })
+        ),
+      });
+
+    if (registerPaymentError.value?.data?.error) {
+      notification.reject(registerPaymentError.value?.data?.error);
+      form.status = "error";
+      return;
+    }
+
+    if (response.value?.code === "170") {
+      notification.reject(response.value?.mensaje);
+      form.status = "error";
+      return;
+    }
+
+    notification.resolve("Pago procesado correctamente");
+
+    form.status = "success";
+
+    stepper.goToNext();
   }
 
   async function miBancoOtpRequest() {
