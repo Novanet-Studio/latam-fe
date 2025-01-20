@@ -94,6 +94,9 @@ watch(data, () => {
     const statusInfo =
       parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0];
     const statusCode = statusInfo?.TxSts;
+    const identificator =
+      parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0]?.OrgnlTxRef
+        ?.Dbtr?.Id?.PrvtId?.Othr?.Id;
 
     if (!statusCode) {
       push.warning({
@@ -108,28 +111,32 @@ watch(data, () => {
       return;
     }
 
-    const isSuccess = statusCode === "ACCP";
+    if (form.ci === identificator) {
+      const isSuccess = statusCode === "ACCP";
 
-    const options = {
-      title: "Estatus de pago",
-      message: getCode(statusCode),
-    };
-
-    if (!isSuccess) {
-      close();
-
-      const reasonCode = statusInfo?.StsRsnInf?.Rsn?.Cd ?? statusCode;
-
-      push.error({
+      const options = {
         title: "Estatus de pago",
-        message: getFailureReason(reasonCode),
-      });
+        message: getCode(statusCode),
+      };
 
-      form.status = "error";
+      if (!isSuccess) {
+        close();
 
-      form.errorMessage = getFailureReason(reasonCode);
+        push.success(options);
 
-      stepper.goToNext();
+        const reasonCode = statusInfo?.StsRsnInf?.Rsn?.Cd ?? statusCode;
+
+        push.error({
+          title: "Estatus de pago",
+          message: getFailureReason(reasonCode),
+        });
+
+        form.status = "error";
+
+        form.errorMessage = getFailureReason(reasonCode);
+
+        stepper.goToNext();
+      }
     }
 
     setTimeout(() => {
