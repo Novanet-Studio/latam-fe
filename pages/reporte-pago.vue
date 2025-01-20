@@ -140,9 +140,11 @@ watch(data, () => {
     }
 
     setTimeout(() => {
-      form.status = "error";
-      form.errorMessage =
-        form.errorMessage ?? "Error de comunicacion con el servicio de pago";
+      if (form.status === "pending") {
+        form.status = "error";
+        form.errorMessage =
+          form.errorMessage ?? "Error de comunicacion con el servicio de pago";
+      }
 
       close();
     }, 3000);

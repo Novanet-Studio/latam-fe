@@ -36,6 +36,7 @@ const submitForm = handleSubmit(async (values) => {
 
     const { data, error } = await executeGetClientDetails(values.user)
 
+
     if (error.value?.data?.error) {
       notification.reject(error.value?.data?.error.toLowerCase());
       return;
@@ -43,6 +44,8 @@ const submitForm = handleSubmit(async (values) => {
 
     if (data?.value?.estado === "error") {
       notification.reject(data?.value?.mensaje)
+
+      
       return;
     }
 

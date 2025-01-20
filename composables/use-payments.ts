@@ -306,7 +306,7 @@ export default function usePayments({
 
           stepper.goToNext();
         }
-      }, 5000);
+      }, 3000);
 
       notification.resolve("Conexión con el banco exitosa");
     } catch (error) {
@@ -496,8 +496,6 @@ export default function usePayments({
           },
         },
       };
-
-      console.log(`<<< otpBody >>>`, otpBody);
 
       await executeRequestMiBancoOTP(otpBody);
 
