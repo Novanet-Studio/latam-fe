@@ -13,6 +13,7 @@ export default function usePayments({
   const paymentOption = inject("paymentOption") as Ref<Latam.PaymentOption>;
   const showOtp = inject("showOtp") as Ref<boolean>;
   const isSending = inject("isSending") as Ref<boolean>;
+  const isTimeout = inject("isTimeout") as Ref<boolean>;
   const { open } = inject("sse") as any;
 
   const {
@@ -287,6 +288,7 @@ export default function usePayments({
         form.status = "error";
 
         stepper.goToNext();
+
         return;
       }
 
@@ -297,8 +299,14 @@ export default function usePayments({
       }, 1000);
 
       setTimeout(() => {
-        miBancoPaymentSuccess();
-      }, 4000);
+        if (isTimeout.value && form.errorMessage === "") {
+          miBancoPaymentSuccess();
+        } else {
+          form.status = "error";
+
+          stepper.goToNext();
+        }
+      }, 5000);
 
       notification.resolve("Conexión con el banco exitosa");
     } catch (error) {

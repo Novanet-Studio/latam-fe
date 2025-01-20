@@ -29,6 +29,7 @@ useHead({
 const isAuthenticated = ref(false);
 const isLoading = ref(false);
 const isSending = ref(false);
+const isTimeout = ref(false);
 const paymentMethod = ref<Latam.PaymentMethod>("pagoMovil");
 const paymentOption = ref<Latam.PaymentOption>("");
 const userData = reactive<Latam.UserData>({
@@ -64,6 +65,7 @@ provide("paymentOption", paymentOption);
 provide("userData", userData);
 provide("isLoading", isLoading);
 provide("isSending", isSending);
+provide("isTimeout", isTimeout);
 provide("isAuthenticated", isAuthenticated);
 provide("showOtp", showOtp);
 provide("sse", { status, data, error, close, open });
@@ -91,18 +93,12 @@ watch(data, () => {
       return;
     }
 
-    console.log(`<<< parsed >>>`, parsed);
-
     const statusInfo =
       parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0];
     const statusCode = statusInfo?.TxSts;
     const identificator =
       parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0]?.OrgnlTxRef
         ?.Dbtr?.Id?.PrvtId?.Othr?.Id;
-
-    console.log(`<<< statusInfo`, statusInfo);
-    console.log(`<<< statusCode`, statusCode);
-    console.log(`<<< identificator`, identificator);
 
     if (!statusCode) {
       push.warning({
@@ -117,7 +113,9 @@ watch(data, () => {
       return;
     }
 
-    if (form.ci === identificator) {
+    if (`${form.type}${form.ci}` === identificator) {
+      console.log(`<<< statusCode >>>`, statusCode);
+
       const isSuccess = statusCode === "ACCP";
 
       const options = {
@@ -126,8 +124,6 @@ watch(data, () => {
       };
 
       if (!isSuccess) {
-        close();
-
         push.success(options);
 
         const reasonCode = statusInfo?.StsRsnInf?.Rsn?.Cd ?? statusCode;
@@ -137,15 +133,17 @@ watch(data, () => {
           message: getFailureReason(reasonCode),
         });
 
-        form.status = "error";
-
         form.errorMessage = getFailureReason(reasonCode);
-
-        stepper.goToNext();
+      } else {
+        isTimeout.value = true;
       }
     }
 
     setTimeout(() => {
+      form.status = "error";
+      form.errorMessage =
+        form.errorMessage ?? "Error de comunicacion con el servicio de pago";
+
       close();
     }, 3000);
   }
