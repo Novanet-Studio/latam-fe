@@ -83,3 +83,16 @@ export function getFailureReason(code: string): string {
 }
 
 export default codes;
+
+/*
+
+
+22525126
+
+04242785127
+V 3413756
+  31683289
+0169
+
+
+*/

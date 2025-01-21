@@ -13,8 +13,8 @@ export default function usePayments({
   const paymentOption = inject("paymentOption") as Ref<Latam.PaymentOption>;
   const showOtp = inject("showOtp") as Ref<boolean>;
   const isSending = inject("isSending") as Ref<boolean>;
-  const isTimeout = inject("isTimeout") as Ref<boolean>;
-  const { open } = inject("sse") as any;
+  const isSuccessful = inject("isSuccessful") as Ref<boolean>;
+  const { open, close } = inject("sse") as any;
 
   const {
     executeBtPay,
@@ -300,16 +300,74 @@ export default function usePayments({
         open();
       }, 1000);
 
-      setTimeout(() => {
-        if (isTimeout.value && form.errorMessage === "") {
-          miBancoPaymentSuccess();
-        } else {
-          form.status = "error";
-          form.errorMessage = "Tiempo de espera agotado";
+      const responseWatcher = setInterval(async () => {
+        console.log(`<<< responseWatcher >>>`);
+
+        if (isSuccessful.value) {
+          console.log(`<<< success case >>>`);
+
+          clearInterval(responseWatcher);
+
+          close();
+
+          const notification = push.promise("Procesando pago...");
+
+          console.log(`<<< Mikrowisp payload >>>`, {
+            IDFactura: billingData.IDFactura,
+            valor: Number(form.amount),
+            fecha: form.paymentDate,
+            secuencial: Number(
+              generateUniqueID({
+                length: 15,
+                useLetters: false,
+              })
+            ),
+          });
+
+          const { data: response, error: registerPaymentError } =
+            await executeRegisterPay({
+              IDFactura: billingData.IDFactura,
+              valor: Number(form.amount),
+              fecha: form.paymentDate,
+              secuencial: Number(
+                generateUniqueID({
+                  length: 15,
+                  useLetters: false,
+                })
+              ),
+            });
+
+          if (registerPaymentError.value?.data?.error) {
+            notification.reject(registerPaymentError.value?.data?.error);
+            form.status = "error";
+            return;
+          }
+
+          if (response.value?.code === "170") {
+            notification.reject(response.value?.mensaje);
+            form.status = "error";
+            return;
+          }
+
+          notification.resolve("Pago procesado correctamente");
+
+          form.status = "success";
 
           stepper.goToNext();
         }
-      }, 5000);
+
+        if (form.errorMessage !== "") {
+          console.log(`<<< error case >>>`);
+
+          clearInterval(responseWatcher);
+
+          close();
+
+          form.status = "error";
+
+          stepper.goToNext();
+        }
+      }, 1000);
 
       notification.resolve("Conexión con el banco exitosa");
     } catch (error) {
@@ -319,53 +377,6 @@ export default function usePayments({
     } finally {
       isSending.value = false;
     }
-  }
-
-  async function miBancoPaymentSuccess() {
-    const notification = push.promise("Procesando pago...");
-
-    console.log(`<<< Mikrowisp payload >>>`, {
-      IDFactura: billingData.IDFactura,
-      valor: Number(form.amount),
-      fecha: form.paymentDate,
-      secuencial: Number(
-        generateUniqueID({
-          length: 15,
-          useLetters: false,
-        })
-      ),
-    });
-
-    const { data: response, error: registerPaymentError } =
-      await executeRegisterPay({
-        IDFactura: billingData.IDFactura,
-        valor: Number(form.amount),
-        fecha: form.paymentDate,
-        secuencial: Number(
-          generateUniqueID({
-            length: 15,
-            useLetters: false,
-          })
-        ),
-      });
-
-    if (registerPaymentError.value?.data?.error) {
-      notification.reject(registerPaymentError.value?.data?.error);
-      form.status = "error";
-      return;
-    }
-
-    if (response.value?.code === "170") {
-      notification.reject(response.value?.mensaje);
-      form.status = "error";
-      return;
-    }
-
-    notification.resolve("Pago procesado correctamente");
-
-    form.status = "success";
-
-    stepper.goToNext();
   }
 
   async function miBancoOtpRequest() {

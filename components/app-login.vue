@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useForm } from "vee-validate";
 
-const isTimeout = ref(false);
+const isSuccessful = ref(false);
 const isSending = ref(false);
 const disabled = ref(false);
 

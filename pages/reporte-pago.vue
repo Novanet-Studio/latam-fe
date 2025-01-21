@@ -17,6 +17,82 @@ const { status, data, error, close, open } = useEventSource(
   }
 );
 
+/*
+
+console.log(`<<< ON emitSSEHandler (store)`, JSON.stringify(store));
+
+  // store = {
+  //   canNotify: true,
+  //   data: {
+  //     CstmrPmtStsRpt: {
+  //       GrpHdr: {
+  //         MsgId: "BTCB012025012112453511862006",
+  //         CreDtTm: "2025-01-21T12:45:35",
+  //         InitgPty: { Id: { PrvtId: { Othr: { Id: "0071" } } } },
+  //       },
+  //       OrgnlGrpInfAndSts: {
+  //         OrgnlMsgId: "0001012025012116452600000000",
+  //         OrgnlCreDtTm: "2025-01-21T16:45:26Z",
+  //         OrgnlNbOfTxs: 1,
+  //         OrgnlCtrlSum: 12.09,
+  //         GrpSts: "ACCP",
+  //       },
+  //       OrgnlPmtInfAndSts: [
+  //         {
+  //           TxInfAndSts: [
+  //             {
+  //               OrgnlInstrId: "dc53df19-e037-4f6e-988f-de442441aa6c",
+  //               OrgnlEndToEndId: "81692025012112452811861976",
+  //               TxSts: "ACCP",
+  //               OrgnlTxRef: {
+  //                 InstdAmt: { Amt: 12.09, Ccy: "VES" },
+  //                 IntrBkSttlmDt: "2025-01-21",
+  //                 IntrBkSttlmNb: 1,
+  //                 PmtTpInf: { LclInstrm: { Cd: "050" } },
+  //                 Dbtr: {
+  //                   Nm: "Alexander ",
+  //                   Id: {
+  //                     PrvtId: {
+  //                       Othr: { Id: "V3413756", SchmeNm: { Cd: "SCID" } },
+  //                     },
+  //                   },
+  //                 },
+  //                 DbtrAcct: { Prxy: { Tp: { Cd: "CELE" }, Id: "04242785127" } },
+  //                 DbtrAgt: {
+  //                   FinInstnId: {
+  //                     ClrSysMmbId: { ClrSysId: { Cd: "NCCE" }, MmbId: "0169" },
+  //                   },
+  //                 },
+  //                 CdtrAgt: {
+  //                   FinInstnId: {
+  //                     ClrSysMmbId: { ClrSysId: { Cd: "NCCE" }, MmbId: "0169" },
+  //                   },
+  //                 },
+  //                 Cdtr: {
+  //                   Nm: "Latin American Cable",
+  //                   Id: {
+  //                     PrvtId: {
+  //                       Othr: { Id: "J298946229", SchmeNm: { Cd: "SRIF" } },
+  //                     },
+  //                   },
+  //                 },
+  //                 CdtrAcct: {
+  //                   Prxy: { Tp: { Cd: "CNTA" }, Id: "01690001041000579342" },
+  //                 },
+  //                 Purp: { Cd: "002" },
+  //                 RmtInf: { Ustrd: "DESCRIPCION DEL COBRO" },
+  //               },
+  //             },
+  //           ],
+  //         },
+  //       ],
+  //     },
+  //   },
+  // };
+
+
+*/
+
 useHead({
   meta: [
     {
@@ -29,7 +105,7 @@ useHead({
 const isAuthenticated = ref(false);
 const isLoading = ref(false);
 const isSending = ref(false);
-const isTimeout = ref(false);
+const isSuccessful = ref(false);
 const paymentMethod = ref<Latam.PaymentMethod>("pagoMovil");
 const paymentOption = ref<Latam.PaymentOption>("");
 const userData = reactive<Latam.UserData>({
@@ -65,7 +141,7 @@ provide("paymentOption", paymentOption);
 provide("userData", userData);
 provide("isLoading", isLoading);
 provide("isSending", isSending);
-provide("isTimeout", isTimeout);
+provide("isSuccessful", isSuccessful);
 provide("isAuthenticated", isAuthenticated);
 provide("showOtp", showOtp);
 provide("sse", { status, data, error, close, open });
@@ -75,7 +151,9 @@ watch(data, () => {
     const parsed = JSON.parse(data.value);
 
     if (retries.value === 5) {
+      form.errorMessage = "Tiempo de espera agotado";
       form.status = "error";
+
       close();
       return;
     }
@@ -131,11 +209,6 @@ watch(data, () => {
 
         const reasonCode = statusInfo?.StsRsnInf?.Rsn?.Cd ?? statusCode;
 
-        console.log(
-          `<<< getFailureReason(reasonCode) >>>`,
-          getFailureReason(reasonCode)
-        );
-
         push.error({
           title: "Estatus de pago",
           message: getFailureReason(reasonCode),
@@ -144,25 +217,12 @@ watch(data, () => {
         form.errorMessage = `[Error: ${statusCode}] ${getFailureReason(
           reasonCode
         )}`;
+
+        close();
       } else {
-        isTimeout.value = true;
+        isSuccessful.value = true;
       }
     }
-
-    setTimeout(() => {
-      console.log(`<<< ON close connection form >>>`, form);
-      console.log(
-        `<<< ON close connection isTimeout.value >>>`,
-        isTimeout.value
-      );
-
-      if (!isTimeout.value) {
-        form.status = "error";
-        form.errorMessage = "Error de comunicacion con el servicio de pago";
-      }
-
-      close();
-    }, 3000);
   }
 });
 
@@ -191,8 +251,10 @@ watch(error, () => {
       message: "No hubo respuesta del servidor.",
     });
 
-    form.status = "error";
-    form.errorMessage = "No hubo respuesta del servicio de pago";
+    if (!isSuccessful.value) {
+      form.errorMessage = "No hubo respuesta del servidor";
+    }
+
     close();
   }
 });
