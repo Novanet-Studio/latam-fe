@@ -276,6 +276,8 @@ export default function usePayments({
         },
       };
 
+      console.log(`<<< MiBanco payload >>>`, paymentBody);
+
       const { error } = await executeMiBancoPayment(paymentBody);
 
       if (error.value?.message) {
@@ -303,10 +305,11 @@ export default function usePayments({
           miBancoPaymentSuccess();
         } else {
           form.status = "error";
+          form.errorMessage = "Tiempo de espera agotado";
 
           stepper.goToNext();
         }
-      }, 3000);
+      }, 5000);
 
       notification.resolve("Conexión con el banco exitosa");
     } catch (error) {
@@ -320,6 +323,18 @@ export default function usePayments({
 
   async function miBancoPaymentSuccess() {
     const notification = push.promise("Procesando pago...");
+
+    console.log(`<<< Mikrowisp payload >>>`, {
+      IDFactura: billingData.IDFactura,
+      valor: Number(form.amount),
+      fecha: form.paymentDate,
+      secuencial: Number(
+        generateUniqueID({
+          length: 15,
+          useLetters: false,
+        })
+      ),
+    });
 
     const { data: response, error: registerPaymentError } =
       await executeRegisterPay({

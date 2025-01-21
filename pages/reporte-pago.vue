@@ -71,8 +71,6 @@ provide("showOtp", showOtp);
 provide("sse", { status, data, error, close, open });
 
 watch(data, () => {
-  const { stepper } = useStepperApp();
-
   if (status.value === "OPEN" && data.value) {
     const parsed = JSON.parse(data.value);
 
@@ -99,6 +97,11 @@ watch(data, () => {
     const identificator =
       parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0]?.OrgnlTxRef
         ?.Dbtr?.Id?.PrvtId?.Othr?.Id;
+
+    console.log(`<<< parsed >>>`, parsed);
+    console.log(`<<< statusInfo >>>`, statusInfo);
+    console.log(`<<< statusCode >>>`, statusCode);
+    console.log(`<<< identificator >>>`, identificator);
 
     if (!statusCode) {
       push.warning({
@@ -128,22 +131,34 @@ watch(data, () => {
 
         const reasonCode = statusInfo?.StsRsnInf?.Rsn?.Cd ?? statusCode;
 
+        console.log(
+          `<<< getFailureReason(reasonCode) >>>`,
+          getFailureReason(reasonCode)
+        );
+
         push.error({
           title: "Estatus de pago",
           message: getFailureReason(reasonCode),
         });
 
-        form.errorMessage = getFailureReason(reasonCode);
+        form.errorMessage = `[Error: ${statusCode}] ${getFailureReason(
+          reasonCode
+        )}`;
       } else {
         isTimeout.value = true;
       }
     }
 
     setTimeout(() => {
-      if (form.status === "pending") {
+      console.log(`<<< ON close connection form >>>`, form);
+      console.log(
+        `<<< ON close connection isTimeout.value >>>`,
+        isTimeout.value
+      );
+
+      if (!isTimeout.value) {
         form.status = "error";
-        form.errorMessage =
-          form.errorMessage ?? "Error de comunicacion con el servicio de pago";
+        form.errorMessage = "Error de comunicacion con el servicio de pago";
       }
 
       close();

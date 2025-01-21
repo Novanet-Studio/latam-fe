@@ -28,6 +28,8 @@ export default function useWizardSubmit({
       try {
         const { data: billing } = await executeCheckDebts(form.ci);
 
+        console.log(`<<< billing >>>`, billing);
+
         if (billing.value?.code === "160") {
           notification.resolve("No tienes facturas por pagar");
           return;
