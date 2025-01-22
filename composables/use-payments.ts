@@ -276,8 +276,6 @@ export default function usePayments({
         },
       };
 
-      console.log(`<<< MiBanco payload >>>`, paymentBody);
-
       const { error } = await executeMiBancoPayment(paymentBody);
 
       if (error.value?.message) {
@@ -301,28 +299,20 @@ export default function usePayments({
       }, 1000);
 
       const responseWatcher = setInterval(async () => {
-        console.log(`<<< responseWatcher >>>`);
-
         if (isSuccessful.value) {
           console.log(`<<< success case >>>`);
 
-          clearInterval(responseWatcher);
-
           close();
+
+          clearInterval(responseWatcher);
 
           const notification = push.promise("Procesando pago...");
 
-          console.log(`<<< Mikrowisp payload >>>`, {
-            IDFactura: billingData.IDFactura,
-            valor: Number(form.amount),
-            fecha: form.paymentDate,
-            secuencial: Number(
-              generateUniqueID({
-                length: 15,
-                useLetters: false,
-              })
-            ),
-          });
+          notification.resolve("Pago procesado correctamente");
+
+          form.status = "success";
+
+          stepper.goToNext();
 
           const { data: response, error: registerPaymentError } =
             await executeRegisterPay({
@@ -359,14 +349,18 @@ export default function usePayments({
         if (form.errorMessage !== "") {
           console.log(`<<< error case >>>`);
 
-          clearInterval(responseWatcher);
-
           close();
+
+          clearInterval(responseWatcher);
 
           form.status = "error";
 
           stepper.goToNext();
         }
+
+        setTimeout(() => {
+          clearInterval(responseWatcher);
+        }, 30000);
       }, 1000);
 
       notification.resolve("Conexión con el banco exitosa");

@@ -17,82 +17,6 @@ const { status, data, error, close, open } = useEventSource(
   }
 );
 
-/*
-
-console.log(`<<< ON emitSSEHandler (store)`, JSON.stringify(store));
-
-  // store = {
-  //   canNotify: true,
-  //   data: {
-  //     CstmrPmtStsRpt: {
-  //       GrpHdr: {
-  //         MsgId: "BTCB012025012112453511862006",
-  //         CreDtTm: "2025-01-21T12:45:35",
-  //         InitgPty: { Id: { PrvtId: { Othr: { Id: "0071" } } } },
-  //       },
-  //       OrgnlGrpInfAndSts: {
-  //         OrgnlMsgId: "0001012025012116452600000000",
-  //         OrgnlCreDtTm: "2025-01-21T16:45:26Z",
-  //         OrgnlNbOfTxs: 1,
-  //         OrgnlCtrlSum: 12.09,
-  //         GrpSts: "ACCP",
-  //       },
-  //       OrgnlPmtInfAndSts: [
-  //         {
-  //           TxInfAndSts: [
-  //             {
-  //               OrgnlInstrId: "dc53df19-e037-4f6e-988f-de442441aa6c",
-  //               OrgnlEndToEndId: "81692025012112452811861976",
-  //               TxSts: "ACCP",
-  //               OrgnlTxRef: {
-  //                 InstdAmt: { Amt: 12.09, Ccy: "VES" },
-  //                 IntrBkSttlmDt: "2025-01-21",
-  //                 IntrBkSttlmNb: 1,
-  //                 PmtTpInf: { LclInstrm: { Cd: "050" } },
-  //                 Dbtr: {
-  //                   Nm: "Alexander ",
-  //                   Id: {
-  //                     PrvtId: {
-  //                       Othr: { Id: "V3413756", SchmeNm: { Cd: "SCID" } },
-  //                     },
-  //                   },
-  //                 },
-  //                 DbtrAcct: { Prxy: { Tp: { Cd: "CELE" }, Id: "04242785127" } },
-  //                 DbtrAgt: {
-  //                   FinInstnId: {
-  //                     ClrSysMmbId: { ClrSysId: { Cd: "NCCE" }, MmbId: "0169" },
-  //                   },
-  //                 },
-  //                 CdtrAgt: {
-  //                   FinInstnId: {
-  //                     ClrSysMmbId: { ClrSysId: { Cd: "NCCE" }, MmbId: "0169" },
-  //                   },
-  //                 },
-  //                 Cdtr: {
-  //                   Nm: "Latin American Cable",
-  //                   Id: {
-  //                     PrvtId: {
-  //                       Othr: { Id: "J298946229", SchmeNm: { Cd: "SRIF" } },
-  //                     },
-  //                   },
-  //                 },
-  //                 CdtrAcct: {
-  //                   Prxy: { Tp: { Cd: "CNTA" }, Id: "01690001041000579342" },
-  //                 },
-  //                 Purp: { Cd: "002" },
-  //                 RmtInf: { Ustrd: "DESCRIPCION DEL COBRO" },
-  //               },
-  //             },
-  //           ],
-  //         },
-  //       ],
-  //     },
-  //   },
-  // };
-
-
-*/
-
 useHead({
   meta: [
     {
@@ -147,6 +71,8 @@ provide("showOtp", showOtp);
 provide("sse", { status, data, error, close, open });
 
 watch(data, () => {
+  status.value;
+
   if (status.value === "OPEN" && data.value) {
     const parsed = JSON.parse(data.value);
 
@@ -176,11 +102,6 @@ watch(data, () => {
       parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0]?.OrgnlTxRef
         ?.Dbtr?.Id?.PrvtId?.Othr?.Id;
 
-    console.log(`<<< parsed >>>`, parsed);
-    console.log(`<<< statusInfo >>>`, statusInfo);
-    console.log(`<<< statusCode >>>`, statusCode);
-    console.log(`<<< identificator >>>`, identificator);
-
     if (!statusCode) {
       push.warning({
         title: "Estatus de pago",
@@ -199,14 +120,7 @@ watch(data, () => {
 
       const isSuccess = statusCode === "ACCP";
 
-      const options = {
-        title: "Estatus de pago",
-        message: getCode(statusCode),
-      };
-
       if (!isSuccess) {
-        push.success(options);
-
         const reasonCode = statusInfo?.StsRsnInf?.Rsn?.Cd ?? statusCode;
 
         push.error({
@@ -217,8 +131,6 @@ watch(data, () => {
         form.errorMessage = `[Error: ${statusCode}] ${getFailureReason(
           reasonCode
         )}`;
-
-        close();
       } else {
         isSuccessful.value = true;
       }
