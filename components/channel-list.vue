@@ -11,7 +11,7 @@ import {
 type State = Record<string, boolean>;
 
 const state = ref<State>({});
-const openMultipleItems = ref(false);
+const openMultipleItems = ref(true);
 
 
 const categories = [

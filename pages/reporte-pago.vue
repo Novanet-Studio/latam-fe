@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import AppLogin from "~/components/app-login.vue";
 import AppWizard from "~/components/app-wizard.vue";
-import { getCode, getFailureReason } from "~/data/codes";
+import { getFailureReason } from "~/data/codes";
 
 const {
   public: { latamServicesApiUrl },
 } = useRuntimeConfig();
-const NOTIFY_SSE_URL = `${latamServicesApiUrl}/api/v1/mibanco/notify`;
+const NOTIFY_SSE_URL = `${latamServicesApiUrl}/api/v1/mibanco/notify/asd`;
 
 const { status, data, error, close, open } = useEventSource(
   NOTIFY_SSE_URL,

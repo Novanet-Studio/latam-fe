@@ -139,9 +139,14 @@ provide("stepper", stepper);
 
 .wizard__footer {
   margin-top: 3rem;
+  margin: 0 auto;
   width: 50%;
   display: flex;
   justify-content: space-around;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 
   &--full {
     width: 65%;
@@ -207,11 +212,11 @@ provide("stepper", stepper);
       margin-top: 1rem;
 
       & .wizard__btn {
-        width: 50%;
-        min-width: 50%;
+        width: min(45%, 200px);
+        min-width: min(45%, 200px);
 
         &--full {
-          width: 25rem !important;
+          width: min(100%, 300px);
         }
       }
     }

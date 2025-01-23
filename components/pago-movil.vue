@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useForm } from "vee-validate";
-import banks from "@/data/banks.json"
+import banks from "@/data/banks.json";
 
 const form = inject("form") as Latam.Form;
 const showOtp = inject("showOtp") as Ref<boolean>;
@@ -24,8 +24,8 @@ const vesUsd = useBcvUsd();
 // Get banks from json
 const banksOptions = banks.map(({ legalName, code }) => ({
   text: legalName,
-  value: code
-}))
+  value: code,
+}));
 
 const { setFieldValue, values, validate } = useForm({
   initialValues: {
@@ -45,30 +45,30 @@ const typeOptions = [
     value: "V",
   },
   {
-    text: 'E',
-    value: 'E',
+    text: "E",
+    value: "E",
   },
   {
     text: "J",
-    value: "J"
+    value: "J",
   },
   {
     text: "P",
-    value: "P"
+    value: "P",
   },
   {
-    text: 'R',
-    value: 'R',
+    text: "R",
+    value: "R",
   },
   {
-    text: 'G',
-    value: 'G',
+    text: "G",
+    value: "G",
   },
   {
-    text: 'C',
-    value: 'C',
+    text: "C",
+    value: "C",
   },
-]
+];
 
 setFieldValue("amount", "Bs.S " + form.amount);
 
@@ -80,10 +80,13 @@ watch(vesUsd, () => {
   setFieldValue("amount", "Bs.S " + amount);
 });
 
-watch(() => values.ci, (ci) => {
-  const capitalized = capitalize(ci);
-  setFieldValue("ci", capitalized);
-})
+watch(
+  () => values.ci,
+  (ci) => {
+    const capitalized = capitalize(ci);
+    setFieldValue("ci", capitalized);
+  }
+);
 
 watch(values, async () => {
   const res = await validate();
@@ -116,7 +119,7 @@ watch(values, async () => {
         :options="typeOptions"
       />
       <base-input
-        style="width: 12rem;"
+        style="width: 12rem"
         label="Cédula de identidad"
         id="ci"
         name="ci"
@@ -187,6 +190,8 @@ watch(values, async () => {
 </template>
 
 <style lang="scss" scoped>
+@import "@/assets/scss/_mixins.scss";
+
 .main-section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -212,5 +217,68 @@ watch(values, async () => {
 
 .group :deep(.formulario__form__grupo label[for="type"]) {
   margin-left: 1rem !important;
+}
+
+/*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+@include responsive(20em) {
+  .main-section {
+    margin-top: 1rem;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0;
+
+    .group :deep(.formulario__form__grupo #type) {
+      width: 3rem !important;
+      margin-left: 0;
+    }
+
+    .group :deep(.formulario__form__grupo #ci) {
+      width: 10rem !important;
+    }
+  }
+}
+
+/*---- 
+  Tablet Portrait (768px)
+----*/
+@include responsive(48em) {
+  .main-section {
+    .group {
+      width: 28rem;
+    }
+
+    .group :deep(.formulario__form__grupo #type) {
+      width: 4rem !important;
+    }
+
+    .group :deep(.formulario__form__grupo #ci) {
+      width: 20rem !important;
+    }
+  }
+}
+
+/*---- 
+  Small Desktop (1280px)
+----*/
+@include responsive(80em) {
+  .main-section {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .main-section .group {
+    width: 18rem;
+  }
+
+  .main-section .group :deep(.formulario__form__grupo #ci) {
+    width: 10rem !important;
+  }
+}
+
+/*---- 
+  Large Desktop (1920px)
+----*/
+@include responsive(120em) {
+  .main-section .group {
+    justify-content: center;
+  }
 }
 </style>

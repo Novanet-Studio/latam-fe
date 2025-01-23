@@ -15,11 +15,11 @@ export default function useStepperApp() {
 
   const stepper = useStepper({
     "check-subscription": {
-      title: "Consultar datos de suscriptor",
+      title: "Contrato de servicio",
       isValid: () => form.contract.length > 0,
     },
     "payment-option": {
-      title: "Seleccione el medio de pago",
+      title: "Medio de pago",
       isValid: () => paymentOption.value.length > 0,
     },
     "subscriptor-data": {
