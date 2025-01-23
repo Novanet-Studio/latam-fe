@@ -3,20 +3,6 @@ import AppLogin from "~/components/app-login.vue";
 import AppWizard from "~/components/app-wizard.vue";
 import { getFailureReason } from "~/data/codes";
 
-const {
-  public: { latamServicesApiUrl },
-} = useRuntimeConfig();
-const NOTIFY_SSE_URL = `${latamServicesApiUrl}/api/v1/mibanco/notify/asd`;
-
-const { status, data, error, close, open } = useEventSource(
-  NOTIFY_SSE_URL,
-  undefined,
-  {
-    immediate: false,
-    autoReconnect: true,
-  }
-);
-
 useHead({
   meta: [
     {
@@ -52,8 +38,6 @@ const form = reactive<Latam.Form>({
 });
 
 const showOtp = ref(false);
-const count = ref(0);
-const retries = ref(0);
 
 const activeComponent = computed(() =>
   isAuthenticated.value ? AppWizard : AppLogin
@@ -68,108 +52,6 @@ provide("isSending", isSending);
 provide("isSuccessful", isSuccessful);
 provide("isAuthenticated", isAuthenticated);
 provide("showOtp", showOtp);
-provide("sse", { status, data, error, close, open });
-
-watch(data, () => {
-  status.value;
-
-  if (status.value === "OPEN" && data.value) {
-    const parsed = JSON.parse(data.value);
-
-    if (retries.value === 5) {
-      form.errorMessage = "Tiempo de espera agotado";
-      form.status = "error";
-
-      close();
-      return;
-    }
-
-    // This means something went wrong
-    if (parsed?.message === "OK") {
-      push.warning({
-        title: "Estatus de pago",
-        message: "Esperando respuesta...",
-      });
-
-      retries.value++;
-      return;
-    }
-
-    const statusInfo =
-      parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0];
-    const statusCode = statusInfo?.TxSts;
-    const identificator =
-      parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0]?.OrgnlTxRef
-        ?.Dbtr?.Id?.PrvtId?.Othr?.Id;
-
-    if (!statusCode) {
-      push.warning({
-        title: "Estatus de pago",
-        message:
-          "El pago ha sido aceptado, mas no procesado, revise sus datos o intente mas tarde",
-      });
-
-      form.status = "success";
-      close();
-
-      return;
-    }
-
-    if (`${form.type}${form.ci}` === identificator) {
-      console.log(`<<< statusCode >>>`, statusCode);
-
-      const isSuccess = statusCode === "ACCP";
-
-      if (!isSuccess) {
-        const reasonCode = statusInfo?.StsRsnInf?.Rsn?.Cd ?? statusCode;
-
-        push.error({
-          title: "Estatus de pago",
-          message: getFailureReason(reasonCode),
-        });
-
-        form.errorMessage = `[Error: ${statusCode}] ${getFailureReason(
-          reasonCode
-        )}`;
-      } else {
-        isSuccessful.value = true;
-      }
-    }
-  }
-});
-
-watch(retries, () => {
-  if (retries.value > 0) {
-    push.clearAll();
-    push.promise("Esperando respuesta...");
-  }
-
-  if (retries.value === 5) {
-    push.clearAll();
-    push.error("No hubo respuesta del servidor.");
-
-    retries.value = 0;
-  }
-});
-
-watch(error, () => {
-  if (error.value) {
-    count.value++;
-  }
-
-  if (count.value === 5) {
-    push.error({
-      title: "Estatus de pago",
-      message: "No hubo respuesta del servidor.",
-    });
-
-    if (!isSuccessful.value) {
-      form.errorMessage = "No hubo respuesta del servidor";
-    }
-
-    close();
-  }
-});
 </script>
 
 <template>

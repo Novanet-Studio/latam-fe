@@ -1,4 +1,5 @@
 import generateUniqueID from "generate-unique-id";
+import { getFailureReason } from "~/data/codes";
 
 interface UsePaymentsParams {
   stepper: any;
@@ -14,7 +15,6 @@ export default function usePayments({
   const showOtp = inject("showOtp") as Ref<boolean>;
   const isSending = inject("isSending") as Ref<boolean>;
   const isSuccessful = inject("isSuccessful") as Ref<boolean>;
-  const { open, close } = inject("sse") as any;
 
   const {
     executeBtPay,
@@ -130,6 +130,8 @@ export default function usePayments({
   }
 
   async function miBancoPayment() {
+    localStorage.removeItem("msgId");
+
     const notification = push.promise("Procesando pago...");
 
     try {
@@ -145,7 +147,9 @@ export default function usePayments({
           .replaceAll(":", "");
       const getTimeFormatDate = () =>
         new Date().toISOString().replace(/\.(\d{3})Z$/, "") + "Z";
+
       const msgId = `000101${getShortFormatDate()}00000000`;
+      //> const msgId = `0001012025012217564900000000`;
 
       // Procesar pago
       const paymentBody = {
@@ -276,13 +280,15 @@ export default function usePayments({
         },
       };
 
-      const { error } = await executeMiBancoPayment(paymentBody);
+      const { error: mbError } = await executeMiBancoPayment(paymentBody);
 
-      if (error.value?.message) {
+      if (mbError.value?.message) {
+        console.log(`<<< mbError.value >>>`, mbError.value);
+
         notification.error("Hubo un error al procesar el pago");
 
-        if (error.value?.message) {
-          form.errorMessage = error.value?.message;
+        if (mbError.value?.message) {
+          form.errorMessage = mbError.value?.message;
         }
 
         form.status = "error";
@@ -292,17 +298,141 @@ export default function usePayments({
         return;
       }
 
-      localStorage.setItem("msgId", btoa(msgId));
+      const {
+        public: { latamServicesApiUrl },
+      } = useRuntimeConfig();
+
+      const { status, data, error, close, open } = useEventSource(
+        `${latamServicesApiUrl}/api/v1/mibanco/notify/${msgId}`,
+        undefined,
+        {
+          immediate: false,
+          autoReconnect: true,
+        }
+      );
+
+      let count = ref(0);
+      let retries = ref(0);
+
+      watch(data, () => {
+        if (status.value === "OPEN" && data.value) {
+          const parsed = JSON.parse(data.value);
+
+          console.log(`<<< parsed >>>`, parsed);
+
+          if (retries.value === 5) {
+            form.errorMessage = "Tiempo de espera agotado";
+            form.status = "error";
+
+            close();
+            return;
+          }
+
+          // This means something went wrong
+          if (parsed?.message === "OK") {
+            push.warning({
+              title: "Estatus de pago",
+              message: "Esperando respuesta...",
+            });
+
+            retries.value++;
+            return;
+          }
+
+          const statusInfo =
+            parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0];
+          const statusCode = statusInfo?.TxSts;
+          const identificator =
+            parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0]
+              ?.OrgnlTxRef?.Dbtr?.Id?.PrvtId?.Othr?.Id;
+
+          if (!statusCode) {
+            push.warning({
+              title: "Estatus de pago",
+              message:
+                "El pago ha sido aceptado, mas no procesado, revise sus datos o intente mas tarde",
+            });
+
+            form.status = "success";
+            close();
+
+            return;
+          }
+
+          if (`${form.type}${form.ci}` === identificator) {
+            console.log(`<<< statusCode >>>`, statusCode);
+
+            const isSuccess = statusCode === "ACCP";
+
+            if (!isSuccess) {
+              const reasonCode = statusInfo?.StsRsnInf?.Rsn?.Cd ?? statusCode;
+
+              push.error({
+                title: "Estatus de pago",
+                message: getFailureReason(reasonCode),
+              });
+
+              form.errorMessage = `[Error: ${statusCode}] ${getFailureReason(
+                reasonCode
+              )}`;
+            } else {
+              isSuccessful.value = true;
+            }
+          }
+        }
+      });
+
+      watch(retries, () => {
+        if (retries.value > 0) {
+          push.clearAll();
+          push.promise("Esperando respuesta...");
+        }
+
+        if (retries.value === 5) {
+          push.clearAll();
+          push.error("No hubo respuesta del servidor.");
+
+          retries.value = 0;
+        }
+      });
+
+      watch(error, () => {
+        if (error.value) {
+          count.value++;
+        }
+
+        if (count.value === 5) {
+          push.error({
+            title: "Estatus de pago",
+            message: "No hubo respuesta del servidor.",
+          });
+
+          if (!isSuccessful.value) {
+            form.errorMessage = "No hubo respuesta del servidor";
+          }
+
+          close();
+        }
+      });
+
+      console.log(`<<< msgId >>>`, msgId);
+
+      localStorage.setItem("msgId", msgId);
 
       setTimeout(() => {
         open();
       }, 1000);
 
       const responseWatcher = setInterval(async () => {
+        console.log(`<<< responseWatcher >>>`);
+
         if (isSuccessful.value) {
           console.log(`<<< success case >>>`);
 
           close();
+
+          retries.value = 0;
+          count.value = 0;
 
           clearInterval(responseWatcher);
 
@@ -313,6 +443,8 @@ export default function usePayments({
           form.status = "success";
 
           stepper.goToNext();
+
+          return;
 
           const { data: response, error: registerPaymentError } =
             await executeRegisterPay({
@@ -351,6 +483,9 @@ export default function usePayments({
 
           close();
 
+          retries.value = 0;
+          count.value = 0;
+
           clearInterval(responseWatcher);
 
           form.status = "error";
@@ -360,6 +495,9 @@ export default function usePayments({
 
         setTimeout(() => {
           clearInterval(responseWatcher);
+
+          retries.value = 0;
+          count.value = 0;
         }, 30000);
       }, 1000);
 

@@ -72,10 +72,7 @@ try {
           src="../assets/images/latinamericancable-pago-icon.svg"
         />
       </div>
-      <a
-        href="http://8.243.249.70:8922/"
-        target="_blank"
-        class="pago__boton"
+      <a href="http://8.243.249.70:8922/" target="_blank" class="pago__boton"
         >Notifíque su pago aquí</a
       >
     </section>
