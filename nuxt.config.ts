@@ -55,7 +55,6 @@ export default defineNuxtConfig({
   css: [
     "~/assets/scss/global.scss",
     "@fortawesome/fontawesome-svg-core/styles.css",
-    "vue3-rich-accordion/accordion-library-styles.css",
     "notivue/notifications.css",
     "notivue/animations.css"
   ],

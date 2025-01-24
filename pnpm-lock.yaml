@@ -59,9 +59,7 @@ importers:
       vue3-radial-progress:
         specifier: ^1.1.1
         version: 1.1.1(vue@3.4.21)
-      vue3-rich-accordion:
-        specifier: ^0.0.7
-        version: 0.0.7(vue@3.4.21)
+
       yup:
         specifier: ^1.4.0
         version: 1.4.0
@@ -3575,10 +3573,10 @@ packages:
     peerDependencies:
       vue: ^3.0.5
 
-  vue3-rich-accordion@0.0.7:
-    resolution: {integrity: sha512-DWq5PHx3vbohgOVLAqxi2JxX3zSPB6ka73ypesy6XxH5btZQs4fnCN5sNOidj6SoBT6fDS5OivevY5ZA+oYWhA==}
-    peerDependencies:
-      vue: ^3.2.31
+  # vue3-rich-accordion@0.0.7:
+  #   resolution: {integrity: sha512-DWq5PHx3vbohgOVLAqxi2JxX3zSPB6ka73ypesy6XxH5btZQs4fnCN5sNOidj6SoBT6fDS5OivevY5ZA+oYWhA==}
+  #   peerDependencies:
+  #     vue: ^3.2.31
 
   vue@3.4.21:
     resolution: {integrity: sha512-5hjyV/jLEIKD/jYl4cavMcnzKwjMKohureP8ejn3hhEjwhWIhWeuzL2kJAjzl/WyVsgPY56Sy4Z40C3lVshxXA==}
@@ -7641,9 +7639,6 @@ snapshots:
     dependencies:
       vue: 3.4.21
 
-  vue3-rich-accordion@0.0.7(vue@3.4.21):
-    dependencies:
-      vue: 3.4.21
 
   vue@3.4.21:
     dependencies:

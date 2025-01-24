@@ -38,7 +38,6 @@
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
     "vue3-radial-progress": "^1.1.1",
-    "vue3-rich-accordion": "^0.0.7",
     "yup": "^1.4.0"
   }
 }
