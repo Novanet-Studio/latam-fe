@@ -20,7 +20,10 @@ const { handleSubmit } = useForm({
 });
 
 const submitForm = handleSubmit(async (values) => {
-  const notification = push.promise("Procesando solicitud...")
+  const notification = push.promise("Procesando solicitud...");
+
+  form.errorMessage = "";
+
   try {
     isSending.value = true;
     disabled.value = true;
@@ -34,18 +37,27 @@ const submitForm = handleSubmit(async (values) => {
       return;
     }
 
-    const { data, error } = await executeGetClientDetails(values.user)
-
+    const { data, error } = await executeGetClientDetails(values.user);
 
     if (error.value?.data?.error) {
       notification.reject(error.value?.data?.error.toLowerCase());
+
+      form.errorMessage = error.value?.data?.error.toLowerCase();
       return;
     }
 
     if (data?.value?.estado === "error") {
-      notification.reject(data?.value?.mensaje)
+      notification.reject(data?.value?.mensaje);
 
-      
+      form.errorMessage = data?.value?.mensaje;
+      return;
+    }
+
+    if (error.value !== null) {
+      notification.reject("Error al iniciar sesion");
+
+      form.errorMessage = "Error al iniciar sesion";
+
       return;
     }
 
@@ -53,8 +65,10 @@ const submitForm = handleSubmit(async (values) => {
     isAuthenticated.value = true;
     notification.resolve("Sesión iniciada correctamente");
   } catch (error: any) {
-    notification.reject(error.message)
+    notification.reject(error.message);
     isAuthenticated.value = false;
+
+    form.errorMessage = error.message;
   } finally {
     isSending.value = false;
     disabled.value = false;
@@ -67,6 +81,7 @@ const submitForm = handleSubmit(async (values) => {
   <section class="login payment-section">
     <h3>Ingresa a tu cuenta</h3>
     <h5>Coloca la información solicitada</h5>
+    <p v-if="form.errorMessage !== ''">{{ form.errorMessage }}</p>
     <form @submit.prevent="submitForm">
       <base-input label="Usuario" id="user" name="user" />
       <base-input
@@ -109,6 +124,19 @@ const submitForm = handleSubmit(async (values) => {
     font-size: 22px;
   }
 
+  & p {
+    color: rgb(199, 25, 25);
+    font-weight: 600;
+    margin: 1rem auto 0 auto;
+
+    @media (max-width: 1280px) {
+      position: absolute;
+      top: 1rem;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
   & form {
     margin-top: 1rem;
 
@@ -144,7 +172,7 @@ const submitForm = handleSubmit(async (values) => {
     font-weight: 600;
     font-size: 1rem;
     line-height: 1.1;
-    color:#1b4686;
+    color: #1b4686;
   }
 }
 </style>

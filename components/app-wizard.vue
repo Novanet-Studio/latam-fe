@@ -32,6 +32,7 @@ provide("stepper", stepper);
     <div class="wizard payment-section">
       <h3>Confirmación de Pagos TV por cable</h3>
       <h5>{{ stepper.current.value!.title }}</h5>
+      <p v-if="form.errorMessage !== ''">{{ form.errorMessage }}</p>
 
       <form @submit.prevent="submit">
         <transition
@@ -119,6 +120,19 @@ provide("stepper", stepper);
     color: #1b4686;
     font-weight: 400;
     font-size: 22px;
+  }
+
+  & p {
+    color: rgb(199, 25, 25);
+    font-weight: 600;
+    margin: 1rem auto 0 auto;
+
+    @media (max-width: 1280px) {
+      position: absolute;
+      top: 1rem;
+      width: 100%;
+      text-align: center;
+    }
   }
 
   & form {

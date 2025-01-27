@@ -283,8 +283,6 @@ export default function usePayments({
       const { error: mbError } = await executeMiBancoPayment(paymentBody);
 
       if (mbError.value?.message) {
-        console.log(`<<< mbError.value >>>`, mbError.value);
-
         notification.error("Hubo un error al procesar el pago");
 
         if (mbError.value?.message) {
@@ -415,10 +413,6 @@ export default function usePayments({
         }
       });
 
-      console.log(`<<< msgId >>>`, msgId);
-
-      localStorage.setItem("msgId", msgId);
-
       setTimeout(() => {
         open();
       }, 1000);
@@ -443,8 +437,6 @@ export default function usePayments({
           form.status = "success";
 
           stepper.goToNext();
-
-          return;
 
           const { data: response, error: registerPaymentError } =
             await executeRegisterPay({
@@ -516,6 +508,7 @@ export default function usePayments({
 
     try {
       isSending.value = true;
+
       const getShortFormatDate = () =>
         new Date()
           .toISOString()
@@ -655,7 +648,16 @@ export default function usePayments({
         },
       };
 
-      await executeRequestMiBancoOTP(otpBody);
+      const { data: otpResp, error: otpError } = await executeRequestMiBancoOTP(
+        otpBody
+      );
+
+      if (otpError) {
+        notification.error("Error al solicitar la Clave de pago");
+        form.errorMessage = "Error al solicitar la Clave de pago";
+
+        return;
+      }
 
       notification.resolve("Clave de pago solicitada");
       showOtp.value = true;
