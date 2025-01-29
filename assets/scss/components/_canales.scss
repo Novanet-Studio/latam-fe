@@ -13,7 +13,6 @@
     grid-column: 1 / 9;
     display: flex;
     flex-direction: column;
-    gap: 1em;
 
     /* Contenedor principal del acordeón */
     &__container {
@@ -21,7 +20,7 @@
       flex-direction: column;
     }
 
-    /* ✅ Cada ítem del acordeón */
+    /*  Cada ítem del acordeón */
     &__item {
       background: #fff;
       border-radius: 8px;
@@ -30,14 +29,20 @@
       transition: all 0.3s ease-in-out;
     }
 
-    /* ✅ Configuración de la animación */
+    /* Configuración de la animación */
     &__default {
       transition: max-height 0.3s ease-in-out;
       overflow: hidden;
+      background: #E8E8E8;
+      border: 1px solid black;
+      border-radius: 10px;
+      margin-top: 15px;
+      color: #1b4686;
+      font-weight: bold;
     }
   }
 
-  /* ✅ Grid de imágenes */
+  /*  Grid de imágenes */
   &__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
