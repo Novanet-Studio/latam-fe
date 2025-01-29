@@ -1,6 +1,3 @@
-
-channel-list
-
 <script setup lang="ts">
 import {
   nacionales,
@@ -13,53 +10,84 @@ import {
 
 type Category = {
   title: string;
-  content: { image: string }[]; // Contenido serán imágenes para cada categoría
+  content: { image: string }[];
 };
 
-// Define tus categorías usando la información importada
+// Definir categorías
 const categories: Category[] = [
-  { title: 'Nacionales', content: nacionales },
-  { title: 'Internacionales', content: internacionales },
-  { title: 'Series y Películas', content: syp },
-  { title: 'Deportes', content: deportivos },
-  { title: 'Variedades', content: variedades },
-  { title: 'Jóvenes y Niños', content: infantiles },
+  { title: "Nacionales", content: nacionales },
+  { title: "Internacionales", content: internacionales },
+  { title: "Series y Películas", content: syp },
+  { title: "Deportes", content: deportivos },
+  { title: "Variedades", content: variedades },
+  { title: "Jóvenes y Niños", content: infantiles },
 ];
 
-// Esta estructura mapea las categorías para usarlas en el acordeón
+// Generar items para el acordeón
 const items = categories.map((category) => ({
   label: category.title,
-  defaultOpen: false, // Si quieres que cada acordeón esté abierto por defecto
-  slot: category.title, // Usamos el título como el nombre del slot
-  description: category.content, // Usamos content en lugar de description para mostrar las imágenes
+  content: category.content,
 }));
+
+// Configuración personalizada de `UAccordion`
+const customAccordionUI = {
+  wrapper: 'canales__accordion',
+  container: 'canales__accordion__container',
+  item: {
+    base: 'canales__accordion__item',
+    size: 'text-base',
+    color: 'text-gray-700 dark:text-gray-200',
+    padding: 'p-4',
+    icon: 'transform transition-transform duration-300',
+  },
+  transition: {
+    enterActiveClass: 'overflow-hidden transition-all duration-300 ease-out',
+    leaveActiveClass: 'overflow-hidden transition-all duration-300 ease-in',
+  },
+  default: {
+    openIcon: '',
+    closeIcon: '',
+    class: 'canales__accordion__default',
+    variant: 'custom',
+    truncate: false,
+  }
+};
 </script>
 
 <template>
   <section class="canales" id="canales">
-  <UAccordion :items="items">
-    <template #item="{ item }">
-      <!-- Aquí mostramos el contenido de cada categoría -->
-      <div class="text-center">
-        <h3 class="text-xl font-bold text-">{{ item.label }}</h3>
-        
-        <!-- Iteramos sobre el content para mostrar las imágenes -->
-        <ul class="canales__categoria">
-          <li
-            v-for="(contentItem, index) in categories.find(c => c.title === item.label)?.content"
-            
-            :key="index"
-            class="canales__categoria__item"
-          >
-            <!-- Mostrar cada imagen -->
-            <img :src="contentItem.image" :alt="`Imagen de ${item.label} ${index + 1}`" class="canales__categoria__imagen" />
-          </li>
-        </ul>
-      </div>
-    </template>
+    <!-- Título del acordeón -->
+    <h2 class="canales__titulo">Categorías de Canales</h2>
 
-
-    <!-- Aquí puedes agregar más templates si necesitas otro tipo de contenido específico para otras categorías -->
-  </UAccordion>
-</section>
+    <!-- Acordeón con estilos personalizados -->
+    <UAccordion 
+      :items="items" 
+      :ui="customAccordionUI"
+      class="canales__accordion"
+    >
+      <template #item="{ item }">
+        <div class="canales__accordion__categoria">
+          <ul class="canales__grid">
+            <li
+              v-for="(contentItem, index) in item.content"
+              :key="index"
+              class="canales__grid__item"
+            >
+              <img
+                v-if="contentItem.image"
+                :src="contentItem.image"
+                :alt="`Imagen ${index + 1}`"
+                class="canales__grid__imagen"
+              />
+            </li>
+          </ul>
+        </div>
+      </template>
+    </UAccordion>
+  </section>
 </template>
+
+
+<style scoped>
+
+</style>

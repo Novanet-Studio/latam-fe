@@ -7,6 +7,54 @@
     grid-column: 1 / 9;
     @include heading-before-content($color: $azul, $image: "punto.svg");
   }
+
+  /* 🔹 Sobrescribe estilos del acordeón */
+  &__accordion {
+    grid-column: 1 / 9;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    /* Contenedor principal del acordeón */
+    &__container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ✅ Cada ítem del acordeón */
+    &__item {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 1em;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* ✅ Configuración de la animación */
+    &__default {
+      transition: max-height 0.3s ease-in-out;
+      overflow: hidden;
+    }
+  }
+
+  /* ✅ Grid de imágenes */
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__grid__item {
+    text-align: center;
+
+    &__imagen {
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
 }
 
 /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
@@ -14,45 +62,15 @@
   .canales {
     grid-template-columns: repeat(6, 2fr);
   }
-
-  .tv {
-    grid-column: 1/9;
-    margin: 0 1em;
-
-    &__banner {
-      padding: 2em;
-      grid-column: 1/9;
-      background-image: url("../../assets/images/latinamericancable-tv-plan-mob-por.webp");
-
-      &__titulo {
-        line-height: 1.8rem;
-      }
-
-      &__boton {
-        font-size: 1rem;
-      }
-    }
-  }
 }
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
   .canales {
     grid-template-columns: repeat(3, 2fr);
-  }
 
-  .tv {
-    margin: 0 1.5em 0 0;
-    grid-column: 3/7;
-    grid-template-columns: repeat(3, 2fr);
-
-    &__banner {
-      grid-column: 2/9;
-      background-image: url("../../assets/images/latinamericancable-tv-plan-tab-por.webp");
-      &__boton {
-        font-size: 1.2rem;
-        padding: 0.75em 2em;
-      }
+    &__accordion {
+      grid-column: 1 / 7;
     }
   }
 }
@@ -61,6 +79,5 @@
 @include responsive(64em) {
   .canales {
     grid-template-columns: repeat(8, 2fr);
-    padding-right: 0;
   }
 }
