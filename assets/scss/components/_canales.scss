@@ -34,11 +34,12 @@
       transition: max-height 0.3s ease-in-out;
       overflow: hidden;
       background: #E8E8E8;
-      border: 1px solid black;
+      border: 1px solid #666;
       border-radius: 10px;
       margin-top: 15px;
       color: #1b4686;
       font-weight: bold;
+      padding: 1rem;
     }
   }
 
@@ -53,6 +54,8 @@
 
   &__grid__item {
     text-align: center;
+    padding-bottom: 1.75rem;
+  
 
     &__imagen {
       max-width: 100%;
