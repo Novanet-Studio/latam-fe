@@ -82,6 +82,8 @@ export default function usePayments({
       if (conformation?.value?.status === "Error") {
         notification.reject(conformation.value.mensaje);
         form.status = "error";
+        form.errorMessage = conformation.value.mensaje;
+
         stepper.goToNext();
         return;
       }
@@ -89,6 +91,7 @@ export default function usePayments({
       if (conformationError.value?.data?.error) {
         notification.reject(conformationError.value?.data?.error);
         form.status = "error";
+        form.errorMessage = conformationError.value?.data?.error;
         return;
       }
 
@@ -122,6 +125,7 @@ export default function usePayments({
 
       notification.resolve("Pago procesado correctamente");
       form.status = "success";
+      form.errorMessage = "";
       stepper.goToNext();
     } catch (error) {
       notification.error("Hubo un error al procesar el pago");
@@ -435,6 +439,7 @@ export default function usePayments({
           notification.resolve("Pago procesado correctamente");
 
           form.status = "success";
+          form.errorMessage = "";
 
           stepper.goToNext();
 
@@ -652,7 +657,7 @@ export default function usePayments({
         otpBody
       );
 
-      if (otpError) {
+      if (otpError.value) {
         notification.error("Error al solicitar la Clave de pago");
         form.errorMessage = "Error al solicitar la Clave de pago";
 
@@ -660,6 +665,7 @@ export default function usePayments({
       }
 
       notification.resolve("Clave de pago solicitada");
+      form.errorMessage = "";
       showOtp.value = true;
       stepper.goTo("payment-report");
     } catch (error) {
