@@ -78,7 +78,13 @@ export default function useWizardSubmit({
       return;
     }
 
-    if (form.status === "error") stepper.goTo("subscriptor-data");
+    if (form.status === "error") {
+      console.log(`<<< te tengo >>>`);
+
+      form.errorMessage = "";
+
+      stepper.goTo("subscriptor-data");
+    }
     if (form.status === "success" && stepper.isLast.value) router.push("/");
     if (stepper.current.value!.isValid()) {
       stepper.goToNext();

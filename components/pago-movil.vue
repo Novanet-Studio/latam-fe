@@ -73,6 +73,8 @@ const typeOptions = [
 setFieldValue("amount", "Bs.S " + form.amount);
 
 watch(vesUsd, () => {
+  console.log(`<<< vesUsd.value >>>`, vesUsd.value);
+
   const value = Number(vesUsd.value) * Number(form.amount);
   const amount = transformAmount(value.toString(), true);
   amountVes.value = amount;
@@ -126,13 +128,6 @@ watch(values, async () => {
         placeholder="Ejemplo: 00000000"
       />
     </div>
-    <!-- <base-input
-      v-else
-      label="Cédula de identidad"
-      id="ci"
-      name="ci"
-      placeholder="Ejemplo: V00000000"
-    /> -->
     <select-input
       label="Banco emisor"
       id="bank"
@@ -162,20 +157,6 @@ watch(values, async () => {
       name="otp"
       placeholder="543210"
     />
-    <!-- <base-input
-      v-else
-      label="Clave pago"
-      id="otp"
-      name="otp"
-      placeholder="543210"
-    /> -->
-    <!-- <base-input
-      :label="paymentOption !== 'miBanco' ? 'Clave dinámica' : 'Clave pago'"
-      :id="paymentOption !== 'miBanco' ? 'dynamicKey' : 'otp'"
-      :name="paymentOption !== 'miBanco' ? 'dynamicKey' : 'otp'"
-      :placeholder="paymentOption !== 'miBanco' ? '123456' : '543210'"
-    /> -->
-    <!-- <base-input label="Monto" id="amount" name="amount" readonly /> -->
     <div class="amount-wrapper">
       <base-input label="Monto a pagar" id="amount" name="amount" readonly />
       <button
