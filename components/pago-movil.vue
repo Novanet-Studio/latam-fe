@@ -215,6 +215,11 @@ watch(values, async () => {
     .group :deep(.formulario__form__grupo #ci) {
       width: 10rem !important;
     }
+
+    .group {
+      display: flex;
+      justify-content: center;
+    }
   }
 }
 
@@ -225,6 +230,7 @@ watch(values, async () => {
   .main-section {
     .group {
       width: 28rem;
+      justify-content: inherit;
     }
 
     .group :deep(.formulario__form__grupo #type) {

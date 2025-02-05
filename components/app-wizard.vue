@@ -147,7 +147,6 @@ provide("stepper", stepper);
   & form {
     margin-top: 2rem;
     margin-bottom: 2rem;
-    width: 100%;
 
     & div label {
       color: #666666;
