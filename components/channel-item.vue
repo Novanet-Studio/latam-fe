@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<!-- <script lang="ts" setup>
 type Props = {
   title: string;
   content: any[];
@@ -20,4 +20,4 @@ defineProps<Props>();
       </ul>
     </div>
   </AccordionItem>
-</template>
+</template> -->

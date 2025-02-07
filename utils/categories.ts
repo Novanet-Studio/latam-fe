@@ -1,14 +1,14 @@
 export const deportivos = [
-  { image: 'images/canales/deportes/claro_sports_logo.webp' },
-  { image: 'images/canales/deportes/discovery_turbo_logo.webp' },
-  { image: 'images/canales/deportes/espn_2_logo.webp' },
-  { image: 'images/canales/deportes/espn_3_logo.webp' },
-  { image: 'images/canales/deportes/espn_logo.webp' },
-  { image: 'images/canales/deportes/fox_sports_1_logo.webp' },
-  { image: 'images/canales/deportes/fox_sports_2_logo.webp' },
-  { image: 'images/canales/deportes/fox_sports_3_logo.webp' },
-  { image: 'images/canales/deportes/ivc_logo.webp' },
-  { image: 'images/canales/deportes/meridiano_tv_logo.webp' },
+  { image: '/images/canales/deportes/claro_sports_logo.webp' },
+  { image: '/images/canales/deportes/discovery_turbo_logo.webp' },
+  { image: '/images/canales/deportes/espn_2_logo.webp' },
+  { image: '/images/canales/deportes/espn_3_logo.webp' },
+  { image: '/images/canales/deportes/espn_logo.webp' },
+  { image: '/images/canales/deportes/fox_sports_1_logo.webp' },
+  { image: '/images/canales/deportes/fox_sports_2_logo.webp' },
+  { image: '/images/canales/deportes/fox_sports_3_logo.webp' },
+  { image: '/images/canales/deportes/ivc_logo.webp' },
+  { image: '/images/canales/deportes/meridiano_tv_logo.webp' },
 ];
 
 export const internacionales = [
