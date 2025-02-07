@@ -215,7 +215,6 @@ watch(values, async () => {
     .group :deep(.formulario__form__grupo #ci) {
       width: 10rem !important;
     }
-
     .group {
       display: flex;
       justify-content: center;

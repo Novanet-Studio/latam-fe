@@ -23,13 +23,6 @@ const submit = useWizardSubmit({
   billingData,
 });
 
-/*
-
-0001012025020423232200000000
-0001012025020423232200000000
-
-*/
-
 provide("stepper", stepper);
 </script>
 
@@ -232,6 +225,11 @@ provide("stepper", stepper);
 
     &__footer {
       margin-top: 1rem;
+      width: 100%;
+
+      &--full {
+        width: 100%;
+      }
 
       & .wizard__btn {
         width: min(45%, 200px);

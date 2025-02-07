@@ -72,8 +72,7 @@
   /*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
   @include responsive(20em) {
     .whatsapp {
-      right: 0.7em;
-      bottom: 3.3em;
+      width: 6em;
     }
   }
   
@@ -84,6 +83,7 @@
   /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
   @include responsive(48em) {
     .whatsapp {
+      width: 10rem;
       bottom: 4em;
     }
   }
@@ -94,6 +94,9 @@
   
   /*------------------------------------- Small Desktop (1280px) ----------------------------------*/
   @include responsive(80em) {
+    .whatsapp {
+      width: 14rem;
+    }
   }
   
   /*------------------------------------ Medium Desktop (1440px) ----------------------------------*/

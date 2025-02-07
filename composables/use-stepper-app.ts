@@ -36,7 +36,7 @@ export default function useStepperApp() {
     },
   });
 
-  const activeComponent = computed(() => {
+ const activeComponent = computed(() => {
     if (stepper.isCurrent("check-subscription")) {
       return CheckSubscriptionStep;
     } else if (stepper.isCurrent("payment-option")) {

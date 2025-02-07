@@ -27,13 +27,30 @@
       &__box {
         @include hero-box($bg: $verde, $gridarea: "box-mensaje");
       }
-      &__icon {
+      &__icon--contacto {
         @include hero-box-icon(
           $image: "latimanerican-mensaje-icon.svg",
           $fillColor: $azul,
           $width: 4em
         );
       }
+
+      &__icon--politicas {
+        @include hero-box-icon(
+          $image: "latimanerican-politicas-icon.svg",
+          $fillColor: $azul,
+          $width: 4em
+        );
+      }
+
+      &__icon--terminos {
+        @include hero-box-icon(
+          $image: "latimanerican-terminos-icon.svg",
+          $fillColor: $azul,
+          $width: 4em
+        );
+      }
+
       &__info {
         @include hero-box-icon-info();
       }
@@ -51,6 +68,14 @@
     }
   }
 
+  .condiciones {
+    @include section-background($image: "latinamericancable-condiciones.webp");
+  }
+
+  .politicas {
+    @include section-background($image: "latinamericancable-politicas.webp");
+  }
+
   .info-b {
     @include grid-structure($columns: 12);
     grid-area: info-b;
@@ -59,10 +84,26 @@
     &__titulo {
       grid-column: 1 / 13;
       @include heading-before-content($color: $azul, $image: "punto.svg");
+      
+    }
+
+    &__titulo-a {
+      padding-top: 1em;
+      grid-column: 1 / 13;
+      @include heading-before-content($color: $azul, $image: "punto.svg");           
     }
 
     &__texto {
       grid-column: 1 / 13;
+    }
+
+    &__lista {
+      grid-column: 1 / 13;
+
+      li {
+       list-style-type: disc;
+       list-style-position: inside;
+      }
     }
   }
 }
@@ -94,6 +135,14 @@
         }
       }
     }
+
+    .condiciones {
+      background-image: url("../../assets/images/latinamericancable-condiciones-mob-por.webp");
+    }
+
+    .politicas {
+      background-image: url("../../assets/images/latinamericancable-politicas-mob-por.webp");
+    }
   }
 }
 
@@ -114,6 +163,14 @@
         }
       }
     }
+
+    .condiciones {
+      background-image: url("../../assets/images/latinamericancable-condiciones-mob-lan.webp");
+    }
+
+    .politicas {
+      background-image: url("../../assets/images/latinamericancable-politicas-mob-lan.webp");
+    }
   }
 }
 
@@ -129,6 +186,14 @@
           padding: 1em 0 1em 0.75em;
         }
       }
+    }
+
+    .condiciones {
+      background-image: url("../../assets/images/latinamericancable-condiciones-tab-por.webp");
+    }
+
+    .politicas {
+      background-image: url("../../assets/images/latinamericancable-politicas-tab-por.webp");
     }
   }
 }
@@ -154,6 +219,14 @@
         }
       }
     }
+
+    .condiciones {
+      background-image: url("../../assets/images/latinamericancable-condiciones-tab-lan.webp");
+    }
+
+    .politicas {
+      background-image: url("../../assets/images/latinamericancable-politicas-tab-lan.webp");
+    }
   }
 }
 
@@ -170,6 +243,14 @@
           padding-top: 0.25em;
         }
       }
+    }
+
+    .condiciones {
+      background-image: url("../../assets/images/latinamericancable-condiciones.webp");
+    }
+
+    .politicas {
+      background-image: url("../../assets/images/latinamericancable-politicas.webp");
     }
   }
 }
