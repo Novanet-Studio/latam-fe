@@ -15,13 +15,13 @@ export default function useStepperApp() {
 
   const stepper = useStepper({
     "check-subscription": {
-      title: "Consultar datos de suscriptor",
+      title: "Contrato de servicio",
       isValid: () => form.contract.length > 0,
     },
-    // "payment-option": {
-    //   title: "Seleccione el medio de pago",
-    //   isValid: () => paymentOption.value.length > 0,
-    // },
+    "payment-option": {
+      title: "Medio de pago",
+      isValid: () => paymentOption.value.length > 0,
+    },
     "subscriptor-data": {
       title: "Datos del subscriptor",
       isValid: () => true,
@@ -36,24 +36,16 @@ export default function useStepperApp() {
     },
   });
 
-  const activeComponent = computed(() => {
+ const activeComponent = computed(() => {
     if (stepper.isCurrent("check-subscription")) {
       return CheckSubscriptionStep;
-    }
-    
-    // if (stepper.isCurrent("payment-option")) {
-    //   return PaymentOptionStep;
-    // }
-    
-    if (stepper.isCurrent("subscriptor-data")) {
+    } else if (stepper.isCurrent("payment-option")) {
+      return PaymentOptionStep;
+    } else if (stepper.isCurrent("subscriptor-data")) {
       return SubscriptorDataStep;
-    }
-    
-    if (stepper.isCurrent("payment-report")) {
+    } else if (stepper.isCurrent("payment-report")) {
       return PaymentReportStep;
-    }
-    
-    if (stepper.isCurrent("status")) {
+    } else if (stepper.isCurrent("status")) {
       return StatusStep;
     }
   });

@@ -1,7 +1,11 @@
 declare namespace Latam {
-  type PaymentMethod = "pagoMovil" | "tcInternational" | "tcNacional" | "transference";
+  type PaymentMethod =
+    | "pagoMovil"
+    | "tcInternational"
+    | "tcNacional"
+    | "transference";
   type PaymentOption = "miBanco" | "bancoTesoro" | "";
-  
+
   type PaymentStrapiRecord = {
     dtc_nombre_apellido: string;
     dtc_cedula_identidad: string;
@@ -45,16 +49,17 @@ declare namespace Latam {
     bank: string;
     paymentDate: string;
     dynamicKey: string;
-    status: '' | 'error' | 'pending' | 'success';
+    status: "" | "error" | "pending" | "success";
+    errorMessage: string;
     accountNumber?: string;
     reference?: string;
     otp?: string;
-    type?: 'V' | 'P' | 'J' | ''; 
-  }
+    type?: "V" | "P" | "J" | "";
+  };
 
   interface UserData {
     estado: string;
-    datos?: (DatosEntity)[] | null;
+    datos?: DatosEntity[] | null;
   }
 
   interface DatosEntity {
@@ -68,7 +73,7 @@ declare namespace Latam {
     pasarela: string;
     codigo: string;
     direccion_principal: string;
-    servicios?: (ServiciosEntity)[] | null;
+    servicios?: ServiciosEntity[] | null;
     facturacion: Facturacion;
   }
 

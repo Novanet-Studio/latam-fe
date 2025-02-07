@@ -1,24 +1,18 @@
-interface BcvUsdResponse {
-  fuente: string;
-  nombre: string;
-  compra?: any;
-  venta?: any;
-  promedio: number;
-  fechaActualizacion: string;
-}
-
 export default function useBcvUsd() {
-  const { bcvUsdApi } = useRuntimeConfig().public;
+  const form = inject("form") as Latam.Form;
   const usd = ref("");
+
+  const { executeGetUsdVesConvertion } = useLatamServices();
 
   onMounted(async () => {
     try {
-      const response = await fetch(bcvUsdApi);
-      const result: BcvUsdResponse = await response.json();
-      const quote = transformAmount(String(result.promedio));
+      const { data: result } = await executeGetUsdVesConvertion();
+
+      const quote = transformAmount(String(result.value?.rate));
 
       usd.value = quote;
     } catch (err) {
+      form.errorMessage = "Error al obtener VES/USD rate convertion";
       console.log(err);
     }
   });

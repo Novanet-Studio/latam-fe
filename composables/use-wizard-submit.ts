@@ -10,6 +10,7 @@ export default function useWizardSubmit({
   const form = inject("form") as Latam.Form;
   const paymentMethod = inject("paymentMethod") as Ref<Latam.PaymentMethod>;
   const isSending = inject("isSending") as Ref<boolean>;
+  const showOtp = inject("showOtp") as Ref<boolean>;
 
   const { executeCheckDebts } = useLatamServices();
   const { pagoMovilPayment, transferencePayment } = usePayments({
@@ -57,6 +58,15 @@ export default function useWizardSubmit({
 
     if (
       stepper.isCurrent("payment-report") &&
+      showOtp.value &&
+      form.otp!.length < 6
+    ) {
+      push.info("La clave pago debe contener al menos 6 digitos");
+      return;
+    }
+
+    if (
+      stepper.isCurrent("payment-report") &&
       stepper.current.value!.isValid()
     ) {
       if (paymentMethod.value === "pagoMovil") {
@@ -68,9 +78,17 @@ export default function useWizardSubmit({
       return;
     }
 
-    if (form.status === "error") stepper.goTo("subscriptor-data");
+    if (form.status === "error") {
+      console.log(`<<< te tengo >>>`);
+
+      form.errorMessage = "";
+
+      stepper.goTo("subscriptor-data");
+    }
     if (form.status === "success" && stepper.isLast.value) router.push("/");
-    if (stepper.current.value!.isValid()) stepper.goToNext();
+    if (stepper.current.value!.isValid()) {
+      stepper.goToNext();
+    }
   }
 
   return submit;

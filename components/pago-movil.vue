@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useForm } from "vee-validate";
+import banks from "@/data/banks.json";
 
 const form = inject("form") as Latam.Form;
 const showOtp = inject("showOtp") as Ref<boolean>;
@@ -14,13 +15,17 @@ const {
   dateLocale,
   amountVes,
   schema,
-  banksOptions,
+  // banksOptions,
   capitalize,
   handlePayload,
 } = await usePaymentReport(paymentMethod.value);
 const vesUsd = useBcvUsd();
 
-paymentOption.value = "bancoTesoro";
+// Get banks from json
+const banksOptions = banks.map(({ legalName, code }) => ({
+  text: legalName,
+  value: code,
+}));
 
 const { setFieldValue, values, validate } = useForm({
   initialValues: {
@@ -45,17 +50,31 @@ const typeOptions = [
   },
   {
     text: "J",
-    value: "J"
+    value: "J",
   },
   {
     text: "P",
-    value: "P"
-  }
-]
+    value: "P",
+  },
+  {
+    text: "R",
+    value: "R",
+  },
+  {
+    text: "G",
+    value: "G",
+  },
+  {
+    text: "C",
+    value: "C",
+  },
+];
 
 setFieldValue("amount", "Bs.S " + form.amount);
 
 watch(vesUsd, () => {
+  console.log(`<<< vesUsd.value >>>`, vesUsd.value);
+
   const value = Number(vesUsd.value) * Number(form.amount);
   const amount = transformAmount(value.toString(), true);
   amountVes.value = amount;
@@ -63,10 +82,13 @@ watch(vesUsd, () => {
   setFieldValue("amount", "Bs.S " + amount);
 });
 
-watch(() => values.ci, (ci) => {
-  const capitalized = capitalize(ci);
-  setFieldValue("ci", capitalized);
-})
+watch(
+  () => values.ci,
+  (ci) => {
+    const capitalized = capitalize(ci);
+    setFieldValue("ci", capitalized);
+  }
+);
 
 watch(values, async () => {
   const res = await validate();
@@ -90,7 +112,7 @@ watch(values, async () => {
       name="phone"
       placeholder="Ejemplo: 04123456789"
     />
-    <div class="group" v-if="paymentOption === 'bancoTesoro'">
+    <div class="group">
       <select-input
         label="Tipo"
         id="type"
@@ -99,20 +121,13 @@ watch(values, async () => {
         :options="typeOptions"
       />
       <base-input
-        style="width: 12rem;"
+        style="width: 12rem"
         label="Cédula de identidad"
         id="ci"
         name="ci"
         placeholder="Ejemplo: 00000000"
       />
     </div>
-    <base-input
-      v-else
-      label="Cédula de identidad"
-      id="ci"
-      name="ci"
-      placeholder="Ejemplo: V00000000"
-    />
     <select-input
       label="Banco emisor"
       id="bank"
@@ -142,20 +157,6 @@ watch(values, async () => {
       name="otp"
       placeholder="543210"
     />
-    <!-- <base-input
-      v-else
-      label="Clave pago"
-      id="otp"
-      name="otp"
-      placeholder="543210"
-    /> -->
-    <!-- <base-input
-      :label="paymentOption !== 'miBanco' ? 'Clave dinámica' : 'Clave pago'"
-      :id="paymentOption !== 'miBanco' ? 'dynamicKey' : 'otp'"
-      :name="paymentOption !== 'miBanco' ? 'dynamicKey' : 'otp'"
-      :placeholder="paymentOption !== 'miBanco' ? '123456' : '543210'"
-    /> -->
-    <!-- <base-input label="Monto" id="amount" name="amount" readonly /> -->
     <div class="amount-wrapper">
       <base-input label="Monto a pagar" id="amount" name="amount" readonly />
       <button
@@ -214,6 +215,10 @@ watch(values, async () => {
     .group :deep(.formulario__form__grupo #ci) {
       width: 10rem !important;
     }
+    .group {
+      display: flex;
+      justify-content: center;
+    }
   }
 }
 
@@ -222,7 +227,10 @@ watch(values, async () => {
 ----*/
 @include responsive(48em) {
   .main-section {
-    .group { width: 28rem; }
+    .group {
+      width: 28rem;
+      justify-content: inherit;
+    }
 
     .group :deep(.formulario__form__grupo #type) {
       width: 4rem !important;

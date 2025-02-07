@@ -19,40 +19,40 @@ const title = computed(() => {
   }
 
   return "Rechazado";
-})
+});
 
 const statusText = computed(() => {
   if (isSuccessful.value) {
     return "Gracias por su pago";
-  } 
-  
+  }
+
   if (isPending.value) {
     return "Esperando respuesta...";
   }
-  
+
   return "Por favor inténtelo nuevamente";
-})
+});
 
 const image = computed(() => {
   if (isSuccessful.value) {
     return {
       url: successImage,
-      alt: "Success Icon"
+      alt: "Success Icon",
     };
   }
 
   if (isError.value) {
     return {
       url: errorImage,
-      alt: "Error Icon"
+      alt: "Error Icon",
     };
   }
 
   return {
     url: null,
-    alt: null
-  }
-})
+    alt: null,
+  };
+});
 </script>
 
 <template>
@@ -61,7 +61,10 @@ const image = computed(() => {
     <div v-if="!isPending" class="icon-wrapper" :class="{ error: isError }">
       <img v-if="image.url" :src="image.url" alt="Success Icon" />
     </div>
-    <span class="message__title" :class="{ 'error': isError }">{{ title }}</span>
+    <span class="message__title" :class="{ error: isError }">{{ title }}</span>
+    <span v-if="!isPending" class="message__formError">{{
+      form.errorMessage
+    }}</span>
     <span class="message__text">{{ statusText }}</span>
   </div>
 </template>
@@ -82,11 +85,19 @@ const image = computed(() => {
   }
 
   .message__text {
-    margin-top: 0.2rem;
+    margin-top: 0.4rem;
     font-weight: 500;
     font-size: 18px;
     line-height: 28px;
     color: #666666;
+  }
+
+  .message__formError {
+    margin-top: 0.2rem;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgb(199, 25, 25);
   }
 
   .error {

@@ -88,6 +88,7 @@ form.ci = userData.datos?.[0].cedula || "";
 @include responsive(20em) {
   .subscriptor-data {
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
 
     .formulario__form__grupo {

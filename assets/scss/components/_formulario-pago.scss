@@ -1,5 +1,6 @@
 .report-view {
   @include grid-structure($columns: 1);
+
   grid-template-areas:
     "hero"
     "plan-internet"
@@ -9,7 +10,9 @@
   .hero {
     grid-area: hero;
     border-radius: 1em;
-    @include section-background($image: 'latinamericancable-reporte-tab-lan.webp');
+    @include section-background(
+      $image: "latinamericancable-reporte-tab-lan.webp"
+    );
 
     & > div {
       @include grid-structure($columns: 1);
@@ -21,15 +24,15 @@
       box-sizing: border-box;
 
       &__box {
-        @include hero-box($bg: $azul, $gridarea: '');
+        @include hero-box($bg: $azul, $gridarea: "");
         width: 28em;
         margin-left: 5rem;
-        min-height: 6em ;
+        min-height: 6em;
       }
 
       &__icon {
         @include hero-box-icon(
-          $image: 'latinamerican-pago-icon.svg',
+          $image: "latinamerican-pago-icon.svg",
           $fillColor: $verde,
           $width: 4em
         );
@@ -44,11 +47,15 @@
         margin-top: 0.5em;
         grid-area: title;
         color: $verde;
-        margin-bottom: .4em;
+        margin-bottom: 0.4em;
       }
 
       &__text {
-        @include hero-box-icon-info-text($fontsize: 1rem, $color: '#fff', $lineheight: '1.3')
+        @include hero-box-icon-info-text(
+          $fontsize: 1rem,
+          $color: "#fff",
+          $lineheight: "1.3"
+        );
       }
     }
   }
@@ -99,6 +106,8 @@
 }
 
 .payment-section {
+  max-width: 100%;
+  margin: 0 auto;
   background-color: $gris-2;
   border-radius: 1em;
 
@@ -206,7 +215,7 @@
     }
   }
 
-  .report-view {  
+  .report-view {
     .hero {
       &__internet {
         &__box {
@@ -216,27 +225,27 @@
       }
     }
   }
-  
+
   .payment {
-    padding-left: 1rem;  
-    padding-right: 1rem;  
+    padding-left: 1rem;
+    padding-right: 1rem;
 
     &__info {
       flex-direction: column;
       padding-left: 0.6rem;
       padding-right: 0.6rem;
     }
-  
+
     .info-box {
       flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 0.5rem;
-  
+
       &__icon-wrapper {
         width: 80px;
         height: 80px;
-  
+
         & img {
           width: 44px;
           height: 44px;
@@ -257,7 +266,7 @@
 
 /*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
 @include responsive(48em) {
-  .report-view {  
+  .report-view {
     .hero {
       &__internet {
         &__box {
@@ -267,22 +276,22 @@
       }
     }
   }
-  
+
   .payment {
     &__info {
       flex-direction: row;
     }
-  
+
     .info-box {
       flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 0.5rem;
-  
+
       &__icon-wrapper {
         width: 101px;
         height: 101px;
-  
+
         & img {
           width: 64px;
           height: 64px;
@@ -307,7 +316,7 @@
     &__info {
       flex-direction: row;
     }
-  
+
     .info-box {
       flex-direction: row;
       gap: 1rem;

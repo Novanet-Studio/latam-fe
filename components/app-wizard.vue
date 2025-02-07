@@ -10,14 +10,18 @@ const billingData = reactive<Latam.Billing>({
   valor: "",
 });
 
-const { stepper, activeComponent, isFirstOrLast, nextBtnLabel, allStepsBeforeAreValid } = useStepperApp()
+const {
+  stepper,
+  activeComponent,
+  isFirstOrLast,
+  nextBtnLabel,
+  allStepsBeforeAreValid,
+} = useStepperApp();
 
 const submit = useWizardSubmit({
   stepper,
-  billingData
-})
-
-// stepper.goTo("payment-report");
+  billingData,
+});
 
 provide("stepper", stepper);
 </script>
@@ -28,6 +32,9 @@ provide("stepper", stepper);
     <div class="wizard payment-section">
       <h3>Confirmación de Pagos TV por cable</h3>
       <h5>{{ stepper.current.value!.title }}</h5>
+      <p v-if="form.errorMessage !== '' && !stepper?.isLast.value">
+        {{ form.errorMessage }}
+      </p>
 
       <form @submit.prevent="submit">
         <transition
@@ -117,10 +124,22 @@ provide("stepper", stepper);
     font-size: 22px;
   }
 
+  & p {
+    color: rgb(199, 25, 25);
+    font-weight: 600;
+    margin: 1rem auto 0 auto;
+
+    @media (max-width: 1280px) {
+      position: absolute;
+      top: 1rem;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
   & form {
     margin-top: 2rem;
     margin-bottom: 2rem;
-    width: 100%;
 
     & div label {
       color: #666666;
@@ -135,9 +154,14 @@ provide("stepper", stepper);
 
 .wizard__footer {
   margin-top: 3rem;
+  margin: 0 auto;
   width: 50%;
   display: flex;
   justify-content: space-around;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 
   &--full {
     width: 65%;
@@ -208,11 +232,11 @@ provide("stepper", stepper);
       }
 
       & .wizard__btn {
-        width: 50%;
-        min-width: 50%;
+        width: min(45%, 200px);
+        min-width: min(45%, 200px);
 
         &--full {
-          width: 100% !important;
+          width: min(100%, 300px);
         }
       }
     }

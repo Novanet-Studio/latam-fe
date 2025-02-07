@@ -1,4 +1,5 @@
 import generateUniqueID from "generate-unique-id";
+import { getFailureReason } from "~/data/codes";
 
 interface UsePaymentsParams {
   stepper: any;
@@ -13,7 +14,7 @@ export default function usePayments({
   const paymentOption = inject("paymentOption") as Ref<Latam.PaymentOption>;
   const showOtp = inject("showOtp") as Ref<boolean>;
   const isSending = inject("isSending") as Ref<boolean>;
-  const { open } = inject("sse") as any;
+  const isSuccessful = inject("isSuccessful") as Ref<boolean>;
 
   const {
     executeBtPay,
@@ -44,14 +45,20 @@ export default function usePayments({
       );
 
       if (!payment?.value?.referencia) {
-        notification.reject(payment.value?.descRes);
         form.status = "error";
+
+        if (payment.value?.descRes) {
+          form.errorMessage = payment.value?.descRes;
+        }
+
+        notification.reject(payment.value?.descRes);
         stepper.goToNext();
         return;
       }
 
       if (paymentError.value?.data?.error) {
         notification.reject(paymentError.value?.data?.error);
+        form.status = "error";
         return;
       }
 
@@ -75,12 +82,16 @@ export default function usePayments({
       if (conformation?.value?.status === "Error") {
         notification.reject(conformation.value.mensaje);
         form.status = "error";
+        form.errorMessage = conformation.value.mensaje;
+
         stepper.goToNext();
         return;
       }
 
       if (conformationError.value?.data?.error) {
         notification.reject(conformationError.value?.data?.error);
+        form.status = "error";
+        form.errorMessage = conformationError.value?.data?.error;
         return;
       }
 
@@ -102,16 +113,19 @@ export default function usePayments({
 
       if (registerPaymentError.value?.data?.error) {
         notification.reject(registerPaymentError.value?.data?.error);
+        form.status = "error";
         return;
       }
 
       if (response.value?.code === "170") {
         notification.reject(response.value?.mensaje);
+        form.status = "error";
         return;
       }
 
       notification.resolve("Pago procesado correctamente");
       form.status = "success";
+      form.errorMessage = "";
       stepper.goToNext();
     } catch (error) {
       notification.error("Hubo un error al procesar el pago");
@@ -120,10 +134,12 @@ export default function usePayments({
   }
 
   async function miBancoPayment() {
+    localStorage.removeItem("msgId");
+
     const notification = push.promise("Procesando pago...");
 
     try {
-      isSending.value = true
+      isSending.value = true;
       form.status = "pending";
 
       const getShortFormatDate = () =>
@@ -135,7 +151,9 @@ export default function usePayments({
           .replaceAll(":", "");
       const getTimeFormatDate = () =>
         new Date().toISOString().replace(/\.(\d{3})Z$/, "") + "Z";
+
       const msgId = `000101${getShortFormatDate()}00000000`;
+      //> const msgId = `0001012025012217564900000000`;
 
       // Procesar pago
       const paymentBody = {
@@ -145,18 +163,18 @@ export default function usePayments({
             CreDtTm: getTimeFormatDate(),
             NbOfTxs: 1,
             // CtrlSum: 10.01,
-            CtrlSum: Number(form.amount),
+            CtrlSum: Number(form.vesAmount.replace(",", ".")),
             InitgPty: {
               Id: {
                 PrvtId: {
                   Othr: {
-                    Id: "800001",
+                    Id: "0071",
                   },
                 },
               },
             },
             InitnSrc: {
-              Nm: "1234",
+              Nm: "0071",
               Prvdr: "SBTC",
               Vrsn: "1.0.1",
             },
@@ -165,14 +183,14 @@ export default function usePayments({
             {
               Cdtr: {
                 // Nombre Acreedor
-                Nm: form.fullName,
+                Nm: "Latin American Cable",
                 Id: {
                   PrvtId: {
                     Othr: {
                       // Id: "V15555666",
-                      Id: form.ci,
+                      Id: "J298946229",
                       SchmeNm: {
-                        Cd: "SCID",
+                        Cd: "SRIF",
                       },
                     },
                   },
@@ -181,10 +199,10 @@ export default function usePayments({
               CdtrAcct: {
                 Prxy: {
                   Tp: {
-                    Cd: "CELE",
+                    Cd: "CNTA",
                   },
                   // Id: "00011234567890123456",
-                  Id: form.phone,
+                  Id: "01690001041000579342",
                 },
               },
               CdtrAgt: {
@@ -194,7 +212,7 @@ export default function usePayments({
                       Cd: "NCCE",
                     },
                     // MmbId: "0102",
-                    MmbId: form.bank,
+                    MmbId: "0169",
                   },
                 },
               },
@@ -214,7 +232,7 @@ export default function usePayments({
                   },
                   InstdAmt: {
                     // Amt: 10.01,
-                    Amt: Number(form.amount),
+                    Amt: Number(form.vesAmount.replace(",", ".")),
                     Ccy: "VES",
                   },
                   DbtrAgt: {
@@ -223,7 +241,8 @@ export default function usePayments({
                         ClrSysId: {
                           Cd: "NCCE",
                         },
-                        MmbId: "0105",
+                        // MmbId: "0105",
+                        MmbId: form.bank,
                       },
                     },
                   },
@@ -234,7 +253,7 @@ export default function usePayments({
                       PrvtId: {
                         Othr: {
                           // Id: "V15555666",
-                          Id: form.ci,
+                          Id: `${form.type}${form.ci}`,
                           SchmeNm: {
                             Cd: "SCID",
                           },
@@ -265,20 +284,227 @@ export default function usePayments({
         },
       };
 
-      await executeMiBancoPayment(paymentBody);
+      const { error: mbError } = await executeMiBancoPayment(paymentBody);
 
-      // When payment is executed, then we open the connection
-      localStorage.setItem("msgId", btoa(msgId));
-      open()
+      if (mbError.value?.message) {
+        notification.error("Hubo un error al procesar el pago");
 
-      notification.resolve("Pago enviado correctamente");
-      // form.status = "success";
-      stepper.goToNext();
+        if (mbError.value?.message) {
+          form.errorMessage = mbError.value?.message;
+        }
+
+        form.status = "error";
+
+        stepper.goToNext();
+
+        return;
+      }
+
+      const {
+        public: { latamServicesApiUrl },
+      } = useRuntimeConfig();
+
+      const { status, data, error, close, open } = useEventSource(
+        `${latamServicesApiUrl}/api/v1/mibanco/notify/${msgId}`,
+        undefined,
+        {
+          immediate: false,
+          autoReconnect: true,
+        }
+      );
+
+      let count = ref(0);
+      let retries = ref(0);
+
+      watch(data, () => {
+        if (status.value === "OPEN" && data.value) {
+          const parsed = JSON.parse(data.value);
+
+          console.log(`<<< parsed >>>`, parsed);
+
+          if (retries.value === 5) {
+            form.errorMessage = "Tiempo de espera agotado";
+            form.status = "error";
+
+            close();
+            return;
+          }
+
+          // This means something went wrong
+          if (parsed?.message === "OK") {
+            push.warning({
+              title: "Estatus de pago",
+              message: "Esperando respuesta...",
+            });
+
+            retries.value++;
+            return;
+          }
+
+          const statusInfo =
+            parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0];
+          const statusCode = statusInfo?.TxSts;
+          const identificator =
+            parsed?.CstmrPmtStsRpt?.OrgnlPmtInfAndSts[0]?.TxInfAndSts[0]
+              ?.OrgnlTxRef?.Dbtr?.Id?.PrvtId?.Othr?.Id;
+
+          if (!statusCode) {
+            push.warning({
+              title: "Estatus de pago",
+              message:
+                "El pago ha sido aceptado, mas no procesado, revise sus datos o intente mas tarde",
+            });
+
+            form.status = "success";
+            close();
+
+            return;
+          }
+
+          if (`${form.type}${form.ci}` === identificator) {
+            console.log(`<<< statusCode >>>`, statusCode);
+
+            const isSuccess = statusCode === "ACCP";
+
+            if (!isSuccess) {
+              const reasonCode = statusInfo?.StsRsnInf?.Rsn?.Cd ?? statusCode;
+
+              push.error({
+                title: "Estatus de pago",
+                message: getFailureReason(reasonCode),
+              });
+
+              form.errorMessage = `[Error: ${statusCode}] ${getFailureReason(
+                reasonCode
+              )}`;
+            } else {
+              isSuccessful.value = true;
+            }
+          }
+        }
+      });
+
+      watch(retries, () => {
+        if (retries.value > 0) {
+          push.clearAll();
+          push.promise("Esperando respuesta...");
+        }
+
+        if (retries.value === 5) {
+          push.clearAll();
+          push.error("No hubo respuesta del servidor.");
+
+          retries.value = 0;
+        }
+      });
+
+      watch(error, () => {
+        if (error.value) {
+          count.value++;
+        }
+
+        if (count.value === 5) {
+          push.error({
+            title: "Estatus de pago",
+            message: "No hubo respuesta del servidor.",
+          });
+
+          if (!isSuccessful.value) {
+            form.errorMessage = "No hubo respuesta del servidor";
+          }
+
+          close();
+        }
+      });
+
+      setTimeout(() => {
+        open();
+      }, 1000);
+
+      const responseWatcher = setInterval(async () => {
+        console.log(`<<< responseWatcher >>>`);
+
+        if (isSuccessful.value) {
+          console.log(`<<< success case >>>`);
+
+          close();
+
+          retries.value = 0;
+          count.value = 0;
+
+          clearInterval(responseWatcher);
+
+          const notification = push.promise("Procesando pago...");
+
+          notification.resolve("Pago procesado correctamente");
+
+          form.status = "success";
+          form.errorMessage = "";
+
+          stepper.goToNext();
+
+          const { data: response, error: registerPaymentError } =
+            await executeRegisterPay({
+              IDFactura: billingData.IDFactura,
+              valor: Number(form.amount),
+              fecha: form.paymentDate,
+              secuencial: Number(
+                generateUniqueID({
+                  length: 15,
+                  useLetters: false,
+                })
+              ),
+            });
+
+          if (registerPaymentError.value?.data?.error) {
+            notification.reject(registerPaymentError.value?.data?.error);
+            form.status = "error";
+            return;
+          }
+
+          if (response.value?.code === "170") {
+            notification.reject(response.value?.mensaje);
+            form.status = "error";
+            return;
+          }
+
+          notification.resolve("Pago procesado correctamente");
+
+          form.status = "success";
+
+          stepper.goToNext();
+        }
+
+        if (form.errorMessage !== "") {
+          console.log(`<<< error case >>>`);
+
+          close();
+
+          retries.value = 0;
+          count.value = 0;
+
+          clearInterval(responseWatcher);
+
+          form.status = "error";
+
+          stepper.goToNext();
+        }
+
+        setTimeout(() => {
+          clearInterval(responseWatcher);
+
+          retries.value = 0;
+          count.value = 0;
+        }, 30000);
+      }, 1000);
+
+      notification.resolve("Conexión con el banco exitosa");
     } catch (error) {
       notification.error("Hubo un error al procesar el pago");
+      form.errorMessage = "Error al procesar el pago";
       form.status = "error";
     } finally {
-      isSending.value = false
+      isSending.value = false;
     }
   }
 
@@ -286,7 +512,8 @@ export default function usePayments({
     const notification = push.promise("Solicitando clave...");
 
     try {
-      isSending.value = true
+      isSending.value = true;
+
       const getShortFormatDate = () =>
         new Date()
           .toISOString()
@@ -331,13 +558,13 @@ export default function usePayments({
               Id: {
                 PrvtId: {
                   Othr: {
-                    Id: "800001",
+                    Id: "0071",
                   },
                 },
               },
             },
             InitnSrc: {
-              Nm: "50001",
+              Nm: "0071",
               Prvdr: "SBTC",
               Vrsn: "1.0",
             },
@@ -347,10 +574,10 @@ export default function usePayments({
               InstdAmt: {
                 Ccy: "VES",
                 // Amt: 18.01,
-                Amt: Number(form.amount),
+                Amt: Number(form.vesAmount.replace(",", ".")),
               },
               MndtRltdInf: {
-                MndtId: "00012020062418222012345671",
+                MndtId: "01691234563993136694",
                 Tp: {
                   LclInstrm: {
                     Cd: "050",
@@ -362,7 +589,7 @@ export default function usePayments({
                   PrvtId: {
                     Othr: {
                       // Id: "V19458201",
-                      Id: form.ci,
+                      Id: `${form.type}${form.ci}`,
                       SchmeNm: {
                         Cd: "SCID",
                       },
@@ -375,7 +602,7 @@ export default function usePayments({
                   PrvtId: {
                     // Bussines Data
                     Othr: {
-                      Id: "J123456789",
+                      Id: "J298946229",
                       SchmeNm: {
                         Cd: "SRIF",
                       },
@@ -418,7 +645,7 @@ export default function usePayments({
                   Tp: {
                     Cd: "CNTA",
                   },
-                  Id: "01691234567890123456",
+                  Id: "01690001041000579342",
                 },
               },
             },
@@ -426,16 +653,27 @@ export default function usePayments({
         },
       };
 
-      await executeRequestMiBancoOTP(otpBody);
+      const { data: otpResp, error: otpError } = await executeRequestMiBancoOTP(
+        otpBody
+      );
+
+      if (otpError.value) {
+        notification.error("Error al solicitar la Clave de pago");
+        form.errorMessage = "Error al solicitar la Clave de pago";
+
+        return;
+      }
 
       notification.resolve("Clave de pago solicitada");
+      form.errorMessage = "";
       showOtp.value = true;
       stepper.goTo("payment-report");
     } catch (error) {
       console.log("error =>", error);
       notification.error("Hubo un error al solicitar la clave de pago");
+      form.errorMessage = "Error al solicitar la clave de pago";
     } finally {
-      isSending.value = false
+      isSending.value = false;
     }
   }
 

@@ -1,15 +1,7 @@
 <script setup lang="ts">
 import AppLogin from "~/components/app-login.vue";
 import AppWizard from "~/components/app-wizard.vue";
-import { getCode } from "~/data/codes"
-
-const { public: { latamServicesApiUrl } } = useRuntimeConfig();
-const NOTIFY_SSE_URL = `${latamServicesApiUrl}/api/v1/mibanco/notify`;
-
-const { status, data, error, close, open } = useEventSource(NOTIFY_SSE_URL, undefined, {
-  immediate: false,
-  autoReconnect: true
-});
+import { getFailureReason } from "~/data/codes";
 
 useHead({
   meta: [
@@ -23,6 +15,7 @@ useHead({
 const isAuthenticated = ref(false);
 const isLoading = ref(false);
 const isSending = ref(false);
+const isSuccessful = ref(false);
 const paymentMethod = ref<Latam.PaymentMethod>("pagoMovil");
 const paymentOption = ref<Latam.PaymentOption>("");
 const userData = reactive<Latam.UserData>({
@@ -40,54 +33,25 @@ const form = reactive<Latam.Form>({
   bank: "",
   paymentDate: "",
   dynamicKey: "",
-  status: "", // error | pending | success
+  status: "",
+  errorMessage: "",
 });
 
-const showOtp = ref(false)
+const showOtp = ref(false);
 
 const activeComponent = computed(() =>
   isAuthenticated.value ? AppWizard : AppLogin
 );
 
 provide("form", form);
-provide("paymentMethod", paymentMethod)
-provide("paymentOption", paymentOption)
+provide("paymentMethod", paymentMethod);
+provide("paymentOption", paymentOption);
 provide("userData", userData);
 provide("isLoading", isLoading);
 provide("isSending", isSending);
+provide("isSuccessful", isSuccessful);
 provide("isAuthenticated", isAuthenticated);
 provide("showOtp", showOtp);
-provide("sse", { status, data, error, close, open });
-
-watch(data, () => {
-  if (status.value === "OPEN" && data.value) {
-    const msgId = atob(localStorage.getItem("msgId") || "");
-    const parsed = JSON.parse(data.value);
-
-    if (msgId === parsed.CstmrPmtStsRpt.GrpHdr.MsgId) {
-      const statusCode = parsed.CstmrPmtStsRpt.OrgnlGrpInfAndSts.GrpSts;
-
-      if (statusCode === "ACCP") {
-        push.success({
-          title: "Estatus de pago",
-          message: getCode(statusCode),
-        })
-        form.status = "success";
-      } else {
-        push.error({
-          title: "Estatus de pago",
-          message: getCode(statusCode),
-        })
-        form.status = "error";
-      }
-
-    }
-
-    setTimeout(() => {
-      close()
-    }, 3000)
-  }
-})
 </script>
 
 <template>

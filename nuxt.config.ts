@@ -41,7 +41,6 @@ export default defineNuxtConfig({
       strapi: {
         url: process.env.STRAPI_URL || "http://localhost:1337",
       },
-      bcvUsdApi: process.env.BCV_USD_API_URL,
       latamServicesApiUrl: process.env.LATAM_SERVICES_API,
     },
   },
