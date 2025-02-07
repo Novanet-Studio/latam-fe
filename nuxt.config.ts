@@ -34,7 +34,14 @@ export default defineNuxtConfig({
     ],
   },
 
-  modules: ["@nuxt/image", "@nuxtjs/strapi", "@kevinmarrec/nuxt-pwa", "@vueuse/nuxt", "notivue/nuxt", "@nuxt/ui"],
+  modules: [
+    "@nuxt/image",
+    "@nuxtjs/strapi",
+    "@kevinmarrec/nuxt-pwa",
+    "@vueuse/nuxt",
+    "notivue/nuxt",
+    "@nuxt/ui",
+  ],
 
   runtimeConfig: {
     public: {
@@ -60,7 +67,7 @@ export default defineNuxtConfig({
     "~/assets/scss/global.scss",
     "@fortawesome/fontawesome-svg-core/styles.css",
     "notivue/notifications.css",
-    "notivue/animations.css"
+    "notivue/animations.css",
   ],
 
   notivue: {
