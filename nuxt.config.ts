@@ -3,6 +3,7 @@ import pwa from "./pwa";
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   telemetry: false,
+
   app: {
     head: {
       meta: [
@@ -32,7 +33,9 @@ export default defineNuxtConfig({
       "@vuepic/vue-datapicker",
     ],
   },
-  modules: ["@nuxt/image", "@nuxtjs/strapi", "@kevinmarrec/nuxt-pwa", "@vueuse/nuxt", "notivue/nuxt"],
+
+  modules: ["@nuxt/image", "@nuxtjs/strapi", "@kevinmarrec/nuxt-pwa", "@vueuse/nuxt", "notivue/nuxt", "@nuxt/ui"],
+
   runtimeConfig: {
     public: {
       strapi: {
@@ -42,6 +45,7 @@ export default defineNuxtConfig({
       latamServicesApiUrl: process.env.LATAM_SERVICES_API,
     },
   },
+
   typescript: {
     strict: true,
     tsConfig: {
@@ -50,12 +54,12 @@ export default defineNuxtConfig({
       },
     },
   },
+
   pwa,
 
   css: [
     "~/assets/scss/global.scss",
     "@fortawesome/fontawesome-svg-core/styles.css",
-    "vue3-rich-accordion/accordion-library-styles.css",
     "notivue/notifications.css",
     "notivue/animations.css"
   ],
@@ -63,7 +67,7 @@ export default defineNuxtConfig({
   notivue: {
     position: "top-right",
   },
-  
+
   image: {
     // The screen sizes predefined by `@nuxt/image`:
     screens: {
@@ -76,4 +80,6 @@ export default defineNuxtConfig({
       "2xl": 1536,
     },
   },
+
+  compatibilityDate: "2025-01-24",
 });
