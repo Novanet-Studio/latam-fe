@@ -2,6 +2,8 @@ body {
   font-family: "Sarabun", "Trebuchet MS", sans-serif;
   font-weight: 300;
   line-height: 1.6rem;
+
+  background-color: #ffffff;
 }
 
 p {
@@ -53,12 +55,12 @@ h5 {
   position: relative;
   width: 75em;
   margin: 0 auto;
+
   @include grid-structure($columns: 12);
   grid-template-areas:
     "header header header header header header header header header header header header"
     "main main main main main main main main main main main main"
     "footer footer footer footer footer footer footer footer footer footer footer footer ";
-  background-color: #ffffff;
 }
 
 .fade-enter-active {
