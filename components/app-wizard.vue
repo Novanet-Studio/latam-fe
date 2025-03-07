@@ -220,12 +220,11 @@ provide("stepper", stepper);
     }
 
     form {
-      width: 70vw;
+      width: min(100%, 70vw);
     }
 
     &__footer {
       margin-top: 1rem;
-      width: 100%;
 
       &--full {
         width: 100%;

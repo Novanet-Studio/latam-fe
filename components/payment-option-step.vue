@@ -25,7 +25,8 @@ const option = inject("paymentOption") as Ref<Latam.PaymentOption>;
 }
 
 .option-btn {
-  max-width: 150px;
+  max-width: min(150px, 40%);
+
   aspect-ratio: 1 / 1;
 
   overflow: hidden;
