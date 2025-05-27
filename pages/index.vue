@@ -76,7 +76,7 @@ try {
         href="http://190.52.105.146:8922"
         target="_blank"
         class="pago__boton"
-        >Notifíque su pago C2P aquí</a
+        >Notifíque su pago móvil aquí</a
       >
     </section>
 
