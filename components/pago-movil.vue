@@ -73,8 +73,6 @@ const typeOptions = [
 setFieldValue("amount", "Bs.S " + form.amount);
 
 watch(vesUsd, () => {
-  console.log(`<<< vesUsd.value >>>`, vesUsd.value);
-
   const value = Number(vesUsd.value) * Number(form.amount);
   const amount = transformAmount(value.toString(), true);
   amountVes.value = amount;

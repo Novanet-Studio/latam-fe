@@ -320,8 +320,6 @@ export default function usePayments({
         if (status.value === "OPEN" && data.value) {
           const parsed = JSON.parse(data.value);
 
-          console.log(`<<< parsed >>>`, parsed);
-
           if (retries.value === 5) {
             form.errorMessage = "Tiempo de espera agotado";
             form.status = "error";
@@ -362,8 +360,6 @@ export default function usePayments({
           }
 
           if (`${form.type}${form.ci}` === identificator) {
-            console.log(`<<< statusCode >>>`, statusCode);
-
             const isSuccess = statusCode === "ACCP";
 
             if (!isSuccess) {
@@ -422,11 +418,7 @@ export default function usePayments({
       }, 1000);
 
       const responseWatcher = setInterval(async () => {
-        console.log(`<<< responseWatcher >>>`);
-
         if (isSuccessful.value) {
-          console.log(`<<< success case >>>`);
-
           close();
 
           retries.value = 0;
@@ -476,8 +468,6 @@ export default function usePayments({
         }
 
         if (form.errorMessage !== "") {
-          console.log(`<<< error case >>>`);
-
           close();
 
           retries.value = 0;
