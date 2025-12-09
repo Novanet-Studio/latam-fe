@@ -114,7 +114,7 @@
     .hero {
       grid-template-columns: repeat(8, 2fr);
       grid-template-areas: "mensaje mensaje mensaje mensaje mensaje mensaje mensaje mensaje";
-      background-image: url("../../assets/images/latinamericancable-contacto-mob-por.webp");
+      background-image: url("../../images/latinamericancable-contacto-mob-por.webp");
 
       &__mensaje {
         border-radius: 0 0 0 0;
@@ -137,11 +137,11 @@
     }
 
     .condiciones {
-      background-image: url("../../assets/images/latinamericancable-condiciones-mob-por.webp");
+      background-image: url("../../images/latinamericancable-condiciones-mob-por.webp");
     }
 
     .politicas {
-      background-image: url("../../assets/images/latinamericancable-politicas-mob-por.webp");
+      background-image: url("../../images/latinamericancable-politicas-mob-por.webp");
     }
   }
 }
@@ -152,7 +152,7 @@
     .hero {
       grid-template-columns: repeat(6, 2fr);
       grid-template-areas: ". . mensaje mensaje mensaje mensaje";
-      background-image: url("../../assets/images/latinamericancable-contacto-mob-lan.webp");
+      background-image: url("../../images/latinamericancable-contacto-mob-lan.webp");
 
       &__mensaje {
         align-content: center;
@@ -165,11 +165,11 @@
     }
 
     .condiciones {
-      background-image: url("../../assets/images/latinamericancable-condiciones-mob-lan.webp");
+      background-image: url("../../images/latinamericancable-condiciones-mob-lan.webp");
     }
 
     .politicas {
-      background-image: url("../../assets/images/latinamericancable-politicas-mob-lan.webp");
+      background-image: url("../../images/latinamericancable-politicas-mob-lan.webp");
     }
   }
 }
@@ -179,7 +179,7 @@
   .contacto {
     .hero {
       grid-template-areas: ". . . mensaje mensaje mensaje";
-      background-image: url("../../assets/images/latinamericancable-contacto-tab-por.webp");
+      background-image: url("../../images/latinamericancable-contacto-tab-por.webp");
 
       &__mensaje {
         &__box {
@@ -189,11 +189,11 @@
     }
 
     .condiciones {
-      background-image: url("../../assets/images/latinamericancable-condiciones-tab-por.webp");
+      background-image: url("../../images/latinamericancable-condiciones-tab-por.webp");
     }
 
     .politicas {
-      background-image: url("../../assets/images/latinamericancable-politicas-tab-por.webp");
+      background-image: url("../../images/latinamericancable-politicas-tab-por.webp");
     }
   }
 }
@@ -202,7 +202,7 @@
 @include responsive(64em) {
   .contacto {
     .hero {
-      background-image: url("../../assets/images/latinamericancable-contacto-tab-lan.webp");
+      background-image: url("../../images/latinamericancable-contacto-tab-lan.webp");
 
       &__mensaje {
         &__box {
@@ -221,11 +221,11 @@
     }
 
     .condiciones {
-      background-image: url("../../assets/images/latinamericancable-condiciones-tab-lan.webp");
+      background-image: url("../../images/latinamericancable-condiciones-tab-lan.webp");
     }
 
     .politicas {
-      background-image: url("../../assets/images/latinamericancable-politicas-tab-lan.webp");
+      background-image: url("../../images/latinamericancable-politicas-tab-lan.webp");
     }
   }
 }
@@ -236,7 +236,7 @@
     .hero {
       grid-template-columns: repeat(12, 2fr);
       grid-template-areas: ". . . . . . mensaje mensaje mensaje mensaje mensaje mensaje";
-      background-image: url("../../assets/images/latinamericancable-contacto.webp");
+      background-image: url("../../images/latinamericancable-contacto.webp");
 
       &__mensaje {
         &__text {
@@ -246,11 +246,11 @@
     }
 
     .condiciones {
-      background-image: url("../../assets/images/latinamericancable-condiciones.webp");
+      background-image: url("../../images/latinamericancable-condiciones.webp");
     }
 
     .politicas {
-      background-image: url("../../assets/images/latinamericancable-politicas.webp");
+      background-image: url("../../images/latinamericancable-politicas.webp");
     }
   }
 }

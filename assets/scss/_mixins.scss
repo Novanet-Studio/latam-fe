@@ -3,7 +3,7 @@
 //Font configuration
 @mixin font-set($color) {
   color: #{$color};
-  font-family: 'Sarabun', 'Helvetica', sans-serif;
+  font-family: "Sarabun", "Helvetica", sans-serif;
 }
 
 @mixin grid-structure($columns: $columns) {
@@ -13,14 +13,14 @@
 }
 
 @mixin section-background($image) {
-  background-image: url('../../assets/images/#{$image}');
+  background-image: url("../../assets/images/#{$image}");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
 }
 
 @mixin section-background-opacity-common() {
-  content: '';
+  content: "";
   background-size: cover;
   position: absolute;
   top: 0;
@@ -33,17 +33,17 @@
 
 @mixin section-background-opacity($image) {
   @include section-background-opacity-common();
-  background-image: url('../../assets/images/#{$image}');
+  background-image: url("../../assets/images/#{$image}");
 }
 
 @mixin section-background-opacity-a($image) {
   @include section-background-opacity-common();
-  background-image: url('../assets/images/#{$image}');
+  background-image: url("../assets/images/#{$image}");
 }
 
 @mixin section-background-opacity-modal($image) {
   @include section-background-opacity-common();
-  background-image: url('../assets/images/#{$image}');
+  background-image: url("../assets/images/#{$image}");
   opacity: 0.35;
 }
 
@@ -53,7 +53,7 @@
   grid-template-rows: auto;
   height: fit-content;
   grid-area: #{$gridarea};
-  grid-template-areas: 'title title title title' 'icon info info info';
+  grid-template-areas: "title title title title" "icon info info info";
   border-radius: 1em;
   min-height: 8em;
   padding: 1em;
@@ -64,7 +64,7 @@
 
 @mixin hero-box-icon($image, $width, $fillColor) {
   grid-area: icon;
-  background-image: url('../../assets/images/#{$image}');
+  background-image: url("../../assets/images/#{$image}");
   background-color: #{$fillColor};
   background-repeat: no-repeat;
   background-position: center center;
@@ -85,7 +85,7 @@
 
 @mixin flex-center() {
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
 }
 
@@ -104,10 +104,10 @@
 @mixin heading-before-content($image, $color) {
   color: #{$color};
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     float: left;
-    background-image: url('../../assets/images/#{$image}');
+    background-image: url("../../assets/images/#{$image}");
     background-repeat: no-repeat;
     background-size: 1em 1em;
     width: 1em;

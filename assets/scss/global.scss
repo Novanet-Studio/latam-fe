@@ -6,27 +6,27 @@
  *
  */
 
-@import './normalize';
-@import './variables';
-@import './fonts';
-@import './mixins';
-@import './utils';
+@import "./normalize";
+@import "./variables";
+@import "./fonts";
+@import "./mixins";
+@import "./utils";
 
 // components
-@import './components/canales';
-@import './components/categoria';
-@import './components/footer';
-@import './components/formulario-pago';
-@import './components/header';
-@import './components/modal';
-@import './components/whatsapp-banner';
-@import './components/whatsapp';
+@import "./components/canales";
+@import "./components/categoria";
+@import "./components/footer";
+@import "./components/formulario-pago";
+@import "./components/header";
+@import "./components/modal";
+@import "./components/whatsapp-banner";
+@import "./components/whatsapp";
 
 // layouts
-@import './layouts/default';
+@import "./layouts/default";
 
 // pages
-@import './pages/contacto';
-@import './pages/home';
-@import './pages/internet';
-@import './pages/reporte';
+@import "./pages/contacto";
+@import "./pages/home";
+@import "./pages/internet";
+@import "./pages/reporte";

@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .report-view {
   @include grid-structure($columns: 1);
 
@@ -10,6 +12,7 @@
   .hero {
     grid-area: hero;
     border-radius: 1em;
+
     @include section-background(
       $image: "latinamericancable-reporte-tab-lan.webp"
     );
@@ -193,7 +196,7 @@
     padding: 0.6em;
     cursor: pointer;
     &:disabled {
-      @include boton-a($color: #fff, $bg: lighten($azul, 30));
+      @include boton-a($color: #fff, $bg: color.adjust($azul, $lightness: 30%));
       cursor: not-allowed;
     }
   }

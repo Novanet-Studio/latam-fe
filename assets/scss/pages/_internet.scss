@@ -162,7 +162,7 @@
       .hero {
         grid-template-columns: repeat(8, 2fr);
         grid-template-areas: 'internet internet internet internet internet internet internet internet';
-        background-image: url('../../assets/images/latinamericancable-vista-internet-mob-por.webp');
+        background-image: url('../../images/latinamericancable-vista-internet-mob-por.webp');
   
         &__internet {
           align-content: end;
@@ -236,7 +236,7 @@
   .hero {
     grid-template-columns: repeat(6, 2fr);
     grid-template-areas: ". . internet internet internet internet";
-    background-image: url("../../assets/images/latinamericancable-vista-internet-mob-lan.webp");
+    background-image: url("../../images/latinamericancable-vista-internet-mob-lan.webp");
 
     &__internet {
       align-content: center;
@@ -274,7 +274,7 @@
   .internetvista {
     .hero {
       grid-template-areas: ". . . internet internet internet";
-      background-image: url("../../assets/images/latinamericancable-vista-internet-tab-por.webp");
+      background-image: url("../../images/latinamericancable-vista-internet-tab-por.webp");
 
       &__internet {
         &__box {
@@ -314,7 +314,7 @@
       "banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp banner-whastapp";
 
     .hero {
-      background-image: url("../../assets/images/latinamericancable-vista-internet-tab-lan.webp");
+      background-image: url("../../images/latinamericancable-vista-internet-tab-lan.webp");
 
       &__internet {
         &__box {
@@ -364,7 +364,7 @@
     .hero {
       grid-template-columns: repeat(12, 2fr);
       grid-template-areas: ". . . . . . internet internet internet internet internet internet";
-      background-image: url("../../assets/images/latinamericancable-vista-internet.webp");
+      background-image: url("../../images/latinamericancable-vista-internet.webp");
 
       &__internet {
         &__text {

@@ -180,7 +180,7 @@
     .hero {
       grid-template-columns: repeat(8, 2fr);
       grid-template-areas: "pago pago pago pago pago pago pago pago";
-      background-image: url("../../assets/images/latinamericancable-reporte-mob-por.webp");
+      background-image: url("../../images/latinamericancable-reporte-mob-por.webp");
 
       &__pago {
         align-content: end;
@@ -217,13 +217,13 @@
 
           &:nth-child(odd) {
             &::before {
-              background-image: url("../../assets/images/latinamericancable-reporte-3tv-mob-por.webp");
+              background-image: url("../../images/latinamericancable-reporte-3tv-mob-por.webp");
             }
           }
 
           &:nth-child(even) {
             &::before {
-              background-image: url("../../assets/images/latinamericancable-reporte-4tv-mob-por.webp");
+              background-image: url("../../images/latinamericancable-reporte-4tv-mob-por.webp");
             }
           }
         }
@@ -282,7 +282,7 @@
     .hero {
       grid-template-columns: repeat(6, 2fr);
       grid-template-areas: "pago pago pago pago . .";
-      background-image: url("../../assets/images/latinamericancable-reporte-mob-lan.webp");
+      background-image: url("../../images/latinamericancable-reporte-mob-lan.webp");
 
       &__pago {
         align-content: center;
@@ -302,14 +302,14 @@
           &:nth-child(odd) {
             grid-column: 1 / 7;
             &::before {
-              background-image: url("../../assets/images/latinamericancable-reporte-3tv-mob-lan.webp");
+              background-image: url("../../images/latinamericancable-reporte-3tv-mob-lan.webp");
             }
           }
 
           &:nth-child(even) {
             grid-column: 7 / 13;
             &::before {
-              background-image: url("../../assets/images/latinamericancable-reporte-4tv-mob-lan.webp");
+              background-image: url("../../images/latinamericancable-reporte-4tv-mob-lan.webp");
             }
           }
         }
@@ -336,7 +336,7 @@
   .reporte {
     .hero {
       grid-template-areas: "pago pago pago . . .";
-      background-image: url("../../assets/images/latinamericancable-reporte-tab-por.webp");
+      background-image: url("../../images/latinamericancable-reporte-tab-por.webp");
 
       &__pago {
         &__box {
@@ -355,13 +355,13 @@
 
           &:nth-child(odd) {
             &::before {
-              background-image: url("../../assets/images/latinamericancable-reporte-3tv-tab-por.webp");
+              background-image: url("../../images/latinamericancable-reporte-3tv-tab-por.webp");
             }
           }
 
           &:nth-child(even) {
             &:before {
-              background-image: url("../../assets/images/latinamericancable-reporte-4tv-tab-por.webp");
+              background-image: url("../../images/latinamericancable-reporte-4tv-tab-por.webp");
             }
           }
         }
@@ -396,7 +396,7 @@
 @include responsive(64em) {
   .reporte {
     .hero {
-      background-image: url("../../assets/images/latinamericancable-reporte-tab-lan.webp");
+      background-image: url("../../images/latinamericancable-reporte-tab-lan.webp");
 
       &__pago {
         &__box {
@@ -424,13 +424,13 @@
 
           &:nth-child(odd) {
             &::before {
-              background-image: url("../../assets/images/latinamericancable-reporte-3tv-tab-lan.webp");
+              background-image: url("../../images/latinamericancable-reporte-3tv-tab-lan.webp");
             }
           }
 
           &:nth-child(even) {
             &:before {
-              background-image: url("../../assets/images/latinamericancable-reporte-4tv-tab-lan.webp");
+              background-image: url("../../images/latinamericancable-reporte-4tv-tab-lan.webp");
             }
           }
         }
@@ -464,7 +464,7 @@
     .hero {
       grid-template-columns: repeat(12, 2fr);
       grid-template-areas: "pago pago pago pago pago pago . . . . . .";
-      background-image: url("../../assets/images/latinamericancable-reporte.webp");
+      background-image: url("../../images/latinamericancable-reporte.webp");
 
       &__pago {
         &__text {
@@ -478,13 +478,13 @@
         &__item {
           &:nth-child(odd) {
             &::before {
-              background-image: url("../../assets/images/latinamericancable-reporte-3tv.webp");
+              background-image: url("../../images/latinamericancable-reporte-3tv.webp");
             }
           }
 
           &:nth-child(even) {
             &:before {
-              background-image: url("../../assets/images/latinamericancable-reporte-4tv.webp");
+              background-image: url("../../images/latinamericancable-reporte-4tv.webp");
             }
           }
         }
