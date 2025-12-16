@@ -73,6 +73,10 @@ export default defineNuxtConfig({
     },
   },
 
+  devServer: {
+    port: 3001,
+  },
+
   css: [
     "~/assets/scss/global.scss",
     "@fortawesome/fontawesome-svg-core/styles.css",
@@ -137,6 +141,17 @@ export default defineNuxtConfig({
       xl: 1280,
       xxl: 1536,
       "2xl": 1536,
+    },
+  },
+
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: "modern-compiler",
+          silenceDeprecations: ["import"],
+        },
+      },
     },
   },
 

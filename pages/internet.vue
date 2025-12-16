@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { getPlanesInternetQuery } from "~/schemas/planes-queries";
 import getPrice from "~/utils/getPrice";
 const config = useAppConfig();
 
@@ -17,27 +18,9 @@ try {
   isLoading.value = true;
   const graphql = useStrapiGraphQL();
 
-  const internetQuery = await graphql<any>(`
-    query {
-      planInternet {
-        data {
-          attributes {
-            tipo {
-              nombre
-              descripcion
-              planes {
-                id
-                nombre
-                precio_usd
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
+  const { data: data } = await graphql<any>(getPlanesInternetQuery);
 
-  tiposPlanes.value = internetQuery.data.planInternet.data.attributes.tipo;
+  tiposPlanes.value = data.planInternet.tipo;
 } catch (err) {
   console.log(err);
 } finally {

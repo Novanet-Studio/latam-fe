@@ -1,5 +1,7 @@
 <template>
   <NuxtLayout>
+    <NuxtPwaManifest />
+
     <Notivue v-slot="item">
       <Notification :item="item" />
     </Notivue>

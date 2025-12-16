@@ -13,7 +13,6 @@ type Category = {
   content: { image: string }[];
 };
 
-// Definir categorías
 const categories: Category[] = [
   { title: "Nacionales", content: nacionales },
   { title: "Internacionales", content: internacionales },
@@ -23,45 +22,40 @@ const categories: Category[] = [
   { title: "Jóvenes y Niños", content: infantiles },
 ];
 
-// Generar items para el acordeón
 const items = categories.map((category) => ({
   label: category.title,
   content: category.content,
 }));
 
-// Configuración personalizada de `UAccordion`
 const customAccordionUI = {
-  wrapper: 'canales__accordion',
-  container: 'canales__accordion__container',
+  wrapper: "canales__accordion",
+  container: "canales__accordion__container",
   item: {
-    base: 'canales__accordion__item',
-    size: 'text-base',
-    color: 'text-gray-700 dark:text-gray-200',
-    padding: 'p-4',
-    icon: 'transform transition-transform duration-300',
+    base: "canales__accordion__item",
+    size: "text-base",
+    color: "text-gray-700 dark:text-gray-200",
+    padding: "p-4",
+    icon: "transform transition-transform duration-300",
   },
   transition: {
-    enterActiveClass: 'overflow-hidden transition-all duration-300 ease-out',
-    leaveActiveClass: 'overflow-hidden transition-all duration-300 ease-in',
+    enterActiveClass: "overflow-hidden transition-all duration-300 ease-out",
+    leaveActiveClass: "overflow-hidden transition-all duration-300 ease-in",
   },
   default: {
-    openIcon: '',
-    closeIcon: '',
-    class: 'canales__accordion__default',
-    variant: 'custom',
+    openIcon: "",
+    closeIcon: "",
+    class: "canales__accordion__default",
     truncate: false,
-  }
+  },
 };
 </script>
 
 <template>
   <section class="canales" id="canales">
-    <!-- Título del acordeón -->
     <h2 class="canales__titulo">Categorías de Canales</h2>
 
-    <!-- Acordeón con estilos personalizados -->
-    <UAccordion 
-      :items="items" 
+    <UAccordion
+      :items="items"
       :ui="customAccordionUI"
       class="canales__accordion"
     >
@@ -86,8 +80,3 @@ const customAccordionUI = {
     </UAccordion>
   </section>
 </template>
-
-
-<style scoped>
-
-</style>

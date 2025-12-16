@@ -79,8 +79,6 @@ export default function useWizardSubmit({
     }
 
     if (form.status === "error") {
-      console.log(`<<< te tengo >>>`);
-
       form.errorMessage = "";
 
       stepper.goTo("subscriptor-data");

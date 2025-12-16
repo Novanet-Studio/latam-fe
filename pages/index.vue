@@ -1,38 +1,33 @@
 <script lang="ts" setup>
+import { getPlanesInternetQuery } from "~/schemas/planes-queries";
+
 const config = useAppConfig();
 
 useHead({
   titleTemplate: "TV por cable e Internet fibra óptica de alta velocidad - %s",
 });
 
-const planesInternet = ref();
 const graphql = useStrapiGraphQL();
 
-try {
-  const query = await graphql<any>(`
-    query {
-      planInternet {
-        data {
-          attributes {
-            tipo {
-              id
-              nombre
-              descripcion
-              planes {
-                nombre
-                precio_usd
-              }
-            }
-          }
-        }
+const { data: planesInternet } = await useAsyncData(
+  "planes-internet-home",
+  async () => {
+    try {
+      const response = await graphql<any>(getPlanesInternetQuery);
+
+      if (response?.data?.planInternet?.tipo) {
+        return response.data.planInternet.tipo;
       }
+      return [];
+    } catch (error) {
+      console.error("Error cargando planes:", error);
+      return [];
     }
-  `);
-  planesInternet.value = query.data.planInternet.data.attributes.tipo;
-} catch (err) {
-  planesInternet.value = [];
-  console.log(err);
-}
+  },
+  {
+    default: () => [],
+  }
+);
 </script>
 
 <template>
@@ -72,10 +67,7 @@ try {
           src="../assets/images/latinamericancable-pago-icon.svg"
         />
       </div>
-      <a
-        href="http://190.52.105.146:8922"
-        target="_blank"
-        class="pago__boton"
+      <a href="http://190.52.105.146:8922" target="_blank" class="pago__boton"
         >Notifíque su pago móvil aquí</a
       >
     </section>
@@ -116,7 +108,10 @@ try {
         >
       </div>
 
-      <ul class="internet__planes">
+      <ul
+        v-if="planesInternet && planesInternet.length > 0"
+        class="internet__planes"
+      >
         <li
           class="internet__planes__item"
           v-for="(item, index) in planesInternet"
@@ -128,10 +123,10 @@ try {
           <ul class="internet__planes__velocidades">
             <li
               class="internet__planes__boton"
-              v-for="(i, index) in item.planes"
-              :key="index"
+              v-for="(subPlan, subIndex) in item.planes"
+              :key="subIndex"
             >
-              {{ i.nombre }}
+              {{ subPlan.nombre }}
             </li>
           </ul>
           <a href="" class="internet__planes__suscripcion">Suscríbete</a>

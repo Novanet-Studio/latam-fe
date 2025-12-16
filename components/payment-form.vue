@@ -3,6 +3,10 @@ import { useForm } from "vee-validate";
 import { object, string, date } from "yup";
 import { paymentMapper } from "~/utils/mapper";
 import banks from "../utils/banks";
+import {
+  getPaymentMessageQuery,
+  postCreatePaymentQuery,
+} from "~/schemas/payment-queries";
 
 const mensaje_formulario = ref("");
 const isSendingForm = ref(false);
@@ -94,18 +98,7 @@ const submitForm = handleSubmit(async (values) => {
   try {
     isSendingForm.value = true;
     const data = paymentMapper(values);
-    await graphql<any>(
-      `
-        mutation crearPago($data: PagoInput!) {
-          createPago(data: $data) {
-            data {
-              id
-            }
-          }
-        }
-      `,
-      { data }
-    );
+    await graphql<any>(postCreatePaymentQuery, { data });
     showModal();
   } catch (err) {
     console.log(err);
@@ -116,24 +109,28 @@ const submitForm = handleSubmit(async (values) => {
   }
 });
 
-try {
-  const formularioPagoQuery = await graphql<any>(`
-    query {
-      datosDePago {
-        data {
-          attributes {
-            mensaje_formulario
-          }
-        }
-      }
-    }
-  `);
+const { data: planesInternet } = await useAsyncData(
+  "form-message-payment",
+  async () => {
+    try {
+      const response = await graphql<any>(getPaymentMessageQuery);
 
-  mensaje_formulario.value =
-    formularioPagoQuery.data.datosDePago.data.attributes.mensaje_formulario;
-} catch (err) {
-  console.log(err);
-}
+      if (response?.data?.mensaje_formulario) {
+        return response?.data?.mensaje_formulario;
+      }
+
+      return "";
+    } catch (error) {
+      console.error(error);
+      return "";
+    }
+  },
+  {
+    default: () => [],
+  }
+);
+
+mensaje_formulario.value = planesInternet.value;
 </script>
 
 <template>
@@ -146,38 +143,80 @@ try {
     <form class="formulario__form" @submit.prevent="submitForm">
       <h3 class="formulario__form__titulo">Datos titular contrato</h3>
       <base-input label="Nombre y Apellido" id="fullname" name="fullname" />
-      <base-input label="Cédula de identidad" id="identification" name="identification" />
-      <base-input label="Número de contrato" id="contractNumber" name="contractNumber" />
+      <base-input
+        label="Cédula de identidad"
+        id="identification"
+        name="identification"
+      />
+      <base-input
+        label="Número de contrato"
+        id="contractNumber"
+        name="contractNumber"
+      />
       <base-input label="Zona" id="zone" name="zone" />
 
       <h3 class="formulario__form__titulo">Datos forma de pago</h3>
 
-      <select-input label="Zona" default-text="Seleccione forma de pago" id="paymentWay" name="paymentWay"
-        :options="paymentOptions" />
+      <select-input
+        label="Zona"
+        default-text="Seleccione forma de pago"
+        id="paymentWay"
+        name="paymentWay"
+        :options="paymentOptions"
+      />
 
-      <base-input label="Número de transacción" id="transactionNumber" name="transactionNumber" />
+      <base-input
+        label="Número de transacción"
+        id="transactionNumber"
+        name="transactionNumber"
+      />
 
-      <select-input label="Banco emisor" default-text="Seleccione un banco" id="issuingBank" name="issuingBank"
-        :options="bankOptions" />
+      <select-input
+        label="Banco emisor"
+        default-text="Seleccione un banco"
+        id="issuingBank"
+        name="issuingBank"
+        :options="bankOptions"
+      />
 
-      <date-picker-input label="Fecha de operación" placeholder="Selecccione la fecha" format="dd-MM-yyyy"
-        :locale="dateLocale" name="date" />
+      <date-picker-input
+        label="Fecha de operación"
+        placeholder="Selecccione la fecha"
+        format="dd-MM-yyyy"
+        :locale="dateLocale"
+        name="date"
+      />
 
       <form-currency label="Monto" id="amount" name="amount" />
 
       <h3 class="formulario__form__titulo">Datos titular cuenta bancaria</h3>
 
-      <base-input label="Nombre y apellido" id="dtbFullname" name="dtbFullname" />
+      <base-input
+        label="Nombre y apellido"
+        id="dtbFullname"
+        name="dtbFullname"
+      />
       <base-input label="Teléfono" id="dtbPhone" name="dtbPhone" />
-      <base-input label="Cédula de identidad" id="dtbIdentification" name="dtbIdentification" />
+      <base-input
+        label="Cédula de identidad"
+        id="dtbIdentification"
+        name="dtbIdentification"
+      />
       <base-input label="Correo electrónico" id="dtbEmail" name="dtbEmail" />
 
-      <form-button type="submit" :is-loading="isSendingForm" :disabled="isButtonDisabled">
+      <form-button
+        type="submit"
+        :is-loading="isSendingForm"
+        :disabled="isButtonDisabled"
+      >
         Reportar pago
       </form-button>
     </form>
-    <Modal v-show="isModalVisible" title="Tu pago ha sido reportado"
+    <Modal
+      v-show="isModalVisible"
+      title="Tu pago ha sido reportado"
       text="Gracias por enviarnos la información de pago. Para cualquier otra información por favor envíanos un mensaje por WhatsApp"
-      @close="closeModal" />
+      @close="closeModal"
+    />
   </section>
 </template>
