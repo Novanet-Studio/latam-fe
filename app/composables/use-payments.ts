@@ -51,7 +51,9 @@ export default function usePayments({
           form.errorMessage = payment.value?.descRes;
         }
 
-        notification.reject(payment.value?.descRes);
+        notification.reject(
+          payment.value?.descRes || "Error al procesar el pago"
+        );
         stepper.goToNext();
         return;
       }

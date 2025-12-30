@@ -32,7 +32,7 @@ provide("stepper", stepper);
     <div class="wizard payment-section">
       <h3>Confirmación de Pagos TV por cable</h3>
       <h5>{{ stepper.current.value!.title }}</h5>
-      <p v-if="form.errorMessage !== '' && !stepper?.isLast.value">
+      <p v-if="form.errorMessage !== '' && stepper?.isLast.value">
         {{ form.errorMessage }}
       </p>
 
