@@ -12,7 +12,7 @@ useHead({
 
 const isLoading = ref(false);
 const tiposPlanes = ref<any>([]);
-const bcvUsd = useBcvUsd();
+const vesUsd = useBcvUsd();
 
 try {
   isLoading.value = true;
@@ -20,7 +20,17 @@ try {
 
   const { data: data } = await graphql<any>(getPlanesInternetQuery);
 
-  tiposPlanes.value = data.planInternet.tipo;
+  console.log(data.planInternet.tipo);
+
+  tiposPlanes.value = data.planInternet.tipo.map((tipo: any) => ({
+    nombre: tipo.nombre,
+    descripcion: tipo.descripcion,
+    planes: tipo.planes.map((plan: any) => ({
+      id: plan.id,
+      nombre: plan.nombre,
+      precio: Number(plan.precio_usd) * Number(vesUsd.value),
+    })),
+  }));
 } catch (err) {
   console.log(err);
 } finally {
@@ -54,6 +64,8 @@ const loadingText = (price: string) =>
     <template>
       <main class="reporte"></main>
     </template>
+    <!--
+    Removed section displaying internet plans (30/12/2025)
 
     <section class="internet">
       <div class="internet__planes">
@@ -78,14 +90,14 @@ const loadingText = (price: string) =>
               <div class="internet__planes__boton">
                 <h3 class="internet__planes__subtitulo">{{ plan.nombre }}</h3>
                 <p class="internet__planes__texto">
-                  {{ loadingText(getPrice(plan.precio_usd, bcvUsd)) }}
+                  {{ plan.precio }}
                 </p>
               </div>
             </li>
           </ul>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <whatsapp-banner />
   </main>

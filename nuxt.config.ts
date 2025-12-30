@@ -1,10 +1,6 @@
 export default defineNuxtConfig({
   telemetry: false,
 
-  future: {
-    compatibilityVersion: 4,
-  },
-
   app: {
     head: {
       htmlAttrs: {
@@ -30,7 +26,13 @@ export default defineNuxtConfig({
       //     defer: true,
       //   },
       // ],
-      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+      link: [
+        {
+          rel: "icon",
+          type: "image/png",
+          href: "/favicon.png",
+        },
+      ],
     },
   },
 

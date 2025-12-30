@@ -1,5 +1,4 @@
 export default function useBcvUsd() {
-  const form = inject("form") as Latam.Form;
   const usd = ref("");
 
   const { executeGetUsdVesConvertion } = useLatamServices();
@@ -12,6 +11,8 @@ export default function useBcvUsd() {
 
       usd.value = quote;
     } catch (err) {
+      const form = inject("form") as Latam.Form;
+
       form.errorMessage = "Error al obtener VES/USD rate convertion";
       console.log(err);
     }

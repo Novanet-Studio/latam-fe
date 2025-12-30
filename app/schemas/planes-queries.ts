@@ -8,7 +8,7 @@ const getPlanesInternetQuery = `
                 id
                 nombre
                 precio_usd
-            }
+               }
             }
         }
     }
