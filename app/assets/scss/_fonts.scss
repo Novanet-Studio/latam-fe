@@ -1,0 +1,54 @@
+/* sarabun-300 - latin */
+@font-face {
+  font-family: "Sarabun";
+  font-style: normal;
+  font-weight: 300;
+  src: url("@/assets/fonts/sarabun-v8-latin-300.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("@/assets/fonts/sarabun-v8-latin-300.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("@/assets/fonts/sarabun-v8-latin-300.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */ url("@/assets/fonts/sarabun-v8-latin-300.woff")
+      format("woff"),
+    /* Modern Browsers */ url("@/assets/fonts/sarabun-v8-latin-300.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("@/assets/fonts/sarabun-v8-latin-300.svg#Sarabun") format("svg"); /* Legacy iOS */
+}
+/* sarabun-500 - latin */
+@font-face {
+  font-family: "Sarabun";
+  font-style: normal;
+  font-weight: 500;
+  src: url("@/assets/fonts/sarabun-v8-latin-500.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("@/assets/fonts/sarabun-v8-latin-500.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("@/assets/fonts/sarabun-v8-latin-500.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */ url("@/assets/fonts/sarabun-v8-latin-500.woff")
+      format("woff"),
+    /* Modern Browsers */ url("@/assets/fonts/sarabun-v8-latin-500.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("@/assets/fonts/sarabun-v8-latin-500.svg#Sarabun") format("svg"); /* Legacy iOS */
+}
+/* sarabun-800 - latin */
+@font-face {
+  font-family: "Sarabun";
+  font-style: normal;
+  font-weight: 800;
+  src: url("@/assets/fonts/sarabun-v8-latin-800.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("@/assets/fonts/sarabun-v8-latin-800.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("@/assets/fonts/sarabun-v8-latin-800.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */ url("@/assets/fonts/sarabun-v8-latin-800.woff")
+      format("woff"),
+    /* Modern Browsers */ url("@/assets/fonts/sarabun-v8-latin-800.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("@/assets/fonts/sarabun-v8-latin-800.svg#Sarabun") format("svg"); /* Legacy iOS */
+}

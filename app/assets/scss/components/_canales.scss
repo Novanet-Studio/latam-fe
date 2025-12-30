@@ -1,0 +1,90 @@
+.canales {
+  @include grid-structure($columns: 8);
+  grid-area: canales;
+  margin: 1.5em 1em 1em 0;
+
+  &__titulo {
+    grid-column: 1 / 9;
+    @include heading-before-content($color: $azul, $image: "punto.svg");
+  }
+
+  /* 🔹 Sobrescribe estilos del acordeón */
+  &__accordion {
+    grid-column: 1 / 9;
+    display: flex;
+    flex-direction: column;
+
+    /* Contenedor principal del acordeón */
+    &__container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /*  Cada ítem del acordeón */
+    &__item {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 1em;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Configuración de la animación */
+    &__default {
+      transition: max-height 0.3s ease-in-out;
+      overflow: hidden;
+      background: #e8e8e8 !important;
+      border: 1px solid #666;
+      border-radius: 10px;
+      margin-top: 15px;
+      color: #1b4686 !important;
+      font-weight: bold;
+      padding: 1rem;
+    }
+  }
+
+  /*  Grid de imágenes */
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__grid__item {
+    text-align: center;
+    padding-bottom: 1.75rem;
+
+    &__imagen {
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+/*----------------------------------- Mobile Portrait (320px) -----------------------------------*/
+@include responsive(20em) {
+  .canales {
+    grid-template-columns: repeat(6, 2fr);
+  }
+}
+
+/*----------------------------------- Tablet Portrait (768px) -----------------------------------*/
+@include responsive(48em) {
+  .canales {
+    grid-template-columns: repeat(3, 2fr);
+
+    &__accordion {
+      grid-column: 1 / 7;
+    }
+  }
+}
+
+/*----------------------------------- Tablet Landscape (1024px) ---------------------------------*/
+@include responsive(64em) {
+  .canales {
+    grid-template-columns: repeat(8, 2fr);
+  }
+}
