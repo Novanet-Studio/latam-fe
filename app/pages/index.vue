@@ -4,7 +4,17 @@ import { getPlanesInternetQuery } from "~/schemas/planes-queries";
 const config = useAppConfig();
 
 useHead({
-  titleTemplate: "TV por cable e Internet fibra óptica de alta velocidad - %s",
+  title: "TV por cable e Internet fibra óptica de alta velocidad",
+  meta: [
+    {
+      name: "description",
+      content: "TV por cable e Internet fibra óptica de alta velocidad",
+    },
+    {
+      name: "keywords",
+      content: "TV por cable, Internet fibra óptica, alta velocidad",
+    },
+  ],
 });
 
 const graphql = useStrapiGraphQL();

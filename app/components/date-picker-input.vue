@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import Datepicker from '@vuepic/vue-datepicker';
+  import { VueDatePicker } from "@vuepic/vue-datepicker"
+
 import { useField } from 'vee-validate';
 import '@vuepic/vue-datepicker/dist/main.css';
 
@@ -20,7 +21,7 @@ const { value, errorMessage } = useField<Date>(props.name);
   <div class="formulario__form__grupo">
     <label class="formulario__form__label">{{ label }}</label>
     <!-- <ClientOnly> -->
-    <Datepicker v-model="value" :format="format" />
+    <VueDatePicker  v-model="value" :format="format" />
     <!-- <Datepicker :placeholder="placeholder" v-model="value" :format="format" :locale="locale" /> -->
     <!-- </ClientOnly> -->
     <div class="error">{{ errorMessage }}</div>

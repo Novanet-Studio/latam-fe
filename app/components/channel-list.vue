@@ -24,19 +24,15 @@ const categories: Category[] = [
 
 const items = categories.map((category) => ({
   label: category.title,
-  content: category.content,
+  channels: category.content,
+  slot: "category-content",
 }));
 
 const customAccordionUI = {
-  wrapper: "canales__accordion",
-  container: "canales__accordion__container",
-  item: {
-    base: "canales__accordion__item",
-    size: "text-base",
-    color: "text-gray-700 dark:text-gray-200",
-    padding: "p-4",
-    icon: "transform transition-transform duration-300",
-  },
+  root: "canales__accordion",
+  body: "canales__accordion__container",
+  item: "canales__accordion__item",
+  
   transition: {
     enterActiveClass: "overflow-hidden transition-all duration-300 ease-out",
     leaveActiveClass: "overflow-hidden transition-all duration-300 ease-in",
@@ -54,16 +50,16 @@ const customAccordionUI = {
   <section class="canales" id="canales">
     <h2 class="canales__titulo">Categorías de Canales</h2>
 
-    <UAccordion
+     <UAccordion
       :items="items"
       :ui="customAccordionUI"
       class="canales__accordion"
     >
-      <template #item="{ item }">
+      <template #category-content="{ item }">
         <div class="canales__accordion__categoria">
           <ul class="canales__grid">
             <li
-              v-for="(contentItem, index) in item.content"
+              v-for="(contentItem, index) in item.channels"
               :key="index"
               class="canales__grid__item"
             >
@@ -77,6 +73,6 @@ const customAccordionUI = {
           </ul>
         </div>
       </template>
-    </UAccordion>
+    </UAccordion> 
   </section>
 </template>

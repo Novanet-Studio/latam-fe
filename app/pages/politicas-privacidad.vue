@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 const config = useAppConfig();
 const description =
-  "Ponte en contacto con nosotros y déjanos los detalles de tu solicitud en nuestro canal de atención al Ciente en WhatsApp.";
+  "Política de Privacidad de Latin American Cable. Conoce cómo protegemos tus datos.";
 
-useHead({
-  titleTemplate: 'Términos y condiciones - %s',
+useSeoMeta({
+  title: "Política de Privacidad",
+  description,
+  ogTitle: "Política de Privacidad",
+  ogDescription: description,
 });
 </script>
 
