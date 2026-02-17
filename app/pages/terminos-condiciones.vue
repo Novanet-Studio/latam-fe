@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 const config = useAppConfig();
 const description =
-  "Ponte en contacto con nosotros y déjanos los detalles de tu solicitud en nuestro canal de atención al Ciente en WhatsApp.";
+  "Términos y condiciones de servicio de Latin American Cable.";
 
-useHead({
-  titleTemplate: 'Términos y condiciones - %s',
+useSeoMeta({
+  title: "Términos y condiciones",
+  description,
+  ogTitle: "Términos y condiciones",
+  ogDescription: description,
 });
 </script>
 

@@ -22,11 +22,33 @@
 
     /*  Cada ítem del acordeón */
     &__item {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 1em;
       transition: all 0.3s ease-in-out;
+
+
+      button {
+        width: 100%;
+        border: none;
+
+        background: #e8e8e8;
+        border: 1px solid #999;
+        border-radius: 8px;
+        padding: 1em;
+
+        margin-top: 15px;
+
+        color: #1b4686;
+        font-weight: bold;
+
+        outline: none;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      :deep(.u-accordion-content) {
+        background: #000;
+      }
     }
 
     /* Configuración de la animación */
@@ -49,12 +71,12 @@
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     list-style: none;
     padding: 0;
+    padding-top: 1rem;
     margin: 0;
   }
 
   &__grid__item {
     text-align: center;
-    padding-bottom: 1.75rem;
 
     &__imagen {
       max-width: 100%;

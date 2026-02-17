@@ -6,8 +6,11 @@ const config = useAppConfig();
 const description =
   "Internet en fibra óptica de alta velocidad para empresas y hogares.";
 
-useHead({
-  titleTemplate: "Internet fibra óptica de alta velocidad - %s",
+useSeoMeta({
+  title: "Internet fibra óptica de alta velocidad",
+  description,
+  ogTitle: "Internet fibra óptica de alta velocidad",
+  ogDescription: description,
 });
 
 const isLoading = ref(false);
@@ -19,8 +22,6 @@ try {
   const graphql = useStrapiGraphQL();
 
   const { data: data } = await graphql<any>(getPlanesInternetQuery);
-
-  console.log(data.planInternet.tipo);
 
   tiposPlanes.value = data.planInternet.tipo.map((tipo: any) => ({
     nombre: tipo.nombre,

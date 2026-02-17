@@ -3,8 +3,11 @@ const config = useAppConfig();
 const description =
   "Ponte en contacto con nosotros y déjanos los detalles de tu solicitud en nuestro canal de atención al Ciente en WhatsApp.";
 
-useHead({
-  titleTemplate: 'Contáctanos - %s',  
+useSeoMeta({
+  title: "Contáctanos",
+  description,
+  ogTitle: "Contáctanos",
+  ogDescription: description,
 });
 </script>
 

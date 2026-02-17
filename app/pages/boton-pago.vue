@@ -2,6 +2,13 @@
 import AppLogin from '~/components/app-login.vue';
 import AppWizard from '~/components/app-wizard.vue'; 
 
+useSeoMeta({
+  title: "Reporte de Pago",
+  description: "Realiza y reporta tus pagos de Latin American Cable de forma rápida y segura.",
+  ogTitle: "Reporte de Pago",
+  ogDescription: "Realiza y reporta tus pagos de Latin American Cable de forma rápida y segura.",
+});
+
 const isAuthenticated = ref(false);
 const isLoading = ref(false)
 const userData = reactive<Latam.UserData>({
