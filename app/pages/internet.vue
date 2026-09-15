@@ -46,11 +46,7 @@ const loadingText = (price: string) =>
   <main class="internetvista">
     <section class="hero">
       <div class="hero__internet">
-        <a
-          class="hero__internet__box"
-          href="http://190.52.105.146:8922"
-          target="_blank"
-        >
+        <a class="hero__internet__box" href="http://166.1.69.254:8922/cliente/login" target="_blank">
           <div class="hero__internet__icon"></div>
           <div class="hero__internet__info">
             <h1 class="hero__internet__title">Internet por fibra</h1>

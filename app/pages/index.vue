@@ -71,15 +71,11 @@ const { data: planesInternet } = await useAsyncData(
 
     <section class="pago">
       <div class="pago__icon">
-        <img
-          class="pago__icon__imagen"
-          alt="Latin American Cable Pago icono"
-          src="../assets/images/latinamericancable-pago-icon.svg"
-        />
+        <img class="pago__icon__imagen" alt="Latin American Cable Pago icono"
+          src="../assets/images/latinamericancable-pago-icon.svg" />
       </div>
-      <a href="http://190.52.105.146:8922" target="_blank" class="pago__boton"
-        >Notifíque su pago móvil aquí</a
-      >
+      <a href="http://166.1.69.254:8922/cliente/login" target="_blank" class="pago__boton">Notifíque su pago móvil
+        aquí</a>
     </section>
 
     <channel-list />
@@ -110,32 +106,17 @@ const { data: planesInternet } = await useAsyncData(
         <p class="internet__banner__texto">
           Administra y todo lo relacionado con el servicio de internet
         </p>
-        <a
-          class="internet__banner__boton"
-          href="http://190.52.105.146:8922"
-          target="_blank"
-          >Acceder ahora</a
-        >
+        <a class="internet__banner__boton" href="http://166.1.69.254:8922/cliente/login" target="_blank">Acceder
+          ahora</a>
       </div>
 
-      <ul
-        v-if="planesInternet && planesInternet.length > 0"
-        class="internet__planes"
-      >
-        <li
-          class="internet__planes__item"
-          v-for="(item, index) in planesInternet"
-          :key="index"
-        >
+      <ul v-if="planesInternet && planesInternet.length > 0" class="internet__planes">
+        <li class="internet__planes__item" v-for="(item, index) in planesInternet" :key="index">
           <h3 class="internet__planes__titulo">{{ item.nombre }}</h3>
           <p class="internet__planes__texto">{{ item.descripcion }}</p>
 
           <ul class="internet__planes__velocidades">
-            <li
-              class="internet__planes__boton"
-              v-for="(subPlan, subIndex) in item.planes"
-              :key="subIndex"
-            >
+            <li class="internet__planes__boton" v-for="(subPlan, subIndex) in item.planes" :key="subIndex">
               {{ subPlan.nombre }}
             </li>
           </ul>
