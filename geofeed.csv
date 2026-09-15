@@ -1,0 +1,5 @@
+network,country,region,city,postal_code
+38.97.240.0/24,VE,VE-A,Caracas,1020
+166.1.68.0/24,VE,VE-A,Caracas,1020
+38.137.232.236/30,VE,VE-A,Caracas,1020
+38.137.232.240/30,VE,VE-A,Caracas,1020
